@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Batch Screening — Resume Screener</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f4f9;
+  --surface: #ffffff;
+  --nav-bg: rgba(255,255,255,0.85);
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+  --primary: #1e3a5f;
+  --primary-light: #2563eb;
+  --primary-surface: #eef2ff;
+  --accent: #0891b2;
+  --success: #059669;
+  --success-bg: #ecfdf5;
+  --success-border: #a7f3d0;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+  --warning-border: #fde68a;
+  --danger: #dc2626;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --info: #0284c7;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);min-height:100vh;
+}
+
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+nav .logo{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.05rem;font-weight:800;
+  color:var(--primary);display:flex;align-items:center;gap:10px;
+}
+nav .logo .logo-icon{
+  width:30px;height:30px;
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.85rem;
+}
+nav .links{display:flex;gap:4px}
+nav .links a{
+  color:var(--text-secondary);text-decoration:none;
+  font-size:.85rem;font-weight:500;
+  padding:8px 18px;border-radius:var(--radius-sm);
+  transition:all .2s;
+}
+nav .links a:hover{color:var(--primary-light);background:var(--primary-surface)}
+nav .links a.active{color:var(--primary-light);background:var(--primary-surface);font-weight:600}
+
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+
+.hero{padding:100px 0 36px;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 16px;border-radius:20px;
+  font-size:.72rem;font-weight:600;letter-spacing:.3px;
+  background:var(--primary-surface);color:var(--primary-light);
+  border:1px solid rgba(37,99,235,0.15);margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;
+  line-height:1.2;letter-spacing:-0.5px;
+  color:var(--primary);margin-bottom:12px;
+}
+.hero h1 .highlight{
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{font-size:1.05rem;color:var(--text-secondary);max-width:560px;margin:0 auto;line-height:1.7}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);padding:32px;
+  box-shadow:var(--shadow-sm);transition:all .25s;margin-bottom:28px;
+}
+.card:hover{box-shadow:var(--shadow-md)}
+.card h2{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem;font-weight:700;color:var(--primary);
+  margin-bottom:20px;display:flex;align-items:center;gap:8px;
+}
+
+.grp{margin-bottom:18px}
+.grp label{display:block;font-size:.78rem;font-weight:600;color:var(--text-secondary);margin-bottom:5px}
+.grp input,.grp textarea{
+  width:100%;padding:12px 14px;
+  background:var(--bg);border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);font-size:.88rem;
+  font-family:inherit;color:var(--text);transition:all .2s;outline:none;
+}
+.grp input:focus,.grp textarea:focus{border-color:var(--primary-light);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.grp textarea{min-height:80px;resize:vertical}
+.grp input[type=file]{padding:8px 12px;cursor:pointer}
+.grp input[type=file]::file-selector-button{
+  background:var(--primary);color:#fff;border:none;
+  padding:6px 16px;border-radius:6px;font-weight:600;
+  font-size:.75rem;cursor:pointer;margin-right:12px;transition:opacity .2s;
+}
+.grp input[type=file]::file-selector-button:hover{opacity:.85}
+
+.btn{
+  padding:12px 28px;border:none;border-radius:var(--radius-sm);
+  font-size:.85rem;font-weight:600;cursor:pointer;
+  font-family:inherit;transition:all .25s;
+  display:inline-flex;align-items:center;gap:8px;justify-content:center;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  color:#fff;width:100%;
+}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 4px 20px rgba(37,99,235,0.25)}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
+.loading{display:none;align-items:center;gap:10px;padding:14px 0;color:var(--primary-light);font-weight:500}
+.loading.active{display:flex}
+.spinner{width:18px;height:18px;border:2px solid rgba(37,99,235,0.15);border-top-color:var(--primary-light);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.summary{display:flex;gap:14px;margin-bottom:24px;flex-wrap:wrap}
+.summary-item{
+  flex:1;min-width:100px;padding:18px 20px;border-radius:10px;
+  text-align:center;font-weight:600;border:1px solid var(--border);
+  transition:all .2s;
+}
+.summary-item:hover{transform:translateY(-1px);box-shadow:var(--shadow-sm)}
+.summary-item.authentic{background:var(--success-bg);color:var(--success);border-color:var(--success-border)}
+.summary-item.suspicious{background:var(--warning-bg);color:var(--warning);border-color:var(--warning-border)}
+.summary-item.fake{background:var(--danger-bg);color:var(--danger);border-color:var(--danger-border)}
+.summary-item.total{background:var(--primary-surface);color:var(--primary-light);border-color:rgba(37,99,235,0.15)}
+.s-item-num{font-size:1.6rem;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif}
+.s-item-label{font-size:.65rem;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+
+.table-wrap{overflow-x:auto;border-radius:10px;border:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.82rem}
+thead th{
+  background:var(--bg);padding:14px 16px;text-align:left;
+  font-weight:600;color:var(--text-tertiary);
+  font-size:.7rem;text-transform:uppercase;letter-spacing:.3px;
+  border-bottom:1px solid var(--border);white-space:nowrap;
+}
+tbody td{padding:12px 16px;border-bottom:1px solid rgba(226,232,240,0.5);transition:background .15s}
+tbody tr:hover td{background:var(--primary-surface)}
+tbody tr:last-child td{border-bottom:none}
+
+.bt-tbl{display:inline-block;padding:3px 12px;border-radius:12px;font-size:.72rem;font-weight:600}
+.bt-authentic{background:var(--success-bg);color:var(--success)}
+.bt-suspicious{background:var(--warning-bg);color:var(--warning)}
+.bt-fake{background:var(--danger-bg);color:var(--danger)}
+
+footer{text-align:center;padding:32px 0 48px;border-top:1px solid var(--border)}
+footer p{font-size:.75rem;color:var(--text-tertiary)}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px}
+
+@media(max-width:768px){
+  nav{padding:0 16px}
+  .hero{padding:84px 0 28px}
+  .card{padding:20px}
+  .summary{flex-direction:column}
+  .summary-item{min-width:auto}
+}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">
+    <span class="logo-icon">✦</span>
+    Resume Screener
+  </div>
+  <div class="links">
+    <a href="/">Single</a>
+    <a href="/batch" class="active">Batch</a>
+    <a href="/analytics">Insights</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-badge">⚡ Bulk Resume Processing</div>
+    <h1>Batch <span class="highlight">screening</span></h1>
+    <p>Upload multiple resumes at once. Get a ranked table sorted by authenticity and match score.</p>
+  </div>
+
+  <div class="card">
+    <h2>📂 Upload resumes</h2>
+    <form id="batchForm">
+      <div class="grp">
+        <label>Resume files <span style="color:var(--text-tertiary)">(PDF or TXT, multiple allowed)</span></label>
+        <input type="file" name="resumes" multiple accept=".pdf,.txt" required>
+      </div>
+      <div class="grp">
+        <label>Job title <span style="color:var(--text-tertiary)">(optional)</span></label>
+        <input type="text" name="job_title" placeholder="e.g. Data Scientist">
+      </div>
+      <div class="grp">
+        <label>Job description</label>
+        <textarea name="job_description" placeholder="Paste the job description here..." required></textarea>
+      </div>
+      <button type="submit" class="btn btn-primary" id="batchBtn">
+        Screen all resumes →
+      </button>
+    </form>
+    <div class="loading" id="batchLoading">
+      <div class="spinner"></div>
+      <span>Processing resumes...</span>
+    </div>
+  </div>
+
+  <div id="batchResults" style="display:none">
+    <div class="card">
+      <div class="summary" id="summary"></div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>#</th><th>Filename</th><th>Classification</th><th>Confidence</th><th>Match</th><th>Semantic</th><th>Skills</th></tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 3,000 labeled samples</p>
+  </footer>
+</div>
+
+<script>
+document.getElementById('batchForm').onsubmit = async function(e){
+  e.preventDefault();
+  const formData = new FormData(this);
+  document.getElementById('batchBtn').disabled = true;
+  document.getElementById('batchLoading').classList.add('active');
+  document.getElementById('batchResults').style.display = 'none';
+  try{
+    const res = await fetch('/api/predict_batch', {method:'POST', body:formData});
+    const data = await res.json();
+    if(data.status !== 'success') throw new Error(data.detail || 'Error');
+    displayBatch(data);
+  }catch(err){alert('Error: '+err.message)}
+  finally{document.getElementById('batchBtn').disabled = false; document.getElementById('batchLoading').classList.remove('active')}
+};
+
+function displayBatch(data){
+  const r = data.results;
+  const counts = {Authentic:0, Suspicious:0, 'Potentially Fake':0, Error:0};
+  r.forEach(x => {if(x.error) counts.Error++; else counts[x.classification]++});
+  document.getElementById('summary').innerHTML = `
+    <div class="summary-item total"><div class="s-item-num">${r.length}</div><div class="s-item-label">Total</div></div>
+    <div class="summary-item authentic"><div class="s-item-num">${counts.Authentic}</div><div class="s-item-label">Authentic</div></div>
+    <div class="summary-item suspicious"><div class="s-item-num">${counts.Suspicious}</div><div class="s-item-label">Suspicious</div></div>
+    <div class="summary-item fake"><div class="s-item-num">${counts['Potentially Fake']}</div><div class="s-item-label">Fake</div></div>`;
+  document.getElementById('resultsBody').innerHTML = r.map((x,i)=>{
+    if(x.error) return `<tr><td>${i+1}</td><td>${x.filename}</td><td colspan="5" style="color:var(--danger)">⚠ ${x.error}</td></tr>`;
+    const bc = x.classification==='Authentic'?'bt-authentic':x.classification==='Suspicious'?'bt-suspicious':'bt-fake';
+    return `<tr><td>${i+1}</td><td>${x.filename}</td><td><span class="bt-tbl ${bc}">${x.classification}</span></td><td>${(x.confidence*100).toFixed(1)}%</td><td>${(x.final_match_score*100).toFixed(0)}%</td><td>${(x.semantic_similarity*100).toFixed(0)}%</td><td>${(x.skill_overlap_score*100).toFixed(0)}%</td></tr>`;
+  }).join('');
+  document.getElementById('batchResults').style.display = 'block';
+}
+</script>
+</body>
+</html>
