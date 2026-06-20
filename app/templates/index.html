@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume Screener — AI Authenticity Engine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f0f4f9;
+  --surface: #ffffff;
+  --surface-hover: #f8fafc;
+  --nav-bg: rgba(255,255,255,0.85);
+  --border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.06), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.04);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --text: #0f172a;
+  --text-secondary: #475569;
+  --text-tertiary: #94a3b8;
+
+  --primary: #1e3a5f;
+  --primary-light: #2563eb;
+  --primary-surface: #eef2ff;
+  --accent: #0891b2;
+  --accent-light: #ecfeff;
+
+  --success: #059669;
+  --success-bg: #ecfdf5;
+  --success-border: #a7f3d0;
+  --warning: #d97706;
+  --warning-bg: #fffbeb;
+  --warning-border: #fde68a;
+  --danger: #dc2626;
+  --danger-bg: #fef2f2;
+  --danger-border: #fecaca;
+  --info: #0284c7;
+  --info-bg: #f0f9ff;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'DM Sans',system-ui,-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);
+  min-height:100vh;line-height:1.6;
+}
+
+/* ─── Nav ─── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:var(--nav-bg);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  padding:0 32px;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+nav .logo{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1.05rem;font-weight:800;
+  color:var(--primary);letter-spacing:-0.3px;
+  display:flex;align-items:center;gap:10px;
+}
+nav .logo .logo-icon{
+  width:30px;height:30px;
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  border-radius:8px;display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:.85rem;
+}
+nav .links{display:flex;gap:4px}
+nav .links a{
+  color:var(--text-secondary);text-decoration:none;
+  font-size:.85rem;font-weight:500;
+  padding:8px 18px;border-radius:var(--radius-sm);
+  transition:all .2s;
+}
+nav .links a:hover{color:var(--primary-light);background:var(--primary-surface)}
+nav .links a.active{color:var(--primary-light);background:var(--primary-surface);font-weight:600}
+
+/* ─── Container ─── */
+.container{max-width:1200px;margin:0 auto;padding:0 28px}
+
+/* ─── Hero ─── */
+.hero{padding:100px 0 48px;text-align:center}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 16px;border-radius:20px;
+  font-size:.72rem;font-weight:600;letter-spacing:.3px;
+  background:var(--primary-surface);color:var(--primary-light);
+  border:1px solid rgba(37,99,235,0.15);margin-bottom:20px;
+}
+.hero h1{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:clamp(2rem,4.5vw,3.2rem);font-weight:800;
+  line-height:1.2;letter-spacing:-0.5px;
+  color:var(--primary);margin-bottom:12px;
+}
+.hero h1 .highlight{
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero p{
+  font-size:1.05rem;color:var(--text-secondary);
+  max-width:600px;margin:0 auto;line-height:1.7;
+}
+
+/* ─── Stats Row ─── */
+.stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:40px}
+.stat-card{
+  background:var(--surface);padding:24px;
+  border-radius:var(--radius);border:1px solid var(--border);
+  text-align:center;transition:all .25s;
+  box-shadow:var(--shadow-sm);
+}
+.stat-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.stat-card .stat-icon{font-size:1.6rem;margin-bottom:6px}
+.stat-card .stat-num{
+  font-size:1.6rem;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif;
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.stat-card .stat-label{font-size:.72rem;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.5px;font-weight:600;margin-top:2px}
+
+/* ─── Cards ─── */
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:32px;
+  box-shadow:var(--shadow-sm);
+  transition:all .25s;
+}
+.card:hover{box-shadow:var(--shadow-md)}
+.card h2{
+  font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:1rem;font-weight:700;color:var(--primary);
+  margin-bottom:20px;display:flex;align-items:center;gap:8px;
+}
+
+/* ─── Form ─── */
+.grp{margin-bottom:18px}
+.grp label{
+  display:block;font-size:.78rem;font-weight:600;
+  color:var(--text-secondary);margin-bottom:5px;
+}
+.grp input,.grp textarea{
+  width:100%;padding:12px 14px;
+  background:var(--bg);
+  border:1.5px solid var(--border);
+  border-radius:var(--radius-sm);font-size:.88rem;
+  font-family:inherit;color:var(--text);
+  transition:all .2s;outline:none;
+}
+.grp input:focus,.grp textarea:focus{
+  border-color:var(--primary-light);
+  box-shadow:0 0 0 3px rgba(37,99,235,0.1);
+}
+.grp textarea{min-height:100px;resize:vertical}
+.grp input[type=file]{padding:8px 12px;cursor:pointer}
+.grp input[type=file]::file-selector-button{
+  background:var(--primary);color:#fff;border:none;
+  padding:6px 16px;border-radius:6px;font-weight:600;
+  font-size:.75rem;cursor:pointer;margin-right:12px;
+  transition:opacity .2s;
+}
+.grp input[type=file]::file-selector-button:hover{opacity:.85}
+
+.btn{
+  padding:12px 28px;border:none;border-radius:var(--radius-sm);
+  font-size:.85rem;font-weight:600;cursor:pointer;
+  font-family:inherit;transition:all .25s;
+  display:inline-flex;align-items:center;gap:8px;justify-content:center;
+}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary-light),var(--accent));
+  color:#fff;width:100%;
+}
+.btn-primary:hover{
+  transform:translateY(-1px);
+  box-shadow:0 4px 20px rgba(37,99,235,0.25);
+}
+.btn-primary:disabled{opacity:.6;cursor:not-allowed;transform:none}
+
+/* ─── Loading ─── */
+.loading{display:none;align-items:center;gap:10px;padding:14px 0;color:var(--primary-light);font-weight:500}
+.loading.active{display:flex}
+.loading .spinner{width:18px;height:18px;border:2px solid rgba(37,99,235,0.15);border-top-color:var(--primary-light);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ─── Layout ─── */
+.main-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-bottom:48px}
+@media(max-width:968px){.main-grid{grid-template-columns:1fr}}
+@media(max-width:768px){
+  nav{padding:0 16px}
+  .hero{padding:84px 0 28px}
+  .stats-row{grid-template-columns:1fr}
+  .card{padding:20px}
+}
+
+/* ─── Results ─── */
+#results{opacity:0;transform:translateY(12px);transition:all .5s ease}
+#results.visible{opacity:1;transform:translateY(0)}
+.result-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px;flex-wrap:wrap;gap:12px}
+.result-header h2{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:1rem;font-weight:700;color:var(--primary);
+}
+
+.badge-cls{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 16px;border-radius:20px;
+  font-size:.78rem;font-weight:600;
+}
+.badge-authentic{background:var(--success-bg);color:var(--success);border:1px solid var(--success-border)}
+.badge-suspicious{background:var(--warning-bg);color:var(--warning);border:1px solid var(--warning-border)}
+.badge-fake{background:var(--danger-bg);color:var(--danger);border:1px solid var(--danger-border)}
+
+.score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;margin:16px 0}
+.score-item{
+  padding:16px;border-radius:var(--radius-sm);
+  background:var(--bg);border:1px solid var(--border);
+}
+.score-item .si-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.3px;color:var(--text-tertiary);font-weight:600}
+.score-item .si-val{font-size:1.2rem;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;margin-top:2px}
+.si-val.high{color:var(--success)}
+.si-val.med{color:var(--warning)}
+.si-val.low{color:var(--danger)}
+
+.skill-block{margin:16px 0}
+.skill-block .sb-title{font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin-bottom:6px}
+.chip{
+  display:inline-block;padding:3px 10px;border-radius:5px;
+  font-size:.73rem;font-weight:500;margin:2px;border:1px solid;
+}
+.chip-matched{background:var(--success-bg);color:var(--success);border-color:var(--success-border)}
+.chip-missing{background:var(--danger-bg);color:var(--danger);border-color:var(--danger-border)}
+.chip-extra{background:var(--info-bg);color:var(--info);border-color:rgba(2,132,199,0.2)}
+
+.validation-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:14px 0}
+.vchip{
+  padding:12px;border-radius:var(--radius-sm);
+  background:var(--bg);border:1px solid var(--border);text-align:center;
+}
+.vchip .vc-label{font-size:.65rem;text-transform:uppercase;color:var(--text-tertiary);font-weight:600;letter-spacing:.2px}
+.vchip .vc-val{font-size:.95rem;font-weight:600;margin-top:3px;font-family:'Plus Jakarta Sans',sans-serif}
+
+.preview-box{
+  background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius-sm);padding:16px;
+  max-height:180px;overflow-y:auto;
+  font-size:.78rem;line-height:1.6;color:var(--text-secondary);
+  white-space:pre-wrap;margin-top:10px;
+}
+.preview-box::-webkit-scrollbar{width:4px}
+.preview-box::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+
+/* ─── Footer ─── */
+footer{text-align:center;padding:32px 0 48px;border-top:1px solid var(--border);margin-top:20px}
+footer p{font-size:.75rem;color:var(--text-tertiary)}
+</style>
+</head>
+<body>
+<nav>
+  <div class="logo">
+    <span class="logo-icon">✦</span>
+    Resume Screener
+  </div>
+  <div class="links">
+    <a href="/" class="active">Single</a>
+    <a href="/batch">Batch</a>
+    <a href="/analytics">Insights</a>
+  </div>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-badge">✦ BERT-Powered Resume Analysis</div>
+    <h1>Screen resumes with <span class="highlight">97% accuracy</span></h1>
+    <p>Upload a resume and paste a job description. Our AI engine measures semantic fit, detects anomalies, and validates authenticity in seconds.</p>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-num">97%</div><div class="stat-label">Accuracy</div></div>
+    <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-num">2-5s</div><div class="stat-label">Analysis Time</div></div>
+    <div class="stat-card"><div class="stat-icon">🛡️</div><div class="stat-num">12</div><div class="stat-label">Validation Checks</div></div>
+  </div>
+
+  <div class="main-grid">
+    <div class="card">
+      <h2>📄 Upload Resume</h2>
+      <form id="uploadForm">
+        <div class="grp">
+          <label>Resume file <span style="color:var(--text-tertiary)">(PDF or TXT)</span></label>
+          <input type="file" name="resume" accept=".pdf,.txt" required>
+        </div>
+        <div class="grp">
+          <label>Job title <span style="color:var(--text-tertiary)">(optional)</span></label>
+          <input type="text" name="job_title" placeholder="e.g. Machine Learning Engineer">
+        </div>
+        <div class="grp">
+          <label>Job description</label>
+          <textarea name="job_description" placeholder="Paste the job description here..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" id="submitBtn">
+          Analyze Resume →
+        </button>
+      </form>
+      <div class="loading" id="loading">
+        <div class="spinner"></div>
+        <span>Running BERT analysis...</span>
+      </div>
+    </div>
+
+    <div id="results">
+      <div class="card" id="resultsCard" style="display:none">
+        <div class="result-header">
+          <h2>📊 Analysis Results</h2>
+          <div id="classificationBadge"></div>
+        </div>
+        <div id="skillsSection"></div>
+        <h4 style="font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin:18px 0 8px">Match Scores</h4>
+        <div class="score-grid" id="scoresGrid"></div>
+        <h4 style="font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin:18px 0 8px">Validation Signals</h4>
+        <div class="validation-grid" id="validationGrid"></div>
+      </div>
+      <div class="card" id="previewCard" style="display:none;margin-top:20px">
+        <h4 style="font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px">Resume Preview</h4>
+        <div class="preview-box" id="resumePreview"></div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 3,000 labeled samples</p>
+  </footer>
+</div>
+
+<script>
+document.getElementById('uploadForm').onsubmit = async function(e){
+  e.preventDefault();
+  const formData = new FormData(this);
+  document.getElementById('submitBtn').disabled = true;
+  document.getElementById('loading').classList.add('active');
+  document.getElementById('resultsCard').style.display = 'none';
+  document.getElementById('previewCard').style.display = 'none';
+  document.getElementById('results').classList.remove('visible');
+  try{
+    const res = await fetch('/api/predict', {method:'POST', body:formData});
+    const data = await res.json();
+    if(data.status !== 'success') throw new Error(data.detail || 'Error');
+    displayResults(data);
+  }catch(err){ alert('Error: '+err.message); }
+  finally{
+    document.getElementById('submitBtn').disabled = false;
+    document.getElementById('loading').classList.remove('active');
+  }
+};
+
+function displayResults(data){
+  const c = data.classification;
+  const cls = c.classification;
+  const bc = cls==='Authentic'?'badge-authentic':cls==='Suspicious'?'badge-suspicious':'badge-fake';
+  const icon = cls==='Authentic'?'✓':cls==='Suspicious'?'⚠':'✗';
+  document.getElementById('classificationBadge').innerHTML =
+    `<span class="badge-cls ${bc}">${icon} ${cls} &middot; ${(c.confidence*100).toFixed(1)}% confidence</span>`;
+
+  const s = data.scores;
+  document.getElementById('scoresGrid').innerHTML = Object.entries(s).map(([k,v])=>{
+    const pct=v*100, grade=pct>=70?'high':pct>=35?'med':'low';
+    return `<div class="score-item"><div class="si-label">${k.replace(/_/g,' ')}</div><div class="si-val ${grade}">${pct.toFixed(0)}%</div></div>`;
+  }).join('');
+
+  const sk = data.skills;
+  document.getElementById('skillsSection').innerHTML = `
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:6px">
+      <div class="skill-block"><div class="sb-title">✓ Matched (${sk.match_count})</div><div>${sk.matched.map(s=>'<span class="chip chip-matched">'+s+'</span>').join('')||'<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
+      <div class="skill-block"><div class="sb-title">✗ Missing (${sk.missing_count})</div><div>${sk.missing.map(s=>'<span class="chip chip-missing">'+s+'</span>').join('')||'<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
+      <div class="skill-block"><div class="sb-title">+ Extra (${sk.extra_count})</div><div>${sk.extra.map(s=>'<span class="chip chip-extra">'+s+'</span>').join('')||'<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
+    </div>`;
+
+  const v = data.validation;
+  const vf = ['keyword_stuffing_score','generic_phrase_score','skill_density','achievement_count','gap_years','overlapping_jobs','promotion_speed'];
+  document.getElementById('validationGrid').innerHTML = vf.map(k =>
+    `<div class="vchip"><div class="vc-label">${k.replace(/_/g,' ')}</div><div class="vc-val">${typeof v[k]==='number'?v[k].toFixed(3):v[k]}</div></div>`
+  ).join('');
+
+  document.getElementById('resumePreview').textContent = data.resume_preview;
+  document.getElementById('resultsCard').style.display = 'block';
+  document.getElementById('previewCard').style.display = 'block';
+  setTimeout(() => document.getElementById('results').classList.add('visible'), 50);
+}
+</script>
+</body>
+</html>
