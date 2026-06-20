@@ -21,6 +21,7 @@ from app.utils.parser import parse_resume
 from app.features.semantic import compute_semantic_similarity
 from app.features.skill_overlap import compute_skill_overlap, get_matched_skills
 from app.features.experience import score_experience_relevance
+from app.features.experience_extraction import extract_years_experience, extract_graduation_year
 from app.features.validation import compute_all_validation_features
 from app.models.classifier import predict, get_model_info
 
@@ -74,6 +75,9 @@ async def predict_single(
             raise HTTPException(400, "Could not extract enough text from resume")
 
         logger.info(f"Predicting: {resume.filename} | JD: {len(job_description)} chars")
+        years_exp = extract_years_experience(resume_text)
+        grad_year = extract_graduation_year(resume_text)
+        logger.debug(f"Extracted: {years_exp} years exp, graduation year {grad_year}")
         sem_sim = compute_semantic_similarity(resume_text, job_description)
         skill_overlap = compute_skill_overlap(resume_text, job_description)
         exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
@@ -84,8 +88,8 @@ async def predict_single(
             skill_overlap_score=skill_overlap,
             experience_relevance_score=exp_relevance,
             final_match_score=final_score,
-            years_experience=5,
-            graduation_year=2020
+            years_experience=years_exp,
+            graduation_year=grad_year
         )
         classification = predict([validation])[0]
         skill_details = get_matched_skills(resume_text, job_description)
@@ -127,6 +131,8 @@ async def predict_batch(
                 logger.warning(f"Batch: {resume.filename} — too short")
                 results.append({"filename": resume.filename, "error": "Could not extract text"})
                 continue
+            years_exp = extract_years_experience(resume_text)
+            grad_year = extract_graduation_year(resume_text)
             sem_sim = compute_semantic_similarity(resume_text, job_description)
             skill_overlap = compute_skill_overlap(resume_text, job_description)
             exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
@@ -136,7 +142,9 @@ async def predict_batch(
                 semantic_similarity=sem_sim,
                 skill_overlap_score=skill_overlap,
                 experience_relevance_score=exp_relevance,
-                final_match_score=final_score
+                final_match_score=final_score,
+                years_experience=years_exp,
+                graduation_year=grad_year
             )
             classification = predict([validation])[0]
             results.append({
