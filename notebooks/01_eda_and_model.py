@@ -42,7 +42,7 @@ logger.info("PHASE 1: EXPLORATORY DATA ANALYSIS")
 logger.info("=" * 70)
 
 logger.info("Loading dataset...")
-df = pd.read_csv(PROJ / 'resume_dataset_2000_tech.csv', encoding='latin-1')
+df = pd.read_csv(PROJ / 'resume_dataset_4000_tech.csv', encoding='latin-1')
 logger.info(f"  dataset: {df.shape}")
 
 logger.info("Class Distribution:")
