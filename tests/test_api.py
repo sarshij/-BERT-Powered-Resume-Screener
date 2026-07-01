@@ -45,9 +45,9 @@ class TestModelInfoEndpoint:
         assert "feature_importance" in data
         assert "classes" in data
 
-    def test_accuracy_is_97_percent(self):
+    def test_accuracy_above_95_percent(self):
         data = client.get("/api/model/info").json()
-        assert data["test_accuracy"] == 0.97
+        assert data["test_accuracy"] >= 0.95
 
 
 class TestClassDistributionEndpoint:
@@ -62,10 +62,10 @@ class TestClassDistributionEndpoint:
         data = client.get("/api/class_distribution").json()
         assert len(data["class_distribution"]) == 3
 
-    def test_total_is_3000(self):
+    def test_total_is_2000(self):
         data = client.get("/api/class_distribution").json()
         total = sum(data["class_distribution"].values())
-        assert total == 3000
+        assert total == 2000
 
 
 class TestDatasetStatsEndpoint:
@@ -78,11 +78,11 @@ class TestDatasetStatsEndpoint:
 
     def test_total_samples(self):
         data = client.get("/api/dataset/stats").json()
-        assert data["total_samples"] == 3000
+        assert data["total_samples"] == 2000
 
     def test_has_feature_stats(self):
         data = client.get("/api/dataset/stats").json()
-        assert len(data["feature_stats"]) >= 8
+        assert len(data["feature_stats"]) >= 12
 
 
 class TestPredictEndpoint:

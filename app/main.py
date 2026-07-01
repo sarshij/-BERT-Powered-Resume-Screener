@@ -2,7 +2,8 @@
 FastAPI Backend for Resume Screening & Authenticity Validation
 """
 import sys
-sys.path.insert(0, '/mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener')
+from pathlib import Path
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from contextlib import asynccontextmanager
 from fastapi import FastAPI, UploadFile, File, Form, HTTPException
@@ -12,21 +13,20 @@ from fastapi.templating import Jinja2Templates
 from starlette.requests import Request
 from starlette.middleware.base import BaseHTTPMiddleware
 import json, os, io, time
-from pathlib import Path
 import pandas as pd
 import numpy as np
 
 from app.logger import setup_logger
 from app.utils.parser import parse_resume
 from app.features.semantic import compute_semantic_similarity
-from app.features.skill_overlap import compute_skill_overlap, get_matched_skills
+from app.features.skill_overlap import compute_skill_overlap, get_matched_skills, extract_skills
 from app.features.experience import score_experience_relevance
 from app.features.experience_extraction import extract_years_experience, extract_graduation_year
 from app.features.validation import compute_all_validation_features
 from app.models.classifier import predict, get_model_info
 
 logger = setup_logger(__name__)
-BASE = Path('/mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener')
+BASE = Path(__file__).resolve().parent.parent
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -82,6 +82,7 @@ async def predict_single(
         skill_overlap = compute_skill_overlap(resume_text, job_description)
         exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
         final_score = round(0.4 * sem_sim + 0.35 * skill_overlap + 0.25 * exp_relevance, 4)
+        extracted_skills = list(extract_skills(resume_text))
         validation = compute_all_validation_features(
             resume_text, job_description,
             semantic_similarity=sem_sim,
@@ -89,7 +90,8 @@ async def predict_single(
             experience_relevance_score=exp_relevance,
             final_match_score=final_score,
             years_experience=years_exp,
-            graduation_year=grad_year
+            graduation_year=grad_year,
+            extracted_skills=extracted_skills
         )
         classification = predict([validation])[0]
         skill_details = get_matched_skills(resume_text, job_description)
@@ -137,6 +139,7 @@ async def predict_batch(
             skill_overlap = compute_skill_overlap(resume_text, job_description)
             exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
             final_score = round(0.4 * sem_sim + 0.35 * skill_overlap + 0.25 * exp_relevance, 4)
+            extracted_skills = list(extract_skills(resume_text))
             validation = compute_all_validation_features(
                 resume_text, job_description,
                 semantic_similarity=sem_sim,
@@ -144,7 +147,8 @@ async def predict_batch(
                 experience_relevance_score=exp_relevance,
                 final_match_score=final_score,
                 years_experience=years_exp,
-                graduation_year=grad_year
+                graduation_year=grad_year,
+                extracted_skills=extracted_skills
             )
             classification = predict([validation])[0]
             results.append({
@@ -197,7 +201,9 @@ async def dataset_stats():
     feature_cols = [
         'semantic_similarity', 'skill_overlap_score', 'experience_relevance_score',
         'final_match_score', 'skill_density', 'achievement_count',
-        'generic_phrase_score', 'gap_years', 'keyword_stuffing_score'
+        'generic_phrase_score', 'gap_years', 'keyword_stuffing_score',
+        'years_experience', 'num_certifications', 'num_skills',
+        'education_level_encoded', 'has_previous_job',
     ]
     stats = {}
     for col in feature_cols:
