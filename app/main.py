@@ -81,7 +81,7 @@ async def predict_single(
         sem_sim = compute_semantic_similarity(resume_text, job_description)
         skill_overlap = compute_skill_overlap(resume_text, job_description)
         exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
-        final_score = round(0.4 * sem_sim + 0.35 * skill_overlap + 0.25 * exp_relevance, 4)
+        final_score = round(0.6 * sem_sim + 0.25 * skill_overlap + 0.15 * exp_relevance, 4)
         extracted_skills = list(extract_skills(resume_text))
         validation = compute_all_validation_features(
             resume_text, job_description,
@@ -138,7 +138,7 @@ async def predict_batch(
             sem_sim = compute_semantic_similarity(resume_text, job_description)
             skill_overlap = compute_skill_overlap(resume_text, job_description)
             exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
-            final_score = round(0.4 * sem_sim + 0.35 * skill_overlap + 0.25 * exp_relevance, 4)
+            final_score = round(0.6 * sem_sim + 0.25 * skill_overlap + 0.15 * exp_relevance, 4)
             extracted_skills = list(extract_skills(resume_text))
             validation = compute_all_validation_features(
                 resume_text, job_description,
