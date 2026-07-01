@@ -8,6 +8,9 @@ from app.features.validation import (
     compute_promotion_speed,
     detect_overlapping_jobs,
     compute_all_validation_features,
+    count_certifications,
+    extract_education_level,
+    has_previous_job,
 )
 
 
@@ -144,9 +147,57 @@ class TestOverlappingJobs:
         assert detect_overlapping_jobs("") == 0
 
 
+class TestCountCertifications:
+
+    def test_detects_certification_keywords(self):
+        text = "Certified AWS Solutions Architect, CISSP, PMP certification"
+        assert count_certifications(text) >= 3
+
+    def test_no_certifications_returns_zero(self):
+        text = "python developer with experience"
+        assert count_certifications(text) == 0
+
+    def test_empty_text_returns_zero(self):
+        assert count_certifications("") == 0
+
+
+class TestExtractEducationLevel:
+
+    def test_phd_detected(self):
+        assert extract_education_level("PhD in Computer Science") == 3
+        assert extract_education_level("Doctorate in Physics") == 3
+
+    def test_masters_detected(self):
+        assert extract_education_level("Master's in Data Science") == 2
+        assert extract_education_level("MBA from Harvard") == 2
+        assert extract_education_level("MS in Robotics") == 2
+
+    def test_bachelors_detected(self):
+        assert extract_education_level("Bachelor's in Engineering") == 1
+        assert extract_education_level("BS in Computer Science") == 1
+        assert extract_education_level("B.Tech in IT") == 1
+
+    def test_empty_text_defaults_to_bachelor(self):
+        assert extract_education_level("") == 1
+
+
+class TestHasPreviousJob:
+
+    def test_detects_previous_role(self):
+        text = "Previously worked as a Software Engineer before becoming a Senior Engineer"
+        assert has_previous_job(text) == 1
+
+    def test_no_previous_job(self):
+        text = "First job as Software Engineer 2020 - Present"
+        assert has_previous_job(text) == 0
+
+    def test_empty_text_returns_zero(self):
+        assert has_previous_job("") == 0
+
+
 class TestComputeAllFeatures:
 
-    def test_returns_all_12_keys(self, sample_resume, sample_jd):
+    def test_returns_all_17_keys(self, sample_resume, sample_jd):
         features = compute_all_validation_features(
             sample_resume, sample_jd,
             semantic_similarity=0.5,
@@ -160,7 +211,9 @@ class TestComputeAllFeatures:
             'semantic_similarity', 'skill_overlap_score', 'experience_relevance_score',
             'final_match_score', 'overlapping_jobs', 'promotion_speed',
             'experience_graduation_gap', 'skill_density', 'achievement_count',
-            'generic_phrase_score', 'gap_years', 'keyword_stuffing_score'
+            'generic_phrase_score', 'gap_years', 'keyword_stuffing_score',
+            'years_experience', 'num_certifications', 'num_skills',
+            'education_level_encoded', 'has_previous_job',
         }
         assert set(features.keys()) == expected_keys
 

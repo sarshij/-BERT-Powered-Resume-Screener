@@ -1,6 +1,7 @@
 """
 Phase 1 & 2: EDA + Decision Tree Model Training
 BERT-Based Resume Screening & Authenticity Validation
+Trains on resume_dataset_2000_tech.csv with 17 features.
 """
 import warnings
 warnings.filterwarnings('ignore')
@@ -28,11 +29,11 @@ logging.basicConfig(
 )
 logger = logging.getLogger('training')
 
-BASE = Path('/mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume')
-#BASE = Path(__file__).resolve().parent.parent.parent
+PROJ = Path(__file__).resolve().parent.parent.parent
+SCREENER = PROJ / 'resume-screener'
 
-OUT = BASE / 'resume-screener' / 'data' / 'processed'
-MODEL_DIR = BASE / 'resume-screener' / 'data' / 'models'
+OUT = SCREENER / 'data' / 'processed'
+MODEL_DIR = SCREENER / 'data' / 'models'
 os.makedirs(OUT, exist_ok=True)
 os.makedirs(MODEL_DIR, exist_ok=True)
 
@@ -40,18 +41,10 @@ logger.info("=" * 70)
 logger.info("PHASE 1: EXPLORATORY DATA ANALYSIS")
 logger.info("=" * 70)
 
-# Load datasets
-logger.info("Loading datasets...")
-df1 = pd.read_csv(BASE / 'resume_dataset_1000_final.csv')
-df2 = pd.read_csv(BASE / 'resume_dataset_2000_tech.csv', encoding='latin-1')
-logger.info(f"  dataset_1000: {df1.shape}")
-logger.info(f"  dataset_2000_tech: {df2.shape}")
+logger.info("Loading dataset...")
+df = pd.read_csv(PROJ / 'resume_dataset_2000_tech.csv', encoding='latin-1')
+logger.info(f"  dataset: {df.shape}")
 
-# Combine
-df = pd.concat([df1, df2], ignore_index=True)
-logger.info(f"  combined: {df.shape}")
-
-# Check class distribution
 logger.info("Class Distribution:")
 logger.info("\n" + df['classification'].value_counts().to_string())
 logger.info("\n" + (df['classification'].value_counts(normalize=True) * 100).to_string())
@@ -74,44 +67,68 @@ plt.savefig(OUT / 'class_distribution.png')
 plt.close()
 logger.info("  Saved class_distribution.png")
 
-# Feature columns for model
+# Feature engineering: create additional features from raw columns
+logger.info("Engineering additional features...")
+
+# Count certifications
+def count_certs(val):
+    if pd.isna(val) or str(val).strip() == '':
+        return 0
+    return len([c for c in str(val).split(',') if c.strip()])
+
+# Count skills
+def count_skills(val):
+    if pd.isna(val) or str(val).strip() == '':
+        return 0
+    return len([s for s in str(val).split(',') if s.strip()])
+
+# Encode education level
+edu_map = {"Bachelor's": 1, "Master's": 2, "PhD": 3}
+
+df['num_certifications'] = df['certifications'].apply(count_certs)
+df['num_skills'] = df['skills'].apply(count_skills)
+df['education_level_encoded'] = df['education_level'].map(edu_map).fillna(0).astype(int)
+df['has_previous_job'] = df['previous_job_title'].notna().astype(int)
+
+# 17 feature columns for model
 feature_cols = [
     'semantic_similarity', 'skill_overlap_score', 'experience_relevance_score',
     'final_match_score', 'overlapping_jobs', 'promotion_speed',
     'experience_graduation_gap', 'skill_density', 'achievement_count',
-    'generic_phrase_score', 'gap_years', 'keyword_stuffing_score'
+    'generic_phrase_score', 'gap_years', 'keyword_stuffing_score',
+    'years_experience', 'num_certifications', 'num_skills',
+    'education_level_encoded', 'has_previous_job'
 ]
+
+logger.info(f"\nTotal features: {len(feature_cols)}")
+logger.info(f"Feature columns: {feature_cols}")
 
 logger.info("\n--- Feature Overview ---")
 logger.info(df[feature_cols].describe())
 
-# Missing values
 logger.info("\n--- Missing Values ---")
 logger.info(df[feature_cols].isnull().sum())
 
-# Fill NAs
 for col in feature_cols:
     df[col] = df[col].fillna(df[col].median())
 
 logger.info("\n--- Class-wise Feature Means ---")
 logger.info(df.groupby('classification')[feature_cols].mean().round(4))
 
-# Correlation heatmap
-plt.figure(figsize=(12, 10))
+plt.figure(figsize=(14, 12))
 corr = df[feature_cols + ['risk_level']].copy()
 corr['risk_level'] = corr['risk_level'].map({'Low': 0, 'Medium': 1, 'High': 2})
 corr_matrix = corr.corr()
 mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
 sns.heatmap(corr_matrix, mask=mask, annot=True, fmt='.2f', cmap='RdBu_r',
             center=0, square=True, linewidths=0.5)
-plt.title('Feature Correlation Matrix')
+plt.title('Feature Correlation Matrix (17 features)')
 plt.tight_layout()
 plt.savefig(OUT / 'correlation_matrix.png')
 plt.close()
 logger.info("  Saved correlation_matrix.png")
 
-# Feature distributions by class
-fig, axes = plt.subplots(4, 3, figsize=(18, 20))
+fig, axes = plt.subplots(5, 4, figsize=(20, 24))
 axes = axes.flatten()
 for i, col in enumerate(feature_cols):
     for cls in ['Authentic', 'Suspicious', 'Potentially Fake']:
@@ -119,12 +136,13 @@ for i, col in enumerate(feature_cols):
         sns.kdeplot(subset, label=cls, ax=axes[i], linewidth=2)
     axes[i].set_title(f'{col} by Class')
     axes[i].legend()
+for j in range(len(feature_cols), len(axes)):
+    axes[j].set_visible(False)
 plt.tight_layout()
 plt.savefig(OUT / 'feature_distributions.png')
 plt.close()
 logger.info("  Saved feature_distributions.png")
 
-# Save processed dataset
 df.to_csv(OUT / 'combined_dataset.csv', index=False)
 logger.info(f"\n  Saved combined_dataset.csv ({df.shape})")
 
@@ -132,12 +150,11 @@ logger.info("\n" + "=" * 70)
 logger.info("PHASE 2: DECISION TREE MODEL TRAINING")
 logger.info("=" * 70)
 
-from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.tree import DecisionTreeClassifier, plot_tree
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, f1_score
 import joblib
 
-# Prepare features and target
 label_map = {'Authentic': 0, 'Suspicious': 1, 'Potentially Fake': 2}
 df['target'] = df['classification'].map(label_map)
 
@@ -152,7 +169,6 @@ logger.info(f"\nTrain set: {X_train.shape}")
 logger.info(f"Test set: {X_test.shape}")
 logger.info(f"Train distribution: {pd.Series(y_train).value_counts().to_dict()}")
 
-# Train base Decision Tree
 logger.info("\n--- Training Base Decision Tree ---")
 base_dt = DecisionTreeClassifier(random_state=42, class_weight='balanced')
 base_dt.fit(X_train, y_train)
@@ -165,7 +181,6 @@ logger.info(f"  Base DT F1 (weighted): {base_f1:.4f}")
 logger.info("\n  Classification Report:")
 logger.info(classification_report(y_test, y_pred_base, target_names=['Authentic', 'Suspicious', 'Potentially Fake']))
 
-# Hyperparameter tuning
 logger.info("\n--- Grid Search for Best Decision Tree ---")
 param_grid = {
     'max_depth': [3, 5, 7, 10, 15, None],
@@ -198,7 +213,6 @@ logger.info(f"  Test F1 (weighted): {test_f1:.4f}")
 logger.info("\n  Classification Report:")
 logger.info(classification_report(y_test, y_pred, target_names=['Authentic', 'Suspicious', 'Potentially Fake']))
 
-# Confusion Matrix
 cm = confusion_matrix(y_test, y_pred)
 plt.figure(figsize=(8, 6))
 sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
@@ -212,7 +226,6 @@ plt.savefig(OUT / 'confusion_matrix.png')
 plt.close()
 logger.info("  Saved confusion_matrix.png")
 
-# Feature Importance
 importance = pd.DataFrame({
     'feature': feature_cols,
     'importance': best_dt.feature_importances_
@@ -223,14 +236,13 @@ logger.info(importance.to_string(index=False))
 
 plt.figure(figsize=(12, 6))
 sns.barplot(data=importance, x='importance', y='feature', palette='viridis')
-plt.title('Decision Tree Feature Importance')
+plt.title('Decision Tree Feature Importance (17 features)')
 plt.xlabel('Importance')
 plt.tight_layout()
 plt.savefig(OUT / 'feature_importance.png')
 plt.close()
 logger.info("  Saved feature_importance.png")
 
-# Visualize Decision Tree
 plt.figure(figsize=(24, 16))
 plot_tree(best_dt, feature_names=feature_cols,
           class_names=['Authentic', 'Suspicious', 'Potentially Fake'],
@@ -241,7 +253,6 @@ plt.savefig(OUT / 'decision_tree.png', dpi=150)
 plt.close()
 logger.info("  Saved decision_tree.png")
 
-# Save model
 model_path = MODEL_DIR / 'decision_tree_model.pkl'
 joblib.dump({
     'model': best_dt,
@@ -254,16 +265,20 @@ joblib.dump({
 }, model_path)
 logger.info(f"\n  Model saved to {model_path}")
 
-# Save metrics summary
 metrics = {
     'dataset_shape': df.shape,
     'class_distribution': df['classification'].value_counts().to_dict(),
     'feature_cols': feature_cols,
+    'new_features_added': ['years_experience', 'num_certifications', 'num_skills',
+                           'education_level_encoded', 'has_previous_job'],
     'best_params': grid.best_params_,
     'test_accuracy': float(test_acc),
     'test_f1_weighted': float(test_f1),
     'feature_importance': importance.to_dict('records'),
-    'classification_report': classification_report(y_test, y_pred, target_names=['Authentic', 'Suspicious', 'Potentially Fake'], output_dict=True)
+    'classification_report': classification_report(
+        y_test, y_pred, target_names=['Authentic', 'Suspicious', 'Potentially Fake'],
+        output_dict=True
+    )
 }
 with open(OUT / 'metrics.json', 'w') as f:
     json.dump(metrics, f, indent=2)

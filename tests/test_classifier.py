@@ -8,7 +8,7 @@ class TestLoadModel:
     def test_model_loads_successfully(self):
         model, cols = load_model()
         assert model is not None
-        assert len(cols) == 12
+        assert len(cols) == 17
 
     def test_feature_names_are_correct(self):
         _, cols = load_model()
@@ -16,7 +16,9 @@ class TestLoadModel:
             'semantic_similarity', 'skill_overlap_score', 'experience_relevance_score',
             'final_match_score', 'overlapping_jobs', 'promotion_speed',
             'experience_graduation_gap', 'skill_density', 'achievement_count',
-            'generic_phrase_score', 'gap_years', 'keyword_stuffing_score'
+            'generic_phrase_score', 'gap_years', 'keyword_stuffing_score',
+            'years_experience', 'num_certifications', 'num_skills',
+            'education_level_encoded', 'has_previous_job'
         ]
         assert cols == expected
 
@@ -96,9 +98,9 @@ class TestModelInfo:
         info = get_model_info()
         assert info['test_f1'] >= 0.9
 
-    def test_feature_importance_has_12_entries(self):
+    def test_feature_importance_has_17_entries(self):
         info = get_model_info()
-        assert len(info['feature_importance']) == 12
+        assert len(info['feature_importance']) == 17
 
     def test_feature_importance_sums_to_one(self):
         info = get_model_info()
