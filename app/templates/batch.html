@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Batch Screening — Resume Screener</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=4">
 </head>
 <body>
+
+<div class="particles">
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+</div>
+
 <nav>
   <div class="logo">
     <span class="logo-icon">✦</span>
@@ -23,13 +37,13 @@
 
 <div class="container">
   <div class="hero">
-    <div class="hero-badge">⚡ Bulk Resume Processing</div>
-    <h1>Batch <span class="highlight">screening</span></h1>
+    <div class="hero-badge">⚡ Bulk Processing Engine</div>
+    <h1>Batch <span class="gradient-text">screening</span></h1>
     <p>Upload multiple resumes at once. Get a ranked table sorted by authenticity and match score.</p>
   </div>
 
   <div class="card">
-    <h2>📂 Upload resumes</h2>
+    <h2>📂 Upload Resumes</h2>
     <form id="batchForm">
       <div class="grp">
         <label>Resume files <span style="color:var(--text-tertiary)">(PDF or TXT, multiple allowed)</span></label>
@@ -49,7 +63,8 @@
     </form>
     <div class="loading" id="batchLoading">
       <div class="spinner"></div>
-      <span>Processing resumes...</span>
+      <span>Processing resumes</span>
+      <span class="loading-dots"><span></span><span></span><span></span></span>
     </div>
   </div>
 
@@ -68,41 +83,82 @@
   </div>
 
   <footer>
-    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 3,000 labeled samples</p>
+    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 labeled samples</p>
   </footer>
 </div>
 
 <script>
-document.getElementById('batchForm').onsubmit = async function(e){
+document.getElementById('batchForm').onsubmit = async function(e) {
   e.preventDefault();
   const formData = new FormData(this);
   document.getElementById('batchBtn').disabled = true;
   document.getElementById('batchLoading').classList.add('active');
   document.getElementById('batchResults').style.display = 'none';
-  try{
-    const res = await fetch('/api/predict_batch', {method:'POST', body:formData});
+  try {
+    const res = await fetch('/api/predict_batch', {method: 'POST', body: formData});
     const data = await res.json();
-    if(data.status !== 'success') throw new Error(data.detail || 'Error');
+    if (data.status !== 'success') throw new Error(data.detail || 'Error');
     displayBatch(data);
-  }catch(err){alert('Error: '+err.message)}
-  finally{document.getElementById('batchBtn').disabled = false; document.getElementById('batchLoading').classList.remove('active')}
+  } catch (err) { alert('Error: ' + err.message); }
+  finally {
+    document.getElementById('batchBtn').disabled = false;
+    document.getElementById('batchLoading').classList.remove('active');
+  }
 };
 
-function displayBatch(data){
+function displayBatch(data) {
   const r = data.results;
-  const counts = {Authentic:0, Suspicious:0, 'Potentially Fake':0, Error:0};
-  r.forEach(x => {if(x.error) counts.Error++; else counts[x.classification]++});
+  const counts = {Authentic: 0, Suspicious: 0, 'Potentially Fake': 0, Error: 0};
+  r.forEach(x => { if (x.error) counts.Error++; else counts[x.classification]++; });
+
   document.getElementById('summary').innerHTML = `
-    <div class="summary-item total"><div class="s-item-num">${r.length}</div><div class="s-item-label">Total</div></div>
-    <div class="summary-item authentic"><div class="s-item-num">${counts.Authentic}</div><div class="s-item-label">Authentic</div></div>
-    <div class="summary-item suspicious"><div class="s-item-num">${counts.Suspicious}</div><div class="s-item-label">Suspicious</div></div>
-    <div class="summary-item fake"><div class="s-item-num">${counts['Potentially Fake']}</div><div class="s-item-label">Fake</div></div>`;
-  document.getElementById('resultsBody').innerHTML = r.map((x,i)=>{
-    if(x.error) return `<tr><td>${i+1}</td><td>${x.filename}</td><td colspan="5" style="color:var(--danger)">⚠ ${x.error}</td></tr>`;
-    const bc = x.classification==='Authentic'?'bt-authentic':x.classification==='Suspicious'?'bt-suspicious':'bt-fake';
-    return `<tr><td>${i+1}</td><td>${x.filename}</td><td><span class="bt-tbl ${bc}">${x.classification}</span></td><td>${(x.confidence*100).toFixed(1)}%</td><td>${(x.final_match_score*100).toFixed(0)}%</td><td>${(x.semantic_similarity*100).toFixed(0)}%</td><td>${(x.skill_overlap_score*100).toFixed(0)}%</td></tr>`;
+    <div class="summary-item total">
+      <div class="s-item-num anim-count" data-target="${r.length}">0</div>
+      <div class="s-item-label">Total</div>
+    </div>
+    <div class="summary-item authentic">
+      <div class="s-item-num anim-count" data-target="${counts.Authentic}">0</div>
+      <div class="s-item-label">Authentic</div>
+    </div>
+    <div class="summary-item suspicious">
+      <div class="s-item-num anim-count" data-target="${counts.Suspicious}">0</div>
+      <div class="s-item-label">Suspicious</div>
+    </div>
+    <div class="summary-item fake">
+      <div class="s-item-num anim-count" data-target="${counts['Potentially Fake']}">0</div>
+      <div class="s-item-label">Fake</div>
+    </div>`;
+
+  document.getElementById('resultsBody').innerHTML = r.map((x, i) => {
+    if (x.error) return `<tr><td>${i + 1}</td><td>${x.filename}</td><td colspan="5" style="color:var(--danger)">⚠ ${x.error}</td></tr>`;
+    const bc = x.classification === 'Authentic' ? 'bt-authentic' : x.classification === 'Suspicious' ? 'bt-suspicious' : 'bt-fake';
+    return `<tr style="animation: fadeUp 0.4s ease ${i * 0.05}s both">
+      <td>${i + 1}</td>
+      <td>${x.filename}</td>
+      <td><span class="bt-tbl ${bc}">${x.classification}</span></td>
+      <td>${(x.confidence * 100).toFixed(1)}%</td>
+      <td>${(x.final_match_score * 100).toFixed(0)}%</td>
+      <td>${(x.semantic_similarity * 100).toFixed(0)}%</td>
+      <td>${(x.skill_overlap_score * 100).toFixed(0)}%</td>
+    </tr>`;
   }).join('');
+
   document.getElementById('batchResults').style.display = 'block';
+
+  setTimeout(() => {
+    document.querySelectorAll('.anim-count').forEach(el => {
+      const target = parseInt(el.dataset.target);
+      const duration = 1200;
+      const start = performance.now();
+      function update(now) {
+        const pct = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - pct, 3);
+        el.textContent = Math.round(target * eased);
+        if (pct < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    });
+  }, 300);
 }
 </script>
 </body>

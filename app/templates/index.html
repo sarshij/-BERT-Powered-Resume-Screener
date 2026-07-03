@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Resume Screener — AI Authenticity Engine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=4">
 </head>
 <body>
+
+<div class="particles">
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+</div>
+
 <nav>
   <div class="logo">
     <span class="logo-icon">✦</span>
@@ -23,15 +37,15 @@
 
 <div class="container">
   <div class="hero">
-    <div class="hero-badge">✦ BERT-Powered Resume Analysis</div>
-    <h1>Screen resumes with <span class="highlight">97% accuracy</span></h1>
+    <div class="hero-badge">✦ BERT-Powered Analysis &middot; v2.0</div>
+    <h1>Screen resumes with <span class="gradient-text">83.6% accuracy</span></h1>
     <p>Upload a resume and paste a job description. Our AI engine measures semantic fit, detects anomalies, and validates authenticity in seconds.</p>
   </div>
 
   <div class="stats-row">
-    <div class="stat-card"><div class="stat-icon">🎯</div><div class="stat-num">97%</div><div class="stat-label">Accuracy</div></div>
-    <div class="stat-card"><div class="stat-icon">⚡</div><div class="stat-num">2-5s</div><div class="stat-label">Analysis Time</div></div>
-    <div class="stat-card"><div class="stat-icon">🛡️</div><div class="stat-num">12</div><div class="stat-label">Validation Checks</div></div>
+    <div class="stat-card"><span class="stat-icon">🎯</span><div class="stat-num" data-count="83.6">0</div><div class="stat-label">Test Accuracy</div></div>
+    <div class="stat-card"><span class="stat-icon">⚡</span><div class="stat-num">2-5s</div><div class="stat-label">Analysis Time</div></div>
+    <div class="stat-card"><span class="stat-icon">🛡️</span><div class="stat-num">17</div><div class="stat-label">Validation Checks</div></div>
   </div>
 
   <div class="main-grid">
@@ -56,7 +70,8 @@
       </form>
       <div class="loading" id="loading">
         <div class="spinner"></div>
-        <span>Running BERT analysis...</span>
+        <span>Running BERT analysis</span>
+        <span class="loading-dots"><span></span><span></span><span></span></span>
       </div>
     </div>
 
@@ -67,25 +82,61 @@
           <div id="classificationBadge"></div>
         </div>
         <div id="skillsSection"></div>
-        <h4 style="font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin:18px 0 8px">Match Scores</h4>
+        <div class="section-title">Match Scores</div>
         <div class="score-grid" id="scoresGrid"></div>
-        <h4 style="font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px;margin:18px 0 8px">Validation Signals</h4>
+        <div class="section-title">Validation Signals</div>
         <div class="validation-grid" id="validationGrid"></div>
       </div>
       <div class="card" id="previewCard" style="display:none;margin-top:20px">
-        <h4 style="font-size:.72rem;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.3px">Resume Preview</h4>
+        <div class="section-title">Resume Preview</div>
+        <div class="glow-divider"></div>
         <div class="preview-box" id="resumePreview"></div>
       </div>
     </div>
   </div>
 
   <footer>
-    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 3,000 labeled samples</p>
+    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 labeled samples</p>
   </footer>
 </div>
 
 <script>
-document.getElementById('uploadForm').onsubmit = async function(e){
+function animateCounters() {
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseFloat(el.dataset.count);
+    const duration = 2000;
+    const start = performance.now();
+    function update(now) {
+      const pct = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - pct, 3);
+      el.textContent = (target * eased).toFixed(1) + '%';
+      if (pct < 1) requestAnimationFrame(update);
+    }
+    requestAnimationFrame(update);
+  });
+}
+
+function triggerConfetti() {
+  const container = document.createElement('div');
+  container.className = 'confetti-container';
+  const colors = ['#34d399', '#818cf8', '#ec4899', '#fbbf24', '#60a5fa', '#f87171'];
+  for (let i = 0; i < 60; i++) {
+    const piece = document.createElement('div');
+    piece.className = 'confetti-piece';
+    piece.style.left = Math.random() * 100 + '%';
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (2 + Math.random() * 3) + 's';
+    piece.style.animationDelay = (Math.random() * 0.5) + 's';
+    piece.style.width = (4 + Math.random() * 8) + 'px';
+    piece.style.height = (4 + Math.random() * 8) + 'px';
+    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
+    container.appendChild(piece);
+  }
+  document.body.appendChild(container);
+  setTimeout(() => container.remove(), 5000);
+}
+
+document.getElementById('uploadForm').onsubmit = async function(e) {
   e.preventDefault();
   const formData = new FormData(this);
   document.getElementById('submitBtn').disabled = true;
@@ -93,50 +144,62 @@ document.getElementById('uploadForm').onsubmit = async function(e){
   document.getElementById('resultsCard').style.display = 'none';
   document.getElementById('previewCard').style.display = 'none';
   document.getElementById('results').classList.remove('visible');
-  try{
-    const res = await fetch('/api/predict', {method:'POST', body:formData});
+  try {
+    const res = await fetch('/api/predict', {method: 'POST', body: formData});
     const data = await res.json();
-    if(data.status !== 'success') throw new Error(data.detail || 'Error');
+    if (data.status !== 'success') throw new Error(data.detail || 'Error');
     displayResults(data);
-  }catch(err){ alert('Error: '+err.message); }
-  finally{
+  } catch (err) { alert('Error: ' + err.message); }
+  finally {
     document.getElementById('submitBtn').disabled = false;
     document.getElementById('loading').classList.remove('active');
   }
 };
 
-function displayResults(data){
+function displayResults(data) {
   const c = data.classification;
   const cls = c.classification;
-  const bc = cls==='Authentic'?'badge-authentic':cls==='Suspicious'?'badge-suspicious':'badge-fake';
-  const icon = cls==='Authentic'?'✓':cls==='Suspicious'?'⚠':'✗';
+  const bc = cls === 'Authentic' ? 'badge-authentic' : cls === 'Suspicious' ? 'badge-suspicious' : 'badge-fake';
+  const icon = cls === 'Authentic' ? '✓' : cls === 'Suspicious' ? '⚠' : '✗';
   document.getElementById('classificationBadge').innerHTML =
-    `<span class="badge-cls ${bc}">${icon} ${cls} &middot; ${(c.confidence*100).toFixed(1)}% confidence</span>`;
+    `<span class="badge-cls ${bc}">${icon} ${cls} &middot; ${(c.confidence * 100).toFixed(1)}% confidence</span>`;
+
+  if (cls === 'Authentic') setTimeout(triggerConfetti, 300);
 
   const s = data.scores;
-  document.getElementById('scoresGrid').innerHTML = Object.entries(s).map(([k,v])=>{
-    const pct=v*100, grade=pct>=70?'high':pct>=35?'med':'low';
-    return `<div class="score-item"><div class="si-label">${k.replace(/_/g,' ')}</div><div class="si-val ${grade}">${pct.toFixed(0)}%</div></div>`;
+  document.getElementById('scoresGrid').innerHTML = Object.entries(s).map(([k, v]) => {
+    const pct = v * 100;
+    const grade = pct >= 70 ? 'high' : pct >= 35 ? 'med' : 'low';
+    return `<div class="score-item ${grade}" style="--pct:${pct}%">
+      <div class="si-label">${k.replace(/_/g, ' ')}</div>
+      <div class="si-val ${grade}">${pct.toFixed(0)}%</div>
+    </div>`;
   }).join('');
 
   const sk = data.skills;
   document.getElementById('skillsSection').innerHTML = `
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-bottom:6px">
-      <div class="skill-block"><div class="sb-title">✓ Matched (${sk.match_count})</div><div>${sk.matched.map(s=>'<span class="chip chip-matched">'+s+'</span>').join('')||'<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
-      <div class="skill-block"><div class="sb-title">✗ Missing (${sk.missing_count})</div><div>${sk.missing.map(s=>'<span class="chip chip-missing">'+s+'</span>').join('')||'<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
-      <div class="skill-block"><div class="sb-title">+ Extra (${sk.extra_count})</div><div>${sk.extra.map(s=>'<span class="chip chip-extra">'+s+'</span>').join('')||'<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
+    <div class="glow-divider"></div>
+    <div class="skills-grid">
+      <div class="skill-block"><div class="sb-title">✓ Matched (${sk.match_count})</div>
+        <div>${sk.matched.map(s => '<span class="chip chip-matched">' + s + '</span>').join('') || '<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
+      <div class="skill-block"><div class="sb-title">✗ Missing (${sk.missing_count})</div>
+        <div>${sk.missing.map(s => '<span class="chip chip-missing">' + s + '</span>').join('') || '<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
+      <div class="skill-block"><div class="sb-title">+ Extra (${sk.extra_count})</div>
+        <div>${sk.extra.map(s => '<span class="chip chip-extra">' + s + '</span>').join('') || '<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
     </div>`;
 
   const v = data.validation;
-  const vf = ['keyword_stuffing_score','generic_phrase_score','skill_density','achievement_count','gap_years','overlapping_jobs','promotion_speed'];
+  const vf = Object.keys(v);
   document.getElementById('validationGrid').innerHTML = vf.map(k =>
-    `<div class="vchip"><div class="vc-label">${k.replace(/_/g,' ')}</div><div class="vc-val">${typeof v[k]==='number'?v[k].toFixed(3):v[k]}</div></div>`
+    `<div class="vchip"><div class="vc-label">${k.replace(/_/g, ' ')}</div>
+    <div class="vc-val">${typeof v[k] === 'number' ? v[k].toFixed(3) : v[k]}</div></div>`
   ).join('');
 
   document.getElementById('resumePreview').textContent = data.resume_preview;
   document.getElementById('resultsCard').style.display = 'block';
   document.getElementById('previewCard').style.display = 'block';
   setTimeout(() => document.getElementById('results').classList.add('visible'), 50);
+  setTimeout(animateCounters, 600);
 }
 </script>
 </body>

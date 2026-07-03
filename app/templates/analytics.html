@@ -5,10 +5,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Insights — Resume Screener</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=2">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=4">
 </head>
 <body>
+
+<div class="particles">
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+  <span class="particle"></span>
+</div>
+
 <nav>
   <div class="logo">
     <span class="logo-icon">✦</span>
@@ -24,8 +38,8 @@
 <div class="container">
   <div class="hero">
     <div class="hero-badge">📊 Model & Dataset Analytics</div>
-    <h1>Deep <span class="highlight">insights</span></h1>
-    <p>Real-time metrics from 3,000 labeled resumes — Decision Tree with 97% accuracy.</p>
+    <h1>Deep <span class="gradient-text">insights</span></h1>
+    <p>Real-time metrics from 4,000 labeled resumes — Decision Tree with 83.6% accuracy.</p>
   </div>
 
   <div class="hero-stats" id="heroStats">
@@ -38,13 +52,13 @@
     <div class="card">
       <h2>⚙️ Model Configuration</h2>
       <div class="cfg-grid" id="modelConfig">
-        <div class="spinner-wrap"><div class="sp"></div><span>Loading...</span></div>
+        <div class="spinner-wrap"><div class="sp"></div><span>Loading model data...</span></div>
       </div>
     </div>
     <div class="card">
       <h2>📈 Feature Importance</h2>
       <div id="featureImportance">
-        <div class="spinner-wrap"><div class="sp"></div><span>Loading...</span></div>
+        <div class="spinner-wrap"><div class="sp"></div><span>Loading feature data...</span></div>
       </div>
     </div>
   </div>
@@ -52,65 +66,113 @@
   <div class="card">
     <h2>📊 Class Distribution</h2>
     <div id="classDist">
-      <div class="spinner-wrap"><div class="sp"></div><span>Loading...</span></div>
+      <div class="spinner-wrap"><div class="sp"></div><span>Loading distribution data...</span></div>
     </div>
   </div>
 
   <div class="two-col">
     <div class="card">
       <h2>📉 Confusion Matrix</h2>
-      <div class="chart-box"><img id="confMatrix" src="" alt="Confusion Matrix" style="width:100%"></div>
+      <div class="chart-box"><img id="confMatrix" src="" alt="Confusion Matrix" style="width:100%;opacity:0;transition:opacity 0.8s ease"></div>
     </div>
     <div class="card">
       <h2>🔗 Correlation Matrix</h2>
-      <div class="chart-box"><img id="corrMatrix" src="" alt="Correlation Matrix" style="width:100%"></div>
+      <div class="chart-box"><img id="corrMatrix" src="" alt="Correlation Matrix" style="width:100%;opacity:0;transition:opacity 0.8s ease"></div>
     </div>
   </div>
 
   <footer>
-    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 3,000 labeled samples</p>
+    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 labeled samples</p>
   </footer>
 </div>
 
 <script>
-async function loadAnalytics(){
-  try{
+async function loadAnalytics() {
+  try {
     const [m, d, s] = await Promise.all([
-      fetch('/api/model/info').then(r=>r.json()),
-      fetch('/api/class_distribution').then(r=>r.json()),
-      fetch('/api/dataset/stats').then(r=>r.json())
+      fetch('/api/model/info').then(r => r.json()),
+      fetch('/api/class_distribution').then(r => r.json()),
+      fetch('/api/dataset/stats').then(r => r.json())
     ]);
-    document.getElementById('totalSamples').textContent = s.total_samples?.toLocaleString() || '—';
-    document.getElementById('testAccuracy').textContent = m.test_accuracy ? (m.test_accuracy*100).toFixed(1)+'%' : '—';
-    document.getElementById('testF1').textContent = m.test_f1 ? (m.test_f1*100).toFixed(1)+'%' : '—';
-    if(m.params){
-      document.getElementById('modelConfig').innerHTML = Object.entries(m.params).map(([k,v]) =>
-        `<div class="cfg-row"><span class="ck">${k.replace(/_/g,' ')}</span><span class="cv">${v===null?'balanced':v}</span></div>`
+
+    function animateNum(el, target, suffix, decimals) {
+      const duration = 1800;
+      const start = performance.now();
+      function update(now) {
+        const pct = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - pct, 3);
+        el.textContent = (target * eased).toFixed(decimals || 0) + (suffix || '');
+        if (pct < 1) requestAnimationFrame(update);
+      }
+      requestAnimationFrame(update);
+    }
+
+    const totalEl = document.getElementById('totalSamples');
+    const accEl = document.getElementById('testAccuracy');
+    const f1El = document.getElementById('testF1');
+
+    totalEl.textContent = (s.total_samples || 0).toLocaleString();
+    setTimeout(() => animateNum(accEl, (m.test_accuracy || 0) * 100, '%', 1), 200);
+    setTimeout(() => animateNum(f1El, (m.test_f1 || 0) * 100, '%', 1), 400);
+
+    if (m.params) {
+      document.getElementById('modelConfig').innerHTML = Object.entries(m.params).map(([k, v]) =>
+        `<div class="cfg-row" style="animation:fadeUp 0.4s ease both"><span class="ck">${k.replace(/_/g, ' ')}</span><span class="cv">${v === null ? 'None' : v}</span></div>`
       ).join('');
     }
-    if(m.feature_importance?.length){
-      const fi = m.feature_importance.slice(0,8), mx = Math.max(...fi.map(f=>f.importance));
-      document.getElementById('featureImportance').innerHTML = fi.map(f =>
-        `<div class="feat"><div class="ft-header"><span>${f.feature.replace(/_/g,' ')}</span><span>${(f.importance*100).toFixed(1)}%</span></div><div class="ft-track"><div class="ft-fill" style="width:${(f.importance/mx*100).toFixed(1)}%"></div></div></div>`
+
+    if (m.feature_importance && m.feature_importance.length) {
+      const fi = m.feature_importance;
+      const mx = Math.max(...fi.map(f => f.importance));
+      document.getElementById('featureImportance').innerHTML = fi.map((f, i) =>
+        `<div class="feat" style="animation-delay:${i * 0.08}s">
+          <div class="ft-header"><span>${f.feature.replace(/_/g, ' ')}</span><span>${(f.importance * 100).toFixed(1)}%</span></div>
+          <div class="ft-track"><div class="ft-fill" style="--fw:${(f.importance / mx * 100).toFixed(1)}%"></div></div>
+        </div>`
       ).join('');
+      setTimeout(() => document.querySelectorAll('.feat').forEach(el => el.classList.add('visible')), 300);
     }
-    if(d.class_distribution){
-      const dist = d.class_distribution, total = Object.values(dist).reduce((a,b)=>a+b,0);
-      const colors = {Authentic:'#059669', Suspicious:'#d97706', 'Potentially Fake':'#dc2626'};
+
+    if (d.class_distribution) {
+      const dist = d.class_distribution;
+      const total = Object.values(dist).reduce((a, b) => a + b, 0);
+      const colors = {Authentic: '#34d399', Suspicious: '#fbbf24', 'Potentially Fake': '#f87171'};
+      const entries = Object.entries(dist);
+      const circumference = 452;
       let offset = 0;
-      const slices = Object.entries(dist).map(([k,v])=>{
-        const pct=v/total*100; const s=offset; offset+=pct/100*360;
-        return `<circle cx="85" cy="85" r="72" fill="none" stroke="${colors[k]}" stroke-width="22" stroke-dasharray="${pct/100*452} ${452}" stroke-dashoffset="${-s/360*452}"/>`;
+      const slices = entries.map(([k, v]) => {
+        const pct = v / total;
+        const len = pct * circumference;
+        const dashoffset = -offset;
+        offset += len;
+        const delay = entries.indexOf([k, v]) * 0.3 || Object.keys(dist).indexOf(k) * 0.3;
+        return `<circle cx="85" cy="85" r="72" fill="none" stroke="${colors[k]}" stroke-width="22"
+          stroke-dasharray="${len} ${circumference - len}"
+          stroke-dashoffset="${dashoffset}"
+          style="transition: stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1) ${Object.keys(dist).indexOf(k) * 0.3}s"/>`;
       }).join('');
-      document.getElementById('classDist').innerHTML = `
-        <div class="donut-wrap">
-          <div class="donut-svg"><svg viewBox="0 0 170 170" width="170" height="170">${slices}</svg><div class="d-center"><span class="d-big">${total}</span><span>total</span></div></div>
-          <div class="donut-legend">${Object.entries(dist).map(([k,v])=>`<div class="dl-item"><span class="dl-dot" style="background:${colors[k]}"></span><span>${k} <strong>${v}</strong> (${(v/total*100).toFixed(1)}%)</span></div>`).join('')}</div>
+
+      document.getElementById('classDist').innerHTML =
+        `<div class="donut-wrap">
+          <div class="donut-svg"><svg viewBox="0 0 170 170" width="170" height="170">${slices}</svg>
+          <div class="d-center"><span class="d-big">${total}</span><span>total</span></div></div>
+          <div class="donut-legend">${entries.map(([k, v]) =>
+            `<div class="dl-item" style="animation:fadeUp 0.5s ease ${Object.keys(dist).indexOf(k) * 0.15 + 0.5}s both">
+              <span class="dl-dot" style="background:${colors[k]}"></span>
+              <span>${k} <strong>${v}</strong> (${(v / total * 100).toFixed(1)}%)</span>
+            </div>`
+          ).join('')}
         </div>`;
     }
-    document.getElementById('confMatrix').src = '/static/confusion_matrix.png';
-    document.getElementById('corrMatrix').src = '/static/correlation_matrix.png';
-  }catch(err){
+
+    const conf = document.getElementById('confMatrix');
+    const corr = document.getElementById('corrMatrix');
+    conf.src = '/static/confusion_matrix.png?' + Date.now();
+    corr.src = '/static/correlation_matrix.png?' + Date.now();
+    conf.onload = () => conf.style.opacity = '1';
+    corr.onload = () => corr.style.opacity = '1';
+
+  } catch (err) {
     document.querySelectorAll('#modelConfig,#featureImportance,#classDist').forEach(el =>
       el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--danger)">⚠ Failed to load: ${err.message}</div>`
     );
