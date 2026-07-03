@@ -1,3 +1,12 @@
+---
+title: Resume Screener
+emoji: 📄
+colorFrom: blue
+colorTo: indigo
+sdk: docker
+pinned: false
+---
+
 # BERT-Based Resume Screening & Authenticity Validation Using Decision Tree Classification
 
 > **Complete End-to-End Project — Ready for Project Panel Presentation**
