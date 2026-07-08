@@ -1,0 +1,1025 @@
+[2026-07-07 20:48:17] app.utils.parser - INFO - Logging initialized → /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-07 20:48:29] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-07 20:48:29] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-07 20:48:29] __main__ - INFO - Resume Screener API starting up...
+[2026-07-07 20:48:29] __main__ - INFO - GET / → 200 (0.07s)
+[2026-07-07 20:48:29] __main__ - INFO - GET /static/style.css → 304 (0.03s)
+[2026-07-07 20:48:30] __main__ - INFO - GET /favicon.ico → 404 (0.00s)
+[2026-07-07 21:02:49] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-07 21:02:55] __main__ - INFO - GET /batch → 200 (0.02s)
+[2026-07-07 21:02:58] __main__ - INFO - GET / → 200 (0.01s)
+[2026-07-07 21:04:09] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-07 21:04:58] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-07 21:04:58] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-07 21:04:58] datasets - INFO - TensorFlow version 2.13.0 available.
+[2026-07-07 21:04:58] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-07 21:05:01] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:05:01] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:05:01] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:05:01] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:05:38] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:05:41] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:05:41] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:05:41] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:05:41] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:05:46] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-07 21:05:46] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-07 21:05:47] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:10:58] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-07 21:11:10] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:11:10] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-07 21:11:10] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-07 21:16:39] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:16:40] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:18:03] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-07 21:18:44] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:18:45] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:23:19] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:23:19] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:23:38] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:23:39] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:30:27] __main__ - INFO - GET / → 200 (0.01s)
+[2026-07-07 21:39:29] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:39:30] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:39:40] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:39:40] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:41:05] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:41:06] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:41:19] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:41:20] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:41:31] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-07 21:41:42] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-07 21:41:42] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-07 21:41:42] datasets - INFO - TensorFlow version 2.13.0 available.
+[2026-07-07 21:41:42] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-07 21:41:43] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:41:43] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:41:43] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:41:43] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:42:02] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 21:42:04] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:42:04] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:42:04] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 21:42:04] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 21:42:05] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-07 21:42:05] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-07 21:42:06] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 21:48:36] __main__ - INFO - GET / → 200 (0.01s)
+[2026-07-07 22:40:47] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:40:53] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 22:40:53] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 22:40:53] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 22:40:53] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 22:40:54] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-07 22:40:54] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-07 22:40:55] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:47:03] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:47:05] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 22:47:05] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 22:47:05] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 22:47:05] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 22:47:05] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-07 22:47:05] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-07 22:47:06] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:47:20] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:47:20] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:47:49] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:47:49] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:48:00] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:48:01] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:48:12] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:48:13] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:48:23] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:48:24] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:48:36] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:48:37] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:49:35] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:49:36] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:57:50] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:57:51] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:58:04] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:58:04] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 22:58:14] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 22:58:14] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-07 22:58:14] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-07 23:03:34] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:03:42] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-07 23:03:42] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-07 23:03:42] datasets - INFO - TensorFlow version 2.13.0 available.
+[2026-07-07 23:03:42] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-07 23:03:43] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 23:03:43] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 23:03:43] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 23:03:43] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 23:06:49] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:06:49] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:07:43] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:07:43] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:07:53] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:08:08] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:08:08] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:08:19] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:08:20] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:08:30] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:08:30] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:11:50] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:12:01] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:12:02] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:12:36] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:12:37] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:12:47] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:12:48] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:13:02] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:19:48] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-07 23:19:55] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-07 23:19:55] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-07 23:19:55] datasets - INFO - TensorFlow version 2.13.0 available.
+[2026-07-07 23:19:55] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-07 23:19:55] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 23:19:55] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 23:19:55] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-07 23:19:55] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-07 23:20:06] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:20:06] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:20:34] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:23:32] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:23:33] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:23:44] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:23:44] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:23:51] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:24:04] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:24:04] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:24:16] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:24:16] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:24:51] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:24:52] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:25:55] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:25:55] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:27:17] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:27:18] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:44:53] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:44:54] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:50:59] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:51:00] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:51:17] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-07 23:51:17] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-07 23:51:18] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-07 23:51:20] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-07 23:51:20] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-07 23:51:20] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-07 23:51:20] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-07 23:51:20] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-07 23:51:20] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 00:01:00] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:01:00] app.utils.parser - DEBUG - DOCX parsed: 27 chars
+[2026-07-08 00:08:29] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:08:29] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:08:41] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:08:41] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:08:54] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:08:54] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:09:42] app.models.classifier - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:09:42] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 00:10:42] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:10:43] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:10:59] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:11:00] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:20:19] app.models.classifier - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:20:19] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 00:20:43] app.models.classifier - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:20:43] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 00:21:02] app.models.classifier - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:21:02] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 00:22:11] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:22:12] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:22:21] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:22:22] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:27:26] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:27:27] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:29:18] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:29:20] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:29:20] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:29:20] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:29:20] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:29:21] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 00:29:21] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 00:29:21] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:30:01] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:30:01] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:34:07] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:34:07] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:34:17] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:34:17] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:34:29] app.utils.nlp - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:34:29] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 00:34:30] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 00:34:30] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 00:41:22] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 00:41:29] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 00:41:29] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 00:41:29] datasets - INFO - TensorFlow version 2.13.0 available.
+[2026-07-08 00:41:29] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 00:41:30] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:41:30] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:41:30] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:41:30] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:47:45] app.utils.parser - INFO - Logging initialized → C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:47:52] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 00:47:52] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 00:47:52] datasets - INFO - TensorFlow version 2.13.0 available.
+[2026-07-08 00:47:52] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 00:47:53] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:47:53] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:47:53] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:47:53] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:53:45] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:55:40] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:55:47] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 00:55:47] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 00:55:47] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 00:55:47] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 00:55:51] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:55:51] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:55:51] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:55:51] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:56:09] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:56:16] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 00:56:16] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 00:56:16] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 00:56:16] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 00:56:17] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:56:17] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:56:17] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:56:17] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:56:18] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 00:56:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 00:56:18] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 00:56:31] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 00:56:38] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 00:56:38] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 00:56:38] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 00:56:38] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 00:56:39] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:56:39] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:56:39] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 00:56:39] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 00:56:39] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 00:56:39] app.main - INFO - GET / → 200 (0.00s)
+[2026-07-08 00:56:39] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 01:04:48] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:04:54] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:04:54] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:04:54] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:04:54] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:04:55] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:04:55] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:04:55] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:04:55] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:04:56] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:04:56] app.main - INFO - GET / -> 200 (0.00s)
+[2026-07-08 01:04:56] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 01:05:28] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:05:35] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:05:35] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:05:35] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:05:35] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:05:36] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:05:36] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:05:36] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:05:36] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:05:36] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:05:37] app.main - ERROR - Model info failed: No module named 'numpy._core'
+[2026-07-08 01:05:37] app.main - INFO - GET /api/model/info -> 500 (0.45s)
+[2026-07-08 01:05:37] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 500 Internal Server Error"
+[2026-07-08 01:07:14] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:07:21] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:07:21] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:07:21] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:07:21] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:07:22] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:07:22] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:07:22] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:07:22] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:07:22] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:07:22] app.main - ERROR - Model info failed: No module named 'numpy._core'
+[2026-07-08 01:07:22] app.main - INFO - GET /api/model/info -> 500 (0.09s)
+[2026-07-08 01:07:22] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 500 Internal Server Error"
+[2026-07-08 01:07:56] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:08:02] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:08:02] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:08:02] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:08:02] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:08:03] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:08:03] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:08:03] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:08:03] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:08:04] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:243]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_field with data[281:300]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_value with data[302:345]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_field with data[347:359]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_value with data[361:371]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_data with data[375:409]
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:08:04] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:08:04] app.main - INFO - POST /api/predict -> 422 (0.01s)
+[2026-07-08 01:08:04] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 422 Unprocessable Entity"
+[2026-07-08 01:08:14] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:08:21] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:08:21] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:08:21] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:08:21] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:08:22] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:08:22] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:08:22] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:08:22] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:08:22] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:243]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_field with data[281:300]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_value with data[302:347]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_field with data[349:361]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_value with data[363:373]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_data with data[377:411]
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:08:22] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:08:22] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 01:08:22] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 01:08:22] app.main - INFO - Predicting: test.txt | JD: 42 chars
+[2026-07-08 01:08:22] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 01:08:22] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 01:08:22] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:08:22] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:08:22] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:08:22] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:08:25] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751D510>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: d8b7362e-a351-4d8d-84f9-e0afc4c4348f)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:08:25] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:08:26] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:08:28] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751D8A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 4476690d-d8e3-42b6-8549-650609d53009)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:08:28] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:08:30] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:08:32] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751DA50>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: ac2b0dd2-dcd7-43a2-a1de-52480481c9a2)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:08:32] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:08:36] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:08:38] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751D9F0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 1f74f3d2-4596-4b91-9cf3-84450c9178c1)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:08:38] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:08:46] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:08:48] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751D7B0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: be6fc70e-90bd-4cf9-958d-f1476aac0b96)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:08:48] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:08:56] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:08:58] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751CD90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 5199eeb9-8962-41b7-a078-0a88a014ba98)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:08:58] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:08:58] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:09:00] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751C8E0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 9d202d55-7181-4dc9-a6f8-3e1ab436e2c5)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:09:00] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:09:01] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:09:03] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751E800>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 56d62f36-aa4c-415e-a5c4-783c654690b5)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:09:03] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:09:05] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:09:07] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751E6B0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 884ab545-1f90-4491-b289-81b840144f4c)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:09:07] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:09:11] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:09:13] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751ED40>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 490f1878-1586-4be7-aa76-454790498a39)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:09:13] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:09:21] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:09:23] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751CEB0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 794251f1-07eb-4cb1-8221-c1b24ae33758)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:09:23] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:09:31] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:09:33] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751F070>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 44846333-c479-4dcc-a46e-857d781a60de)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:09:33] app.main - ERROR - Predict failed for test.txt: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x00000185E751F070>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 44846333-c479-4dcc-a46e-857d781a60de)')
+[2026-07-08 01:09:33] app.main - INFO - POST /api/predict -> 500 (70.96s)
+[2026-07-08 01:09:33] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 500 Internal Server Error"
+[2026-07-08 01:10:22] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:10:28] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:10:28] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:10:28] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:10:28] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:10:29] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:10:29] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:10:29] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:10:29] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:10:30] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:10:30] app.main - ERROR - Model info failed: No module named 'numpy._core'
+[2026-07-08 01:10:30] app.main - INFO - GET /api/model/info -> 500 (0.09s)
+[2026-07-08 01:10:30] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 500 Internal Server Error"
+[2026-07-08 01:12:09] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:12:16] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:12:16] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:12:16] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:12:16] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:12:17] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:12:17] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:12:17] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:12:17] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:12:17] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:12:18] app.main - ERROR - Model info failed: No module named 'numpy._core'
+[2026-07-08 01:12:18] app.main - INFO - GET /api/model/info -> 500 (0.10s)
+[2026-07-08 01:12:18] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 500 Internal Server Error"
+[2026-07-08 01:17:09] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:17:34] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:17:41] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 01:17:41] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 01:17:41] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 01:17:49] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 01:17:57] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:18:03] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 01:18:03] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 01:18:03] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 01:18:16] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 01:18:21] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:18:27] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 01:18:27] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 01:18:27] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 01:18:28] __main__ - INFO - GET / -> 200 (0.02s)
+[2026-07-08 01:18:32] __main__ - INFO - GET / -> 200 (0.00s)
+[2026-07-08 01:18:35] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 01:19:44] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-08 01:19:55] __main__ - INFO - GET /batch → 200 (0.00s)
+[2026-07-08 01:19:59] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_value with data[63:132]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_field with data[134:146]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_value with data[148:163]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[167:16384]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:65536]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:49152]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:49152]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:13772]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_field with data[13816:13835]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_value with data[13837:13864]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[13868:13892]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_field with data[13936:13955]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_value with data[13957:13990]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_data with data[13994:16277]
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:21:32] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:21:32] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 01:21:33] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 01:21:33] __main__ - INFO - Predicting: Sarshij-Karn-Real-Resume (1).pdf | JD: 2277 chars
+[2026-07-08 01:21:34] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 01:21:34] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 01:21:34] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:21:34] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:21:34] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:21:34] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:21:36] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C5570>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: e0557289-e684-4b6d-8531-7ec6a5514e3f)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:21:36] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:21:37] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:21:39] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C6860>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 5d1bff35-7ad1-49eb-b05d-2784f1ff41a7)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:21:39] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:21:41] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:21:43] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C4700>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: c8e0ffae-49b2-4960-8581-a48b5e6dbf21)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:21:43] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:21:47] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:21:50] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF6CE0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 9db39f75-5036-4ac5-b39e-f5794e0c50d4)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:21:50] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:21:58] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:22:00] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C40D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: d4fdfb66-9e9c-4173-b697-da94fe9279fd)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:22:00] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:22:08] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:22:10] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C5C00>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 32f9b508-a1e1-406d-a63c-835637c39428)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:22:10] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:22:10] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:22:12] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF7520>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: ac9d730c-8839-4a8b-9116-25989a483a0b)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:22:12] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:22:13] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:22:15] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF70D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 0781b486-b77d-47fc-9f0d-b75b6d0b7f69)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:22:15] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:22:17] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:22:19] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF7A90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 3e37bdac-ccb4-4c01-8518-23d7410122d1)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:22:19] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:22:23] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:22:25] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF7730>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 18546107-3750-4feb-bcf2-c5b5961722a1)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:22:25] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:22:33] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:22:35] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF7910>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 10206dfb-41c4-4abc-8192-b9e7e1e9c4e2)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:22:35] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:22:43] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:22:45] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D3A3E0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 731f353b-84ef-4bf9-9c5c-25555b7b1fe1)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:22:45] __main__ - ERROR - Predict failed for Sarshij-Karn-Real-Resume (1).pdf: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D3A3E0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 731f353b-84ef-4bf9-9c5c-25555b7b1fe1)')
+[2026-07-08 01:22:45] __main__ - INFO - POST /api/predict → 500 (72.71s)
+[2026-07-08 01:25:17] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:25:23] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 01:25:23] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 01:25:23] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 01:25:26] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 01:25:43] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 01:26:31] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:26:36] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-08 01:26:38] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 01:26:38] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 01:26:38] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_value with data[63:132]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_field with data[134:146]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_value with data[148:163]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_data with data[167:16384]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:131072]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:46540]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_field with data[46584:46603]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_value with data[46605:46632]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_data with data[46636:46660]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_field with data[46704:46723]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_value with data[46725:46758]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_data with data[46762:49045]
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:26:57] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:26:57] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 01:26:57] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 01:26:57] __main__ - INFO - Predicting: Sarshij-Karn-Real-Resume (1).pdf | JD: 2277 chars
+[2026-07-08 01:26:57] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 01:26:57] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:26:57] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:26:57] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:26:57] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:26:59] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF72E0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: aad906f6-411f-416a-8ec0-55fac9fca51a)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:26:59] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:27:00] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:27:02] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA10EF7A90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 07fc643a-3df5-4639-a898-cd8e0f501912)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:27:02] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:27:04] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:27:06] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA0EEBDC30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 6045a169-760c-444b-abdf-5727f199a824)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:27:06] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:27:10] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:27:12] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA0EEBD3C0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 9849d58d-cc7c-4f72-8ea2-67ee604d15d5)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:27:12] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:27:21] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:27:23] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA0EEBDDB0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 13190b13-fdcf-4caa-9e14-285132ea6f01)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:27:23] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:27:31] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:27:33] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C4A90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 82a457ca-085a-4bdc-9318-855b63045250)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:27:33] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:27:33] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:27:35] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C62F0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 08a54884-2803-4039-aac2-4f8b7be50ef0)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:27:35] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:27:36] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:27:38] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C52A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 24341c3a-eaae-4d6a-8852-d9a6fb0468d7)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:27:38] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:27:40] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:27:42] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D3AB30>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 754378b3-e7f5-4704-9a1d-413f681ad079)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:27:42] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:27:46] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:27:48] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C58D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 4dcd925b-8d76-4c17-82ab-5b2a13de52f9)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:27:48] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:27:56] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:27:58] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C4340>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 1afbeeb4-ee41-47b1-8177-1991320ca46f)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:27:58] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:28:06] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:28:08] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C4F70>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: ad4abe2a-eade-45af-9a44-d00ffb645bfa)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:28:08] __main__ - ERROR - Predict failed for Sarshij-Karn-Real-Resume (1).pdf: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C4F70>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: ad4abe2a-eade-45af-9a44-d00ffb645bfa)')
+[2026-07-08 01:28:08] __main__ - INFO - POST /api/predict → 500 (71.19s)
+[2026-07-08 01:30:25] app.models.embedder - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:30:47] app.models.embedder - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:30:47] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:30:47] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:30:47] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:30:47] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:30:47] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 01:30:59] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:31:07] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:31:07] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:31:07] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:31:07] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:31:08] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:31:08] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:31:08] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:31:08] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:31:09] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:243]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_field with data[281:300]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_value with data[302:347]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_field with data[349:361]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_value with data[363:373]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_data with data[377:411]
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:31:09] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:31:09] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 01:31:09] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 01:31:09] app.main - INFO - Predicting: test.txt | JD: 42 chars
+[2026-07-08 01:31:10] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 01:31:10] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 01:31:10] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:31:10] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:31:10] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:31:10] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:31:10] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 01:31:10] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 01:32:23] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:32:31] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:32:31] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:32:31] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:32:31] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:32:32] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:32:32] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:32:32] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:32:32] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:32:33] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:243]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[281:300]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[302:347]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[349:361]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[363:373]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_data with data[377:411]
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:32:33] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:32:33] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 01:32:33] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 01:32:33] app.main - INFO - Predicting: test.txt | JD: 42 chars
+[2026-07-08 01:32:34] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 01:32:34] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 01:32:34] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:32:34] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:32:34] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:32:34] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:32:34] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 01:32:34] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 01:33:04] app.models.classifier - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:33:04] app.models.classifier - INFO - Loading model from C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 01:34:09] app.models.classifier - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:34:09] app.models.classifier - INFO - Using dummy classifier (skipping pickle load to avoid version issues)
+[2026-07-08 01:34:14] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:34:22] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:34:22] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:34:22] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:34:22] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:34:23] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:34:23] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:34:23] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:34:23] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:34:23] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:243]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_field with data[281:300]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_value with data[302:347]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_field with data[349:361]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_value with data[363:373]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_data with data[377:411]
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:34:23] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:34:23] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 01:34:23] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 01:34:23] app.main - INFO - Predicting: test.txt | JD: 42 chars
+[2026-07-08 01:34:24] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 01:34:24] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 01:34:24] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:34:24] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:34:24] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:34:24] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:34:24] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 01:34:24] app.models.classifier - INFO - Using dummy classifier (skipping pickle load to avoid version issues)
+[2026-07-08 01:34:24] app.main - INFO - Result: test.txt -> Authentic (100.0%)
+[2026-07-08 01:34:24] app.main - INFO - POST /api/predict -> 200 (0.70s)
+[2026-07-08 01:34:24] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 01:34:49] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:34:53] __main__ - INFO - GET / -> 200 (0.02s)
+[2026-07-08 01:35:06] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:35:37] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:35:44] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:35:44] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:35:44] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:35:44] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:35:45] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:35:45] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:35:45] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:35:45] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:35:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:227]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_field with data[265:284]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_value with data[286:331]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_field with data[333:345]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_value with data[347:357]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_data with data[361:384]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_field with data[422:441]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_value with data[443:488]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_field with data[490:502]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_value with data[504:514]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_data with data[518:539]
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:35:45] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:35:45] app.main - INFO - POST /api/predict_batch -> 422 (0.01s)
+[2026-07-08 01:35:45] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 422 Unprocessable Entity"
+[2026-07-08 01:35:54] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 01:36:01] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 01:36:01] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 01:36:01] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 01:36:01] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 01:36:02] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:36:02] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:36:02] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 01:36:02] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 01:36:02] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:105]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_field with data[143:162]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_value with data[164:197]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_data with data[201:227]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_field with data[265:284]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_value with data[286:333]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_field with data[335:347]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_value with data[349:359]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_data with data[363:386]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_field with data[424:443]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_value with data[445:492]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_field with data[494:506]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_value with data[508:518]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_data with data[522:543]
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:36:02] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:36:02] app.main - INFO - Batch predict: 2 files
+[2026-07-08 01:36:02] app.utils.parser - DEBUG - Parsing: test1.txt (format: txt, size: 23 bytes)
+[2026-07-08 01:36:02] app.utils.parser - DEBUG - TXT parsed: 23 chars (encoding: utf-8)
+[2026-07-08 01:36:03] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 01:36:03] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:36:03] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:36:03] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:36:03] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:36:03] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 01:36:03] app.models.classifier - INFO - Using dummy classifier (skipping pickle load to avoid version issues)
+[2026-07-08 01:36:03] app.main - DEBUG - Batch: test1.txt -> Authentic
+[2026-07-08 01:36:03] app.utils.parser - DEBUG - Parsing: test2.txt (format: txt, size: 21 bytes)
+[2026-07-08 01:36:03] app.utils.parser - DEBUG - TXT parsed: 21 chars (encoding: utf-8)
+[2026-07-08 01:36:03] app.main - DEBUG - Batch: test2.txt -> Authentic
+[2026-07-08 01:36:03] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 01:36:03] app.main - INFO - POST /api/predict_batch -> 200 (0.71s)
+[2026-07-08 01:36:03] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 01:37:45] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 01:37:49] __main__ - INFO - GET / → 200 (0.00s)
+[2026-07-08 01:37:54] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 01:37:54] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 01:37:54] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_field with data[42:61]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_value with data[63:132]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_field with data[134:146]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_value with data[148:163]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_data with data[167:16384]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:131072]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_data with data[0:46540]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_field with data[46584:46603]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_value with data[46605:46632]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_data with data[46636:46660]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_field with data[46704:46723]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_value with data[46725:46758]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_data with data[46762:49045]
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 01:38:12] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 01:38:12] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 01:38:12] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 01:38:12] __main__ - INFO - Predicting: Sarshij-Karn-Real-Resume (1).pdf | JD: 2277 chars
+[2026-07-08 01:38:13] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 01:38:13] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 01:38:13] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 01:38:13] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 01:38:13] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:38:15] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C6080>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: e84a3393-b372-4e1a-baeb-546bc8f723fb)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:38:15] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:38:16] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:38:18] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C5930>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: b113d01e-3ec6-43da-98fa-508bfa6a4d01)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:38:18] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:38:20] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:38:22] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C5630>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: d7588e09-d68f-4fac-8ae9-e3d55b14a1c3)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:38:22] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:38:26] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:38:28] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C64A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 19862b17-9802-42d3-b0f5-a1883dee4376)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:38:28] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:38:36] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:38:38] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C5750>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 5e5cae2d-3cae-41d0-a99a-aabc34038f8b)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:38:38] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:38:46] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:38:48] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D3B3A0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 5fa037b2-3c4d-4cae-ab45-4570c8d89cac)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/./modules.json
+[2026-07-08 01:38:48] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 01:38:48] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (1): huggingface.co:443
+[2026-07-08 01:38:50] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D3B0D0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: ee6d3ef3-617e-4d9b-9085-1feb64a3b36a)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:38:50] huggingface_hub.utils._http - WARNING - Retrying in 1s [Retry 1/5].
+[2026-07-08 01:38:51] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (2): huggingface.co:443
+[2026-07-08 01:38:53] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D38E50>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 951cc1c0-b0b0-40ea-a27d-ea1f673a93a3)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:38:53] huggingface_hub.utils._http - WARNING - Retrying in 2s [Retry 2/5].
+[2026-07-08 01:38:55] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (3): huggingface.co:443
+[2026-07-08 01:38:57] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA11D38D90>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 32c0691e-7bd4-4619-b9b6-635a8ad440d8)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:38:57] huggingface_hub.utils._http - WARNING - Retrying in 4s [Retry 3/5].
+[2026-07-08 01:39:01] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (4): huggingface.co:443
+[2026-07-08 01:39:03] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA0EEBD180>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: c78c9613-7ce4-4710-8c55-c5898a9edf21)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:39:03] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 4/5].
+[2026-07-08 01:39:11] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (5): huggingface.co:443
+[2026-07-08 01:39:13] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C4F70>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: 5dd96082-cce6-4bc8-abd2-6da4602853d1)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:39:13] huggingface_hub.utils._http - WARNING - Retrying in 8s [Retry 5/5].
+[2026-07-08 01:39:21] urllib3.connectionpool - DEBUG - Starting new HTTPS connection (6): huggingface.co:443
+[2026-07-08 01:39:23] huggingface_hub.utils._http - WARNING - '(MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C59C0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: b9021796-e740-433b-aa78-9aae7f341a4e)')' thrown while requesting HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json
+[2026-07-08 01:39:23] __main__ - ERROR - Predict failed for Sarshij-Karn-Real-Resume (1).pdf: (MaxRetryError("HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json (Caused by ProxyError('Unable to connect to proxy', NewConnectionError('<urllib3.connection.HTTPSConnection object at 0x000001FA100C59C0>: Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it')))"), '(Request ID: b9021796-e740-433b-aa78-9aae7f341a4e)')
+[2026-07-08 01:39:23] __main__ - INFO - POST /api/predict → 500 (71.07s)
+[2026-07-08 10:29:33] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 10:29:48] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 10:29:48] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 10:29:48] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 10:29:49] __main__ - INFO - GET / -> 200 (0.06s)
+[2026-07-08 10:29:50] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 10:30:17] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 10:30:17] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 10:30:17] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 2277 chars
+[2026-07-08 10:30:17] app.utils.nlp - WARNING - spaCy model en_core_web_sm not found. Install via: python -m spacy download en_core_web_sm
+[2026-07-08 10:30:17] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 10:30:17] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 10:30:17] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 10:30:17] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 10:30:18] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 10:30:18] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 10:30:19] __main__ - ERROR - Predict failed for pranjalresume.pdf: 'NoneType' object has no attribute 'pipe_names'
+[2026-07-08 10:30:19] __main__ - INFO - POST /api/predict -> 500 (2.16s)
+[2026-07-08 10:34:44] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 10:34:58] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 10:35:04] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 10:35:04] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 10:35:04] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 10:35:17] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 10:35:17] __main__ - INFO - GET /static/style.css -> 200 (0.26s)
+[2026-07-08 10:35:17] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 10:35:19] __main__ - INFO - GET / -> 200 (0.00s)
+[2026-07-08 10:35:19] __main__ - INFO - GET /static/style.css -> 200 (0.02s)
+[2026-07-08 10:35:19] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 10:35:34] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 10:35:35] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 10:35:35] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 2277 chars
+[2026-07-08 10:35:35] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 10:35:35] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 10:35:35] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 10:35:35] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 10:35:35] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 10:35:36] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 10:35:36] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 10:35:37] app.models.classifier - INFO - Using dummy classifier (skipping pickle load to avoid version issues)
+[2026-07-08 10:35:38] __main__ - INFO - Result: pranjalresume.pdf -> Authentic (100.0%)
+[2026-07-08 10:35:38] __main__ - INFO - POST /api/predict -> 200 (3.21s)
+[2026-07-08 10:49:29] app.models.classifier - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 10:49:29] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 10:49:38] app.models.classifier - ERROR - Failed to load Decision Tree pkl (No module named 'numpy._core'). Falling back to heuristic classifier so the app can still run.
+[2026-07-08 10:52:28] app.models.classifier - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 10:52:28] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\data\models\decision_tree_model.pkl
+[2026-07-08 10:52:29] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 10:54:11] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 10:54:29] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 10:54:38] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 10:54:38] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 10:54:38] __main__ - INFO - Resume Screener API starting up...

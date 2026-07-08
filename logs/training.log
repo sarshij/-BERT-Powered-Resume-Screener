@@ -1,0 +1,93 @@
+[2026-07-08 00:28:41] training - INFO - ======================================================================
+[2026-07-08 00:28:41] training - INFO - PHASE 1: EXPLORATORY DATA ANALYSIS
+[2026-07-08 00:28:41] training - INFO - ======================================================================
+[2026-07-08 00:28:41] training - INFO - Loading dataset...
+[2026-07-08 00:28:41] training - INFO -   dataset: (4000, 28)
+[2026-07-08 00:28:41] training - INFO - Class Distribution:
+[2026-07-08 00:28:41] training - INFO - 
+classification
+Authentic           1930
+Suspicious          1296
+Potentially Fake     774
+[2026-07-08 00:28:41] training - INFO - 
+classification
+Authentic           48.25
+Suspicious          32.40
+Potentially Fake    19.35
+[2026-07-08 00:28:41] training - INFO -   Saved class_distribution.png
+[2026-07-08 00:28:41] training - INFO - Engineering additional features...
+[2026-07-08 00:28:41] training - INFO - 
+Total features: 17
+[2026-07-08 00:28:41] training - INFO - Feature columns: ['semantic_similarity', 'skill_overlap_score', 'experience_relevance_score', 'final_match_score', 'overlapping_jobs', 'promotion_speed', 'experience_graduation_gap', 'skill_density', 'achievement_count', 'generic_phrase_score', 'gap_years', 'keyword_stuffing_score', 'years_experience', 'num_certifications', 'num_skills', 'education_level_encoded', 'has_previous_job']
+[2026-07-08 00:28:41] training - INFO - 
+--- Feature Overview ---
+[2026-07-08 00:28:41] training - INFO -        semantic_similarity  ...  has_previous_job
+count          4000.000000  ...       4000.000000
+mean              0.505324  ...          0.856000
+std               0.120242  ...          0.351134
+min               0.158600  ...          0.000000
+25%               0.422500  ...          1.000000
+50%               0.512900  ...          1.000000
+75%               0.594500  ...          1.000000
+max               0.863900  ...          1.000000
+
+[8 rows x 17 columns]
+[2026-07-08 00:28:41] training - INFO - 
+--- Missing Values ---
+[2026-07-08 00:28:41] training - INFO - semantic_similarity           0
+skill_overlap_score           0
+experience_relevance_score    0
+final_match_score             0
+overlapping_jobs              0
+promotion_speed               0
+experience_graduation_gap     0
+skill_density                 0
+achievement_count             0
+generic_phrase_score          0
+gap_years                     0
+keyword_stuffing_score        0
+years_experience              0
+num_certifications            0
+num_skills                    0
+education_level_encoded       0
+has_previous_job              0
+dtype: int64
+[2026-07-08 00:28:41] training - INFO - 
+--- Class-wise Feature Means ---
+[2026-07-08 00:28:41] training - INFO -                   semantic_similarity  ...  has_previous_job
+classification                         ...                  
+Authentic                      0.5751  ...            0.8513
+Potentially Fake               0.3544  ...            0.8630
+Suspicious                     0.4915  ...            0.8588
+
+[3 rows x 17 columns]
+[2026-07-08 00:28:42] training - INFO -   Saved correlation_matrix.png
+[2026-07-08 00:28:46] training - INFO -   Saved feature_distributions.png
+[2026-07-08 00:28:46] training - INFO - 
+  Saved combined_dataset.csv ((4000, 32))
+[2026-07-08 00:28:46] training - INFO - 
+======================================================================
+[2026-07-08 00:28:46] training - INFO - PHASE 2: DECISION TREE MODEL TRAINING
+[2026-07-08 00:28:46] training - INFO - ======================================================================
+[2026-07-08 00:28:46] training - INFO - 
+Train set: (3200, 17)
+[2026-07-08 00:28:46] training - INFO - Test set: (800, 17)
+[2026-07-08 00:28:46] training - INFO - Train distribution: {0: 1544, 1: 1037, 2: 619}
+[2026-07-08 00:28:46] training - INFO - 
+--- Training Base Decision Tree ---
+[2026-07-08 00:28:46] training - INFO -   Base DT Accuracy: 0.8087
+[2026-07-08 00:28:46] training - INFO -   Base DT F1 (weighted): 0.8069
+[2026-07-08 00:28:46] training - INFO - 
+  Classification Report:
+[2026-07-08 00:28:46] training - INFO -                   precision    recall  f1-score   support
+
+       Authentic       0.80      0.85      0.83       386
+      Suspicious       0.73      0.66      0.69       259
+Potentially Fake       0.95      0.95      0.95       155
+
+        accuracy                           0.81       800
+       macro avg       0.83      0.82      0.82       800
+    weighted avg       0.81      0.81      0.81       800
+
+[2026-07-08 00:28:46] training - INFO - 
+--- Grid Search for Best Decision Tree ---
