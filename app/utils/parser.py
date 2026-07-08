@@ -1,8 +1,9 @@
 """
 Resume Text Parser
-Extracts text from PDF and TXT files.
+Extracts text from PDF, TXT and DOCX files.
 """
 import io
+import docx
 
 from app.logger import setup_logger
 
@@ -15,6 +16,8 @@ def parse_resume(file_bytes: bytes, filename: str) -> str:
         return parse_pdf(file_bytes)
     elif ext == 'txt':
         return parse_txt(file_bytes)
+    elif ext == 'docx':
+        return parse_docx(file_bytes)
     else:
         return parse_txt(file_bytes)
 
@@ -43,3 +46,13 @@ def parse_txt(file_bytes: bytes) -> str:
             continue
     logger.warning("TXT encoding detection failed, falling back to latin-1 with replace")
     return file_bytes.decode('latin-1', errors='replace').strip()
+
+def parse_docx(file_bytes: bytes) -> str:
+    try:
+        document = docx.Document(io.BytesIO(file_bytes))
+        text = '\n'.join([paragraph.text for paragraph in document.paragraphs])
+        logger.debug(f"DOCX parsed: {len(text.strip())} chars")
+        return text.strip()
+    except Exception as e:
+        logger.error(f"Failed to parse DOCX: {e}")
+        return "[DOCX parser error]"

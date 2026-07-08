@@ -1,0 +1,147 @@
+'''
+Simple spaCy-based NER helpers for resume analysis.
+Falls back to rule-based methods if model not available.
+'''
+import os
+import re
+from datetime import datetime
+
+import spacy
+
+from app.logger import setup_logger
+
+logger = setup_logger(__name__)
+
+# Load spaCy model (small English) - disable unnecessary components for speed
+_nlp = None
+def get_nlp():
+    global _nlp
+    if _nlp is None:
+        try:
+            _nlp = spacy.load('en_core_web_sm')
+            logger.info('Loaded spaCy model en_core_web_sm')
+        except OSError:
+            logger.warning('spaCy model en_core_web_sm not found. Install via: python -m spacy download en_core_web_sm')
+            _nlp = False
+    return _nlp if _nlp is not False else None
+
+SKILL_KEYWORDS = set([
+    "Python", "Java", "JavaScript", "TypeScript", "C++", "C#", "Go", "Rust",
+    "SQL", "NoSQL", "MongoDB", "PostgreSQL", "MySQL", "Redis", "Cassandra",
+    "TensorFlow", "PyTorch", "Keras", "scikit-learn", "NumPy", "Pandas",
+    "Docker", "Kubernetes", "AWS", "Azure", "GCP", "Terraform", "Ansible",
+    "Git", "Jenkins", "CI/CD", "Linux", "Bash", "Shell",
+    "React", "Vue.js", "Angular", "Node.js", "Django", "Flask", "FastAPI",
+    "Spring Boot", "REST APIs", "GraphQL", "gRPC",
+    "Machine Learning", "Deep Learning", "NLP", "Computer Vision",
+    "BERT", "LLM", "RAG", "LangChain", "Hugging Face",
+    "Spark", "Hadoop", "Kafka", "Airflow", "ETL",
+    "Agile", "Scrum", "JIRA", "Confluence",
+    "Blockchain", "Solidity", "Web3",
+    "Cybersecurity", "Network Security", "Penetration Testing",
+    "Tableau", "Power BI", "Excel",
+    "Project Management", "Leadership", "Team Management",
+    "Communication", "Problem Solving", "Critical Thinking",
+    "SEO", "Digital Marketing", "Content Strategy",
+    "Accounting", "Financial Analysis", "Risk Management",
+    "AutoCAD", "SolidWorks", "MATLAB",
+    "FPGA", "Embedded C", "RTOS",
+    "OOP", "Data Structures", "Algorithms", "System Design",
+    "Microservices", "DevOps", "MLOps", "Data Engineering",
+    "Cloud Computing", "Edge Computing", "IoT",
+])
+
+def extract_skills_spacy(text: str) -> set[str]:
+    """
+    Extract skills using spaCy token matching against SKILL_KEYWORDS.
+    Returns a set of skill strings (as defined in SKILL_KEYWORDS).
+    Uses exact lemma match to avoid false positives (e.g., "Java" in "JavaScript").
+    """
+    nlp = get_nlp()
+    if nlp is None:
+        return set()
+    doc = nlp(text.lower())
+    found = set()
+    for token in doc:
+        if token.is_stop or token.is_punct:
+            continue
+        word = token.lemma_.lower()
+        for skill in SKILL_KEYWORDS:
+            if skill.lower() == word:
+                found.add(skill)
+                break
+    return found
+
+def _is_range_separator(text: str) -> bool:
+    return ('-' in text) or ('\u2013' in text) or ('\u2014' in text) or (' to ' in text.lower())
+
+def extract_years_experience_spacy(text: str) -> float:
+    """
+    Extract years of experience using spaCy DATE entities and simple heuristics.
+    Returns years as float.
+    """
+    nlp = get_nlp()
+    if nlp is None:
+        return 0.0
+    doc = nlp(text)
+    intervals = []  # list of (start_year, end_year)
+    present_indicators = {'present', 'current', 'now'}
+    current_year = datetime.now().year
+    for ent in doc.ents:
+        if ent.label_ == 'DATE':
+            txt = ent.text.strip()
+            nums = re.findall(r'\b(?:19|20)\d{2}\b', txt)
+            if len(nums) >= 2 and _is_range_separator(txt):
+                start = int(nums[0])
+                end = int(nums[1])
+                if start < end:
+                    intervals.append((start, end))
+            elif len(nums) == 1:
+                year = int(nums[0])
+                lower_txt = txt.lower()
+                if any(word in lower_txt for word in present_indicators):
+                    if year <= current_year:
+                        intervals.append((year, current_year))
+                # else ignore single year (likely a date like graduation)
+    if not intervals:
+        return 0.0
+    # Merge intervals
+    intervals.sort(key=lambda x: x[0])
+    merged = []
+    if len(intervals) > 0:
+        cur_start, cur_end = intervals[0]
+        for start, end in intervals[1:]:
+            if start <= cur_end:  # overlapping or adjacent
+                if end > cur_end:
+                    cur_end = end
+            else:
+                merged.append((cur_start, cur_end))
+                cur_start, cur_end = start, end
+        merged.append((cur_start, cur_end))
+    total_years = 0
+    for start, end in merged:
+        total_years += (end - start)
+    return min(total_years, 50.0)
+
+def extract_graduation_year_spacy(text: str) -> int:
+    """
+    Extract likely graduation year from DATE entities.
+    Returns year as int, or current year - 4 as fallback.
+    """
+    nlp = get_nlp()
+    if nlp is None:
+        return datetime.now().year - 4
+    doc = nlp(text)
+    years = []
+    current_year = datetime.now().year
+    for ent in doc.ents:
+        if ent.label_ == 'DATE':
+            for y in re.findall(r'\b(?:19|20)\d{2}\b', ent.text):
+                yi = int(y)
+                if 1950 <= yi <= current_year:
+                    years.append(yi)
+    if years:
+        # Prefer recent plausible graduation year
+        return max(years)
+    return current_year - 4
+

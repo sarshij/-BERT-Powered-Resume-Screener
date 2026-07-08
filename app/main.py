@@ -1,4 +1,4 @@
-"""
+﻿"""
 FastAPI Backend for Resume Screening & Authenticity Validation
 """
 import sys
@@ -44,7 +44,7 @@ class RequestLogMiddleware(BaseHTTPMiddleware):
         start = time.time()
         response = await call_next(request)
         duration = time.time() - start
-        logger.info(f"{request.method} {request.url.path} → {response.status_code} ({duration:.2f}s)")
+        logger.info(f"{request.method} {request.url.path} -> {response.status_code} ({duration:.2f}s)")
         return response
 
 app.add_middleware(RequestLogMiddleware)
@@ -96,7 +96,7 @@ async def predict_single(
         classification = predict([validation])[0]
         skill_details = get_matched_skills(resume_text, job_description)
 
-        logger.info(f"Result: {resume.filename} → {classification['classification']} ({classification['confidence']*100:.1f}%)")
+        logger.info(f"Result: {resume.filename} -> {classification['classification']} ({classification['confidence']*100:.1f}%)")
         return {
             "status": "success",
             "filename": resume.filename,
@@ -159,7 +159,7 @@ async def predict_batch(
                 "semantic_similarity": sem_sim,
                 "skill_overlap_score": skill_overlap
             })
-            logger.debug(f"Batch: {resume.filename} → {classification['classification']}")
+            logger.debug(f"Batch: {resume.filename} -> {classification['classification']}")
         except Exception as e:
             logger.error(f"Batch failed for {resume.filename}: {e}")
             results.append({"filename": resume.filename, "error": str(e)})

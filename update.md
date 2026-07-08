@@ -25,7 +25,111 @@
 
 ---
 
-## 2. README Discrepancies (README.md vs actual code)
+## 2. Proposal vs Implementation: What's Done and What's Left
+
+This section compares the 4 objectives, scope items, and technology choices from **`project_proposal__1_.pdf`** (March 12, 2026) against the current codebase.
+
+### 2.1 Core Objectives
+
+| # | Objective (from proposal) | Status | Evidence |
+|---|---------------------------|--------|----------|
+| 1 | Semantic resume-job matching using SBERT | **DONE** | `app/features/semantic.py:7-12` — `compute_semantic_similarity()` uses `all-MiniLM-L6-v2` embeddings + cosine similarity |
+| 2 | Hybrid scoring model (semantic + skill + experience) | **DONE** | `app/main.py:84` — `final_score = 0.6 * sem_sim + 0.25 * skill_overlap + 0.15 * exp_relevance` (weights match proposal: 0.60, 0.25, 0.15) |
+| 3 | Authenticity validation using Decision Tree | **DONE** | `app/models/classifier.py:30-49` — `predict()` feeds 17 features into DecisionTree; `notebooks/01_eda_and_model.py:153-214` trains via GridSearchCV |
+| 4 | Recruiter dashboard for ranking, analysis, metrics | **DONE** | 3 HTML pages: index (single), batch (ranking table), analytics (metrics + charts) |
+
+### 2.2 Input Support
+
+| Requirement (proposal) | Status | Details |
+|------------------------|--------|---------|
+| Resume upload: PDF | **DONE** | `app/utils/parser.py:21-34` — uses PyMuPDF (`fitz`) |
+| Resume upload: DOC/DOCX | **NOT DONE** | Only PDF and TXT supported. Proposal specified `python-docx` but no DOC parser exists. |
+| JD via text field | **DONE** | `app/templates/index.html:65` — `<textarea name="job_description">` |
+| JD via file upload | **NOT DONE** | Proposal mentioned file upload for JD but only textarea implemented |
+
+### 2.3 Validation Features (Table 3.1 from Proposal)
+
+The proposal lists 7 validation features. Current code has 17. Mapping:
+
+| Proposed Feature | Status | Actual Implementation |
+|-----------------|--------|----------------------|
+| Overlapping Jobs | **DONE** | `validation.py:89-91` — `detect_overlapping_jobs()` |
+| Promotion Speed | **DONE** | `validation.py:78-87` — `compute_promotion_speed()` |
+| Experience–Graduation Gap | **DONE** | `validation.py:71-76` — `compute_experience_graduation_gap()` |
+| Skill Density | **DONE** | `validation.py:47-56` — `compute_skill_density()` |
+| Achievement Count | **DONE** | `validation.py:58-69` — `count_achievements()` |
+| Generic Phrase Score | **DONE** | `validation.py:25-34` — `compute_generic_phrase_score()` |
+| Gap Years | **DONE** | `validation.py:36-45` — `detect_gaps()`['total_gap_years'] |
+
+**Extra features implemented (10 beyond proposal):**
+- `semantic_similarity`, `skill_overlap_score`, `experience_relevance_score`, `final_match_score` — screening scores passed through
+- `years_experience`, `num_certifications`, `num_skills`, `education_level_encoded`, `has_previous_job` — added for richer feature set
+
+### 2.4 Classification Scheme
+
+| Aspect | Proposed (binary) | Actual (3-class) | Gap |
+|--------|-------------------|------------------|-----|
+| Classes | Genuine / Suspicious | Authentic / Suspicious / Potentially Fake | Actual splits "Fake" into Suspicious + Potentially Fake |
+| Risk Levels | Low (≥0.8), Medium (≥0.5), High (<0.5) | `risk_level` column in dataset (Low/Medium/High) | Risk level exists in data but not shown in API response; the classifier outputs 3 classes with probabilities |
+| Confidence | Uses confidence for risk assignment | Returns `predict_proba` for predicted class | API returns `confidence` as probability of predicted class |
+
+### 2.5 Technology Stack
+
+| Tool | Proposed | Actual | Gap |
+|------|----------|--------|-----|
+| Backend framework | FastAPI / Flask | **FastAPI** | ✓ Match |
+| SBERT | sentence-transformers | **sentence-transformers** `all-MiniLM-L6-v2` | ✓ Match |
+| NLP Pipeline | spaCy (NER, tokenization, POS) | **Not used** — all extraction is regex-based | ✗ spaCy declared but never imported |
+| ML Library | scikit-learn | **scikit-learn** DecisionTreeClassifier + GridSearchCV | ✓ Match |
+| Database | PostgreSQL | **None** — no database | ✗ Not implemented |
+| Frontend | HTML, CSS, JavaScript | **HTML/CSS/JS** with Jinja2 templating | ✓ Match (+ Jinja2) |
+| PDF Parser | PyPDF2 | **PyMuPDF (fitz)** | ✗ Different library |
+| DOC Parser | python-docx | **Not implemented** | ✗ No DOC support |
+| Testing framework | Not specified | **pytest + httpx** (103 tests) | ✓ Bonus |
+
+### 2.6 Expected Output (Section 5 of Proposal)
+
+| Deliverable | Status | Evidence |
+|-------------|--------|----------|
+| Functional web-based screening app | **DONE** | FastAPI server, 3-page UI, 8 endpoints |
+| SBERT embeddings + custom weighted ranking | **DONE** | `semantic.py` + `main.py:84` formula |
+| Authenticity validation with Decision Tree | **DONE** | `classifier.py` predicts from 17 validation features |
+| Recruiter dashboard | **DONE** | `/analytics` page with metrics, feature importance, confusion matrix, class distribution |
+| Ranked candidate lists | **DONE** | `/batch` page with sorted table, `/api/predict_batch` with sorted results |
+| Analysis reports per candidate | **PARTIAL** | Single page shows scores + validation signals + skills; no downloadable report |
+| Visual skill match charts | **DONE** | Matched/missing/extra skills as colored chips in results card |
+| Accuracy, precision, recall, F1 scores | **DONE** | `metrics.json` + `/api/model/info` + analytics dashboard |
+| Exportable evaluation results | **NOT DONE** | No CSV/PDF export functionality |
+
+### 2.7 What's Left
+
+| Item | Priority | Effort | Notes |
+|------|----------|--------|-------|
+| **DOC/DOCX parser** | Medium | 1-2 hours | Use `python-docx`; add to `parser.py` dispatch |
+| **Database (PostgreSQL)** | Low | 1-2 days | Store resumes, JDs, results; requires schema design, async SQL driver |
+| **spaCy NER pipeline** | Low | 4-6 hours | Replace/add regex-based extraction; extract org names, dates structurally |
+| **Exportable reports (CSV/PDF)** | Medium | 4-6 hours | Download batch results as CSV; generate PDF per candidate with html2pdf |
+| **Confidence-based risk levels** | Low | 1 hour | Map `predict_proba` output to Low/Medium/High risk; expose in API response |
+| **JD file upload** | Low | 1 hour | Add file input alongside textarea; parse TXT/PDF job descriptions |
+| **Update README** | **HIGH** | Already done | ✅ Updated in this session (accuracy, features, dataset) |
+| **Fix `current_year=2026` hardcode** | **HIGH** | 5 minutes | `validation.py:71` — change to `datetime.now().year` |
+| **Add 3 missing features to `/api/dataset/stats`** | Medium | 10 minutes | `main.py:201-207` — add `overlapping_jobs`, `promotion_speed`, `experience_graduation_gap` |
+| **Create `.gitignore`** | Low | 5 minutes | Exclude `venv/`, `__pycache__/`, `*.pkl`, logs, `*.csv`, `*.png` |
+
+### 2.8 Timeline Alignment (Gantt from Proposal)
+
+| Phase | Proposal Date | Actual Status |
+|-------|--------------|---------------|
+| Literature Review | Mar 12 (proposal) | **Complete** — incorporated into README §2 |
+| Data Collection & Preprocessing | Mar-Apr | **Complete** — 4,000 records in `resume_dataset_4000_tech.csv` |
+| Model Development (SBERT + Decision Tree) | Apr-May | **Complete** — `01_eda_and_model.py` trained both |
+| Web Interface Development | May-Jun | **Complete** — 3-page UI (index, batch, analytics) |
+| Testing & Evaluation | Jun-Jul | **Complete** — 103 tests across 6 files |
+| Documentation & Final Report | Jul | **In progress** — this report + README updates |
+
+---
+
+## 3. README Discrepancies (README.md vs actual code)
 
 The README.md (1,292 lines) contains numerous claims that do not match the live codebase. These must be corrected before defense:
 

@@ -116,7 +116,7 @@ class TestGraduationGap:
         assert gap == 3.0
 
     def test_inflated_experience_creates_large_gap(self):
-        gap = compute_experience_graduation_gap(15, 2018)
+        gap = compute_experience_graduation_gap(15, 2018, current_year=2026)
         assert gap < 0
 
     def test_zero_graduation_year(self):

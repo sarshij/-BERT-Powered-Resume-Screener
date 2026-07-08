@@ -1,4 +1,4 @@
-"""
+﻿"""
 Centralized logging configuration for Resume Screener.
 """
 import logging
@@ -37,5 +37,6 @@ def setup_logger(name: str = __name__) -> logging.Logger:
     root.addHandler(file_handler)
 
     _initialized = True
-    logger.info(f"Logging initialized → {log_file}")
+    logger.info(f"Logging initialized -> {log_file}")
     return logger
+

@@ -1,22 +1,18 @@
+"""
+Extract years of experience and graduation year from resume text.
+Replaces previously hardcoded values.
+"""
 import re
 from datetime import datetime
-
-from ..utils.nlp import extract_years_experience_spacy, extract_graduation_year_spacy
 
 CURRENT_YEAR = datetime.now().year
 
 def extract_years_experience(resume_text: str) -> float:
-    # Try spaCy first
-    spacy_years = extract_years_experience_spacy(resume_text)
-    if spacy_years > 0.0:
-        return spacy_years
-
-    # Fallback to original implementation
     text = resume_text.lower()
     ranges = []
 
     for match in re.finditer(
-        r'\b(\d{4})\s*[-\u2013\u2014to]+\s*(present|current|now|\d{4})\b',
+        r'\b(\d{4})\s*[-–to]+\s*(present|current|now|\d{4})\b',
         text, re.IGNORECASE
     ):
         start = int(match.group(1))
@@ -52,7 +48,6 @@ def extract_years_experience(resume_text: str) -> float:
 
 
 def extract_graduation_year(resume_text: str) -> int:
-    # Use the original implementation (spaCy version removed for reliability)
     text = resume_text.lower()
 
     edu_section = re.split(
@@ -110,3 +105,4 @@ def extract_graduation_year(resume_text: str) -> int:
             return y
 
     return recent[0]
+

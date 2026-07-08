@@ -1,0 +1,614 @@
+TRIBHUVAN UNIVERSITY
+INSTITUTE OF ENGINEERING
+NATIONAL COLLEGE OF ENGINEERING
+A
+MINOR PROJECT PROPOSAL
+ON
+“SBERT-Based Resume Screening and Authenticity Validation
+Using Decision Tree Classification”
+SUBMITTED BY:
+PRANJAL POUDEL (NCE080BEI029)
+PRATHAM TIMALSINA (NCE080BEI031)
+PURNA BAHADUR RANA (NCE080BEI032)
+SARSHIJ KARN (NCE080BEI037)
+SUBMITTED TO:
+DEPARTMENT OF ELECTRONICS & COMPUTER ENGINEERING
+LALITPUR, NEPAL
+MARCH 12, 2026\nCONTENTS
+List of Figures iv
+List of Tables v
+List of Abbreviations vi
+1 Introduction 1
+1.1 Background . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.2 Problem Statement . . . . . . . . . . . . . . . . . . . . . . . . . . . . 1
+1.3 Objectives . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+1.4 Scope of the Project . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2
+2 Literature Review 4
+2.1 Related Work . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.1.1 Existing Systems . . . . . . . . . . . . . . . . . . . . . . . . . 4
+2.1.2 Research Gaps . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.2 Related Theory . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 5
+2.2.1 Natural Language Processing for Text Analysis . . . . . . . . . 5
+2.2.2 Transformer Architecture and BERT . . . . . . . . . . . . . . . 6
+2.2.3 Sentence-BERT (SBERT) and Semantic Similarity . . . . . . . 6
+2.2.4 Custom Weighted Scoring Model . . . . . . . . . . . . . . . . 7
+2.2.5 Decision Tree Classification . . . . . . . . . . . . . . . . . . . 7
+2.2.6 Rule-Based Feature Extraction for Validation . . . . . . . . . . 8
+2.2.7 Evaluation Metrics Theory . . . . . . . . . . . . . . . . . . . . 8
+3 Proposed Methodology 9
+3.1 Feasibility Study . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 9
+3.1.1 Technical Feasibility . . . . . . . . . . . . . . . . . . . . . . . 9
+3.1.2 Economic Feasibility . . . . . . . . . . . . . . . . . . . . . . . 9
+3.1.3 Operational Feasibility . . . . . . . . . . . . . . . . . . . . . . 10
+3.1.4 Legal and Ethical Feasibility . . . . . . . . . . . . . . . . . . . 10
+3.2 System Architecture . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+3.3 Performance Parameters . . . . . . . . . . . . . . . . . . . . . . . . . 12
+3.4 Proposed System Design . . . . . . . . . . . . . . . . . . . . . . . . . 14
+3.5 Algorithm . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+3.5.1 Text Extraction and NLP Preprocessing . . . . . . . . . . . . . 16
+3.5.2 SBERT Embedding Generation . . . . . . . . . . . . . . . . . 16
+ii\n3.5.3 Semantic Similarity Computation . . . . . . . . . . . . . . . . 16
+3.5.4 Skill Overlap Scoring . . . . . . . . . . . . . . . . . . . . . . . 17
+3.5.5 Experience Relevance Scoring . . . . . . . . . . . . . . . . . . 17
+3.5.6 Custom Weighted Final Score . . . . . . . . . . . . . . . . . . 17
+3.5.7 Validation Feature Extraction . . . . . . . . . . . . . . . . . . 17
+3.5.8 Decision Tree Classification . . . . . . . . . . . . . . . . . . . 18
+3.6 Accuracy Evaluation . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+3.6.1 Screening Module Evaluation . . . . . . . . . . . . . . . . . . 18
+3.6.2 Validation Module Evaluation . . . . . . . . . . . . . . . . . . 19
+3.7 Technology Stack . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19
+4 Time Schedule 20
+5 Expected Output 21
+References . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 22
+iii\nLIST OF FIGURES
+3.1 System architecture and block diagram . . . . . . . . . . . . . . . . . . 11
+3.2 Detailed operational flowchart of the proposed system . . . . . . . . . . 14
+3.3 Data Flow Diagram Level 0 (Context Diagram) . . . . . . . . . . . . . 15
+3.4 Data Flow Diagram Level 1 . . . . . . . . . . . . . . . . . . . . . . . . 16
+4.1 Gantt Chart . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+iv\nLIST OF TABLES
+3.1 Validation Feature Set . . . . . . . . . . . . . . . . . . . . . . . . . . . 18
+3.2 Technology Stack Breakdown . . . . . . . . . . . . . . . . . . . . . . . 19
+v\nLIST OF ABBREVIATIONS
+AI Artificial Intelligence
+API Application Programming Interface
+ATS Applicant Tracking System
+BERT Bidirectional Encoder Representations from Transformers
+BM25 Best Matching 25
+CSS Cascading Style Sheets
+CSV Comma Separated Values
+HR Human Resources
+HTML HyperText Markup Language
+ML Machine Learning
+NER Named Entity Recognition
+NLP Natural Language Processing
+PDF Portable Document Format
+POS Part-of-Speech
+SBERT Sentence-BERT
+SQL Structured Query Language
+STS Semantic Textual Similarity
+SVM Support Vector Machine
+TF-IDF Term Frequency–Inverse Document Frequency
+UI User Interface
+UX User Experience
+vi\n1. INTRODUCTION
+1.1 Background
+Hiring the right people is key for any company because it affects how well the business
+runs and grows. Usually, HR staff have to go through hundreds or even thousands of
+resumes for one job. They manually check if each candidate has the right skills and
+experience. This takes a lot of time and effort, and it’s easy for people to make mistakes
+or be biased when they have so much to read [1].
+With more people using job portals online, the number of applications has gone up
+a lot. Research shows that a single job posting can get around 250 resumes, and about
+75 to 88% of them usually aren’t right for the role [2]. This makes it very hard for HR
+teams, especially in smaller companies that don’t have many recruiters.
+To help with this, automated screening systems were created. At first, they just
+looked for specific keywords using methods like TF-IDF and cosine similarity [3].
+Lately, things have improved with Natural Language Processing (NLP) and models
+like BERT [4]. A version called Sentence-BERT (SBERT) can turn text into numerical
+vectors that capture the actual context [5]. This lets the system compare resumes
+based on meaning rather than just matching words, which makes the results much more
+accurate.
+At the same time, AI writing tools have made it easy for people to create fake or
+“inflated” resumes. These resumes might look good to a simple keyword scanner, but
+they don’t always show the candidate’s real skills [6]. This means we need systems that
+don’t just find matches but also check if the information is actually true and consistent.
+1.2 Problem Statement
+Despite new tech in hiring, there are still major problems with how resumes are screened
+today. If someone uses different words for the same skill, they might get rejected by
+mistake. This problem makes it hard for the system to understand that a candidate
+with “Deep Learning” experience is also a match for “Neural Networks.” Furthermore,
+resumes come in different layouts and formats like PDF or DOC, and extracting clean,
+structured text from them is technically difficult. Current systems often fail to parse this
+data accurately, leading to missing information and poor matching.
+Another growing concern is that many systems don’t check if a resume is actually
+true. They focus only on ranking candidates by how well they match the job description,
+but they can’t see flags like fake job dates or graduation years that don’t align with
+experience. With the rise of AI tools, many people are now using AI to write “perfect”
+resumes that might not even be real. These AI-made resumes look great to a simple
+1\nkeyword scanner but often hide the fact that the candidate doesn’t have the actual skills
+needed. This makes it much harder for HR teams to trust the candidates they are seeing.
+Human bias is also still a problem. Even when using digital tools, recruiters might
+still be influenced by things like formatting or the names of schools. This leads to
+unfair results. On top of that, manual screening just doesn’t scale. When a single job
+gets hundreds of applications, it’s almost impossible for a human to read them all in a
+reasonable time. This leads to long hiring delays and can cause companies to lose great
+candidates to competitors. There is a clear need for a better system that doesn’t just
+match keywords but actually understands the meaning and verifies the authenticity of
+every resume.
+1.3 Objectives
+•To develop a semantic resume-job matching system using Sentence-BERT (SBERT)
+for accurate similarity analysis.
+•To design a hybrid scoring model integrating semantic similarity, skill overlap,
+and experience relevance weighting.
+•To implement a resume authenticity validation module using a Decision Tree
+classifier to detect inconsistencies.
+•To build a recruiter dashboard for candidate ranking, profile analysis, and system
+performance evaluation.
+1.4 Scope of the Project
+The project focuses on the design and development of a resume screening and authentic-
+ity validation system for automated candidate evaluation. The system provides semantic
+matching and structured validation using NLP and machine learning techniques.
+•Target Users:HR professionals, recruiters, and small-to-medium enterprises
+requiring efficient resume screening.
+•Input Support:
+•Resume upload in PDF and DOC formats.
+•Job description input via text field or file upload.
+•Core Capabilities:
+•Semantic resume-job matching using SBERT embeddings.
+•Custom weighted scoring with configurable parameters.
+•Resume authenticity validation using rule-based feature extraction.
+2\n•Decision Tree classification for genuine vs. suspicious resume detection.
+•Candidate ranking with detailed analysis reports.
+•Operational Boundaries:The system is intended for academic research and
+prototype demonstration. It does not integrate with external databases for real-
+time certificate or employment verification.
+3\n2. LITERATURE REVIEW
+2.1 Related Work
+Resume screening has come a long way in the last ten years, thanks to better AI and
+language processing. In the past, systems mostly just looked for keywords, but now they
+use deep learning to actually understand the text.
+At first, screening tools used keyword matching and simple parsers to find info
+in resumes [3]. These were fast but they couldn’t understand how different words
+relate. For example, a candidate might mention “Deep Learning” while the job asks for
+“Neural Networks.” Even though these are closely related, old systems would mark it
+as a mismatch.
+Later, methods like TF-IDF and cosine similarity were used to see which words were
+more important [7]. But even then, these tools didn’t really get the context or the order
+of words.
+Then came word embedding techniques like Word2Vec [8] and GloVe, which helped
+machines see relationships between words. Doc2Vec even tried to do this for whole
+documents [9]. These were better than just keyword matching, but they still struggled
+with complex resumes or long job descriptions.
+Huge progress was made with transformer models like BERT [4]. A version called
+Sentence-BERT (SBERT) [5] was designed specifically to compare sentences and pas-
+sages efficiently. This is perfect for comparing a candidate’s profile with a job description
+because it focuses on the overall meaning.
+Recent studies show that these embedding-based methods work much better than
+old keyword-based ones when it comes to finding the right person for a job [1][2].
+2.1.1 Existing Systems
+Several commercial and academic systems have been developed for automated resume
+screening:
+•Ideal:An AI-powered resume screening tool integrated with Applicant Tracking
+Systems (ATS) that uses machine learning to evaluate and rank candidates [10].
+•Freshworks AI:Provides contextual resume screening beyond simple keyword
+matching, incorporating candidate ranking and assessment features.
+•HireVue:Utilizes AI-driven candidate evaluation including resume analysis, with
+some systems also incorporating video interview analysis.
+4\nWhile these systems offer varying degrees of AI-based screening, most focus pri-
+marily on candidate ranking and do not explicitly address resume authenticity validation
+or AI-generated resume detection.
+2.1.2 Research Gaps
+Even with all this progress, there are still some things missing in current screening tools:
+•Most tools only care about matching skills but don’t check if the resume itself is
+authentic.
+•Very few systems combine good matching with a way to detect fraud or inconsis-
+tencies.
+•Detecting resumes made by AI tools is still a new area and isn’t usually part of
+these screening systems.
+•There isn’t much research on hybrid scoring models that look at semantic meaning,
+actual skills, and years of experience all at once.
+•Small companies need affordable solutions that aren’t too complex to set up.
+Our project aims to fill these gaps by combining SBERT matching with a validation
+engine that uses a Decision Tree classifier.
+2.2 Related Theory
+This chapter presents the theoretical foundations underlying the proposed AI-based
+resume screening and authenticity validation system. The system integrates principles
+from natural language processing, semantic text representation, information retrieval,
+and machine learning classification.
+2.2.1 Natural Language Processing for Text Analysis
+Natural Language Processing (NLP) encompasses computational techniques for analyz-
+ing, understanding, and generating human language. In the context of resume screening,
+NLP is applied at multiple stages:
+•Tokenization:Splitting text into individual words or subword units for processing.
+•Part-of-Speech (POS) Tagging:Identifying grammatical categories (nouns,
+verbs, adjectives) to understand sentence structure.
+•Named Entity Recognition (NER):Extracting structured entities such as orga-
+nization names, dates, locations, and skill keywords from unstructured resume
+text.
+5\n•Text Preprocessing:Lowercasing, stopword removal, lemmatization, and noise
+filtering to prepare text for downstream analysis.
+Libraries such as spaCy provide efficient implementations of these NLP pipelines
+optimized for production use [11].
+2.2.2 Transformer Architecture and BERT
+The Transformer architecture, introduced by Vaswani et al. [12], replaced recurrent
+neural networks with self-attention mechanisms for sequence modeling. The core self-
+attention mechanism computes:
+Attention(𝑄,𝐾,𝑉)=softmax𝑄𝐾𝑇
+√𝑑𝑘
+𝑉(2.1)
+where:
+•𝑄,𝐾,𝑉are the query, key, and value matrices,
+•𝑑𝑘is the dimensionality of the key vectors.
+BERT (Bidirectional Encoder Representations from Transformers) [4] applies this
+architecture as a bidirectional language model, pretrained on large corpora using masked
+language modeling and next sentence prediction objectives. BERT generates contextual-
+ized word embeddings where the representation of each word depends on its surrounding
+context.
+2.2.3 Sentence-BERT (SBERT) and Semantic Similarity
+Sentence-BERT [5] modifies the BERT architecture using siamese and triplet network
+structures to generate fixed-size sentence embeddings optimized for similarity com-
+parison. Unlike standard BERT, which requires paired input for comparison, SBERT
+independently encodes each text into a vector, enabling efficient pairwise comparison.
+Given two text passages𝐴(resume) and𝐵(job description), SBERT generates
+embeddings:
+e𝐴=SBERT(𝐴),e 𝐵=SBERT(𝐵)(2.2)
+The semantic similarity between them is computed using cosine similarity of the
+embeddings:
+sim(𝐴,𝐵)=e𝐴·e𝐵
+||e𝐴||·||e𝐵||(2.3)
+For this project, we chose theall-MiniLM-L6-v2model because it’s fast, accurate
+(reaching 80 to 85% on benchmarks), and runs well on normal computers without a
+GPU.
+6\n2.2.4 Custom Weighted Scoring Model
+To move beyond raw semantic similarity, the system employs a custom hybrid scoring
+formula that combines multiple relevance dimensions:
+Final Score=(𝑤 1×𝑆𝑠𝑒𝑚𝑎𝑛𝑡𝑖𝑐)+(𝑤 2×𝑆𝑠𝑘𝑖𝑙𝑙)+(𝑤 3×𝑆𝑒𝑥𝑝𝑒𝑟𝑖𝑒𝑛𝑐𝑒)(2.4)
+where:
+•𝑆𝑠𝑒𝑚𝑎𝑛𝑡𝑖𝑐 = Sentence embedding similarity score (weight𝑤 1=0.60)
+•𝑆𝑠𝑘𝑖𝑙𝑙= Skill overlap score between resume skills and job requirements (weight
+𝑤2=0.25)
+•𝑆𝑒𝑥𝑝𝑒𝑟𝑖𝑒𝑛𝑐𝑒 = Experience relevance score based on years and domain match (weight
+𝑤3=0.15)
+This weighted approach ensures that semantic understanding is prioritized while still
+accounting for structured skill and experience alignment.
+2.2.5 Decision Tree Classification
+A Decision Tree is a supervised learning algorithm that partitions the feature space
+into regions through recursive binary splitting based on feature thresholds [13]. At each
+internal node, the algorithm selects the feature and threshold that maximizes information
+gain:
+Information Gain=𝐻(𝑝𝑎𝑟𝑒𝑛𝑡)−∑︁
+𝑖|𝑐ℎ𝑖𝑙𝑑𝑖|
+|𝑝𝑎𝑟𝑒𝑛𝑡|𝐻(𝑐ℎ𝑖𝑙𝑑𝑖)(2.5)
+where𝐻represents entropy:
+𝐻(𝑆)=−∑︁
+𝑐∈𝐶𝑝(𝑐)log2𝑝(𝑐)(2.6)
+Decision Trees are a good choice for this part because:
+•They work well even with small amounts of data (100 to 200 samples).
+•They are easy to understand and visualize.
+•They don’t need a lot of complex tuning.
+•They can handle different types of data naturally.
+7\n2.2.6 Rule-Based Feature Extraction for Validation
+The validation module extracts structured features from parsed resumes to identify
+inconsistencies and suspicious patterns. Key validation features include:
+•Experience Timeline Consistency:Detection of overlapping employment dates,
+unrealistic promotion timelines, and graduation year versus claimed experience
+mismatches.
+•Skill–Experience Alignment:Verification that claimed skill levels are supported
+by corresponding project work and employment history.
+•Achievement Density:Measurement of quantitative achievements (percentages,
+metrics, numerical results) per resume section, as authentic resumes typically
+contain measurable outcomes.
+•Generic Phrase Frequency:Detection of overused, non-specific language pat-
+terns commonly associated with AI-generated content.
+•Employment Gap Analysis:Identification of unexplained gaps in the employ-
+ment timeline.
+These extracted features form the input vector for the Decision Tree classifier.
+2.2.7 Evaluation Metrics Theory
+The system’s performance is evaluated using standard classification metrics:
+•Accuracy:Overall proportion of correct predictions:
+Accuracy=True Positives+True Negatives
+True Positives+True Negatives+False Positives+False Negatives
+(2.7)
+•Precision:Proportion of positive predictions that are actually correct:
+Precision=True Positives
+True Positives+False Positives(2.8)
+•Recall:Proportion of actual positives correctly identified:
+Recall=True Positives
+True Positives+False Negatives(2.9)
+•F1-Score:Harmonic mean of precision and recall:
+𝐹1=2×Precision×Recall
+Precision+Recall(2.10)
+8\n3. PROPOSED METHODOLOGY
+3.1 Feasibility Study
+We checked if the project is doable by looking at five areas: technical, economic,
+operational, legal, and scheduling feasibility.
+3.1.1 Technical Feasibility
+The project is technically possible because we’re using well-known Python libraries for
+NLP and machine learning. Our main tools include:
+•Sentence-BERT:We’re using theall-MiniLM-L6-v2model, which is fast and
+doesn’t need a powerful GPU to run.
+•Resume Parsing:We use spaCy for breaking down text and finding key informa-
+tion.
+•Machine Learning:scikit-learn is used for the Decision Tree classification and
+testing.
+•Web Framework:FastAPI or Flask will be used to build the backend.
+•Database:PostgreSQL will store the data securely.
+Everything we need is open-source and well-documented. The system can run on a
+normal laptop with 8GB of RAM, so we don’t need any special hardware.
+3.1.2 Economic Feasibility
+The project requires minimal financial investment. All software tools and frameworks
+used are open-source and freely available for academic purposes.
+•No specialized hardware beyond existing laptops is required.
+•All NLP models, ML libraries, and development tools are free and open-source.
+•Dataset creation uses publicly available sources (Kaggle) supplemented with man-
+ually created samples.
+•The overall development cost is limited to documentation and miscellaneous
+expenses.
+The potential academic and practical value significantly outweighs the minimal
+resource requirements.
+9\n3.1.3 Operational Feasibility
+The system is designed for ease of use with an intuitive web-based interface:
+•Recruiters can upload job descriptions and resumes through a simple web dash-
+board.
+•The system automatically processes and displays ranked candidates with detailed
+analysis.
+•No specialized training or technical expertise is required to operate the system.
+•The application runs locally or on standard web hosting infrastructure.
+3.1.4 Legal and Ethical Feasibility
+The proposed system handles personal information contained in resumes, requiring
+adherence to ethical standards:
+•Data Privacy:All resume data is processed and stored locally. No personal infor-
+mation is transmitted to external services beyond the pretrained model inference.
+•Fair Screening:The system evaluates candidates based on skills, experience, and
+qualifications rather than demographic attributes, reducing potential bias.
+•Transparency:The scoring methodology is transparent and explainable, with
+detailed breakdowns of match and validation scores.
+•Consent:The system is designed for use by authorized HR personnel processing
+resumes submitted voluntarily by candidates.
+10\n3.2 System Architecture
+Figure 3.1: System architecture and block diagram
+Figure 3.1 illustrates the overall system architecture and processing pipeline of the pro-
+posed AI-based resume screening and authenticity validation system. The architecture
+is designed as a dual-model system with two independent processing paths converging
+11\ninto a unified output.
+The system architecture comprises the following major components:
+•Input Layer:The system accepts two types of inputs: (a) candidate resumes in
+PDF or DOC format, and (b) job descriptions entered as text or uploaded as files.
+Both inputs are passed to the text preprocessing pipeline.
+•Text Preprocessing Module:Raw text is extracted from uploaded documents
+using PDF/DOC parsers. The extracted text undergoes NLP preprocessing includ-
+ing tokenization, stopword removal, and named entity recognition using spaCy to
+extract structured fields such as skills, education, work experience, dates, and job
+titles.
+•Screening Engine (SBERT Module):The preprocessed resume text and job
+description are independently encoded into 384-dimensional embedding vectors
+using the pretrained Sentence-BERT model (all-MiniLM-L6-v2). Semantic
+similarity is computed between the vectors, and the custom weighted scoring
+formula combines semantic similarity (60%), skill overlap (25%), and experience
+relevance (15%) to produce the final match score.
+•Validation Engine (Decision Tree Module):At the same time, the system checks
+the resume for consistency. It looks at the timeline, matches skills with experience,
+and checks for AI-written phrases. This info goes into a Decision Tree classifier,
+which tells us if the resume looks genuine or suspicious and gives it a risk score.
+•Output Layer:Finally, the system shows a list of candidates ranked by their
+scores. It also shows the risk levels (Low, Medium, or High), explains any
+missing skills, and provides a full report through the web dashboard.
+3.3 Performance Parameters
+The following parameters are used to evaluate the performance of the proposed system:
+•Matching Accuracy:Percentage of correctly ranked candidates relative to ground
+truth labels.
+•Validation Accuracy:Classification accuracy of the Decision Tree for genuine
+vs. suspicious resumes.
+•Precision:Proportion of selected candidates who are truly relevant.
+•Recall:Proportion of relevant candidates who are correctly identified.
+•F1-Score:Harmonic mean of precision and recall for balanced evaluation.
+12\n•Skill Gap Detection Rate:Accuracy of identifying missing skills between resume
+and job requirements.
+•Processing Time:Average time from resume upload to result generation.
+13\n3.4 Proposed System Design
+Figure 3.2: Detailed operational flowchart of the proposed system
+14\nThe proposed system design, as illustrated in the flowchart above, outlines the sequential
+and parallel operations involved in processing candidate resumes against a given job
+description. The workflow initiates when a recruiter uploads a candidate’s resume
+(in PDF or DOC format) and provides the corresponding job description. The system
+utilizes parsing libraries, such as PyPDF2 andpython-docx, to extract the raw text from
+the documents. The extracted text then undergoes comprehensive Natural Language
+Processing (NLP) preprocessing, which includes tokenization, stopword removal, and
+lemmatization to produce clean, analyzable data. Following this, a Named Entity
+Recognition (NER) pipeline powered by spaCy extracts critical components such as
+specific skills, educational history, and past work experience.
+At this stage, the system verifies if the resume was parsed successfully. If the parsing
+fails due to an unsupported or corrupted file, an error is returned, halting the process.
+Upon a successful parse, the system branches into two concurrent evaluation tracks: a
+candidate screening path and an authenticity validation path. In the screening track,
+theall-MiniLM-L6-v2Sentence-BERT model generates dense semantic embeddings
+for both the resume and the target job description. The system then computes the
+semantic similarity using cosine distance, calculates the skill overlap percentage, and
+assesses experience relevance. These metrics are mathematically combined to generate
+a customized, weighted match score.
+Simultaneously, the validation track focuses on the structural consistency and truth-
+fulness of the resume. Utilizing the previously extracted entities, the system derives
+validation features such as timeline gaps, achievement density, and the presence of
+generic, AI-like phrasing. This feature vector is fed into a trained Decision Tree clas-
+sification algorithm, which categorizes the resume as either genuine or suspicious,
+ultimately assigning it a low, medium, or high risk level depending on the model’s
+confidence. Finally, both tracks converge to produce the ultimate output. Candidates
+are ranked based on their weighted match scores and annotated with their respective
+validation risk badges. These results are displayed on an interactive recruiter dashboard,
+offering a comprehensive view of match percentages, skill gaps, and detailed candidate
+analysis to facilitate informed hiring decisions.
+Figure 3.3: Data Flow Diagram Level 0 (Context Diagram)
+15\nFigure 3.4: Data Flow Diagram Level 1
+3.5 Algorithm
+The proposed system follows a structured multi-stage pipeline for AI-based resume
+screening and validation. The complete algorithm consists of text extraction, NLP
+preprocessing, embedding generation, custom scoring, feature extraction, and classifi-
+cation.
+3.5.1 Text Extraction and NLP Preprocessing
+Resume documents (PDF/DOC) are parsed to extract raw text content. The extracted
+text is processed through the spaCy NLP pipeline for:
+•Tokenization into words and sentences
+•Named Entity Recognition (NER) to extract skills, organizations, dates, and edu-
+cational qualifications
+•Part-of-Speech (POS) tagging for structural analysis
+•Text cleaning including stopword removal and lemmatization
+The output is a structured representation of the resume containing separate fields for
+skills, experience entries, education records, and free-text descriptions.
+3.5.2 SBERT Embedding Generation
+The preprocessed resume text and job description are each encoded into fixed-dimensional
+embedding vectors using the Sentence-BERT model:
+e𝑟𝑒𝑠𝑢𝑚𝑒 =SBERT(resume text),e 𝑗𝑜𝑏=SBERT(job text)(3.1)
+The model generates 384-dimensional dense vectors that capture the semantic mean-
+ing of the input text.
+3.5.3 Semantic Similarity Computation
+The semantic similarity between the resume and job description embeddings is computed
+using cosine similarity:
+16\n𝑆𝑠𝑒𝑚𝑎𝑛𝑡𝑖𝑐 =e𝑟𝑒𝑠𝑢𝑚𝑒·e𝑗𝑜𝑏
+||e𝑟𝑒𝑠𝑢𝑚𝑒||·||e𝑗𝑜𝑏||(3.2)
+This provides a normalized similarity score between 0 and 1.
+3.5.4 Skill Overlap Scoring
+Skills extracted from the resume (𝑅 𝑠𝑘𝑖𝑙𝑙𝑠) are compared against required skills from the
+job description (𝐽 𝑠𝑘𝑖𝑙𝑙𝑠):
+𝑆𝑠𝑘𝑖𝑙𝑙=|𝑅𝑠𝑘𝑖𝑙𝑙𝑠∩𝐽𝑠𝑘𝑖𝑙𝑙𝑠|
+|𝐽𝑠𝑘𝑖𝑙𝑙𝑠|(3.3)
+This computes the fraction of required job skills that appear in the candidate’s
+resume.
+3.5.5 Experience Relevance Scoring
+Experience relevance is evaluated based on years of experience and domain alignment:
+𝑆𝑒𝑥𝑝𝑒𝑟𝑖𝑒𝑛𝑐𝑒 =min
+1,candidate years
+required years
+×𝐷𝑚𝑎𝑡𝑐ℎ (3.4)
+where𝐷𝑚𝑎𝑡𝑐ℎ is a domain relevance factor based on the similarity of previous job
+roles to the target position.
+3.5.6 Custom Weighted Final Score
+The final match score is computed using the hybrid weighted formula:
+Match Score=(0.60×𝑆 𝑠𝑒𝑚𝑎𝑛𝑡𝑖𝑐)+(0.25×𝑆 𝑠𝑘𝑖𝑙𝑙)+(0.15×𝑆 𝑒𝑥𝑝𝑒𝑟𝑖𝑒𝑛𝑐𝑒)(3.5)
+This formula prioritizes semantic understanding while incorporating structured skill
+and experience data.
+3.5.7 Validation Feature Extraction
+For each resume, the following validation features are extracted:
+17\nTable 3.1: Validation Feature Set
+Feature Description
+Overlapping Jobs Binary flag indicating concurrent employment
+entries
+Promotion Speed Average time between role changes
+Experience–Graduation Gap Difference between claimed experience and
+graduation year
+Skill Density Number of unique skills per year of experience
+Achievement Count Count of quantitative achievements (numbers,
+percentages)
+Generic Phrase Score Frequency of common AI-generated phrases
+Gap Years Total unexplained employment gaps in months
+3.5.8 Decision Tree Classification
+The extracted feature vector is input to a trained Decision Tree classifier:
+Classification=DecisionTree(f 𝑣𝑎𝑙𝑖𝑑𝑎𝑡𝑖𝑜𝑛)(3.6)
+wheref𝑣𝑎𝑙𝑖𝑑𝑎𝑡𝑖𝑜𝑛 is the validation feature vector. The output is a binary classification
+(Genuine/Suspicious) with an associated confidence score used to assign risk levels:
+•Confidence≥0.8: Low Risk
+•0.5≤Confidence<0.8: Medium Risk
+•Confidence<0.5: High Risk
+3.6 Accuracy Evaluation
+To evaluate the performance of the proposed system, multiple metrics are used:
+3.6.1 Screening Module Evaluation
+The screening module is evaluated by comparing system-generated candidate rankings
+against human-labeled ground truth:
+•Accuracy:Proportion of correct match/non-match classifications.
+•Precision:How many top-ranked candidates are truly relevant.
+•Recall:How many relevant candidates are captured in the rankings.
+•F1-Score:Balanced metric combining precision and recall.
+Target: 80–90% accuracy on the custom evaluation dataset.
+18\n3.6.2 Validation Module Evaluation
+The validation module is evaluated using standard binary classification metrics:
+•Confusion Matrix:True positives, true negatives, false positives, and false
+negatives.
+•Classification Accuracy:Overall proportion of correct genuine/suspicious clas-
+sifications.
+•Precision and Recall:For both genuine and suspicious classes.
+Target: 80–90% classification accuracy with balanced precision and recall.
+3.7 Technology Stack
+Table 3.2: Technology Stack Breakdown
+Category Tool/Technology Purpose
+Backend Python (FastAPI /
+Flask)API development, request handling,
+and business logic.
+NLP Processing sentence-transformers,
+spaCySBERT embedding generation, resume
+text parsing, NER, and tokenization.
+Machine Learning scikit-learn Decision Tree classifier training, eval-
+uation metrics computation, and model
+persistence.
+Database PostgreSQL Structured storage of resumes, job de-
+scriptions, scores, and validation re-
+sults.
+Frontend HTML, CSS,
+JavaScriptRecruiter dashboard interface, candi-
+date ranking display, and analysis visu-
+alization.
+Document Parsing PyPDF2, python-docx Text extraction from PDF and DOC re-
+sume files.
+Hardware Standard Laptop / PC Local processing without specialized
+GPU requirements.
+19\n4. TIME SCHEDULE
+The planned timeline for the research, development, and evaluation phases of the project
+is detailed in the Gantt Chart shown in Figure 4.1.
+Figure 4.1: Gantt Chart
+20\n5. EXPECTED OUTPUT
+The proposed system is expected to deliver a functional web-based screening application
+that accurately matches candidate resumes to job descriptions using SBERT embeddings
+and a custom weighted ranking algorithm based on semantic similarity, skill overlap,
+and experience relevance. Concurrently, the system will perform authenticity validation
+to classify resumes into genuine or suspicious risk levels. The final deliverable features
+a comprehensive recruiter dashboard that displays ranked candidate lists, deep analysis
+reports, visual skill match charts, and quantitative evaluation metrics like match scores
+and skill gaps. Additionally, the system will output exportable performance evaluation
+results, including accuracy, precision, recall, and F1-scores, to facilitate further data-
+driven hiring analysis.
+The final deliverable will be a complete prototype system demonstrating AI-based
+resume screening and authenticity validation, accompanied by quantitative evaluation
+results and a web-based analytical dashboard.
+21\nREFERENCES
+[1] A. Kmail, M. Maree, and M. Belkhatir, “Job Recommender Systems: A Review,”
+International Journal of Interactive Communication Systems and Technologies,
+vol. 5, no. 2, pp. 26–45, 2015.
+[2] P. Deshpande, A. Sharma, and R. Kosta, “Automated Resume Screening Sys-
+tem Using Natural Language Processing,”International Journal of Engineering
+Research & Technology, vol. 9, no. 6, pp. 1262–1265, 2020.
+[3] G. Salton and M. J. McGill,Introduction to Modern Information Retrieval. New
+York: McGraw-Hill, 1983.
+[4] J. Devlin, M.-W. Chang, K. Lee, and K. Toutanova, “BERT: Pre-training of Deep
+Bidirectional Transformers for Language Understanding,” inProc. NAACL-HLT
+2019, Minneapolis, MN, USA, Jun. 2019, pp. 4171–4186. arXiv:1810.04805.
+[5] N. Reimers and I. Gurevych, “Sentence-BERT: Sentence Embeddings using
+Siamese BERT-Networks,” inProc. EMNLP-IJCNLP 2019, Hong Kong, China,
+Nov. 2019, pp. 3982–3992. doi: 10.18653/v1/D19-1410.
+[6] J. Dou, B. Li, and H. Zha, “AI-Generated Text Detection: Challenges and Oppor-
+tunities,”arXiv preprint, arXiv:2310.01852, 2023.
+[7] C. D. Manning, P. Raghavan, and H. Sch¨ utze,Introduction to Information Retrieval.
+Cambridge University Press, 2008.
+[8] T. Mikolov, K. Chen, G. Corrado, and J. Dean, “Efficient Estimation of Word
+Representations in Vector Space,” inProc. ICLR 2013 Workshop, Scottsdale, AZ,
+USA, May 2013. arXiv:1301.3781.
+[9] Q. Le and T. Mikolov, “Distributed Representations of Sentences and Documents,”
+inProc. ICML 2014, Beijing, China, Jun. 2014, pp. 1188–1196.
+[10] S. Raghavan, S. Mooney, and H. Furst, “Intelligent Recruitment Process Using
+NLP and Machine Learning,”International Journal of Computer Applications,
+vol. 178, no. 42, pp. 21–27, 2019.
+[11] M. Honnibal, I. Montani, S. Van Landeghem, and A. Boyd, “spaCy: Industrial-
+Strength Natural Language Processing in Python,” 2020. doi: 10.5281/zen-
+odo.1212303.
+[12] A. Vaswani, N. Shazeer, N. Parmar, J. Uszkoreit, L. Jones, A. N. Gomez, L.
+Kaiser, and I. Polosukhin, “Attention Is All You Need,” inProc. NeurIPS 2017,
+Long Beach, CA, USA, Dec. 2017, pp. 5998–6008.
+22\n[13] L. Breiman, J. Friedman, C. J. Stone, and R. A. Olshen,Classification and Regres-
+sion Trees. CRC Press, 1984.
+[14] P. Roy, S. Chowdhury, and C. Bhatia, “A Machine Learning Approach for Automa-
+tion of Resume Recommendation System,”Procedia Computer Science, vol. 167,
+pp. 2318–2328, 2020. doi: 10.1016/j.procs.2020.03.284.
+[15] Z. S. Harris, “Distributional Structure,”Word, vol. 10, no. 2–3, pp. 146–162, 1954.
+doi: 10.1080/00437956.1954.11659520.
+[16] S. A. Mahdi, T. A. Fadhil, and A. A. K. Hussain, “Resume Classification Using
+Machine Learning Techniques,”International Journal of Advanced Science and
+Technology, vol. 29, no. 6, pp. 1811–1819, 2020.
+23

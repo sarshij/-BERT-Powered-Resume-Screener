@@ -6,6 +6,7 @@ num_skills, education_level_encoded, has_previous_job).
 """
 import re
 from app.utils.taxonomy import GENERIC_PHRASES
+from datetime import datetime
 
 def compute_keyword_stuffing_score(resume_text: str, job_description: str) -> float:
     resume_lower = resume_text.lower()
@@ -68,13 +69,13 @@ def count_achievements(resume_text: str) -> int:
         count += len(re.findall(pattern, text_lower))
     return min(count, 50)
 
-def compute_experience_graduation_gap(years_experience: float, graduation_year: float, current_year: float = 2026) -> float:
+def compute_experience_graduation_gap(years_experience: float, graduation_year: float) -> float:
     if graduation_year <= 0:
         return 0.0
+    current_year = datetime.now().year
     years_since_grad = current_year - graduation_year
     gap = years_since_grad - years_experience
     return round(gap, 2)
-
 def compute_promotion_speed(resume_text: str) -> float:
     title_keywords = ['promoted', 'promotion', 'advanced to', 'elevated to',
                       'senior', 'lead', 'head', 'manager', 'director', 'chief']
@@ -161,3 +162,5 @@ def compute_all_validation_features(resume_text: str, job_description: str,
         'education_level_encoded': float(extract_education_level(resume_text)),
         'has_previous_job': float(has_previous_job(resume_text)),
     }
+
+
