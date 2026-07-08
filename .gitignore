@@ -1,0 +1,47 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+
+# Virtual environments
+.venv/
+venv/
+env/
+.env
+
+# Logs
+logs/*.log
+
+# Scratch / temp
+scratch/
+
+# Test cache
+.pytest_cache/
+tests/__pycache__/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Uploaded / test resumes (personal data)
+*.pdf
+*.docx
+*.doc
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# HuggingFace cache
+.cache/
