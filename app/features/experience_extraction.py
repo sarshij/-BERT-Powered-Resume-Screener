@@ -6,12 +6,7 @@ from ..utils.nlp import extract_years_experience_spacy, extract_graduation_year_
 CURRENT_YEAR = datetime.now().year
 
 def extract_years_experience(resume_text: str) -> float:
-    # Try spaCy first
-    spacy_years = extract_years_experience_spacy(resume_text)
-    if spacy_years > 0.0:
-        return spacy_years
-
-    # Fallback to original implementation
+    # Use the robust regex implementation directly (spaCy NER for dates is unreliable across models)
     text = resume_text.lower()
     ranges = []
 

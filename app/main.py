@@ -1,4 +1,4 @@
-﻿"""
+"""
 FastAPI Backend for Resume Screening & Authenticity Validation
 """
 import sys
@@ -18,7 +18,8 @@ import numpy as np
 
 from app.logger import setup_logger
 from app.utils.parser import parse_resume
-from app.features.semantic import compute_semantic_similarity
+from app.utils.file_validator import validate_upload
+from app.features.semantic import compute_semantic_similarity, compute_semantic_similarity_async
 from app.features.skill_overlap import compute_skill_overlap, get_matched_skills, extract_skills
 from app.features.experience import score_experience_relevance
 from app.features.experience_extraction import extract_years_experience, extract_graduation_year
@@ -31,6 +32,22 @@ BASE = Path(__file__).resolve().parent.parent
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     logger.info("Resume Screener API starting up...")
+    
+    # ── Fix 10: Startup model pre-warming ────────────────────────────────────
+    # Load decision tree model
+    from app.models.classifier import load_model
+    load_model()
+    # Pre-warm spaCy pipeline
+    from app.utils.nlp import get_nlp_with_ruler, _ensure_patterns
+    nlp = get_nlp_with_ruler()
+    if nlp:
+        _ensure_patterns(nlp)
+        logger.info("spaCy pipeline pre-warmed successfully")
+    # Pre-warm SBERT model
+    from app.models.embedder import get_model as get_sbert_model
+    get_sbert_model()
+    logger.info("SBERT model pre-warmed successfully")
+    
     yield
     logger.info("Resume Screener API shutting down.")
 
@@ -61,14 +78,45 @@ async def batch_page(request: Request):
 async def analytics_page(request: Request):
     return templates.TemplateResponse(request=request, name="analytics.html", context={"request": request})
 
+@app.get("/health")
+async def health():
+    """
+    Fix 8: Health endpoint for monitoring.
+    """
+    from app.models.classifier import _model
+    return {
+        "status": "ok", 
+        "version": "2.0",
+        "model_loaded": _model is not None
+    }
+
 @app.post("/api/predict")
 async def predict_single(
     resume: UploadFile = File(...),
     job_title: str = Form(""),
-    job_description: str = Form("")
+    job_description: str = Form(""),
+    job_description_file: UploadFile = File(None)
 ):
     try:
+        # Parse JD from file if provided
+        if job_description_file and job_description_file.filename:
+            jd_bytes = await job_description_file.read()
+            if jd_bytes:
+                validate_upload(jd_bytes, job_description_file.filename)
+                job_description = parse_resume(jd_bytes, job_description_file.filename)
+
+        # ── Fix 6: Input length sanitization ─────────────────────────────────
+        job_title = job_title.strip()[:200]
+        job_description = job_description.strip()[:3000]
+        
+        if not job_description:
+            raise HTTPException(400, "Job description must be provided via text or file upload")
+
         resume_bytes = await resume.read()
+        
+        # ── Fix 2 & 3: File type and size validation ─────────────────────────
+        validate_upload(resume_bytes, resume.filename or "resume.pdf")
+
         resume_text = parse_resume(resume_bytes, resume.filename or "resume.pdf")
         if not resume_text or len(resume_text.strip()) < 20:
             logger.warning(f"Too short or empty: {resume.filename} ({len(resume_text or '')} chars)")
@@ -78,7 +126,7 @@ async def predict_single(
         years_exp = extract_years_experience(resume_text)
         grad_year = extract_graduation_year(resume_text)
         logger.debug(f"Extracted: {years_exp} years exp, graduation year {grad_year}")
-        sem_sim = compute_semantic_similarity(resume_text, job_description)
+        sem_sim = await compute_semantic_similarity_async(resume_text, job_description)
         skill_overlap = compute_skill_overlap(resume_text, job_description)
         exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
         final_score = round(0.6 * sem_sim + 0.25 * skill_overlap + 0.15 * exp_relevance, 4)
@@ -121,48 +169,83 @@ async def predict_single(
 async def predict_batch(
     resumes: list[UploadFile] = File(...),
     job_title: str = Form(""),
-    job_description: str = Form("")
+    job_description: str = Form(""),
+    job_description_file: UploadFile = File(None)
 ):
+    import asyncio
+    
+    # Parse JD from file if provided
+    if job_description_file and job_description_file.filename:
+        jd_bytes = await job_description_file.read()
+        if jd_bytes:
+            validate_upload(jd_bytes, job_description_file.filename)
+            job_description = parse_resume(jd_bytes, job_description_file.filename)
+
+    # ── Fix 6: Input length sanitization ─────────────────────────────────
+    job_title = job_title.strip()[:200]
+    job_description = job_description.strip()[:3000]
+    
+    if not job_description:
+        raise HTTPException(400, "Job description must be provided via text or file upload")
+
     logger.info(f"Batch predict: {len(resumes)} files")
-    results = []
-    for resume in resumes:
-        try:
-            resume_bytes = await resume.read()
-            resume_text = parse_resume(resume_bytes, resume.filename or "resume.pdf")
-            if not resume_text or len(resume_text.strip()) < 20:
-                logger.warning(f"Batch: {resume.filename} — too short")
-                results.append({"filename": resume.filename, "error": "Could not extract text"})
-                continue
-            years_exp = extract_years_experience(resume_text)
-            grad_year = extract_graduation_year(resume_text)
-            sem_sim = compute_semantic_similarity(resume_text, job_description)
-            skill_overlap = compute_skill_overlap(resume_text, job_description)
-            exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
-            final_score = round(0.6 * sem_sim + 0.25 * skill_overlap + 0.15 * exp_relevance, 4)
-            extracted_skills = list(extract_skills(resume_text))
-            validation = compute_all_validation_features(
-                resume_text, job_description,
-                semantic_similarity=sem_sim,
-                skill_overlap_score=skill_overlap,
-                experience_relevance_score=exp_relevance,
-                final_match_score=final_score,
-                years_experience=years_exp,
-                graduation_year=grad_year,
-                extracted_skills=extracted_skills
-            )
-            classification = predict([validation])[0]
-            results.append({
-                "filename": resume.filename,
-                "classification": classification["classification"],
-                "confidence": classification["confidence"],
-                "final_match_score": final_score,
-                "semantic_similarity": sem_sim,
-                "skill_overlap_score": skill_overlap
-            })
-            logger.debug(f"Batch: {resume.filename} -> {classification['classification']}")
-        except Exception as e:
-            logger.error(f"Batch failed for {resume.filename}: {e}")
-            results.append({"filename": resume.filename, "error": str(e)})
+    
+    # ── Fix 15: Batch endpoint parallelism ───────────────────────────────
+    semaphore = asyncio.Semaphore(4) # Limit concurrency to avoid OOM
+    
+    async def process_single(resume: UploadFile) -> dict:
+        async with semaphore:
+            try:
+                resume_bytes = await resume.read()
+                
+                # ── Fix 2 & 3: File type and size validation ─────────────────────────
+                try:
+                    validate_upload(resume_bytes, resume.filename or "resume.pdf")
+                except HTTPException as ve:
+                    logger.warning(f"Batch: {resume.filename} - validation failed: {ve.detail}")
+                    return {"filename": resume.filename, "error": ve.detail}
+                    
+                resume_text = parse_resume(resume_bytes, resume.filename or "resume.pdf")
+                if not resume_text or len(resume_text.strip()) < 20:
+                    logger.warning(f"Batch: {resume.filename} - too short")
+                    return {"filename": resume.filename, "error": "Could not extract text"}
+                    
+                years_exp = extract_years_experience(resume_text)
+                grad_year = extract_graduation_year(resume_text)
+                sem_sim = await compute_semantic_similarity_async(resume_text, job_description)
+                skill_overlap = compute_skill_overlap(resume_text, job_description)
+                exp_relevance = score_experience_relevance(resume_text, job_title or job_description)
+                final_score = round(0.6 * sem_sim + 0.25 * skill_overlap + 0.15 * exp_relevance, 4)
+                extracted_skills = list(extract_skills(resume_text))
+                validation = compute_all_validation_features(
+                    resume_text, job_description,
+                    semantic_similarity=sem_sim,
+                    skill_overlap_score=skill_overlap,
+                    experience_relevance_score=exp_relevance,
+                    final_match_score=final_score,
+                    years_experience=years_exp,
+                    graduation_year=grad_year,
+                    extracted_skills=extracted_skills
+                )
+                classification = predict([validation])[0]
+                
+                logger.debug(f"Batch: {resume.filename} -> {classification['classification']}")
+                return {
+                    "filename": resume.filename,
+                    "classification": classification["classification"],
+                    "confidence": classification["confidence"],
+                    "final_match_score": final_score,
+                    "semantic_similarity": sem_sim,
+                    "skill_overlap_score": skill_overlap
+                }
+            except Exception as e:
+                logger.error(f"Batch failed for {resume.filename}: {e}")
+                return {"filename": resume.filename, "error": str(e)}
+
+    # Process all resumes concurrently
+    tasks = [process_single(resume) for resume in resumes]
+    results = await asyncio.gather(*tasks)
+
     sorted_results = sorted(results, key=lambda x: (
         0 if x.get("classification") == "Authentic"
         else 1 if x.get("classification") == "Suspicious"

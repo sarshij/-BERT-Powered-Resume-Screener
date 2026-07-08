@@ -1,218 +1,429 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXUS AI — Batch Screening Command Center</title>
-<meta name="description" content="Batch resume screening — upload multiple resumes and get ranked results instantly using BERT and Decision Tree AI.">
-<link rel="stylesheet" href="/static/style.css?v=6">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearHire — Batch Screening</title>
+  <meta name="description" content="Screen multiple resumes in batch with BERT-powered analysis and automated ranking.">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<!-- ── Background Layers ───────────────────────────────────── -->
-<canvas id="bg-canvas"></canvas>
-<div class="circuit-svg-bg">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#ffd60a" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#9b5de5" stop-opacity="0"/>
-    </linearGradient>
-    <pattern id="circuitPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="40" x2="60" y2="40" stroke="#ffd60a" stroke-width="0.4" opacity="0.1"/>
-      <line x1="80" y1="40" x2="200" y2="40" stroke="#ffd60a" stroke-width="0.4" opacity="0.07"/>
-      <line x1="0" y1="120" x2="120" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.08"/>
-      <line x1="60" y1="0" x2="60" y2="40" stroke="#ffd60a" stroke-width="0.4" opacity="0.09"/>
-      <line x1="140" y1="40" x2="140" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.07"/>
-      <circle cx="60" cy="40" r="2" fill="#ffd60a" opacity="0.15"/>
-      <circle cx="140" cy="120" r="2" fill="#9b5de5" opacity="0.12"/>
-      <rect x="85" y="75" width="30" height="20" rx="2" fill="none" stroke="#ffd60a" stroke-width="0.4" opacity="0.08"/>
-    </pattern>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#circuitPattern)"/>
-  <line x1="0" y1="300" x2="100%" y2="300" stroke="url(#traceGrad)" stroke-width="0.8" stroke-dasharray="15,85" style="animation:sweepH 7s linear infinite;"/>
-</svg>
+<!-- ── Header ────────────────────────────────────────────── -->
+<header>
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
+        </svg>
+      </div>
+      <span class="logo-text">ClearHire</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Single Resume
+      </a>
+      <a href="/batch" class="nav-link active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Batch Screening
+      </a>
+      <a href="/analytics" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </a>
+    </nav>
+    <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu-panel" id="mobilePanel">
+  <div class="mobile-menu-header">
+    <a href="/" class="logo">
+      <div class="logo-mark" style="width:1.875rem;height:1.875rem;border-radius:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <span class="logo-text" style="font-size:1.05rem;">ClearHire</span>
+    </a>
+    <button class="mobile-menu-close" id="mobileClose">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    <a href="/" class="mobile-nav-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Single Resume</a>
+    <a href="/batch" class="mobile-nav-link active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Batch Screening</a>
+    <a href="/analytics" class="mobile-nav-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
+  </nav>
+  <div class="mobile-menu-footer"><p style="font-size:0.75rem;color:var(--gray-400);">© 2026 ClearHire · Academic Project</p></div>
 </div>
-<div class="grid-overlay"></div>
-<div class="scanline-overlay"></div>
-<div class="vignette-overlay"></div>
-<div class="particle-field" id="particleField"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="cursor-dot" id="cursorDot"></div>
 
-<!-- ── Navigation ─────────────────────────────────────────── -->
-<nav>
-  <a href="/" class="logo">
-    <div class="logo-hex">
-      <svg viewBox="0 0 30 30" fill="none"><polygon points="15,2 27,8.5 27,21.5 15,28 3,21.5 3,8.5" fill="none" stroke="#00d4ff" stroke-width="1.2"><animateTransform attributeName="transform" type="rotate" from="0 15 15" to="360 15 15" dur="20s" repeatCount="indefinite"/></polygon><circle cx="15" cy="15" r="4" fill="#00d4ff" opacity="0.5"><animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite"/></circle></svg>
-    </div>
-    <div>NEXUS<span style="color:var(--violet)">AI</span><span class="logo-sub">RESUME INTELLIGENCE v2.0</span></div>
-  </a>
-  <div class="nav-center">
-    <a href="/">⬡ Single</a>
-    <a href="/batch" class="active">⬡ Batch</a>
-    <a href="/analytics">⬡ Insights</a>
-  </div>
-  <div class="nav-right">
-    <div class="status-pill"><span class="dot-live"></span> SYSTEM ONLINE</div>
-    <span style="color:var(--text-dim)">BULK ENGINE</span>
-  </div>
-</nav>
-
-<div class="page">
-<div class="container">
+<!-- ── Main ──────────────────────────────────────────────── -->
+<main>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-eyebrow">◈ PARALLEL BATCH PROCESSING UNIT</div>
-    <h1>Command<br><span class="glow-word" data-text="Center.">Center.</span></h1>
-    <p>Upload an entire candidate pool. Our engine processes every resume in parallel — ranked by authenticity and match score.</p>
-    <div class="typing-container"><span id="typingText"></span><span class="typing-cursor"></span></div>
+  <section class="hero-section">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.3;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3B82F6" stroke-width="0.5" stroke-opacity="0.25"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+
+    <div style="position:relative;z-index:1;max-width:680px;margin:0 auto;">
+      <div class="hero-eyebrow animate-fadeInUp">
+        <span class="live-dot"></span>
+        Batch Processing · Parallel Analysis · Automated Ranking
+      </div>
+      <h1 class="hero-title animate-fadeInUp delay-100">
+        Screen <span class="grad">Multiple Resumes</span><br>Simultaneously
+      </h1>
+      <p class="hero-subtitle animate-fadeInUp delay-200">
+        Upload your candidate pool and get automated ranking by authenticity score and job match.
+        All resumes are analyzed in parallel for maximum efficiency.
+      </p>
+      <div class="hero-stats animate-fadeInUp delay-300">
+        <div class="hero-stat"><span class="hero-stat-dot" style="background:var(--primary);"></span>Parallel Processing</div>
+        <div class="hero-stat"><span class="hero-stat-dot" style="background:var(--success);"></span>Automated Ranking</div>
+        <div class="hero-stat"><span class="hero-stat-dot" style="background:var(--accent-amber);"></span>PDF · DOCX · TXT</div>
+      </div>
+    </div>
   </section>
 
-  <!-- Stats -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <span class="stat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round">
-          <rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1">
-            <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite"/>
-          </rect>
-        </svg>
-      </span>
-      <div class="stat-num" data-count="100" data-suffix="+">0</div>
-      <div class="stat-label">Files per Batch</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffd60a" stroke-width="1.5"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="rgba(255,214,10,0.1)"><animate attributeName="opacity" values="0.08;0.2;0.08" dur="1.5s" repeatCount="indefinite"/></polygon></svg>
-      </span>
-      <div class="stat-num" data-count="3" data-suffix="s">0</div>
-      <div class="stat-label">Per Resume Avg</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ffaa" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6">
-            <animate attributeName="stroke-dasharray" values="0 20;20 0" dur="1.5s" fill="freeze"/>
-          </path>
-        </svg>
-      </span>
-      <div class="stat-num" data-count="3">0</div>
-      <div class="stat-label">Classification Tiers</div>
-    </div>
-  </div>
-
-  <!-- Upload Form -->
-  <div class="card" style="margin-bottom:20px;">
-    <div class="card-inner"></div>
-    <div class="card-sweep"></div>
-    <div class="card-title">⬡ BATCH UPLOAD TERMINAL</div>
-
-    <form id="batchForm" autocomplete="off">
-      <div class="drop-zone" id="batchDropZone" style="margin-bottom:18px;">
-        <div class="drop-beam"></div>
-        <input type="file" name="resumes" multiple accept=".pdf,.txt" required id="batchInput">
-        <svg class="drop-icon-svg" viewBox="0 0 64 64" fill="none">
-          <circle cx="32" cy="32" r="28" stroke="#ffd60a" stroke-width="0.8" opacity="0.15" stroke-dasharray="4 6"><animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="12s" repeatCount="indefinite"/></circle>
-          <circle cx="32" cy="32" r="20" stroke="#ffd60a" stroke-width="0.6" opacity="0.12" stroke-dasharray="3 5"><animateTransform attributeName="transform" type="rotate" from="360 32 32" to="0 32 32" dur="8s" repeatCount="indefinite"/></circle>
-          <circle cx="32" cy="32" r="12" stroke="#9b5de5" stroke-width="0.5" opacity="0.25"/>
-          <!-- Multi-file icon -->
-          <rect x="24" y="22" width="14" height="18" rx="2" stroke="#ffd60a" stroke-width="1.5" fill="none" opacity="0.6"><animate attributeName="opacity" values="0.4;1;0.4" dur="2s" repeatCount="indefinite"/></rect>
-          <rect x="27" y="25" width="14" height="18" rx="2" stroke="#00d4ff" stroke-width="1" fill="none" opacity="0.3"/>
-          <line x1="32" y1="32" x2="32" y2="5" stroke="#ffd60a" stroke-width="0.8" opacity="0.1"><animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="3s" repeatCount="indefinite"/></line>
-          <circle cx="32" cy="32" r="2" fill="#ffd60a"><animate attributeName="r" values="1.5;3;1.5" dur="1.5s" repeatCount="indefinite"/></circle>
-        </svg>
-        <div class="drop-hint">DROP RESUME FILES HERE<span>PDF · TXT · Multiple files</span></div>
-        <div class="drop-filename" id="batchFilename"></div>
+  <!-- ── Upload Form ──────────────────────────────────────── -->
+  <div class="container max-w-screen-lg" style="padding-top:2rem;">
+    <div class="card animate-fadeInUp delay-200">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          Batch Upload &amp; Analysis
+        </h2>
+        <p class="card-description">Upload multiple resume files and one job description to rank all candidates at once.</p>
       </div>
 
-      <div style="display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:16px;">
-        <div class="fgrp">
-          <label><svg viewBox="0 0 16 16" fill="none" stroke="#00d4ff" stroke-width="1.2"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6h12"/></svg> JOB TITLE</label>
-          <input type="text" name="job_title" placeholder="e.g. ML Engineer">
-        </div>
-        <div class="fgrp">
-          <label><svg viewBox="0 0 16 16" fill="none" stroke="#00d4ff" stroke-width="1.2"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="5" y1="5" x2="11" y2="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="9" y2="11"/></svg> JOB DESCRIPTION</label>
-          <input type="text" name="job_description" placeholder="Paste or summarize the job description..." required>
-        </div>
+      <div class="card-body">
+        <form id="batchForm" autocomplete="off">
+
+          <!-- Resume Files Drop Zone -->
+          <div class="form-group">
+            <label class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg>
+              Resume Files <span style="color:var(--error);margin-left:2px;">*</span>
+            </label>
+            <div class="file-drop-zone" id="batchDropZone">
+              <input type="file" name="resumes" id="batchInput" accept=".pdf,.docx,.txt" multiple required>
+              <div class="file-drop-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              </div>
+              <div class="file-drop-title">Drop multiple resumes or <span style="color:var(--primary);font-weight:600;">click to browse</span></div>
+              <div class="file-drop-sub">PDF, DOCX, TXT · Select multiple files · Max 5 MB each</div>
+              <div id="batchFileBadge" style="display:none;" class="file-badge">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                <span id="batchFileCount"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Job Title -->
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;" class="form-row">
+            <div class="form-group" style="grid-column:1/-1;">
+              <label class="form-label" for="batchJobTitle">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                Job Title <span style="color:var(--gray-400);font-weight:400;">(optional)</span>
+              </label>
+              <input type="text" name="job_title" id="batchJobTitle" class="form-input" placeholder="e.g. Machine Learning Engineer">
+            </div>
+          </div>
+
+          <!-- Job Description — toggle paste / file -->
+          <div class="form-group">
+            <label class="form-label">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+              Job Description <span style="color:var(--error);margin-left:2px;">*</span>
+            </label>
+
+            <div class="jd-toggle">
+              <button type="button" class="jd-toggle-btn active" id="jdPasteBtn" onclick="switchJdMode('paste')">✏️ Paste Text</button>
+              <button type="button" class="jd-toggle-btn" id="jdFileBtn" onclick="switchJdMode('file')">📎 Upload File</button>
+            </div>
+
+            <div id="jdPasteArea">
+              <input type="text" name="job_description" id="jdTextInput" class="form-input"
+                placeholder="Paste or summarize the job description here..." required>
+            </div>
+            <div id="jdFileArea" style="display:none;">
+              <div class="file-drop-zone" id="jdDropZone">
+                <input type="file" name="job_description_file" id="jdFileInput" accept=".pdf,.docx,.txt">
+                <div class="file-drop-icon" style="width:2.5rem;height:2.5rem;">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </div>
+                <div class="file-drop-title">Upload JD file</div>
+                <div class="file-drop-sub">PDF, DOCX, TXT</div>
+                <div id="jdFileBadge" style="display:none;" class="file-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span id="jdFileName"></span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary w-full btn-lg" id="batchBtn" style="margin-top:0.5rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Start Batch Analysis
+          </button>
+        </form>
       </div>
+    </div>
+
+    <!-- ── Results ──────────────────────────────────────────── -->
+    <div id="batchResults" class="hidden" style="margin-top:1.5rem;">
 
       <!-- Loading -->
-      <div id="batchLoading">
-        <div style="display:none;flex-direction:column;align-items:center;gap:14px;padding:30px 0;" id="batchLoadInner">
-          <svg class="neural-loader" viewBox="0 0 80 80" fill="none">
-            <circle cx="20" cy="25" r="4" fill="#ffd60a" opacity="0.7"><animate attributeName="r" values="3;5;3" dur="1.3s" repeatCount="indefinite"/></circle>
-            <circle cx="20" cy="55" r="4" fill="#ffd60a" opacity="0.7"><animate attributeName="r" values="3;5;3" dur="1.3s" begin="0.3s" repeatCount="indefinite"/></circle>
-            <circle cx="60" cy="40" r="5" fill="#00ffaa" opacity="0.8"><animate attributeName="r" values="4;6;4" dur="1.6s" repeatCount="indefinite"/></circle>
-            <line x1="24" y1="25" x2="55" y2="38" stroke="#ffd60a" stroke-width="0.8" opacity="0.3" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" repeatCount="indefinite"/></line>
-            <line x1="24" y1="55" x2="55" y2="42" stroke="#ffd60a" stroke-width="0.8" opacity="0.3" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="0.8s" begin="0.2s" repeatCount="indefinite"/></line>
-            <text x="10" y="72" fill="#ffd60a" font-family="Share Tech Mono" font-size="5" opacity="0.5">BATCH</text>
-            <text x="48" y="72" fill="#00ffaa" font-family="Share Tech Mono" font-size="5" opacity="0.5">RANK</text>
-          </svg>
-          <div class="loading-label" id="batchLoadLabel">PROCESSING CANDIDATE POOL...</div>
-          <div class="loading-bar"></div>
-          <div id="batchLoadProgress" style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.2em;color:var(--text-muted);">ANALYZING RESUMES...</div>
+      <div id="batchLoading" class="card loading-panel">
+        <div class="loading-spinner"></div>
+        <div>
+          <div class="loading-label" id="batchLoadLabel">Processing candidate pool...</div>
+          <div class="loading-sub">Running parallel analysis on all resumes</div>
         </div>
       </div>
 
-      <button type="submit" class="btn btn-launch" id="batchBtn">▶ INITIATE BATCH SCAN</button>
-    </form>
-  </div>
+      <!-- Results card -->
+      <div id="batchResultsContent" class="hidden animate-fadeInUp"></div>
 
-  <!-- Results -->
-  <div id="batchResults" style="display:none;">
-    <div class="card">
-      <div class="card-inner"></div>
-      <div class="card-sweep"></div>
-      <div class="card-title">⬡ ANALYSIS OUTPUT — RANKED BY AUTHENTICITY</div>
-      <div class="summary" id="summary"></div>
+    </div>
+  </div>
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-mark" style="width:1.75rem;height:1.75rem;border-radius:8px;box-shadow:none;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <span class="footer-brand-name">ClearHire</span>
+      <span class="footer-meta" style="margin-left:0.5rem;">· Batch Resume Screening</span>
+    </div>
+    <div class="footer-tags">
+      <span class="footer-tag">SBERT</span>
+      <span class="footer-tag">Decision Tree</span>
+      <span class="footer-tag">FastAPI</span>
+    </div>
+    <div class="footer-meta">© 2026 Academic Project</div>
+  </div>
+</footer>
+
+<script>
+/* ── Mobile Menu ─────────────────────────────────────────── */
+const mobileBtn = document.getElementById('mobileBtn');
+const mobileOverlay = document.getElementById('mobileOverlay');
+const mobilePanel = document.getElementById('mobilePanel');
+const mobileClose = document.getElementById('mobileClose');
+
+function openMenu()  { mobileOverlay.classList.add('open'); mobilePanel.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMenu() { mobileOverlay.classList.remove('open'); mobilePanel.classList.remove('open'); document.body.style.overflow=''; }
+mobileBtn.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+mobileOverlay.addEventListener('click', closeMenu);
+
+/* ── JD Mode Toggle ─────────────────────────────────────── */
+function switchJdMode(mode) {
+  const pasteArea  = document.getElementById('jdPasteArea');
+  const fileArea   = document.getElementById('jdFileArea');
+  const pasteBtn   = document.getElementById('jdPasteBtn');
+  const fileBtn    = document.getElementById('jdFileBtn');
+  const textInput  = document.getElementById('jdTextInput');
+  const fileInput  = document.getElementById('jdFileInput');
+  if (mode === 'paste') {
+    pasteArea.style.display = ''; fileArea.style.display = 'none';
+    pasteBtn.classList.add('active'); fileBtn.classList.remove('active');
+    textInput.required = true;
+  } else {
+    pasteArea.style.display = 'none'; fileArea.style.display = '';
+    fileBtn.classList.add('active'); pasteBtn.classList.remove('active');
+    textInput.required = false;
+  }
+}
+
+/* ── File Input Feedback ────────────────────────────────── */
+document.getElementById('batchInput').addEventListener('change', function() {
+  const badge = document.getElementById('batchFileBadge');
+  const count = document.getElementById('batchFileCount');
+  if (this.files.length) {
+    count.textContent = `${this.files.length} file${this.files.length > 1 ? 's' : ''} selected`;
+    badge.style.display = 'inline-flex';
+    document.getElementById('batchDropZone').style.borderColor = 'var(--success)';
+    document.getElementById('batchDropZone').style.background  = '#f0fdf4';
+  }
+});
+
+document.getElementById('jdFileInput').addEventListener('change', function() {
+  const badge = document.getElementById('jdFileBadge');
+  const name  = document.getElementById('jdFileName');
+  if (this.files[0]) {
+    name.textContent = this.files[0].name;
+    badge.style.display = 'inline-flex';
+    document.getElementById('jdDropZone').style.borderColor = 'var(--success)';
+    document.getElementById('jdDropZone').style.background  = '#f0fdf4';
+  }
+});
+
+/* ── Form Submit ─────────────────────────────────────────── */
+document.getElementById('batchForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn     = document.getElementById('batchBtn');
+  const results = document.getElementById('batchResults');
+  const loading = document.getElementById('batchLoading');
+  const content = document.getElementById('batchResultsContent');
+  const label   = document.getElementById('batchLoadLabel');
+
+  btn.disabled  = true;
+  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;"></div> Processing...';
+  results.classList.remove('hidden');
+  loading.classList.remove('hidden');
+  content.classList.add('hidden');
+
+  const steps = ['Uploading resume files…', 'Running BERT analysis…', 'Computing skill overlaps…', 'Classifying candidates…', 'Ranking results…'];
+  let si = 0;
+  const stepTimer = setInterval(() => { label.textContent = steps[Math.min(si++, steps.length-1)]; }, 1100);
+
+  try {
+    const resp = await fetch('/api/predict_batch', { method:'POST', body: new FormData(this) });
+    const data = await resp.json();
+    clearInterval(stepTimer);
+
+    if (data.status !== 'success') throw new Error(data.detail || 'Batch processing failed');
+
+    loading.classList.add('hidden');
+    content.classList.remove('hidden');
+    content.innerHTML = renderBatch(data);
+    content.scrollIntoView({ behavior:'smooth', block:'start' });
+
+  } catch(err) {
+    clearInterval(stepTimer);
+    loading.classList.add('hidden');
+    content.classList.remove('hidden');
+    content.innerHTML = `<div class="alert alert-error animate-fadeInUp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <div><strong>Batch Error:</strong> ${err.message}</div>
+    </div>`;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Start Batch Analysis';
+  }
+});
+
+/* ── Render Batch Results ────────────────────────────────── */
+function renderBatch(data) {
+  const results = data.results || [];
+  const total     = results.length;
+  const authentic = results.filter(r => r.classification === 'Authentic').length;
+  const suspicious= results.filter(r => r.classification === 'Suspicious').length;
+  const fake      = results.filter(r => r.classification === 'Potentially Fake').length;
+  const errors    = results.filter(r => r.error).length;
+
+  const clsIcon = {
+    'Authentic':       { badge:'cls-authentic',  icon:'✓' },
+    'Suspicious':      { badge:'cls-suspicious', icon:'⚠' },
+    'Potentially Fake':{ badge:'cls-fake',       icon:'✗' }
+  };
+
+  return `
+  <div class="card">
+    <div class="card-header">
+      <h2 class="card-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        Batch Analysis Results
+        <span style="margin-left:auto;font-size:0.75rem;font-weight:500;color:var(--gray-400);">${total} resumes processed</span>
+      </h2>
+    </div>
+    <div class="card-body">
+
+      <!-- Summary -->
+      <div class="summary-grid">
+        <div class="summary-card total">
+          <div class="summary-icon" style="background:#EFF6FF;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+          </div>
+          <div class="summary-number">${total}</div>
+          <div class="summary-label">Total</div>
+        </div>
+        <div class="summary-card good">
+          <div class="summary-icon" style="background:#dcfce7;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div class="summary-number">${authentic}</div>
+          <div class="summary-label">Authentic</div>
+        </div>
+        <div class="summary-card warn">
+          <div class="summary-icon" style="background:#fef9c3;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a16207" stroke-width="2" stroke-linecap="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          </div>
+          <div class="summary-number">${suspicious}</div>
+          <div class="summary-label">Suspicious</div>
+        </div>
+        <div class="summary-card danger">
+          <div class="summary-icon" style="background:#fee2e2;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b91c1c" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+          </div>
+          <div class="summary-number">${fake}</div>
+          <div class="summary-label">Potentially Fake</div>
+        </div>
+        ${errors > 0 ? `<div class="summary-card">
+          <div class="summary-icon" style="background:#f3f4f6;"><span style="font-size:1.1rem;">⚠</span></div>
+          <div class="summary-number" style="color:var(--gray-400);">${errors}</div>
+          <div class="summary-label">Errors</div>
+        </div>` : ''}
+      </div>
+
+      <!-- Table -->
       <div class="table-wrap">
-        <table>
-          <thead><tr><th>#</th><th>FILENAME</th><th>CLASSIFICATION</th><th>CONFIDENCE</th><th>MATCH SCORE</th><th>SEMANTIC SIM</th><th>SKILL OVERLAP</th></tr></thead>
-          <tbody id="resultsBody"></tbody>
+        <table class="results-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Filename</th>
+              <th>Classification</th>
+              <th>Confidence</th>
+              <th>Match Score</th>
+              <th>Semantic Sim</th>
+              <th>Skill Overlap</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${results.map((r, i) => {
+              if (r.error) {
+                return `<tr>
+                  <td class="rank-cell">${i+1}</td>
+                  <td style="font-weight:500;">${r.filename}</td>
+                  <td colspan="5" style="text-align:center;">
+                    <span style="font-size:0.75rem;background:#fee2e2;color:#b91c1c;padding:0.25rem 0.625rem;border-radius:99px;font-weight:600;">Error: ${r.error}</span>
+                  </td>
+                </tr>`;
+              }
+              const info = clsIcon[r.classification] || { badge:'', icon:'?' };
+              return `<tr>
+                <td class="rank-cell">${i+1}</td>
+                <td style="font-weight:500;max-width:200px;" class="truncate" title="${r.filename}">${r.filename}</td>
+                <td><span class="cls-badge ${info.badge}">${info.icon} ${r.classification}</span></td>
+                <td style="font-family:var(--font-mono);font-weight:700;">${((r.confidence||0)*100).toFixed(1)}%</td>
+                <td style="font-family:var(--font-mono);">${(r.final_match_score||0).toFixed(3)}</td>
+                <td style="font-family:var(--font-mono);">${(r.semantic_similarity||0).toFixed(3)}</td>
+                <td style="font-family:var(--font-mono);">${(r.skill_overlap_score||0).toFixed(3)}</td>
+              </tr>`;
+            }).join('')}
+          </tbody>
         </table>
       </div>
     </div>
-  </div>
-
-  <footer><p>NEXUS AI · Batch Resume Screening · Decision Tree Classification · NCE 2026</p></footer>
-</div>
-</div>
-
-<script>
-/* ── Matrix Rain (amber tint) ────────────────────────────── */
-(function(){const C=document.getElementById('bg-canvas'),ctx=C.getContext('2d');function resize(){C.width=innerWidth;C.height=innerHeight}resize();addEventListener('resize',resize);const chars='BATCHRANK01アイウ◈⬡PROCESSSCAN';const cols=Math.floor(C.width/18);const drops=Array.from({length:cols},()=>Math.random()*-60);function draw(){ctx.fillStyle='rgba(0,9,18,0.045)';ctx.fillRect(0,0,C.width,C.height);drops.forEach((y,i)=>{const ch=chars[Math.floor(Math.random()*chars.length)];ctx.fillStyle=`rgba(255,214,10,${Math.random()>0.88?0.9:0.2})`;ctx.font='13px "Share Tech Mono"';ctx.fillText(ch,i*18,y*18);if(y*18>C.height&&Math.random()>0.975)drops[i]=0;drops[i]+=0.5});} setInterval(draw,55)})();
-
-/* ── Floating Particles ──────────────────────────────────── */
-(function(){const f=document.getElementById('particleField');const t=['small','medium','large','star'];for(let i=0;i<50;i++){const p=document.createElement('div');p.className='fp '+t[Math.floor(Math.random()*t.length)];p.style.left=Math.random()*100+'%';p.style.animationDuration=(12+Math.random()*25)+'s';p.style.animationDelay=(Math.random()*20)+'s';f.appendChild(p)}})();
-
-/* ── Custom Cursor ───────────────────────────────────────── */
-const cursorGlow=document.getElementById('cursorGlow'),cursorRing=document.getElementById('cursorRing'),cursorDot=document.getElementById('cursorDot');
-document.addEventListener('mousemove',e=>{cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px';cursorRing.style.left=e.clientX+'px';cursorRing.style.top=e.clientY+'px';cursorDot.style.left=e.clientX+'px';cursorDot.style.top=e.clientY+'px'});
-document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.btn,.drop-zone,.stat-card'))cursorRing.classList.add('hovering')});
-document.addEventListener('mouseout',e=>{if(e.target.closest('a,button,.btn,.drop-zone,.stat-card'))cursorRing.classList.remove('hovering')});
-
-/* ── Typing Effect ───────────────────────────────────────── */
-(function(){const p=['BATCH PROCESSING ENGINE: READY','MULTI-FILE PARALLEL ANALYSIS','RANKED OUTPUT BY AUTHENTICITY SCORE','AWAITING FILE DROP...'];const el=document.getElementById('typingText');let pi=0,ci=0,d=false;function t(){const s=p[pi];if(!d){el.textContent=s.substring(0,ci+1);ci++;if(ci>=s.length){d=true;setTimeout(t,1800);return}setTimeout(t,40+Math.random()*40)}else{el.textContent=s.substring(0,ci-1);ci--;if(ci<=0){d=false;pi=(pi+1)%p.length;setTimeout(t,400);return}setTimeout(t,22)}}setTimeout(t,1200)})();
-
-/* ── Stat Counters ───────────────────────────────────────── */
-(function(){const o=new IntersectionObserver(es=>{es.forEach(e=>{if(!e.isIntersecting)return;const el=e.target;if(el.dataset.counted)return;el.dataset.counted='1';const t=parseFloat(el.dataset.count),s=el.dataset.suffix||'',dc=parseInt(el.dataset.decimals)||0,dur=1800,st=performance.now();function f(now){const p=Math.min((now-st)/dur,1),ea=1-Math.pow(1-p,3);el.textContent=(t*ea).toFixed(dc)+s;if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)})},{threshold:0.3});document.querySelectorAll('.stat-num[data-count]').forEach(el=>o.observe(el))})();
-
-/* ── File Input ──────────────────────────────────────────── */
-document.getElementById('batchInput').addEventListener('change',function(){const fn=document.getElementById('batchFilename');if(this.files.length>0){fn.textContent=`📎 ${this.files.length} file${this.files.length>1?'s':''} selected`;fn.classList.add('show');document.getElementById('batchDropZone').classList.add('file-loaded')}});
-
-/* ── Batch Submit ────────────────────────────────────────── */
-document.getElementById('batchForm').onsubmit=async function(e){e.preventDefault();const fd=new FormData(this),btn=document.getElementById('batchBtn'),li=document.getElementById('batchLoadInner'),br=document.getElementById('batchResults'),ll=document.getElementById('batchLoadLabel');btn.disabled=true;li.style.display='flex';br.style.display='none';let dc=0;const lt=setInterval(()=>{dc=(dc+1)%4;ll.textContent='PROCESSING CANDIDATE POOL'+'.'.repeat(dc)},600);try{const r=await fetch('/api/predict_batch',{method:'POST',body:fd});const d=await r.json();if(d.status!=='success')throw new Error(d.detail||'Failed');clearInterval(lt);li.style.display='none';displayBatch(d)}catch(err){clearInterval(lt);li.style.display='none';alert('⚠ BATCH ERROR: '+err.message)}finally{btn.disabled=false}};
-
-/* ── Display Batch ───────────────────────────────────────── */
-function displayBatch(data){const r=data.results||[];const c={Authentic:0,Suspicious:0,'Potentially Fake':0,Error:0};r.forEach(x=>{if(x.error)c.Error++;else if(c[x.classification]!==undefined)c[x.classification]++});
-document.getElementById('summary').innerHTML=`<div class="summary-item total"><div class="s-item-num anim-count" data-target="${r.length}">0</div><div class="s-item-label">Total</div></div><div class="summary-item authentic"><div class="s-item-num anim-count" data-target="${c.Authentic}">0</div><div class="s-item-label">Authentic</div></div><div class="summary-item suspicious"><div class="s-item-num anim-count" data-target="${c.Suspicious}">0</div><div class="s-item-label">Suspicious</div></div><div class="summary-item fake"><div class="s-item-num anim-count" data-target="${c['Potentially Fake']}">0</div><div class="s-item-label">Fake</div></div>`;
-document.getElementById('resultsBody').innerHTML=r.map((x,i)=>{if(x.error)return`<tr style="animation:fadeUp 0.4s ease ${i*0.04}s both"><td style="color:var(--text-muted)">${i+1}</td><td>${x.filename}</td><td colspan="5" style="color:var(--rose);font-family:var(--font-mono);font-size:0.6rem">⚠ ${x.error}</td></tr>`;const bc=x.classification==='Authentic'?'bt-authentic':x.classification==='Suspicious'?'bt-suspicious':'bt-fake';const p=v=>v!=null?Math.round(v*100)+'%':'—';return`<tr style="animation:fadeUp 0.4s ease ${i*0.04}s both"><td style="color:var(--text-muted);font-weight:700">${i+1}</td><td style="color:var(--cyan);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${x.filename}">${x.filename}</td><td><span class="bt-tbl ${bc}">${x.classification}</span></td><td>${(x.confidence*100).toFixed(1)}%</td><td>${p(x.final_match_score)}</td><td>${p(x.semantic_similarity)}</td><td>${p(x.skill_overlap_score)}</td></tr>`}).join('');
-document.getElementById('batchResults').style.display='block';document.getElementById('batchResults').scrollIntoView({behavior:'smooth',block:'start'});
-setTimeout(()=>{document.querySelectorAll('.anim-count').forEach(el=>{const t=parseInt(el.dataset.target),dur=1300,s=performance.now();function f(now){const p=Math.min((now-s)/dur,1),ea=1-Math.pow(1-p,3);el.textContent=Math.round(t*ea);if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)})},300)}
+  </div>`;
+}
 </script>
 </body>
 </html>

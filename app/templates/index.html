@@ -1,591 +1,627 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXUS AI — Resume Intelligence System</title>
-<meta name="description" content="BERT-powered resume screening and authenticity validation using Decision Tree Classification. Futuristic AI-driven recruiter dashboard.">
-<link rel="stylesheet" href="/static/style.css?v=6">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearHire — AI Resume Screener</title>
+  <meta name="description" content="BERT-powered resume screening and authenticity validation using Decision Tree classification.">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<!-- ── Background Layers ───────────────────────────────────── -->
-<canvas id="bg-canvas"></canvas>
+<!-- ── Header ────────────────────────────────────────────── -->
+<header>
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+          <line x1="16" y1="13" x2="8" y2="13"/>
+          <line x1="16" y1="17" x2="8" y2="17"/>
+          <polyline points="10 9 9 9 8 9"/>
+        </svg>
+      </div>
+      <span class="logo-text">ClearHire</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Single Resume
+      </a>
+      <a href="/batch" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Batch Screening
+      </a>
+      <a href="/analytics" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </a>
+    </nav>
+    <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
 
-<!-- Animated SVG Circuit Board Background -->
-<div class="circuit-svg-bg">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.8"/>
-      <stop offset="100%" stop-color="#9b5de5" stop-opacity="0"/>
-    </linearGradient>
-    <!-- Repeating circuit tile pattern -->
-    <pattern id="circuitPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-      <!-- Horizontal traces -->
-      <line x1="0" y1="40"  x2="60" y2="40"  stroke="#00d4ff" stroke-width="0.4" opacity="0.15"/>
-      <line x1="80" y1="40" x2="200" y2="40" stroke="#00d4ff" stroke-width="0.4" opacity="0.1"/>
-      <line x1="0" y1="120" x2="120" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.12"/>
-      <line x1="140" y1="120" x2="200" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.08"/>
-      <!-- Vertical traces -->
-      <line x1="60" y1="0" x2="60" y2="40"   stroke="#00d4ff" stroke-width="0.4" opacity="0.12"/>
-      <line x1="140" y1="40" x2="140" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.1"/>
-      <line x1="60" y1="120" x2="60" y2="200" stroke="#00ffaa" stroke-width="0.4" opacity="0.08"/>
-      <!-- Nodes -->
-      <circle cx="60"  cy="40"  r="2" fill="#00d4ff" opacity="0.2"/>
-      <circle cx="140" cy="40"  r="1.5" fill="#00d4ff" opacity="0.15"/>
-      <circle cx="140" cy="120" r="2" fill="#9b5de5" opacity="0.18"/>
-      <circle cx="60"  cy="120" r="1.5" fill="#00ffaa" opacity="0.12"/>
-      <!-- IC chip -->
-      <rect x="85" y="75" width="30" height="20" rx="2" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.12"/>
-      <line x1="85" y1="80" x2="78" y2="80" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
-      <line x1="85" y1="90" x2="78" y2="90" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
-      <line x1="115" y1="80" x2="122" y2="80" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
-      <line x1="115" y1="90" x2="122" y2="90" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
-      <!-- Diagonal trace -->
-      <polyline points="0,180 20,180 35,165 60,165" fill="none" stroke="#00ffaa" stroke-width="0.3" opacity="0.08"/>
-    </pattern>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#circuitPattern)"/>
-  <!-- Animated trace overlay -->
-  <line x1="0" y1="200" x2="100%" y2="200" stroke="url(#traceGrad)" stroke-width="1" stroke-dasharray="15,85" style="animation:sweepH 6s linear infinite;"/>
-  <line x1="0" y1="500" x2="100%" y2="500" stroke="url(#traceGrad)" stroke-width="0.5" stroke-dasharray="20,80" style="animation:sweepH 8s linear 2s infinite;"/>
-</svg>
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu-panel" id="mobilePanel">
+  <div class="mobile-menu-header">
+    <a href="/" class="logo">
+      <div class="logo-mark" style="width:1.875rem;height:1.875rem;border-radius:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <span class="logo-text" style="font-size:1.05rem;">ClearHire</span>
+    </a>
+    <button class="mobile-menu-close" id="mobileClose">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    <a href="/" class="mobile-nav-link active">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      Single Resume
+    </a>
+    <a href="/batch" class="mobile-nav-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      Batch Screening
+    </a>
+    <a href="/analytics" class="mobile-nav-link">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      Analytics
+    </a>
+  </nav>
+  <div class="mobile-menu-footer">
+    <p style="font-size:0.75rem; color:var(--gray-400);">© 2026 ClearHire · Academic Project</p>
+  </div>
 </div>
 
-<div class="grid-overlay"></div>
-<div class="scanline-overlay"></div>
-<div class="vignette-overlay"></div>
-
-<!-- Floating Particles -->
-<div class="particle-field" id="particleField"></div>
-
-<!-- Custom Cursor -->
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="cursor-dot" id="cursorDot"></div>
-
-<!-- ── Navigation ─────────────────────────────────────────── -->
-<nav>
-  <a href="/" class="logo">
-    <div class="logo-hex">
-      <!-- Animated hexagon SVG -->
-      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <polygon points="15,2 27,8.5 27,21.5 15,28 3,21.5 3,8.5" fill="none" stroke="#00d4ff" stroke-width="1.2">
-          <animateTransform attributeName="transform" type="rotate" from="0 15 15" to="360 15 15" dur="20s" repeatCount="indefinite"/>
-        </polygon>
-        <circle cx="15" cy="15" r="4" fill="#00d4ff" opacity="0.5">
-          <animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
-      </svg>
-    </div>
-    <div>
-      NEXUS<span style="color:var(--violet)">AI</span>
-      <span class="logo-sub">RESUME INTELLIGENCE v2.0</span>
-    </div>
-  </a>
-  <div class="nav-center">
-    <a href="/" class="active">⬡ Single</a>
-    <a href="/batch">⬡ Batch</a>
-    <a href="/analytics">⬡ Insights</a>
-  </div>
-  <div class="nav-right">
-    <div class="status-pill"><span class="dot-live"></span> SYSTEM ONLINE</div>
-    <span style="color:var(--text-dim)">SBERT · DT · NLP</span>
-  </div>
-</nav>
-
-<!-- ── Page Content ────────────────────────────────────────── -->
-<div class="page">
-<div class="container">
+<!-- ── Main ──────────────────────────────────────────────── -->
+<main>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-eyebrow">◈ NEURAL RESUME ANALYSIS ENGINE</div>
-    <h1>
-      Scan. Match.<br>
-      <span class="glow-word" data-text="Authenticate.">Authenticate.</span>
-    </h1>
-    <p>Upload a resume, paste the job description. Our AI extracts semantics, skills, and authenticity signals — in seconds.</p>
-    <!-- Typing effect -->
-    <div class="typing-container"><span id="typingText"></span><span class="typing-cursor"></span></div>
+  <section class="hero-section">
+    <!-- Animated SVG grid lines background -->
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.35;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3B82F6" stroke-width="0.5" stroke-opacity="0.25"/>
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+
+    <div style="position:relative;z-index:1;max-width:700px;margin:0 auto;">
+      <div class="hero-eyebrow animate-fadeInUp">
+        <span class="live-dot"></span>
+        SBERT · Decision Tree Classification · NLP Pipeline
+      </div>
+
+      <h1 class="hero-title animate-fadeInUp delay-100">
+        AI-Powered <span class="grad">Resume Screening</span><br>& Authenticity Validation
+      </h1>
+
+      <p class="hero-subtitle animate-fadeInUp delay-200">
+        Upload a resume and job description. Our BERT-based pipeline scores semantic similarity,
+        skill alignment, and flags authenticity signals using a Decision Tree classifier.
+      </p>
+
+      <div class="hero-stats animate-fadeInUp delay-300">
+        <div class="hero-stat">
+          <span class="hero-stat-dot" style="background:var(--success);"></span>
+          83.6% Classifier Accuracy
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-dot" style="background:var(--primary);"></span>
+          SBERT all-MiniLM-L6-v2
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-dot" style="background:var(--accent-purple);"></span>
+          17 Validation Signals
+        </div>
+        <div class="hero-stat">
+          <span class="hero-stat-dot" style="background:var(--accent-amber);"></span>
+          3-Class Output
+        </div>
+      </div>
+    </div>
+
+    <!-- Feature strip -->
+    <div class="feature-strip animate-fadeInUp delay-400" style="max-width:900px;margin:0 auto;">
+      <div class="feature-card">
+        <div class="feature-icon-wrap" style="background:#EFF6FF;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        </div>
+        <div>
+          <h3>Semantic Matching</h3>
+          <p>Cosine similarity on 384-dim BERT embeddings</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap" style="background:#F0FDF4;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><path d="M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9c1.51 0 2.93.37 4.18 1.03"/></svg>
+        </div>
+        <div>
+          <h3>Skill Gap Analysis</h3>
+          <p>Matched, missing & extra skills from JD</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap" style="background:#FEF9C3;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#CA8A04" stroke-width="2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <h3>Authenticity Check</h3>
+          <p>17 signals to detect AI-generated or fake resumes</p>
+        </div>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon-wrap" style="background:#F5F3FF;">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div>
+          <h3>Experience Alignment</h3>
+          <p>Cross-references skills with project action verbs</p>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Stats -->
-  <div class="stats-row">
-    <div class="stat-card">
-      <span class="stat-icon">
-        <!-- Brain SVG -->
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round">
-          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.3"/>
-          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
-            <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="8s" repeatCount="indefinite"/>
-          </path>
-        </svg>
-      </span>
-      <div class="stat-num" data-count="384">0</div>
-      <div class="stat-label">SBERT Embedding Dims</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">
-        <!-- Lightning SVG -->
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffd60a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="rgba(255,214,10,0.12)">
-            <animate attributeName="opacity" values="0.08;0.22;0.08" dur="1.5s" repeatCount="indefinite"/>
-          </polygon>
-        </svg>
-      </span>
-      <div class="stat-num" data-count="83.6" data-suffix="%" data-decimals="1">0</div>
-      <div class="stat-label">Decision Tree Accuracy</div>
-    </div>
-    <div class="stat-card">
-      <span class="stat-icon">
-        <!-- Microscope SVG -->
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ffaa" stroke-width="1.5" stroke-linecap="round">
-          <circle cx="12" cy="12" r="3" fill="rgba(0,255,170,0.1)">
-            <animate attributeName="r" values="2.5;3.5;2.5" dur="2s" repeatCount="indefinite"/>
-          </circle>
-          <circle cx="12" cy="12" r="8" stroke-dasharray="4 4">
-            <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="10s" repeatCount="indefinite"/>
-          </circle>
-        </svg>
-      </span>
-      <div class="stat-num" data-count="17">0</div>
-      <div class="stat-label">Validation Features</div>
-    </div>
-  </div>
-
-  <!-- Main Grid -->
-  <div class="main-grid">
-
-    <!-- ── Upload Terminal ──────────────────────────────── -->
-    <div class="card" id="uploadCard">
-      <div class="card-inner"></div>
-      <div class="card-sweep"></div>
-      <div class="card-title">⬡ DATA INTAKE TERMINAL</div>
-
-      <form id="uploadForm" autocomplete="off">
-        <!-- Drop Zone -->
-        <div class="drop-zone" id="dropZone">
-          <div class="drop-beam"></div>
-          <input type="file" name="resume" accept=".pdf,.docx,.txt" required id="resumeInput">
-          <!-- Animated radar upload SVG -->
-          <svg class="drop-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="32" cy="32" r="28" stroke="#00d4ff" stroke-width="0.8" opacity="0.2" stroke-dasharray="4 6">
-              <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="12s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="32" cy="32" r="20" stroke="#00d4ff" stroke-width="0.6" opacity="0.15" stroke-dasharray="3 5">
-              <animateTransform attributeName="transform" type="rotate" from="360 32 32" to="0 32 32" dur="8s" repeatCount="indefinite"/>
-            </circle>
-            <circle cx="32" cy="32" r="12" stroke="#9b5de5" stroke-width="0.5" opacity="0.3"/>
-            <!-- Upload arrow -->
-            <path d="M32 42 V24 M24 30 L32 22 L40 30" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
-              <animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0" dur="2s" repeatCount="indefinite"/>
-            </path>
-            <!-- Radar sweep -->
-            <line x1="32" y1="32" x2="32" y2="5" stroke="#00d4ff" stroke-width="1" opacity="0.12">
-              <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="3s" repeatCount="indefinite"/>
-            </line>
-            <!-- Center dot -->
-            <circle cx="32" cy="32" r="2" fill="#00d4ff">
-              <animate attributeName="r" values="1.5;3;1.5" dur="1.5s" repeatCount="indefinite"/>
-              <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
-            </circle>
-          </svg>
-          <div class="drop-hint">
-            DROP RESUME FILE HERE
-            <span>PDF · DOCX · TXT — click to browse</span>
-          </div>
-          <div class="drop-filename" id="dropFilename"></div>
-        </div>
-
-        <div class="fgrp">
-          <label>
-            <svg viewBox="0 0 16 16" fill="none" stroke="#00d4ff" stroke-width="1.2"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6h12"/></svg>
-            JOB TITLE <span style="color:var(--text-dim);font-size:0.45rem">(OPTIONAL)</span>
-          </label>
-          <input type="text" name="job_title" placeholder="e.g. Senior Data Scientist" id="jobTitleInput">
-        </div>
-        <div class="fgrp">
-          <label>
-            <svg viewBox="0 0 16 16" fill="none" stroke="#00d4ff" stroke-width="1.2"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="5" y1="5" x2="11" y2="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="9" y2="11"/></svg>
-            JOB DESCRIPTION
-          </label>
-          <textarea name="job_description" placeholder="Paste the full job description here..." required></textarea>
-        </div>
-
-        <!-- Neural Network Loading Panel -->
-        <div id="loading">
-          <svg class="neural-loader" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Input layer -->
-            <circle cx="10" cy="20" r="3" fill="#9b5de5" opacity="0.7"><animate attributeName="r" values="2;4;2" dur="1.5s" repeatCount="indefinite"/></circle>
-            <circle cx="10" cy="40" r="3" fill="#9b5de5" opacity="0.7"><animate attributeName="r" values="2;4;2" dur="1.5s" begin="0.2s" repeatCount="indefinite"/></circle>
-            <circle cx="10" cy="60" r="3" fill="#9b5de5" opacity="0.7"><animate attributeName="r" values="2;4;2" dur="1.5s" begin="0.4s" repeatCount="indefinite"/></circle>
-            <!-- Hidden layer -->
-            <circle cx="40" cy="15" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" repeatCount="indefinite"/></circle>
-            <circle cx="40" cy="35" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" begin="0.3s" repeatCount="indefinite"/></circle>
-            <circle cx="40" cy="55" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" begin="0.6s" repeatCount="indefinite"/></circle>
-            <circle cx="40" cy="70" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" begin="0.9s" repeatCount="indefinite"/></circle>
-            <!-- Output layer -->
-            <circle cx="70" cy="30" r="4" fill="#00ffaa" opacity="0.8"><animate attributeName="r" values="3;5;3" dur="1.8s" repeatCount="indefinite"/></circle>
-            <circle cx="70" cy="50" r="4" fill="#00ffaa" opacity="0.8"><animate attributeName="r" values="3;5;3" dur="1.8s" begin="0.5s" repeatCount="indefinite"/></circle>
-            <!-- Connections (animated dash) -->
-            <g stroke="#00d4ff" stroke-width="0.5" opacity="0.35">
-              <line x1="13" y1="20" x2="37" y2="15" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite"/></line>
-              <line x1="13" y1="20" x2="37" y2="35" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.1s" repeatCount="indefinite"/></line>
-              <line x1="13" y1="40" x2="37" y2="35" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.2s" repeatCount="indefinite"/></line>
-              <line x1="13" y1="40" x2="37" y2="55" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.3s" repeatCount="indefinite"/></line>
-              <line x1="13" y1="60" x2="37" y2="55" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.4s" repeatCount="indefinite"/></line>
-              <line x1="13" y1="60" x2="37" y2="70" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.5s" repeatCount="indefinite"/></line>
-              <line x1="43" y1="15" x2="67" y2="30" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.6s" repeatCount="indefinite"/></line>
-              <line x1="43" y1="35" x2="67" y2="30" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.7s" repeatCount="indefinite"/></line>
-              <line x1="43" y1="55" x2="67" y2="50" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.8s" repeatCount="indefinite"/></line>
-              <line x1="43" y1="70" x2="67" y2="50" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.9s" repeatCount="indefinite"/></line>
-            </g>
-            <!-- Labels -->
-            <text x="5" y="78" fill="#9b5de5" font-family="Share Tech Mono" font-size="5" opacity="0.6">IN</text>
-            <text x="33" y="78" fill="#00d4ff" font-family="Share Tech Mono" font-size="5" opacity="0.6">HIDDEN</text>
-            <text x="64" y="78" fill="#00ffaa" font-family="Share Tech Mono" font-size="5" opacity="0.6">OUT</text>
-          </svg>
-          <div class="loading-label" id="loadingLabel">INITIALIZING NEURAL SCAN...</div>
-          <div class="loading-bar"></div>
-          <div class="loading-steps" id="loadingSteps"></div>
-        </div>
-
-        <button type="submit" class="btn btn-launch" id="submitBtn">
-          ▶ LAUNCH ANALYSIS
-        </button>
-      </form>
-    </div>
-
-    <!-- ── Results Column ───────────────────────────────── -->
-    <div id="results">
-
-      <!-- Classification Card -->
-      <div class="card" id="resultsCard" style="display:none; margin-bottom:18px;">
-        <div class="card-inner"></div>
-        <div class="card-sweep"></div>
-        <div class="card-title">⬡ CLASSIFICATION OUTPUT</div>
-
-        <div class="result-header">
-          <div id="classificationBadge"></div>
-          <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);text-align:right;line-height:1.8">
-            <div>ENGINE: DECISION TREE v2</div>
-            <div id="confLine" style="color:var(--cyan)"></div>
-          </div>
-        </div>
-
-        <div class="section-title">SCORE METRICS</div>
-        <div class="score-grid" id="scoresGrid"></div>
-
-        <div class="glow-divider" id="gd1" style="display:none"></div>
-        <div id="skillsSection"></div>
-
-        <div class="section-title" id="valLabel" style="display:none">VALIDATION SIGNALS · 17 FEATURES</div>
-        <div class="validation-grid" id="validationGrid"></div>
+  <!-- ── Upload Form ──────────────────────────────────────── -->
+  <div class="container max-w-screen-lg" style="padding-top:2rem;">
+    <div class="card animate-fadeInUp delay-300">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Analyze a Resume
+        </h2>
+        <p class="card-description">Upload a resume file and provide the job description to run the full analysis pipeline.</p>
       </div>
 
-      <!-- Resume Preview Card -->
-      <div class="card" id="previewCard" style="display:none;">
-        <div class="card-inner"></div>
-        <div class="card-sweep"></div>
-        <div class="card-title">⬡ PARSED RESUME DATA</div>
-        <div class="preview-box" id="resumePreviewWrap">
-          <div class="terminal-header">
-            <div class="terminal-dots">
-              <span class="td-red"></span><span class="td-amber"></span><span class="td-green"></span>
+      <div class="card-body">
+        <form id="uploadForm" autocomplete="off">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;" class="form-row">
+
+            <!-- Resume Upload -->
+            <div class="form-group" style="grid-column:1/-1;">
+              <label class="form-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+                Resume File <span style="color:var(--error);margin-left:2px;">*</span>
+              </label>
+              <div class="file-drop-zone" id="resumeDropZone">
+                <input type="file" name="resume" id="resumeInput" accept=".pdf,.docx,.txt" required>
+                <div class="file-drop-icon">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                </div>
+                <div class="file-drop-title">Drop resume here or <span style="color:var(--primary);font-weight:600;">click to browse</span></div>
+                <div class="file-drop-sub">PDF, DOCX, TXT · Max 5 MB</div>
+                <div id="resumeFileBadge" style="display:none;" class="file-badge">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  <span id="resumeFileName"></span>
+                </div>
+              </div>
             </div>
-            <span style="flex:1;text-align:center">RESUME_PARSE_OUTPUT.TXT</span>
+
+            <!-- Job Title -->
+            <div class="form-group">
+              <label class="form-label" for="jobTitleInput">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>
+                Job Title <span style="color:var(--gray-400);font-weight:400;">(optional)</span>
+              </label>
+              <input type="text" name="job_title" id="jobTitleInput" class="form-input" placeholder="e.g. Senior Data Scientist">
+            </div>
+
+            <!-- Spacer on large screens -->
+            <div class="form-group" style="display:flex;align-items:flex-end;padding-bottom:1.25rem;">
+              <div style="font-size:0.8rem;color:var(--gray-400);line-height:1.6;">
+                <strong style="color:var(--gray-600);">Tip:</strong> The job title helps boost experience relevance scoring accuracy.
+              </div>
+            </div>
+
+            <!-- Job Description -->
+            <div class="form-group" style="grid-column:1/-1;">
+              <label class="form-label">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+                Job Description <span style="color:var(--error);margin-left:2px;">*</span>
+              </label>
+
+              <!-- Toggle: paste or upload -->
+              <div class="jd-toggle">
+                <button type="button" class="jd-toggle-btn active" id="jdPasteBtn" onclick="switchJdMode('paste')">✏️ Paste Text</button>
+                <button type="button" class="jd-toggle-btn" id="jdFileBtn" onclick="switchJdMode('file')">📎 Upload File</button>
+              </div>
+
+              <!-- Paste mode -->
+              <div id="jdPasteArea">
+                <textarea name="job_description" id="jdTextArea" class="form-textarea"
+                  placeholder="Paste the full job description here — include required skills, qualifications, and responsibilities for best results..."
+                  required style="min-height:11rem;"></textarea>
+              </div>
+
+              <!-- File mode -->
+              <div id="jdFileArea" style="display:none;">
+                <div class="file-drop-zone" id="jdDropZone">
+                  <input type="file" name="job_description_file" id="jdFileInput" accept=".pdf,.docx,.txt">
+                  <div class="file-drop-icon" style="width:2.5rem;height:2.5rem;">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2" stroke-linecap="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+                  </div>
+                  <div class="file-drop-title">Upload JD file</div>
+                  <div class="file-drop-sub">PDF, DOCX, TXT</div>
+                  <div id="jdFileBadge" style="display:none;" class="file-badge">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+                    <span id="jdFileName"></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
           </div>
-          <div id="resumePreview" style="white-space:pre-wrap;word-break:break-word;"></div>
-        </div>
+
+          <!-- Submit -->
+          <button type="submit" class="btn btn-primary w-full btn-lg" id="submitBtn" style="margin-top:0.5rem;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+            Run Analysis
+          </button>
+        </form>
       </div>
     </div>
 
-  </div><!-- /main-grid -->
+    <!-- ── Results ──────────────────────────────────────────── -->
+    <div id="resultsSection" class="hidden" style="margin-top:1.5rem;">
 
-  <footer>
-    <p>NEXUS AI · BERT-Based Resume Screening · Decision Tree Classification · 4,000 Labeled Samples · NCE 2026</p>
-  </footer>
-</div>
-</div>
+      <!-- Loading -->
+      <div id="loadingPanel" class="card loading-panel">
+        <div class="loading-spinner"></div>
+        <div>
+          <div class="loading-label" id="loadingLabel">Analyzing resume...</div>
+          <div class="loading-sub">Running NLP pipeline and classification</div>
+        </div>
+      </div>
+
+      <!-- Result card -->
+      <div id="resultCard" class="hidden">
+
+        <!-- Header: Classification + Confidence -->
+        <div class="card mb-4 animate-fadeInUp" id="clsCard">
+          <div class="card-body" style="padding:1.75rem;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+              <div>
+                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.5rem;">Classification</div>
+                <div id="clsBadge" class="cls-badge" style="font-size:0.9rem;padding:0.5rem 1.25rem;"></div>
+                <div style="margin-top:0.75rem;font-size:0.8125rem;color:var(--gray-500);" id="clsFilename"></div>
+              </div>
+              <!-- Confidence ring -->
+              <div style="text-align:center;">
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.5rem;">Confidence</div>
+                <div class="confidence-wrap" style="flex-direction:column;gap:0.25rem;">
+                  <div class="confidence-ring">
+                    <svg viewBox="0 0 72 72" width="72" height="72">
+                      <circle class="ring-bg" cx="36" cy="36" r="30"/>
+                      <circle class="ring-fill" id="confRing" cx="36" cy="36" r="30"
+                        stroke-dasharray="188.5" stroke-dashoffset="188.5" stroke="var(--primary)"/>
+                    </svg>
+                    <div class="ring-label" id="confLabel">—</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Probability bars -->
+            <div style="margin-top:1.5rem;">
+              <div class="section-label">Classification Probabilities</div>
+              <div class="prob-bars" id="probBars">
+                <div class="prob-row">
+                  <span class="prob-label" style="color:#15803d;">✓ Authentic</span>
+                  <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-authentic" style="width:0%;background:#10B981;"></div></div>
+                  <span class="prob-value text-green-600" id="pv-authentic">0%</span>
+                </div>
+                <div class="prob-row">
+                  <span class="prob-label" style="color:#a16207;">⚠ Suspicious</span>
+                  <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-suspicious" style="width:0%;background:#F59E0B;"></div></div>
+                  <span class="prob-value text-yellow-600" id="pv-suspicious">0%</span>
+                </div>
+                <div class="prob-row">
+                  <span class="prob-label" style="color:#b91c1c;">✗ Potentially Fake</span>
+                  <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-fake" style="width:0%;background:#EF4444;"></div></div>
+                  <span class="prob-value text-red-600" id="pv-fake">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Scores -->
+        <div class="card mb-4 animate-fadeInUp delay-100">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Match Scores
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="score-grid" id="scoreGrid"></div>
+          </div>
+        </div>
+
+        <!-- Skills Analysis -->
+        <div class="card mb-4 animate-fadeInUp delay-200">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              Skills Analysis
+            </h2>
+          </div>
+          <div class="card-body" id="skillsContent"></div>
+        </div>
+
+        <!-- Validation Signals -->
+        <div class="card mb-4 animate-fadeInUp delay-300">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Validation Signals
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">17 features</span>
+            </h2>
+            <p class="card-description">Rule-based authenticity features extracted from the resume.</p>
+          </div>
+          <div class="card-body">
+            <div class="val-grid" id="valGrid"></div>
+          </div>
+        </div>
+
+        <!-- Resume Preview -->
+        <div class="card animate-fadeInUp delay-400">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray-500)" stroke-width="2.2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Extracted Resume Text
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">Preview (first 500 chars)</span>
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="resume-preview" id="resumePreview"></div>
+          </div>
+        </div>
+
+      </div><!-- /resultCard -->
+    </div><!-- /resultsSection -->
+
+  </div><!-- /container -->
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-mark" style="width:1.75rem;height:1.75rem;border-radius:8px;box-shadow:none;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <span class="footer-brand-name">ClearHire</span>
+      <span class="footer-meta" style="margin-left:0.5rem;">· 6th Semester Minor Project</span>
+    </div>
+    <div class="footer-tags">
+      <span class="footer-tag">SBERT</span>
+      <span class="footer-tag">Decision Tree</span>
+      <span class="footer-tag">spaCy NER</span>
+      <span class="footer-tag">FastAPI</span>
+    </div>
+    <div class="footer-meta">© 2026 Academic Project</div>
+  </div>
+</footer>
 
 <script>
-/* ═══════════════════════════════════════════════════════════════
-   NEXUS AI — Full Motion System
-   ═══════════════════════════════════════════════════════════════ */
+/* ── Mobile Menu ─────────────────────────────────────────── */
+const mobileBtn     = document.getElementById('mobileBtn');
+const mobileOverlay = document.getElementById('mobileOverlay');
+const mobilePanel   = document.getElementById('mobilePanel');
+const mobileClose   = document.getElementById('mobileClose');
 
-/* ── Matrix Rain Background ──────────────────────────────── */
-(function() {
-  const C = document.getElementById('bg-canvas');
-  const ctx = C.getContext('2d');
-  function resize() { C.width = innerWidth; C.height = innerHeight; }
-  resize(); addEventListener('resize', resize);
-  const chars = 'NEXUSAI01アイウエオカキSBERTDT10110100◈⬡▶∞';
-  const cols = Math.floor(C.width / 18);
-  const drops = Array.from({length: cols}, () => Math.random() * -50);
-  function draw() {
-    ctx.fillStyle = 'rgba(0,9,18,0.045)';
-    ctx.fillRect(0, 0, C.width, C.height);
-    drops.forEach((y, i) => {
-      const ch = chars[Math.floor(Math.random() * chars.length)];
-      const bright = Math.random() > 0.88;
-      ctx.fillStyle = bright ? 'rgba(0,212,255,1)' : 'rgba(0,212,255,0.28)';
-      ctx.font = '13px "Share Tech Mono"';
-      ctx.fillText(ch, i * 18, y * 18);
-      if (y * 18 > C.height && Math.random() > 0.975) drops[i] = 0;
-      drops[i] += 0.5;
-    });
+function openMenu()  { mobileOverlay.classList.add('open'); mobilePanel.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMenu() { mobileOverlay.classList.remove('open'); mobilePanel.classList.remove('open'); document.body.style.overflow=''; }
+
+mobileBtn.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+mobileOverlay.addEventListener('click', closeMenu);
+
+/* ── JD Mode Toggle ─────────────────────────────────────── */
+function switchJdMode(mode) {
+  const pasteArea = document.getElementById('jdPasteArea');
+  const fileArea  = document.getElementById('jdFileArea');
+  const pasteBtn  = document.getElementById('jdPasteBtn');
+  const fileBtn   = document.getElementById('jdFileBtn');
+  const textarea  = document.getElementById('jdTextArea');
+  const fileInput = document.getElementById('jdFileInput');
+
+  if (mode === 'paste') {
+    pasteArea.style.display = '';
+    fileArea.style.display  = 'none';
+    pasteBtn.classList.add('active');
+    fileBtn.classList.remove('active');
+    textarea.required  = true;
+    fileInput.required = false;
+  } else {
+    pasteArea.style.display = 'none';
+    fileArea.style.display  = '';
+    fileBtn.classList.add('active');
+    pasteBtn.classList.remove('active');
+    textarea.required  = false;
+    fileInput.required = false; // optional — backend handles
   }
-  setInterval(draw, 55);
-})();
-
-/* ── Floating Particles ──────────────────────────────────── */
-(function() {
-  const field = document.getElementById('particleField');
-  const types = ['small','medium','large','star'];
-  for (let i = 0; i < 60; i++) {
-    const p = document.createElement('div');
-    const t = types[Math.floor(Math.random() * types.length)];
-    p.className = 'fp ' + t;
-    p.style.left = Math.random() * 100 + '%';
-    p.style.animationDuration = (12 + Math.random() * 25) + 's';
-    p.style.animationDelay = (Math.random() * 20) + 's';
-    field.appendChild(p);
-  }
-})();
-
-/* ── Custom Cursor ───────────────────────────────────────── */
-const cursorGlow = document.getElementById('cursorGlow');
-const cursorRing = document.getElementById('cursorRing');
-const cursorDot  = document.getElementById('cursorDot');
-document.addEventListener('mousemove', e => {
-  cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px';
-  cursorRing.style.left = e.clientX + 'px'; cursorRing.style.top = e.clientY + 'px';
-  cursorDot.style.left  = e.clientX + 'px'; cursorDot.style.top  = e.clientY + 'px';
-});
-/* Enlarge ring on hover over interactive elements */
-document.addEventListener('mouseover', e => {
-  if (e.target.closest('a,button,.btn,.drop-zone,.stat-card,.score-item,.chip,.vchip,.nav-center a')) {
-    cursorRing.classList.add('hovering');
-  }
-});
-document.addEventListener('mouseout', e => {
-  if (e.target.closest('a,button,.btn,.drop-zone,.stat-card,.score-item,.chip,.vchip,.nav-center a')) {
-    cursorRing.classList.remove('hovering');
-  }
-});
-
-/* ── Typing Effect ───────────────────────────────────────── */
-(function() {
-  const phrases = [
-    'LOADING SBERT EMBEDDING MODEL...',
-    'INITIALIZING 384-DIMENSIONAL VECTOR SPACE...',
-    'DECISION TREE CLASSIFIER: READY',
-    'NLP PIPELINE: spaCy en_core_web_sm LOADED',
-    '17 VALIDATION FEATURES CALIBRATED',
-    'COSINE SIMILARITY ENGINE: ACTIVE',
-    'AWAITING RESUME INPUT...'
-  ];
-  const el = document.getElementById('typingText');
-  let pi = 0, ci = 0, deleting = false;
-  function tick() {
-    const phrase = phrases[pi];
-    if (!deleting) {
-      el.textContent = phrase.substring(0, ci + 1);
-      ci++;
-      if (ci >= phrase.length) { deleting = true; setTimeout(tick, 1800); return; }
-      setTimeout(tick, 40 + Math.random() * 40);
-    } else {
-      el.textContent = phrase.substring(0, ci - 1);
-      ci--;
-      if (ci <= 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 400); return; }
-      setTimeout(tick, 22);
-    }
-  }
-  setTimeout(tick, 1200);
-})();
-
-/* ── Stat Counter Animation ──────────────────────────────── */
-(function() {
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      const el = entry.target;
-      if (el.dataset.counted) return;
-      el.dataset.counted = '1';
-      const target = parseFloat(el.dataset.count);
-      const suffix = el.dataset.suffix || '';
-      const dec = parseInt(el.dataset.decimals) || 0;
-      const dur = 1800;
-      const start = performance.now();
-      function frame(now) {
-        const pct = Math.min((now - start) / dur, 1);
-        const eased = 1 - Math.pow(1 - pct, 3);
-        el.textContent = (target * eased).toFixed(dec) + suffix;
-        if (pct < 1) requestAnimationFrame(frame);
-      }
-      requestAnimationFrame(frame);
-    });
-  }, { threshold: 0.3 });
-  document.querySelectorAll('.stat-num[data-count]').forEach(el => observer.observe(el));
-})();
-
-/* ── File Drop Zone ──────────────────────────────────────── */
-const resumeInput = document.getElementById('resumeInput');
-const dropFilename = document.getElementById('dropFilename');
-const dropZone = document.getElementById('dropZone');
-
-resumeInput.addEventListener('change', function() {
-  if (this.files.length > 0) {
-    dropFilename.textContent = '📎 ' + this.files[0].name;
-    dropFilename.classList.add('show');
-    dropZone.classList.add('file-loaded');
-  }
-});
-
-/* ── Loading Steps Animation ─────────────────────────────── */
-const STEPS = [
-  { text: 'PARSING DOCUMENT STRUCTURE...', icon: '📄' },
-  { text: 'EXTRACTING NLP ENTITIES...',    icon: '🔤' },
-  { text: 'GENERATING SBERT EMBEDDINGS...', icon: '🧠' },
-  { text: 'COMPUTING COSINE SIMILARITY...', icon: '📐' },
-  { text: 'ANALYZING 17 VALIDATION SIGNALS...', icon: '🔬' },
-  { text: 'RUNNING DECISION TREE CLASSIFIER...', icon: '🌲' },
-  { text: 'COMPILING ANALYSIS REPORT...',  icon: '📊' },
-];
-let stepTimer, stepIdx = 0;
-const stepsEl = document.getElementById('loadingSteps');
-const loadingLabel = document.getElementById('loadingLabel');
-
-function startSteps() {
-  stepsEl.innerHTML = ''; stepIdx = 0;
-  stepTimer = setInterval(() => {
-    if (stepIdx >= STEPS.length) { clearInterval(stepTimer); return; }
-    const prev = stepsEl.querySelector('.lstep.run');
-    if (prev) { prev.className = 'lstep done'; prev.querySelector('.lstep-icon').textContent = '✓'; }
-    const div = document.createElement('div');
-    div.className = 'lstep run';
-    div.innerHTML = `<span class="lstep-icon">${STEPS[stepIdx].icon}</span>${STEPS[stepIdx].text}`;
-    stepsEl.appendChild(div);
-    loadingLabel.textContent = STEPS[stepIdx].text;
-    stepIdx++;
-  }, 700);
-}
-function stopSteps() { clearInterval(stepTimer); }
-
-/* ── Scan Complete Overlay ───────────────────────────────── */
-function showScanFlash(cls) {
-  const color = cls === 'Authentic' ? 'var(--mint)' : cls === 'Suspicious' ? 'var(--amber)' : 'var(--rose)';
-  const el = document.createElement('div');
-  el.className = 'scan-flash';
-  el.innerHTML = `<div class="scan-flash-text" style="color:${color};text-shadow:0 0 40px ${color},0 0 120px ${color}">◈ SCAN COMPLETE ◈</div>`;
-  document.body.appendChild(el);
-  setTimeout(() => el.remove(), 1600);
 }
 
-/* ── Confetti ────────────────────────────────────────────── */
-function fireConfetti() {
-  const c = document.createElement('div'); c.className = 'confetti-container';
-  document.body.appendChild(c);
-  const colors = ['#00ffaa','#00d4ff','#9b5de5','#ffd60a','#ff6b35'];
-  for (let i = 0; i < 80; i++) {
-    const p = document.createElement('div'); p.className = 'confetti-piece';
-    p.style.cssText = `left:${Math.random()*100}%;width:${Math.random()*8+4}px;height:${Math.random()*8+4}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*2+1.5}s;animation-delay:${Math.random()*0.5}s;border-radius:${Math.random()>0.5?'50%':'2px'};opacity:${Math.random()*0.7+0.3};`;
-    c.appendChild(p);
+/* ── File Input Feedback ────────────────────────────────── */
+document.getElementById('resumeInput').addEventListener('change', function() {
+  const badge = document.getElementById('resumeFileBadge');
+  const name  = document.getElementById('resumeFileName');
+  if (this.files[0]) {
+    name.textContent = this.files[0].name;
+    badge.style.display = 'inline-flex';
+    document.getElementById('resumeDropZone').style.borderColor = 'var(--success)';
+    document.getElementById('resumeDropZone').style.background  = '#f0fdf4';
   }
-  setTimeout(() => c.remove(), 3500);
-}
+});
 
-/* ── Form Submit ─────────────────────────────────────────── */
-document.getElementById('uploadForm').onsubmit = async function(e) {
+document.getElementById('jdFileInput').addEventListener('change', function() {
+  const badge = document.getElementById('jdFileBadge');
+  const name  = document.getElementById('jdFileName');
+  if (this.files[0]) {
+    name.textContent = this.files[0].name;
+    badge.style.display = 'inline-flex';
+    document.getElementById('jdDropZone').style.borderColor = 'var(--success)';
+    document.getElementById('jdDropZone').style.background  = '#f0fdf4';
+  }
+});
+
+/* ── Form Submission ────────────────────────────────────── */
+document.getElementById('uploadForm').addEventListener('submit', async function(e) {
   e.preventDefault();
-  const formData = new FormData(this);
-  const btn = document.getElementById('submitBtn');
-  const loading = document.getElementById('loading');
-  const resultsCard = document.getElementById('resultsCard');
-  const previewCard = document.getElementById('previewCard');
-  const resultsEl = document.getElementById('results');
 
+  const btn       = document.getElementById('submitBtn');
+  const results   = document.getElementById('resultsSection');
+  const loading   = document.getElementById('loadingPanel');
+  const resultCard= document.getElementById('resultCard');
+  const label     = document.getElementById('loadingLabel');
+
+  // Show loading
   btn.disabled = true;
-  loading.classList.add('active');
-  resultsCard.style.display = 'none';
-  previewCard.style.display = 'none';
-  resultsEl.classList.remove('visible');
-  startSteps();
+  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;"></div> Analyzing...';
+  results.classList.remove('hidden');
+  loading.classList.remove('hidden');
+  resultCard.classList.add('hidden');
+
+  // Animate loading labels
+  const steps = ['Extracting text from resume…', 'Computing BERT embeddings…', 'Scoring skill overlap…', 'Running Decision Tree…', 'Compiling results…'];
+  let si = 0;
+  const stepTimer = setInterval(() => { label.textContent = steps[Math.min(si++, steps.length-1)]; }, 900);
 
   try {
-    const res = await fetch('/api/predict', { method:'POST', body: formData });
-    const data = await res.json();
+    const resp = await fetch('/api/predict', { method:'POST', body: new FormData(this) });
+    const data = await resp.json();
+    clearInterval(stepTimer);
+
     if (data.status !== 'success') throw new Error(data.detail || 'Analysis failed');
-    await new Promise(r => setTimeout(r, 400));
-    stopSteps();
-    loading.classList.remove('active');
-    showScanFlash(data.classification.classification);
-    await new Promise(r => setTimeout(r, 1200));
-    displayResults(data);
-  } catch (err) {
-    stopSteps(); loading.classList.remove('active');
-    alert('⚠ NEXUS ERROR: ' + err.message);
-  } finally { btn.disabled = false; }
-};
 
-/* ── Display Results ─────────────────────────────────────── */
-function displayResults(data) {
-  const cls = data.classification;
-  const scores = data.scores || {};
-  const skills = data.skills || {};
-  const valFeats = data.validation_features || {};
-  const resumeText = data.resume_text || '';
+    loading.classList.add('hidden');
+    resultCard.classList.remove('hidden');
+    renderResults(data);
+    resultCard.scrollIntoView({ behavior:'smooth', block:'start' });
 
-  /* Badge */
-  const bc = cls.classification === 'Authentic' ? 'badge-authentic' : cls.classification === 'Suspicious' ? 'badge-suspicious' : 'badge-fake';
-  const icons = { Authentic:'✦ AUTHENTIC', Suspicious:'⚠ SUSPICIOUS', 'Potentially Fake':'✕ POTENTIALLY FAKE' };
-  document.getElementById('classificationBadge').innerHTML = `<span class="badge-cls ${bc}">${icons[cls.classification] || cls.classification}</span>`;
-  document.getElementById('confLine').textContent = `CONFIDENCE: ${(cls.confidence * 100).toFixed(1)}%`;
+  } catch(err) {
+    clearInterval(stepTimer);
+    loading.classList.add('hidden');
+    resultCard.classList.remove('hidden');
+    resultCard.innerHTML = `<div class="alert alert-error animate-fadeInUp">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <div><strong>Error:</strong> ${err.message}</div>
+    </div>`;
+  } finally {
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg> Run Analysis';
+  }
+});
 
-  /* Scores */
-  const scoreMap = { 'Semantic Similarity': scores.semantic_similarity, 'Skill Overlap': scores.skill_overlap_score, 'Experience Match': scores.experience_relevance_score, 'Final Match Score': scores.final_match_score };
-  document.getElementById('scoresGrid').innerHTML = Object.entries(scoreMap).map(([k, v]) => {
-    const pct = v != null ? Math.round(v * 100) : 0;
-    const g = pct >= 65 ? 'high' : pct >= 40 ? 'med' : 'low';
-    return `<div class="score-item ${g}" style="--pct:${pct}%"><div class="si-label">${k}</div><div class="si-val ${g}">${pct}%</div></div>`;
+/* ── Render Results ─────────────────────────────────────── */
+function renderResults(data) {
+  const cls        = data.classification || {};
+  const scores     = data.scores || {};
+  const skills     = data.skills || {};
+  const validation = data.validation || {};
+
+  // Classification badge
+  const label  = cls.classification || 'Unknown';
+  const conf   = cls.confidence || 0;
+  const badge  = document.getElementById('clsBadge');
+  const clsMap = {
+    'Authentic':       { cls:'cls-authentic',  icon:'✓', color:'#15803d' },
+    'Suspicious':      { cls:'cls-suspicious', icon:'⚠', color:'#a16207' },
+    'Potentially Fake':{ cls:'cls-fake',       icon:'✗', color:'#b91c1c' }
+  };
+  const info = clsMap[label] || { cls:'', icon:'?', color:'var(--gray-600)' };
+  badge.className = `cls-badge ${info.cls}`;
+  badge.innerHTML = `${info.icon} ${label}`;
+  document.getElementById('clsFilename').textContent = `File: ${data.filename || ''}`;
+
+  // Confidence ring
+  const pct = Math.round(conf * 100);
+  const circumference = 2 * Math.PI * 30; // r=30
+  const offset = circumference * (1 - conf);
+  const ring = document.getElementById('confRing');
+  ring.style.strokeDashoffset = offset;
+  ring.style.stroke = info.color;
+  document.getElementById('confLabel').textContent = pct + '%';
+  document.getElementById('confLabel').style.color = info.color;
+
+  // Probability bars (with animation delay)
+  setTimeout(() => {
+    function setBar(id, valId, val, color) {
+      const pctVal = Math.round(val * 100);
+      document.getElementById(id).style.width = pctVal + '%';
+      document.getElementById(id).style.background = color;
+      document.getElementById(valId).textContent = pctVal + '%';
+    }
+    setBar('pb-authentic',  'pv-authentic',  cls.prob_Authentic         || 0, '#10B981');
+    setBar('pb-suspicious', 'pv-suspicious', cls.prob_Suspicious        || 0, '#F59E0B');
+    setBar('pb-fake',       'pv-fake',       cls['prob_Potentially Fake']||0, '#EF4444');
+  }, 200);
+
+  // Score grid
+  const scoreLabels = {
+    semantic_similarity:      { label:'Semantic Similarity',    color:'var(--primary)' },
+    skill_overlap_score:      { label:'Skill Overlap',          color:'var(--success)' },
+    experience_relevance_score:{ label:'Experience Relevance',  color:'var(--accent-teal)' },
+    final_match_score:        { label:'Final Match Score',      color:'var(--accent-purple)' }
+  };
+  const scoreGrid = document.getElementById('scoreGrid');
+  scoreGrid.innerHTML = Object.entries(scoreLabels).map(([key, meta]) => {
+    const val = scores[key] || 0;
+    const pct = Math.round(val * 100);
+    const color = pct >= 60 ? '#10B981' : pct >= 35 ? '#F59E0B' : '#EF4444';
+    return `<div class="score-card">
+      <div class="score-label">${meta.label}</div>
+      <div class="score-value" style="color:${color}">${val.toFixed(3)}</div>
+      <div style="margin-top:0.5rem;font-size:0.72rem;color:${color};font-weight:600;">${pct}%</div>
+    </div>`;
   }).join('');
 
-  /* Skills */
-  const matched = skills.matched_skills || []; const missing = skills.missing_skills || []; const extra = skills.extra_skills || [];
-  if (matched.length || missing.length || extra.length) {
-    document.getElementById('gd1').style.display = 'block';
-    const chip = (a, c) => a.map(s => `<span class="chip ${c}">${s}</span>`).join('');
-    document.getElementById('skillsSection').innerHTML = `<div class="skills-grid"><div class="skill-block"><div class="sb-title">✦ Matched (${matched.length})</div><div>${chip(matched,'chip-matched')||'<span style="color:var(--text-dim);font-size:0.6rem">none</span>'}</div></div><div class="skill-block"><div class="sb-title">✕ Missing (${missing.length})</div><div>${chip(missing,'chip-missing')||'<span style="color:var(--text-dim);font-size:0.6rem">none</span>'}</div></div><div class="skill-block"><div class="sb-title">⬡ Extra (${extra.length})</div><div>${chip(extra,'chip-extra')||'<span style="color:var(--text-dim);font-size:0.6rem">none</span>'}</div></div></div>`;
-  }
+  // Skills
+  const matched = skills.matched || [];
+  const missing = skills.missing || [];
+  const extra   = skills.extra   || [];
+  const skillsContent = document.getElementById('skillsContent');
+  skillsContent.innerHTML = [
+    matched.length ? `<div class="mb-4"><div class="section-label">✓ Matched (${matched.length})</div><div class="skill-chips">${matched.map(s=>`<span class="skill-chip chip-match">${s}</span>`).join('')}</div></div>` : '',
+    missing.length ? `<div class="mb-4"><div class="section-label">⚠ Missing from Resume (${missing.length})</div><div class="skill-chips">${missing.map(s=>`<span class="skill-chip chip-missing">${s}</span>`).join('')}</div></div>` : '',
+    extra.length   ? `<div><div class="section-label">+ Additional Skills (${extra.length})</div><div class="skill-chips">${extra.map(s=>`<span class="skill-chip chip-extra">${s}</span>`).join('')}</div></div>` : '',
+    (!matched.length && !missing.length && !extra.length) ? `<p class="text-muted text-sm">No skill data available.</p>` : ''
+  ].join('');
 
-  /* Validation Grid */
-  const vk = Object.keys(valFeats);
-  if (vk.length) {
-    document.getElementById('valLabel').style.display = 'flex';
-    document.getElementById('validationGrid').innerHTML = vk.map(k => {
-      const v = valFeats[k];
-      const d = typeof v === 'number' ? (v % 1 === 0 ? v : v.toFixed(3)) : v;
-      return `<div class="vchip"><div class="vc-label">${k.replace(/_/g,' ')}</div><div class="vc-val">${d}</div></div>`;
-    }).join('');
-  }
+  // Validation grid
+  const valGrid = document.getElementById('valGrid');
+  const valFriendly = {
+    semantic_similarity:'Semantic Sim', skill_overlap_score:'Skill Overlap',
+    experience_relevance_score:'Exp Relevance', final_match_score:'Match Score',
+    overlapping_jobs:'Overlapping Jobs', promotion_speed:'Promotion Speed',
+    experience_graduation_gap:'Exp/Grad Gap', skill_density:'Skill Density',
+    achievement_count:'Achievements', generic_phrase_score:'Generic Phrases',
+    gap_years:'Gap Years', keyword_stuffing_score:'Keyword Stuffing',
+    years_experience:'Years Exp', num_certifications:'Certifications',
+    num_skills:'Skill Count', education_level_encoded:'Education Level',
+    has_previous_job:'Has Prev Job', skill_experience_alignment:'Skill Alignment'
+  };
+  valGrid.innerHTML = Object.entries(validation).map(([key, val]) => {
+    const friendly = valFriendly[key] || key.replace(/_/g,' ');
+    const display  = typeof val === 'number'
+      ? (Number.isInteger(val) ? val : val.toFixed(3))
+      : String(val);
+    return `<div class="val-item">
+      <div class="val-label">${friendly}</div>
+      <div class="val-value">${display}</div>
+    </div>`;
+  }).join('');
 
-  /* Preview */
-  if (resumeText) {
-    document.getElementById('resumePreview').textContent = resumeText.substring(0, 2500) + (resumeText.length > 2500 ? '\n...[truncated]' : '');
-    document.getElementById('previewCard').style.display = 'block';
-  }
-
-  document.getElementById('resultsCard').style.display = 'block';
-  requestAnimationFrame(() => {
-    document.getElementById('results').classList.add('visible');
-    setTimeout(() => document.getElementById('results').scrollIntoView({ behavior:'smooth', block:'start' }), 100);
-  });
-  if (cls.classification === 'Authentic') fireConfetti();
+  // Resume preview
+  document.getElementById('resumePreview').textContent = data.resume_preview || '(No preview available)';
 }
 </script>
 </body>

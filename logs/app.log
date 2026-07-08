@@ -1101,3 +1101,1956 @@ Check your internet connection or see how to run the library in offline mode at 
 [2026-07-08 11:43:02] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
 [2026-07-08 11:43:02] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
 [2026-07-08 11:43:04] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 11:49:21] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 11:49:21] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 11:49:21] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 11:49:27] __main__ - INFO - GET /batch -> 200 (0.02s)
+[2026-07-08 11:49:28] __main__ - INFO - GET /analytics -> 200 (0.02s)
+[2026-07-08 11:49:28] __main__ - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 11:49:29] __main__ - INFO - GET /api/class_distribution -> 200 (0.12s)
+[2026-07-08 11:49:29] __main__ - INFO - GET /api/dataset/stats -> 200 (0.11s)
+[2026-07-08 11:49:29] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
+[2026-07-08 11:49:29] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
+[2026-07-08 20:42:28] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 20:42:44] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 20:42:44] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 20:42:44] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 20:42:48] __main__ - INFO - GET / -> 200 (0.04s)
+[2026-07-08 20:42:49] __main__ - INFO - GET /static/style.css -> 304 (0.41s)
+[2026-07-08 20:42:49] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 20:43:02] __main__ - INFO - GET /batch -> 200 (0.03s)
+[2026-07-08 20:43:09] __main__ - INFO - GET /analytics -> 200 (0.03s)
+[2026-07-08 20:43:09] app.models.classifier - INFO - Loading trained Decision Tree model from: /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/data/models/decision_tree_model.pkl
+[2026-07-08 20:43:09] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 20:43:09] __main__ - INFO - GET /api/model/info -> 200 (0.24s)
+[2026-07-08 20:43:09] __main__ - INFO - GET /api/class_distribution -> 200 (0.15s)
+[2026-07-08 20:43:10] __main__ - INFO - GET /api/dataset/stats -> 200 (0.13s)
+[2026-07-08 20:43:10] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
+[2026-07-08 20:43:10] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
+[2026-07-08 20:43:23] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 20:44:26] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 20:44:26] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 20:44:26] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 2275 chars
+[2026-07-08 20:44:26] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 20:44:27] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 20:44:27] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 20:44:27] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 20:44:27] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 20:44:27] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 20:44:28] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 20:44:30] __main__ - INFO - Result: pranjalresume.pdf -> Potentially Fake (84.2%)
+[2026-07-08 20:44:30] __main__ - INFO - POST /api/predict -> 200 (4.03s)
+[2026-07-08 20:45:09] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 20:45:09] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 20:45:09] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 2275 chars
+[2026-07-08 20:45:10] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 20:45:10] __main__ - INFO - Result: pranjalresume.pdf -> Potentially Fake (84.2%)
+[2026-07-08 20:45:10] __main__ - INFO - POST /api/predict -> 200 (1.04s)
+[2026-07-08 20:45:34] __main__ - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 20:46:01] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 20:46:01] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 20:46:01] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 20:46:02] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 20:46:02] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 20:46:02] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 20:46:04] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 20:46:04] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 20:46:04] __main__ - INFO - POST /api/predict_batch -> 200 (2.83s)
+[2026-07-08 20:47:08] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 20:47:08] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 20:47:08] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 20:47:09] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 20:47:09] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 20:47:09] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 20:47:11] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 20:47:11] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 20:47:11] __main__ - INFO - POST /api/predict_batch -> 200 (3.00s)
+[2026-07-08 20:47:22] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 20:47:22] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 20:47:22] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 20:47:23] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 20:47:23] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 20:47:23] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 20:47:26] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 20:47:26] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 20:47:26] __main__ - INFO - POST /api/predict_batch -> 200 (3.09s)
+[2026-07-08 20:47:34] __main__ - INFO - Batch predict: 1 files
+[2026-07-08 20:47:34] app.utils.parser - DEBUG - Parsing: project_proposal__1_.pdf (format: pdf, size: 1532492 bytes)
+[2026-07-08 20:47:34] app.utils.parser - DEBUG - PDF parsed: 35659 chars
+[2026-07-08 20:47:50] __main__ - DEBUG - Batch: project_proposal__1_.pdf -> Potentially Fake
+[2026-07-08 20:47:50] __main__ - INFO - Batch complete: 1 results (1 ok)
+[2026-07-08 20:47:50] __main__ - INFO - POST /api/predict_batch -> 200 (15.54s)
+[2026-07-08 20:48:56] __main__ - INFO - GET / -> 200 (0.00s)
+[2026-07-08 20:49:25] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 20:49:25] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 20:49:25] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 22 chars
+[2026-07-08 20:49:25] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 20:49:26] __main__ - INFO - Result: pranjalresume.pdf -> Potentially Fake (66.7%)
+[2026-07-08 20:49:26] __main__ - INFO - POST /api/predict -> 200 (0.99s)
+[2026-07-08 20:49:48] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Resume (10).pdf (format: pdf, size: 193810 bytes)
+[2026-07-08 20:49:48] app.utils.parser - DEBUG - PDF parsed: 5386 chars
+[2026-07-08 20:49:48] __main__ - INFO - Predicting: Sarshij-Karn-Resume (10).pdf | JD: 22 chars
+[2026-07-08 20:49:49] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 20:49:50] __main__ - INFO - Result: Sarshij-Karn-Resume (10).pdf -> Potentially Fake (66.7%)
+[2026-07-08 20:49:50] __main__ - INFO - POST /api/predict -> 200 (2.29s)
+[2026-07-08 20:53:34] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Resume (10).pdf (format: pdf, size: 193810 bytes)
+[2026-07-08 20:53:34] app.utils.parser - DEBUG - PDF parsed: 5386 chars
+[2026-07-08 20:53:34] __main__ - INFO - Predicting: Sarshij-Karn-Resume (10).pdf | JD: 22 chars
+[2026-07-08 20:53:35] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 20:53:37] __main__ - INFO - Result: Sarshij-Karn-Resume (10).pdf -> Potentially Fake (66.7%)
+[2026-07-08 20:53:37] __main__ - INFO - POST /api/predict -> 200 (2.33s)
+[2026-07-08 21:12:56] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 21:14:05] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 21:14:05] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 21:14:05] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 21:14:05] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 21:14:09] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:14:09] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:14:09] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:14:09] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:14:14] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:14] app.main - INFO - GET / -> 200 (0.01s)
+[2026-07-08 21:14:14] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 21:14:14] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:14] app.main - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 21:14:14] httpx - INFO - HTTP Request: GET http://testserver/batch "HTTP/1.1 200 OK"
+[2026-07-08 21:14:14] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:14] app.main - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 21:14:14] httpx - INFO - HTTP Request: GET http://testserver/analytics "HTTP/1.1 200 OK"
+[2026-07-08 21:14:14] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:14] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\data\models\decision_tree_model.pkl
+[2026-07-08 21:14:15] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 21:14:15] app.main - INFO - GET /api/model/info -> 200 (1.22s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/class_distribution -> 200 (0.12s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/class_distribution -> 200 (0.08s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/class_distribution -> 200 (0.08s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/dataset/stats -> 200 (0.09s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:15] app.main - INFO - GET /api/dataset/stats -> 200 (0.08s)
+[2026-07-08 21:14:15] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:14:15] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:16] app.main - INFO - GET /api/dataset/stats -> 200 (0.08s)
+[2026-07-08 21:14:16] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:14:16] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:147]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_field with data[185:204]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_value with data[206:251]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_field with data[253:265]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_value with data[267:277]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_part_data with data[281:364]
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:16] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:16] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:14:16] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:14:16] app.main - INFO - Predicting: test.txt | JD: 53 chars
+[2026-07-08 21:14:17] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 21:14:17] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:14:17] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:14:17] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:14:17] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:14:17] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:14:17] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:14:17] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict -> 200 (1.82s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:102]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[104:116]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[118:128]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[132:169]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - INFO - Predicting: test.txt | JD: 0 chars
+[2026-07-08 21:14:18] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:14:18] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict -> 200 (0.09s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:216]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[218:230]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[232:242]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[246:248]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: short.txt (format: txt, size: 2 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 2 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - WARNING - Too short or empty: short.txt (2 chars)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict -> 400 (0.00s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 400 Bad Request"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:125]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[163:182]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[184:229]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[231:243]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[245:255]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[259:342]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - INFO - Predicting: test.txt | JD: 31 chars
+[2026-07-08 21:14:18] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:14:18] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict -> 200 (0.14s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:112]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[150:169]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[171:204]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[208:224]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[262:281]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[283:328]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[330:342]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[344:354]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[358:392]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - INFO - Predicting: test.txt | JD: 16 chars
+[2026-07-08 21:14:18] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:14:18] app.main - INFO - Result: test.txt -> Authentic (100.0%)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict -> 200 (0.11s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:118]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[156:175]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[177:222]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[224:236]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[238:248]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[252:278]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 26 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 26 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - INFO - Predicting: test.txt | JD: 24 chars
+[2026-07-08 21:14:18] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:14:18] app.main - INFO - Result: test.txt -> Authentic (64.3%)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict -> 200 (0.10s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:213]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[215:227]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[229:239]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[243:280]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[318:337]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[339:382]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[384:396]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[398:408]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[412:449]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - DEBUG - Batch: b.txt -> Potentially Fake
+[2026-07-08 21:14:18] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict_batch -> 200 (0.19s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:98]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[136:155]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[157:204]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[206:218]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[220:230]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.main - INFO - Batch predict: 1 files
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: empty.txt (format: txt, size: 0 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 0 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - WARNING - Batch: empty.txt — too short
+[2026-07-08 21:14:18] app.main - INFO - Batch complete: 1 results (0 ok)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict_batch -> 200 (0.01s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:143]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[181:200]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[202:245]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[247:259]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[261:271]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[275:329]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[367:386]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[388:431]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_field with data[433:445]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_value with data[447:457]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_data with data[461:547]
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:14:18] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:14:18] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 54 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 54 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 86 bytes)
+[2026-07-08 21:14:18] app.utils.parser - DEBUG - TXT parsed: 86 chars (encoding: utf-8)
+[2026-07-08 21:14:18] app.main - DEBUG - Batch: b.txt -> Suspicious
+[2026-07-08 21:14:18] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:14:18] app.main - INFO - POST /api/predict_batch -> 200 (0.21s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] app.main - INFO - GET /static/confusion_matrix.png -> 200 (0.01s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: GET http://testserver/static/confusion_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] app.main - INFO - GET /static/correlation_matrix.png -> 200 (0.00s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: GET http://testserver/static/correlation_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:14:18] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:14:18] app.main - INFO - GET /static/feature_importance.png -> 200 (0.00s)
+[2026-07-08 21:14:18] httpx - INFO - HTTP Request: GET http://testserver/static/feature_importance.png "HTTP/1.1 200 OK"
+[2026-07-08 21:14:20] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 21:14:20] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 21:15:15] app.utils.nlp - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 21:15:16] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 21:15:30] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 21:15:42] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 21:15:42] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 21:15:42] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 21:15:42] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 21:15:44] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:15:44] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:15:44] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:15:44] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:45] app.main - INFO - GET / -> 200 (0.01s)
+[2026-07-08 21:15:45] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:45] app.main - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 21:15:45] httpx - INFO - HTTP Request: GET http://testserver/batch "HTTP/1.1 200 OK"
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:45] app.main - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 21:15:45] httpx - INFO - HTTP Request: GET http://testserver/analytics "HTTP/1.1 200 OK"
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:45] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\data\models\decision_tree_model.pkl
+[2026-07-08 21:15:45] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 21:15:45] app.main - INFO - GET /api/model/info -> 200 (0.18s)
+[2026-07-08 21:15:45] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:45] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:15:45] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:45] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:15:45] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:15:45] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] app.main - INFO - GET /api/class_distribution -> 200 (0.07s)
+[2026-07-08 21:15:46] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:15:46] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] app.main - INFO - GET /api/class_distribution -> 200 (0.05s)
+[2026-07-08 21:15:46] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:15:46] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] app.main - INFO - GET /api/class_distribution -> 200 (0.06s)
+[2026-07-08 21:15:46] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:15:46] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] app.main - INFO - GET /api/dataset/stats -> 200 (0.07s)
+[2026-07-08 21:15:46] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:15:46] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] app.main - INFO - GET /api/dataset/stats -> 200 (0.31s)
+[2026-07-08 21:15:46] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:15:46] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] app.main - INFO - GET /api/dataset/stats -> 200 (0.07s)
+[2026-07-08 21:15:46] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:15:46] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:147]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_field with data[185:204]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_value with data[206:251]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_field with data[253:265]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_value with data[267:277]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_part_data with data[281:364]
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:46] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:46] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:15:46] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:15:46] app.main - INFO - Predicting: test.txt | JD: 53 chars
+[2026-07-08 21:15:47] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 21:15:47] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:15:47] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:15:47] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:15:47] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:15:47] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:15:47] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:15:47] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:15:47] app.main - INFO - POST /api/predict -> 200 (1.13s)
+[2026-07-08 21:15:47] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:15:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:102]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[104:116]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[118:128]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_data with data[132:169]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:47] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:15:47] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:15:47] app.main - INFO - Predicting: test.txt | JD: 0 chars
+[2026-07-08 21:15:47] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:15:47] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:15:47] app.main - INFO - POST /api/predict -> 200 (0.09s)
+[2026-07-08 21:15:47] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:15:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:216]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[218:230]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[232:242]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_data with data[246:248]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:47] app.utils.parser - DEBUG - Parsing: short.txt (format: txt, size: 2 bytes)
+[2026-07-08 21:15:47] app.utils.parser - DEBUG - TXT parsed: 2 chars (encoding: utf-8)
+[2026-07-08 21:15:47] app.main - WARNING - Too short or empty: short.txt (2 chars)
+[2026-07-08 21:15:47] app.main - INFO - POST /api/predict -> 400 (0.00s)
+[2026-07-08 21:15:47] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 400 Bad Request"
+[2026-07-08 21:15:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:125]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[163:182]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[184:229]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_field with data[231:243]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_value with data[245:255]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_data with data[259:342]
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:47] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:47] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:15:47] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:15:47] app.main - INFO - Predicting: test.txt | JD: 31 chars
+[2026-07-08 21:15:47] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:15:48] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:15:48] app.main - INFO - POST /api/predict -> 200 (0.10s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:112]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[150:169]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[171:204]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[208:224]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[262:281]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[283:328]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[330:342]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[344:354]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[358:392]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - INFO - Predicting: test.txt | JD: 16 chars
+[2026-07-08 21:15:48] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:15:48] app.main - INFO - Result: test.txt -> Authentic (100.0%)
+[2026-07-08 21:15:48] app.main - INFO - POST /api/predict -> 200 (0.09s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:118]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[156:175]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[177:222]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[224:236]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[238:248]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[252:278]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 26 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 26 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - INFO - Predicting: test.txt | JD: 24 chars
+[2026-07-08 21:15:48] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:15:48] app.main - INFO - Result: test.txt -> Authentic (64.3%)
+[2026-07-08 21:15:48] app.main - INFO - POST /api/predict -> 200 (0.08s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:213]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[215:227]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[229:239]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[243:280]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[318:337]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[339:382]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[384:396]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[398:408]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[412:449]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:48] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - DEBUG - Batch: b.txt -> Potentially Fake
+[2026-07-08 21:15:48] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:15:48] app.main - INFO - POST /api/predict_batch -> 200 (0.15s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:98]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[136:155]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[157:204]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[206:218]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[220:230]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:48] app.main - INFO - Batch predict: 1 files
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: empty.txt (format: txt, size: 0 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 0 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - WARNING - Batch: empty.txt — too short
+[2026-07-08 21:15:48] app.main - INFO - Batch complete: 1 results (0 ok)
+[2026-07-08 21:15:48] app.main - INFO - POST /api/predict_batch -> 200 (0.00s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:143]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[181:200]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[202:245]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[247:259]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[261:271]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[275:329]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[367:386]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[388:431]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[433:445]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[447:457]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[461:547]
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:15:48] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:15:48] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 54 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 54 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 86 bytes)
+[2026-07-08 21:15:48] app.utils.parser - DEBUG - TXT parsed: 86 chars (encoding: utf-8)
+[2026-07-08 21:15:48] app.main - DEBUG - Batch: b.txt -> Suspicious
+[2026-07-08 21:15:48] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:15:48] app.main - INFO - POST /api/predict_batch -> 200 (0.17s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] app.main - INFO - GET /static/confusion_matrix.png -> 200 (0.00s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: GET http://testserver/static/confusion_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] app.main - INFO - GET /static/correlation_matrix.png -> 200 (0.00s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: GET http://testserver/static/correlation_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:15:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:15:48] app.main - INFO - GET /static/feature_importance.png -> 200 (0.00s)
+[2026-07-08 21:15:48] httpx - INFO - HTTP Request: GET http://testserver/static/feature_importance.png "HTTP/1.1 200 OK"
+[2026-07-08 21:15:49] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 21:15:49] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 21:19:16] app.utils.nlp - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 21:19:27] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 21:19:27] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 21:19:27] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 21:19:27] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 21:22:19] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 21:22:37] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 21:22:47] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 21:22:47] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 21:22:47] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 21:22:48] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 21:22:54] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 21:22:55] __main__ - INFO - GET /static/style.css -> 200 (0.29s)
+[2026-07-08 21:22:55] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 21:23:35] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 21:23:35] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 21:23:35] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 3536 chars
+[2026-07-08 21:23:36] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 21:23:36] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:23:36] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:23:36] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 21:23:36] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 21:23:37] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 21:23:37] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 21:23:39] app.models.classifier - INFO - Loading trained Decision Tree model from: /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/data/models/decision_tree_model.pkl
+[2026-07-08 21:23:39] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 21:23:40] __main__ - INFO - Result: pranjalresume.pdf -> Potentially Fake (66.7%)
+[2026-07-08 21:23:40] __main__ - INFO - POST /api/predict -> 200 (4.57s)
+[2026-07-08 21:24:34] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 21:24:34] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 21:24:34] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 22 chars
+[2026-07-08 21:24:35] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:24:35] __main__ - INFO - Result: pranjalresume.pdf -> Potentially Fake (66.7%)
+[2026-07-08 21:24:35] __main__ - INFO - POST /api/predict -> 200 (0.97s)
+[2026-07-08 21:28:39] __main__ - INFO - GET /batch -> 200 (0.03s)
+[2026-07-08 21:29:10] __main__ - INFO - Batch predict: 3 files
+[2026-07-08 21:29:10] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 21:29:10] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 21:29:10] __main__ - DEBUG - Batch: pranjalresume.pdf -> Authentic
+[2026-07-08 21:29:10] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 21:29:10] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 21:29:12] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 21:29:12] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (2).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 21:29:13] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 21:29:15] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (2).pdf -> Potentially Fake
+[2026-07-08 21:29:15] __main__ - INFO - Batch complete: 3 results (3 ok)
+[2026-07-08 21:29:15] __main__ - INFO - POST /api/predict_batch -> 200 (5.01s)
+[2026-07-08 21:29:36] __main__ - INFO - Batch predict: 3 files
+[2026-07-08 21:29:36] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 21:29:36] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 21:29:37] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 21:29:37] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 21:29:37] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 21:29:38] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 21:29:38] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (2).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 21:29:38] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 21:29:40] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (2).pdf -> Potentially Fake
+[2026-07-08 21:29:40] __main__ - INFO - Batch complete: 3 results (3 ok)
+[2026-07-08 21:29:40] __main__ - INFO - POST /api/predict_batch -> 200 (4.39s)
+[2026-07-08 21:30:26] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 21:30:26] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 21:30:26] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 21:30:27] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 21:30:27] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 21:30:27] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 21:30:29] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 21:30:29] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:30:29] __main__ - INFO - POST /api/predict_batch -> 200 (3.07s)
+[2026-07-08 21:36:02] app.utils.nlp - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 21:36:02] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 21:36:16] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 21:36:28] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 21:36:28] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 21:36:28] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 21:36:28] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 21:36:30] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:36:30] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:36:30] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:36:30] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:36:31] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:31] app.main - INFO - GET / -> 200 (0.01s)
+[2026-07-08 21:36:31] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 21:36:31] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /batch -> 200 (0.00s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/batch "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/analytics "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\data\models\decision_tree_model.pkl
+[2026-07-08 21:36:32] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 21:36:32] app.main - INFO - GET /api/model/info -> 200 (0.30s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/class_distribution -> 200 (0.08s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/class_distribution -> 200 (0.06s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/class_distribution -> 200 (0.05s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/dataset/stats -> 200 (0.05s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/dataset/stats -> 200 (0.27s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:36:32] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:32] app.main - INFO - GET /api/dataset/stats -> 200 (0.05s)
+[2026-07-08 21:36:32] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:36:33] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:147]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[185:204]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[206:251]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_field with data[253:265]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_value with data[267:277]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_part_data with data[281:364]
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:33] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:33] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:36:33] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:36:33] app.main - INFO - Predicting: test.txt | JD: 53 chars
+[2026-07-08 21:36:33] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 21:36:33] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:36:33] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:36:33] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:36:33] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:36:33] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:36:33] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:36:34] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict -> 200 (1.06s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:102]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[104:116]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[118:128]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[132:169]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - INFO - Predicting: test.txt | JD: 0 chars
+[2026-07-08 21:36:34] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:36:34] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict -> 200 (0.07s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:216]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[218:230]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[232:242]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[246:248]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: short.txt (format: txt, size: 2 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 2 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - WARNING - Too short or empty: short.txt (2 chars)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict -> 400 (0.00s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 400 Bad Request"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:125]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[163:182]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[184:229]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[231:243]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[245:255]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[259:342]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - INFO - Predicting: test.txt | JD: 31 chars
+[2026-07-08 21:36:34] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:36:34] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict -> 200 (0.10s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:112]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[150:169]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[171:204]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[208:224]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[262:281]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[283:328]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[330:342]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[344:354]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[358:392]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - INFO - Predicting: test.txt | JD: 16 chars
+[2026-07-08 21:36:34] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:36:34] app.main - INFO - Result: test.txt -> Authentic (100.0%)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict -> 200 (0.08s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:118]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[156:175]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[177:222]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[224:236]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[238:248]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[252:278]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 26 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 26 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - INFO - Predicting: test.txt | JD: 24 chars
+[2026-07-08 21:36:34] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:36:34] app.main - INFO - Result: test.txt -> Authentic (64.3%)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict -> 200 (0.07s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:213]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[215:227]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[229:239]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[243:280]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[318:337]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[339:382]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[384:396]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[398:408]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[412:449]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - DEBUG - Batch: b.txt -> Potentially Fake
+[2026-07-08 21:36:34] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict_batch -> 200 (0.13s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:98]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[136:155]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[157:204]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[206:218]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[220:230]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.main - INFO - Batch predict: 1 files
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: empty.txt (format: txt, size: 0 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 0 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - WARNING - Batch: empty.txt — too short
+[2026-07-08 21:36:34] app.main - INFO - Batch complete: 1 results (0 ok)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict_batch -> 200 (0.00s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:143]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[181:200]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[202:245]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[247:259]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[261:271]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[275:329]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[367:386]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[388:431]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_field with data[433:445]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_value with data[447:457]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_data with data[461:547]
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:36:34] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:36:34] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 54 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 54 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 86 bytes)
+[2026-07-08 21:36:34] app.utils.parser - DEBUG - TXT parsed: 86 chars (encoding: utf-8)
+[2026-07-08 21:36:34] app.main - DEBUG - Batch: b.txt -> Suspicious
+[2026-07-08 21:36:34] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:36:34] app.main - INFO - POST /api/predict_batch -> 200 (0.16s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] app.main - INFO - GET /static/confusion_matrix.png -> 200 (0.00s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: GET http://testserver/static/confusion_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] app.main - INFO - GET /static/correlation_matrix.png -> 200 (0.00s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: GET http://testserver/static/correlation_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:36:34] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:36:34] app.main - INFO - GET /static/feature_importance.png -> 200 (0.00s)
+[2026-07-08 21:36:34] httpx - INFO - HTTP Request: GET http://testserver/static/feature_importance.png "HTTP/1.1 200 OK"
+[2026-07-08 21:36:35] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 21:36:35] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 21:43:30] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 21:43:45] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 21:43:45] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 21:43:45] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 21:43:45] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 21:43:47] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:43:47] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:43:47] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:43:47] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:43:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:48] app.main - INFO - GET / -> 200 (0.01s)
+[2026-07-08 21:43:48] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 21:43:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:48] app.main - INFO - GET /batch -> 200 (0.00s)
+[2026-07-08 21:43:48] httpx - INFO - HTTP Request: GET http://testserver/batch "HTTP/1.1 200 OK"
+[2026-07-08 21:43:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:48] app.main - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 21:43:48] httpx - INFO - HTTP Request: GET http://testserver/analytics "HTTP/1.1 200 OK"
+[2026-07-08 21:43:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:48] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\data\models\decision_tree_model.pkl
+[2026-07-08 21:43:49] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 21:43:49] app.main - INFO - GET /api/model/info -> 200 (0.30s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/class_distribution -> 200 (0.08s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/class_distribution -> 200 (0.05s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/class_distribution -> 200 (0.23s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/dataset/stats -> 200 (0.06s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/dataset/stats -> 200 (0.06s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] app.main - INFO - GET /api/dataset/stats -> 200 (0.06s)
+[2026-07-08 21:43:49] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:43:49] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:147]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_field with data[185:204]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_value with data[206:251]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_field with data[253:265]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_value with data[267:277]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_part_data with data[281:364]
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:49] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:49] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:43:49] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:43:49] app.main - INFO - Predicting: test.txt | JD: 53 chars
+[2026-07-08 21:43:52] app.utils.nlp - INFO - Loaded spaCy model en_core_web_md
+[2026-07-08 21:43:52] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:43:52] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:43:52] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:43:52] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:43:52] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:43:52] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:43:52] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:43:52] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:43:52] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:43:52] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:43:52] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:43:52] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict -> 200 (2.67s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:43:52] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:102]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[104:116]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[118:128]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[132:169]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.main - INFO - Predicting: test.txt | JD: 0 chars
+[2026-07-08 21:43:52] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:43:52] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict -> 200 (0.07s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:43:52] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:216]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[218:230]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[232:242]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[246:248]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: short.txt (format: txt, size: 2 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 2 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.main - WARNING - Too short or empty: short.txt (2 chars)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict -> 400 (0.00s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 400 Bad Request"
+[2026-07-08 21:43:52] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:125]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[163:182]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[184:229]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[231:243]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[245:255]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[259:342]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.main - INFO - Predicting: test.txt | JD: 31 chars
+[2026-07-08 21:43:52] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:43:52] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict -> 200 (0.09s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:43:52] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:112]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[150:169]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[171:204]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[208:224]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[262:281]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[283:328]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[330:342]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[344:354]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[358:392]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.main - INFO - Predicting: test.txt | JD: 16 chars
+[2026-07-08 21:43:52] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:43:52] app.main - INFO - Result: test.txt -> Authentic (100.0%)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict -> 200 (0.09s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:43:52] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:118]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[156:175]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[177:222]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[224:236]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[238:248]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[252:278]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 26 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 26 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.main - INFO - Predicting: test.txt | JD: 24 chars
+[2026-07-08 21:43:52] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:43:52] app.main - INFO - Result: test.txt -> Authentic (64.3%)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict -> 200 (0.08s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:43:52] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:213]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[215:227]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[229:239]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[243:280]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[318:337]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[339:382]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_field with data[384:396]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_value with data[398:408]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_data with data[412:449]
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:52] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:52] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:43:52] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:43:52] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:43:52] app.main - DEBUG - Batch: b.txt -> Potentially Fake
+[2026-07-08 21:43:52] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:43:52] app.main - INFO - POST /api/predict_batch -> 200 (0.15s)
+[2026-07-08 21:43:52] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:43:53] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:98]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[136:155]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[157:204]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[206:218]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[220:230]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:53] app.main - INFO - Batch predict: 1 files
+[2026-07-08 21:43:53] app.main - WARNING - Batch: empty.txt - validation failed: Uploaded file is empty.
+[2026-07-08 21:43:53] app.main - INFO - Batch complete: 1 results (0 ok)
+[2026-07-08 21:43:53] app.main - INFO - POST /api/predict_batch -> 200 (0.00s)
+[2026-07-08 21:43:53] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:43:53] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:143]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[181:200]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[202:245]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[247:259]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[261:271]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_data with data[275:329]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[367:386]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[388:431]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_field with data[433:445]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_value with data[447:457]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_data with data[461:547]
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:43:53] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:43:53] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:43:53] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 54 bytes)
+[2026-07-08 21:43:53] app.utils.parser - DEBUG - TXT parsed: 54 chars (encoding: utf-8)
+[2026-07-08 21:43:53] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 86 bytes)
+[2026-07-08 21:43:53] app.utils.parser - DEBUG - TXT parsed: 86 chars (encoding: utf-8)
+[2026-07-08 21:43:53] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:43:53] app.main - DEBUG - Batch: b.txt -> Suspicious
+[2026-07-08 21:43:53] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:43:53] app.main - INFO - POST /api/predict_batch -> 200 (0.18s)
+[2026-07-08 21:43:53] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:43:53] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:53] app.main - INFO - GET /static/confusion_matrix.png -> 200 (0.00s)
+[2026-07-08 21:43:53] httpx - INFO - HTTP Request: GET http://testserver/static/confusion_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:43:53] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:53] app.main - INFO - GET /static/correlation_matrix.png -> 200 (0.00s)
+[2026-07-08 21:43:53] httpx - INFO - HTTP Request: GET http://testserver/static/correlation_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:43:53] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:43:53] app.main - INFO - GET /static/feature_importance.png -> 200 (0.00s)
+[2026-07-08 21:43:53] httpx - INFO - HTTP Request: GET http://testserver/static/feature_importance.png "HTTP/1.1 200 OK"
+[2026-07-08 21:43:54] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 21:43:54] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 21:44:32] app.utils.nlp - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 21:44:34] app.utils.nlp - INFO - Loaded spaCy model en_core_web_md
+[2026-07-08 21:45:34] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\logs\app.log
+[2026-07-08 21:45:44] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 21:45:44] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 21:45:44] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 21:45:44] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 21:45:46] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:45:46] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:45:46] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 21:45:46] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET / -> 200 (0.01s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/ "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /batch -> 200 (0.00s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/batch "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/analytics "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.models.classifier - INFO - Loading trained Decision Tree model from: C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\tests\..\data\models\decision_tree_model.pkl
+[2026-07-08 21:45:47] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 21:45:47] app.main - INFO - GET /api/model/info -> 200 (0.16s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/api/model/info "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /api/class_distribution -> 200 (0.07s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /api/class_distribution -> 200 (0.05s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:47] app.main - INFO - GET /api/class_distribution -> 200 (0.24s)
+[2026-07-08 21:45:47] httpx - INFO - HTTP Request: GET http://testserver/api/class_distribution "HTTP/1.1 200 OK"
+[2026-07-08 21:45:47] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:48] app.main - INFO - GET /api/dataset/stats -> 200 (0.06s)
+[2026-07-08 21:45:48] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:45:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:48] app.main - INFO - GET /api/dataset/stats -> 200 (0.06s)
+[2026-07-08 21:45:48] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:45:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:48] app.main - INFO - GET /api/dataset/stats -> 200 (0.06s)
+[2026-07-08 21:45:48] httpx - INFO - HTTP Request: GET http://testserver/api/dataset/stats "HTTP/1.1 200 OK"
+[2026-07-08 21:45:48] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:147]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[185:204]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[206:251]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_field with data[253:265]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_value with data[267:277]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_part_data with data[281:364]
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:48] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:48] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:45:48] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:45:48] app.main - INFO - Predicting: test.txt | JD: 53 chars
+[2026-07-08 21:45:48] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:45:48] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:45:48] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 21:45:48] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:45:48] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:45:48] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:45:48] sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cuda:0
+[2026-07-08 21:45:48] sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+[2026-07-08 21:45:48] sentence_transformers.SentenceTransformer - WARNING - No sentence-transformers model found with name sentence-transformers/all-MiniLM-L6-v2. Creating a new one with mean pooling.
+[2026-07-08 21:45:48] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:45:48] app.models.embedder - WARNING - Failed to load SBERT model 'all-MiniLM-L6-v2': We couldn't connect to 'https://huggingface.co' to load the files, and couldn't find them in the cached files.
+Check your internet connection or see how to run the library in offline mode at 'https://huggingface.co/docs/transformers/installation#offline-mode'.. Using dummy zero embeddings.
+[2026-07-08 21:45:49] app.utils.nlp - INFO - Loaded spaCy model en_core_web_md
+[2026-07-08 21:45:50] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict -> 200 (2.04s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:102]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[104:116]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[118:128]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[132:169]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - INFO - Predicting: test.txt | JD: 0 chars
+[2026-07-08 21:45:50] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:45:50] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict -> 200 (0.05s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:216]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[218:230]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[232:242]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[246:248]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: short.txt (format: txt, size: 2 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 2 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - WARNING - Too short or empty: short.txt (2 chars)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict -> 400 (0.00s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 400 Bad Request"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:125]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[163:182]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[184:229]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[231:243]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[245:255]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[259:342]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 83 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 83 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - INFO - Predicting: test.txt | JD: 31 chars
+[2026-07-08 21:45:50] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:45:50] app.main - INFO - Result: test.txt -> Potentially Fake (66.7%)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict -> 200 (0.08s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:84]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[88:112]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[150:169]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[171:204]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[208:224]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[262:281]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[283:328]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[330:342]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[344:354]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[358:392]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 34 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 34 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - INFO - Predicting: test.txt | JD: 16 chars
+[2026-07-08 21:45:50] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:45:50] app.main - INFO - Result: test.txt -> Authentic (100.0%)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict -> 200 (0.07s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:118]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[156:175]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[177:222]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[224:236]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[238:248]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[252:278]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: test.txt (format: txt, size: 26 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 26 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - INFO - Predicting: test.txt | JD: 24 chars
+[2026-07-08 21:45:50] app.main - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 21:45:50] app.main - INFO - Result: test.txt -> Authentic (64.3%)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict -> 200 (0.06s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:111]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[149:168]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[170:213]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[215:227]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[229:239]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[243:280]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[318:337]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[339:382]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[384:396]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[398:408]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[412:449]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 37 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 37 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:45:50] app.main - DEBUG - Batch: b.txt -> Potentially Fake
+[2026-07-08 21:45:50] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict_batch -> 200 (0.13s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:98]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[136:155]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[157:204]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[206:218]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[220:230]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.main - INFO - Batch predict: 1 files
+[2026-07-08 21:45:50] app.main - WARNING - Batch: empty.txt - validation failed: Uploaded file is empty.
+[2026-07-08 21:45:50] app.main - INFO - Batch complete: 1 results (0 ok)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict_batch -> 200 (0.00s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[36:55]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[57:90]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[94:143]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[181:200]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[202:245]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[247:259]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[261:271]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[275:329]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_begin with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[367:386]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[388:431]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_field with data[433:445]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_value with data[447:457]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_header_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_headers_finished with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_data with data[461:547]
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_part_end with no data
+[2026-07-08 21:45:50] python_multipart.multipart - DEBUG - Calling on_end with no data
+[2026-07-08 21:45:50] app.main - INFO - Batch predict: 2 files
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: a.txt (format: txt, size: 54 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 54 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - Parsing: b.txt (format: txt, size: 86 bytes)
+[2026-07-08 21:45:50] app.utils.parser - DEBUG - TXT parsed: 86 chars (encoding: utf-8)
+[2026-07-08 21:45:50] app.main - DEBUG - Batch: a.txt -> Potentially Fake
+[2026-07-08 21:45:50] app.main - DEBUG - Batch: b.txt -> Suspicious
+[2026-07-08 21:45:50] app.main - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 21:45:50] app.main - INFO - POST /api/predict_batch -> 200 (0.11s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: POST http://testserver/api/predict_batch "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] app.main - INFO - GET /static/confusion_matrix.png -> 200 (0.00s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: GET http://testserver/static/confusion_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] app.main - INFO - GET /static/correlation_matrix.png -> 200 (0.00s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: GET http://testserver/static/correlation_matrix.png "HTTP/1.1 200 OK"
+[2026-07-08 21:45:50] asyncio - DEBUG - Using proactor: IocpProactor
+[2026-07-08 21:45:50] app.main - INFO - GET /static/feature_importance.png -> 200 (0.00s)
+[2026-07-08 21:45:50] httpx - INFO - HTTP Request: GET http://testserver/static/feature_importance.png "HTTP/1.1 200 OK"
+[2026-07-08 21:45:51] app.utils.parser - DEBUG - TXT parsed: 12 chars (encoding: utf-8)
+[2026-07-08 21:45:51] app.utils.parser - DEBUG - DOCX parsed: 22 chars
+[2026-07-08 21:54:17] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 21:54:43] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 22:06:27] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 22:08:31] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 22:08:46] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 22:08:46] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 22:08:46] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 22:08:46] app.models.classifier - INFO - Loading trained Decision Tree model from: /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/data/models/decision_tree_model.pkl
+[2026-07-08 22:08:46] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 22:08:46] app.utils.nlp - WARNING - spaCy model en_core_web_md not found. Install via: python -m spacy download en_core_web_md
+[2026-07-08 22:08:46] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 22:08:46] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 22:08:46] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 22:08:47] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 22:08:48] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 22:08:48] __main__ - INFO - SBERT model pre-warmed successfully
+[2026-07-08 22:08:52] __main__ - INFO - GET /batch -> 200 (0.04s)
+[2026-07-08 22:08:53] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 22:09:02] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 22:09:29] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 22:09:29] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 22:09:29] __main__ - INFO - Predicting: pranjalresume.pdf | JD: 3000 chars
+[2026-07-08 22:09:29] __main__ - DEBUG - Extracted: 0.0 years exp, graduation year 2022
+[2026-07-08 22:09:30] __main__ - INFO - Result: pranjalresume.pdf -> Potentially Fake (66.7%)
+[2026-07-08 22:09:30] __main__ - INFO - POST /api/predict -> 200 (1.70s)
+[2026-07-08 22:10:54] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 22:10:54] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 22:10:54] __main__ - INFO - Predicting: Sarshij-Karn-Real-Resume (1).pdf | JD: 3000 chars
+[2026-07-08 22:10:54] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 22:10:55] __main__ - INFO - Result: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake (66.7%)
+[2026-07-08 22:10:55] __main__ - INFO - POST /api/predict -> 200 (0.55s)
+[2026-07-08 22:11:13] __main__ - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 22:11:37] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 22:11:37] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 22:11:37] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 22:11:37] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 22:11:37] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 22:11:37] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 22:11:37] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 22:11:37] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 22:11:37] __main__ - INFO - POST /api/predict_batch -> 200 (0.73s)
+[2026-07-08 22:38:45] __main__ - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 22:38:45] __main__ - INFO - GET /static/style.css -> 200 (0.07s)
+[2026-07-08 22:38:46] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 22:38:53] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:38:54] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 22:41:32] __main__ - INFO - GET / -> 200 (0.04s)
+[2026-07-08 22:41:32] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 22:42:08] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:42:08] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 22:44:08] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:44:08] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 22:44:43] __main__ - INFO - GET /batch -> 200 (0.02s)
+[2026-07-08 22:45:06] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 22:45:06] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 22:45:07] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 22:45:07] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 22:45:07] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 22:45:07] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 22:45:07] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 22:45:07] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 22:45:07] __main__ - INFO - POST /api/predict_batch -> 200 (0.68s)
+[2026-07-08 22:45:52] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 22:45:52] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 22:45:52] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 22:45:52] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 22:45:52] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 22:45:53] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 22:45:53] __main__ - DEBUG - Batch: pranjalresume.pdf -> Authentic
+[2026-07-08 22:45:53] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 22:45:53] __main__ - INFO - POST /api/predict_batch -> 200 (1.03s)
+[2026-07-08 22:46:39] __main__ - INFO - Batch predict: 2 files
+[2026-07-08 22:46:39] app.utils.parser - DEBUG - Parsing: pranjalresume.pdf (format: pdf, size: 132966 bytes)
+[2026-07-08 22:46:39] app.utils.parser - DEBUG - PDF parsed: 2129 chars
+[2026-07-08 22:46:39] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 22:46:40] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 22:46:40] __main__ - DEBUG - Batch: pranjalresume.pdf -> Potentially Fake
+[2026-07-08 22:46:40] __main__ - DEBUG - Batch: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake
+[2026-07-08 22:46:40] __main__ - INFO - Batch complete: 2 results (2 ok)
+[2026-07-08 22:46:40] __main__ - INFO - POST /api/predict_batch -> 200 (0.68s)
+[2026-07-08 22:52:17] __main__ - INFO - GET /batch -> 200 (0.02s)
+[2026-07-08 22:52:17] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 22:52:21] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:52:22] __main__ - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 22:52:23] __main__ - INFO - GET /analytics -> 200 (0.04s)
+[2026-07-08 22:52:24] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:55:26] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:55:26] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 22:56:30] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 22:56:41] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 22:57:14] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 22:57:14] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 22:57:14] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 22:57:14] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 22:57:14] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 22:57:14] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 23:00:38] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 23:00:38] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 23:00:41] __main__ - INFO - GET / -> 200 (0.00s)
+[2026-07-08 23:01:33] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 23:01:34] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 23:02:43] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:02:43] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 23:05:39] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:05:40] __main__ - INFO - GET /static/style.css -> 304 (0.04s)
+[2026-07-08 23:08:05] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:08:05] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 23:09:35] __main__ - INFO - GET / -> 200 (0.00s)
+[2026-07-08 23:09:36] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 23:15:45] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:15:45] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 23:15:52] __main__ - INFO - GET /analytics -> 200 (0.02s)
+[2026-07-08 23:16:50] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 23:17:18] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 23:17:19] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 23:17:19] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 23:17:19] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 23:17:21] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 23:17:22] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 23:17:32] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 23:17:33] __main__ - INFO - GET /analytics -> 200 (0.00s)
+[2026-07-08 23:23:17] __main__ - INFO - GET /analytics -> 200 (0.02s)
+[2026-07-08 23:23:18] __main__ - INFO - GET /static/style.css -> 304 (0.04s)
+[2026-07-08 23:23:19] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:24:11] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:24:12] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:24:19] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 23:24:39] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 23:24:50] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 23:24:50] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 23:24:50] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 23:24:50] app.models.classifier - INFO - Loading trained Decision Tree model from: /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/data/models/decision_tree_model.pkl
+[2026-07-08 23:24:50] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 23:24:50] app.utils.nlp - WARNING - spaCy model en_core_web_md not found. Install via: python -m spacy download en_core_web_md
+[2026-07-08 23:24:50] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 23:24:50] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 23:24:50] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 23:24:50] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 23:24:51] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 23:24:51] __main__ - INFO - SBERT model pre-warmed successfully
+[2026-07-08 23:24:54] __main__ - INFO - GET / -> 200 (0.03s)
+[2026-07-08 23:24:55] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 23:24:58] __main__ - INFO - GET /analytics -> 200 (0.03s)
+[2026-07-08 23:38:52] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 23:38:52] __main__ - INFO - GET /static/style.css -> 200 (0.04s)
+[2026-07-08 23:38:59] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:40:26] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:40:26] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 23:40:37] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 23:40:37] __main__ - INFO - GET /static/style.css -> 200 (0.02s)
+[2026-07-08 23:40:37] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 23:41:25] __main__ - INFO - Resume Screener API shutting down.
+[2026-07-08 23:52:25] app.utils.parser - INFO - Logging initialized -> /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/logs/app.log
+[2026-07-08 23:52:34] __main__ - INFO - Starting server on http://0.0.0.0:8000
+[2026-07-08 23:52:34] asyncio - DEBUG - Using selector: EpollSelector
+[2026-07-08 23:52:34] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 23:52:34] app.models.classifier - INFO - Loading trained Decision Tree model from: /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/data/models/decision_tree_model.pkl
+[2026-07-08 23:52:35] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 23:52:35] app.utils.nlp - WARNING - spaCy model en_core_web_md not found. Install via: python -m spacy download en_core_web_md
+[2026-07-08 23:52:35] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 23:52:35] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 23:52:35] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 23:52:35] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}

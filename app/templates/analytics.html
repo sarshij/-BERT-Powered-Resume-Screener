@@ -1,280 +1,421 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXUS AI — Deep Insights Dashboard</title>
-<meta name="description" content="Real-time analytics — Decision Tree accuracy, feature importance, class distribution and confusion matrix for the BERT Resume Screener.">
-<link rel="stylesheet" href="/static/style.css?v=6">
-<style>
-  /* Extra analytics-specific styles */
-  .info-grid { display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:10px;margin-top:12px; }
-  .info-tile { background:rgba(0,8,20,0.8);border:1px solid var(--border);border-radius:var(--radius-sm);padding:14px;transition:all 0.3s var(--spring);cursor:default;position:relative;overflow:hidden; }
-  .info-tile:hover { border-color:var(--border-mid);background:var(--cyan-dim);transform:translateY(-3px) scale(1.02);box-shadow:0 8px 24px rgba(0,0,0,0.3); }
-  .info-tile::after { content:'';position:absolute;top:0;left:-100%;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--cyan),transparent);transition:left 0.5s ease; }
-  .info-tile:hover::after { left:100%; }
-  .info-tile-label { font-family:var(--font-mono);font-size:0.48rem;letter-spacing:0.22em;color:var(--text-muted);text-transform:uppercase;margin-bottom:6px; }
-  .info-tile-val { font-family:var(--font-display);font-size:0.85rem;font-weight:600;color:var(--cyan); }
-
-  .matrix-img-wrap { position:relative;overflow:hidden;border-radius:var(--radius-sm);border:1px solid var(--border); }
-  .matrix-img-wrap img { width:100%;display:block;filter:brightness(0.88) contrast(1.08) hue-rotate(10deg);transition:filter 0.3s ease,transform 0.3s ease; }
-  .matrix-img-wrap img:hover { filter:brightness(1) contrast(1.1);transform:scale(1.01); }
-  .matrix-img-wrap::after { content:'';position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,transparent,transparent 3px,rgba(0,9,18,0.06) 3px,rgba(0,9,18,0.06) 4px); }
-
-  .radar-line { height:2px;margin:0 0 36px;background:linear-gradient(90deg,transparent,var(--violet),var(--cyan),var(--mint),transparent);animation:dividerPulse 3s ease-in-out infinite; }
-
-  .acc-bar-wrap { margin-top:10px; }
-  .acc-bar-track { height:8px;background:rgba(0,212,255,0.07);border-radius:4px;overflow:hidden;border:1px solid var(--border);margin-bottom:5px; }
-  .acc-bar-fill { height:100%;border-radius:4px;background:linear-gradient(90deg,var(--violet),var(--cyan),var(--mint));box-shadow:0 0 12px rgba(0,212,255,0.4);transition:width 1.5s var(--ease) 0.8s; }
-  .acc-bar-tiers { display:flex;justify-content:space-between;font-family:var(--font-mono);font-size:0.46rem;letter-spacing:0.15em;color:var(--text-dim); }
-  .hero-note { font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.15em;color:var(--text-muted);margin-top:10px; }
-
-  /* Animated SVG decision tree */
-  .dt-svg-wrap { display:flex;justify-content:center;padding:16px 0; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ClearHire — Analytics</title>
+  <meta name="description" content="Model performance, feature importance, and system analytics for the ClearHire resume screener.">
+  <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
 
-<!-- ── Background Layers ───────────────────────────────────── -->
-<canvas id="bg-canvas"></canvas>
-<div class="circuit-svg-bg">
-<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
-      <stop offset="0%" stop-color="#9b5de5" stop-opacity="0"/>
-      <stop offset="50%" stop-color="#9b5de5" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#00ffaa" stop-opacity="0"/>
-    </linearGradient>
-    <pattern id="circuitPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="40" x2="60" y2="40" stroke="#9b5de5" stroke-width="0.4" opacity="0.1"/>
-      <line x1="80" y1="40" x2="200" y2="40" stroke="#9b5de5" stroke-width="0.4" opacity="0.07"/>
-      <line x1="0" y1="120" x2="120" y2="120" stroke="#00ffaa" stroke-width="0.4" opacity="0.06"/>
-      <line x1="60" y1="0" x2="60" y2="40" stroke="#9b5de5" stroke-width="0.4" opacity="0.08"/>
-      <line x1="140" y1="40" x2="140" y2="120" stroke="#00ffaa" stroke-width="0.4" opacity="0.06"/>
-      <circle cx="60" cy="40" r="2" fill="#9b5de5" opacity="0.15"/>
-      <circle cx="140" cy="120" r="2" fill="#00ffaa" opacity="0.1"/>
-      <rect x="85" y="75" width="30" height="20" rx="2" fill="none" stroke="#9b5de5" stroke-width="0.4" opacity="0.07"/>
-    </pattern>
-  </defs>
-  <rect width="100%" height="100%" fill="url(#circuitPattern)"/>
-  <line x1="0" y1="250" x2="100%" y2="250" stroke="url(#traceGrad)" stroke-width="0.8" stroke-dasharray="15,85" style="animation:sweepH 7s linear infinite;"/>
-</svg>
+<!-- ── Header ────────────────────────────────────────────── -->
+<header>
+  <div class="nav-container">
+    <a href="/" class="logo">
+      <div class="logo-mark">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round">
+          <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+          <polyline points="14 2 14 8 20 8"/>
+        </svg>
+      </div>
+      <span class="logo-text">ClearHire</span>
+    </a>
+    <nav class="nav-links">
+      <a href="/" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+        Single Resume
+      </a>
+      <a href="/batch" class="nav-link">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+        Batch Screening
+      </a>
+      <a href="/analytics" class="nav-link active">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        Analytics
+      </a>
+    </nav>
+    <button class="nav-mobile-btn" id="mobileBtn" aria-label="Open menu">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu-panel" id="mobilePanel">
+  <div class="mobile-menu-header">
+    <a href="/" class="logo">
+      <div class="logo-mark" style="width:1.875rem;height:1.875rem;border-radius:8px;">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <span class="logo-text" style="font-size:1.05rem;">ClearHire</span>
+    </a>
+    <button class="mobile-menu-close" id="mobileClose">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <nav class="mobile-nav">
+    <a href="/" class="mobile-nav-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>Single Resume</a>
+    <a href="/batch" class="mobile-nav-link"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>Batch Screening</a>
+    <a href="/analytics" class="mobile-nav-link active"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>Analytics</a>
+  </nav>
+  <div class="mobile-menu-footer"><p style="font-size:0.75rem;color:var(--gray-400);">© 2026 ClearHire · Academic Project</p></div>
 </div>
-<div class="grid-overlay"></div>
-<div class="scanline-overlay"></div>
-<div class="vignette-overlay"></div>
-<div class="particle-field" id="particleField"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<div class="cursor-dot" id="cursorDot"></div>
 
-<!-- ── Navigation ─────────────────────────────────────────── -->
-<nav>
-  <a href="/" class="logo">
-    <div class="logo-hex">
-      <svg viewBox="0 0 30 30" fill="none"><polygon points="15,2 27,8.5 27,21.5 15,28 3,21.5 3,8.5" fill="none" stroke="#00d4ff" stroke-width="1.2"><animateTransform attributeName="transform" type="rotate" from="0 15 15" to="360 15 15" dur="20s" repeatCount="indefinite"/></polygon><circle cx="15" cy="15" r="4" fill="#00d4ff" opacity="0.5"><animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite"/></circle></svg>
-    </div>
-    <div>NEXUS<span style="color:var(--violet)">AI</span><span class="logo-sub">RESUME INTELLIGENCE v2.0</span></div>
-  </a>
-  <div class="nav-center">
-    <a href="/">⬡ Single</a>
-    <a href="/batch">⬡ Batch</a>
-    <a href="/analytics" class="active">⬡ Insights</a>
-  </div>
-  <div class="nav-right">
-    <div class="status-pill"><span class="dot-live"></span> SYSTEM ONLINE</div>
-    <span style="color:var(--text-dim)">ANALYTICS CORE</span>
-  </div>
-</nav>
-
-<div class="page">
-<div class="container">
+<!-- ── Main ──────────────────────────────────────────────── -->
+<main>
 
   <!-- Hero -->
-  <section class="hero">
-    <div class="hero-eyebrow">◈ MODEL ANALYTICS & PERFORMANCE METRICS</div>
-    <h1>Deep<br><span class="glow-word" data-text="Insights.">Insights.</span></h1>
-    <p>Real-time metrics from 4,000 labeled resumes — Decision Tree classifier trained and validated with 5-fold cross-validation.</p>
-    <div class="typing-container"><span id="typingText"></span><span class="typing-cursor"></span></div>
+  <section class="hero-section">
+    <svg style="position:absolute;inset:0;width:100%;height:100%;pointer-events:none;opacity:0.3;" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse"><path d="M 40 0 L 0 0 0 40" fill="none" stroke="#3B82F6" stroke-width="0.5" stroke-opacity="0.25"/></pattern></defs>
+      <rect width="100%" height="100%" fill="url(#grid)"/>
+    </svg>
+    <div style="position:relative;z-index:1;max-width:640px;margin:0 auto;">
+      <div class="hero-eyebrow animate-fadeInUp">
+        <span class="live-dot"></span>
+        Model Performance · Feature Importance · System Metrics
+      </div>
+      <h1 class="hero-title animate-fadeInUp delay-100">
+        <span class="grad">Analytics</span> &amp; Model Insights
+      </h1>
+      <p class="hero-subtitle animate-fadeInUp delay-200">
+        Decision Tree classifier performance, validation feature analysis, and system-wide accuracy metrics.
+      </p>
+    </div>
   </section>
 
-  <div class="radar-line"></div>
-
-  <!-- Hero Stats -->
-  <div class="hero-stats" id="heroStats">
-    <div class="hs-item"><div class="hs-num" id="totalSamples">—</div><div class="hs-label">Training Samples</div></div>
-    <div class="hs-item"><div class="hs-num" id="testAccuracy">—</div><div class="hs-label">Test Accuracy</div></div>
-    <div class="hs-item"><div class="hs-num" id="testF1">—</div><div class="hs-label">Weighted F1 Score</div></div>
-  </div>
-
-  <!-- Animated Decision Tree SVG -->
-  <div class="card" style="margin-bottom:18px;">
-    <div class="card-inner"></div>
-    <div class="card-sweep"></div>
-    <div class="card-title">⬡ DECISION TREE VISUALIZATION</div>
-    <div class="dt-svg-wrap">
-      <svg viewBox="0 0 320 160" width="320" height="160" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <!-- Root -->
-        <circle cx="160" cy="20" r="10" fill="rgba(0,212,255,0.15)" stroke="#00d4ff" stroke-width="1.2">
-          <animate attributeName="r" values="9;11;9" dur="2s" repeatCount="indefinite"/>
-        </circle>
-        <text x="160" y="23" text-anchor="middle" fill="#00d4ff" font-family="Share Tech Mono" font-size="7">ROOT</text>
-        <!-- Level 1 -->
-        <line x1="155" y1="30" x2="80" y2="58" stroke="#00d4ff" stroke-width="0.8" opacity="0.5" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.5s" repeatCount="indefinite"/></line>
-        <line x1="165" y1="30" x2="240" y2="58" stroke="#00d4ff" stroke-width="0.8" opacity="0.5" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.5s" begin="0.3s" repeatCount="indefinite"/></line>
-        <circle cx="80" cy="65" r="8" fill="rgba(155,93,229,0.15)" stroke="#9b5de5" stroke-width="1"/>
-        <text x="80" y="68" text-anchor="middle" fill="#9b5de5" font-family="Share Tech Mono" font-size="5.5">SIM&gt;0.6</text>
-        <circle cx="240" cy="65" r="8" fill="rgba(155,93,229,0.15)" stroke="#9b5de5" stroke-width="1"/>
-        <text x="240" y="68" text-anchor="middle" fill="#9b5de5" font-family="Share Tech Mono" font-size="5.5">SIM≤0.6</text>
-        <!-- Level 2 -->
-        <line x1="75" y1="73" x2="40" y2="108" stroke="#9b5de5" stroke-width="0.6" opacity="0.4" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.5s" begin="0.6s" repeatCount="indefinite"/></line>
-        <line x1="85" y1="73" x2="120" y2="108" stroke="#9b5de5" stroke-width="0.6" opacity="0.4" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.5s" begin="0.9s" repeatCount="indefinite"/></line>
-        <line x1="235" y1="73" x2="200" y2="108" stroke="#9b5de5" stroke-width="0.6" opacity="0.4" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.5s" begin="1.2s" repeatCount="indefinite"/></line>
-        <line x1="245" y1="73" x2="280" y2="108" stroke="#9b5de5" stroke-width="0.6" opacity="0.4" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1.5s" begin="1.5s" repeatCount="indefinite"/></line>
-        <!-- Leaf: Authentic -->
-        <rect x="22" y="108" width="38" height="18" rx="4" fill="rgba(0,255,170,0.12)" stroke="#00ffaa" stroke-width="0.8">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" repeatCount="indefinite"/>
-        </rect>
-        <text x="41" y="120" text-anchor="middle" fill="#00ffaa" font-family="Share Tech Mono" font-size="5.5">AUTH</text>
-        <!-- Leaf: Suspicious -->
-        <rect x="102" y="108" width="38" height="18" rx="4" fill="rgba(255,214,10,0.12)" stroke="#ffd60a" stroke-width="0.8">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="0.5s" repeatCount="indefinite"/>
-        </rect>
-        <text x="121" y="120" text-anchor="middle" fill="#ffd60a" font-family="Share Tech Mono" font-size="5.5">SUSP</text>
-        <!-- Leaf: Suspicious 2 -->
-        <rect x="182" y="108" width="38" height="18" rx="4" fill="rgba(255,214,10,0.12)" stroke="#ffd60a" stroke-width="0.8">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="1s" repeatCount="indefinite"/>
-        </rect>
-        <text x="201" y="120" text-anchor="middle" fill="#ffd60a" font-family="Share Tech Mono" font-size="5.5">SUSP</text>
-        <!-- Leaf: Fake -->
-        <rect x="262" y="108" width="38" height="18" rx="4" fill="rgba(255,45,85,0.12)" stroke="#ff2d55" stroke-width="0.8">
-          <animate attributeName="opacity" values="0.6;1;0.6" dur="2.5s" begin="1.5s" repeatCount="indefinite"/>
-        </rect>
-        <text x="281" y="120" text-anchor="middle" fill="#ff2d55" font-family="Share Tech Mono" font-size="5.5">FAKE</text>
-        <!-- Labels -->
-        <text x="60" y="148" fill="#00d4ff" font-family="Share Tech Mono" font-size="5" opacity="0.4">◈ SIMPLIFIED TREE STRUCTURE · 17 FEATURES · DEPTH=AUTO</text>
-      </svg>
+  <!-- Loading -->
+  <div id="analyticsLoading" class="loading-panel" style="padding:5rem 2rem;">
+    <div class="loading-spinner"></div>
+    <div>
+      <div class="loading-label">Loading analytics data...</div>
+      <div class="loading-sub">Fetching model metrics from the API</div>
     </div>
   </div>
 
-  <!-- Accuracy Bar -->
-  <div class="card" style="margin-bottom:18px;">
-    <div class="card-inner"></div>
-    <div class="card-sweep"></div>
-    <div class="card-title">⬡ ACCURACY BENCHMARK</div>
-    <div class="acc-bar-wrap">
-      <div class="acc-bar-track"><div class="acc-bar-fill" id="accBarFill" style="width:0%"></div></div>
-      <div class="acc-bar-tiers"><span>0%</span><span>BASELINE 60%</span><span>TARGET 80%</span><span>EXCELLENT 90%</span><span>100%</span></div>
-    </div>
-    <div class="hero-note" id="accNote">Loading accuracy data...</div>
-  </div>
+  <!-- ── Analytics Content ──────────────────────────────── -->
+  <div id="analyticsContent" class="hidden container max-w-screen-lg" style="padding-top:1.5rem;padding-bottom:2rem;">
 
-  <!-- Model Config + Feature Importance -->
-  <div class="two-col">
-    <div class="card">
-      <div class="card-inner"></div>
-      <div class="card-sweep"></div>
-      <div class="card-title">⬡ MODEL CONFIGURATION</div>
-      <div class="cfg-grid" id="modelConfig"><div class="spinner-wrap"><div class="sp"></div>Loading model parameters...</div></div>
-    </div>
-    <div class="card">
-      <div class="card-inner"></div>
-      <div class="card-sweep"></div>
-      <div class="card-title">⬡ FEATURE IMPORTANCE RANKING</div>
-      <div id="featureImportance"><div class="spinner-wrap"><div class="sp"></div>Loading feature data...</div></div>
-    </div>
-  </div>
+    <!-- Model Performance Cards -->
+    <div id="modelMetrics" style="margin-bottom:1.5rem;"></div>
 
-  <!-- Class Distribution -->
-  <div class="card" style="margin-bottom:18px;">
-    <div class="card-inner"></div>
-    <div class="card-sweep"></div>
-    <div class="card-title">⬡ CLASS DISTRIBUTION — TRAINING DATASET</div>
-    <div id="classDist"><div class="spinner-wrap"><div class="sp"></div>Loading distribution data...</div></div>
-  </div>
+    <!-- Two-column: Confusion Matrix + Feature Importance -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-bottom:1.5rem;" id="midGrid">
 
-  <!-- Confusion Matrix + Correlation Matrix -->
-  <div class="two-col" style="margin-bottom:18px;">
-    <div class="card">
-      <div class="card-inner"></div><div class="card-sweep"></div>
-      <div class="card-title">⬡ CONFUSION MATRIX</div>
-      <div class="matrix-img-wrap"><img id="confMatrix" src="" alt="Confusion Matrix" style="opacity:0;transition:opacity 0.8s ease"></div>
-      <div style="font-family:var(--font-mono);font-size:0.52rem;letter-spacing:0.15em;color:var(--text-dim);margin-top:10px;text-align:center;">TEST SET · 800 SAMPLES · 5-FOLD CV</div>
-    </div>
-    <div class="card">
-      <div class="card-inner"></div><div class="card-sweep"></div>
-      <div class="card-title">⬡ FEATURE CORRELATION HEATMAP</div>
-      <div class="matrix-img-wrap"><img id="corrMatrix" src="" alt="Correlation Matrix" style="opacity:0;transition:opacity 0.8s ease"></div>
-      <div style="font-family:var(--font-mono);font-size:0.52rem;letter-spacing:0.15em;color:var(--text-dim);margin-top:10px;text-align:center;">17 FEATURES · PEARSON CORRELATION</div>
-    </div>
-  </div>
+      <!-- Confusion Matrix -->
+      <div class="card animate-fadeInUp delay-100" id="confusionCard">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-purple)" stroke-width="2.2" stroke-linecap="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+            Confusion Matrix
+          </h2>
+          <p class="card-description">Predicted vs actual class distribution</p>
+        </div>
+        <div class="card-body" id="confusionBody"></div>
+      </div>
 
-  <!-- Architecture Card -->
-  <div class="card" style="margin-bottom:18px;">
-    <div class="card-inner"></div><div class="card-sweep"></div>
-    <div class="card-title">⬡ SYSTEM ARCHITECTURE</div>
-    <div class="info-grid">
-      <div class="info-tile"><div class="info-tile-label">Embedding Model</div><div class="info-tile-val">all-MiniLM-L6-v2</div></div>
-      <div class="info-tile"><div class="info-tile-label">Embedding Dims</div><div class="info-tile-val">384-D</div></div>
-      <div class="info-tile"><div class="info-tile-label">Similarity Metric</div><div class="info-tile-val">Cosine</div></div>
-      <div class="info-tile"><div class="info-tile-label">Match Formula</div><div class="info-tile-val">60/25/15</div></div>
-      <div class="info-tile"><div class="info-tile-label">Classifier</div><div class="info-tile-val">Decision Tree</div></div>
-      <div class="info-tile"><div class="info-tile-label">Validation Features</div><div class="info-tile-val">17</div></div>
-      <div class="info-tile"><div class="info-tile-label">Training Samples</div><div class="info-tile-val">3,200</div></div>
-      <div class="info-tile"><div class="info-tile-label">Cross-Validation</div><div class="info-tile-val">5-Fold</div></div>
-      <div class="info-tile"><div class="info-tile-label">NLP Backend</div><div class="info-tile-val">spaCy + Regex</div></div>
-      <div class="info-tile"><div class="info-tile-label">API Framework</div><div class="info-tile-val">FastAPI</div></div>
-      <div class="info-tile"><div class="info-tile-label">Deployment</div><div class="info-tile-val">Docker · HF</div></div>
-      <div class="info-tile"><div class="info-tile-label">Dataset</div><div class="info-tile-val">4,000 Labeled</div></div>
+      <!-- Feature Importance -->
+      <div class="card animate-fadeInUp delay-200" id="featureCard">
+        <div class="card-header">
+          <h2 class="card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            Feature Importance
+          </h2>
+          <p class="card-description">Top decision signals used by the classifier</p>
+        </div>
+        <div class="card-body" id="featureBody"></div>
+      </div>
     </div>
-  </div>
 
-  <footer><p>NEXUS AI · BERT-Based Resume Screening · Decision Tree Classification · 4,000 Labeled Samples · NCE 2026</p></footer>
-</div>
-</div>
+    <!-- Classification Report -->
+    <div class="card animate-fadeInUp delay-300" style="margin-bottom:1.5rem;">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.2" stroke-linecap="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          Per-Class Classification Report
+        </h2>
+        <p class="card-description">Precision, Recall, F1-Score per classification class</p>
+      </div>
+      <div class="card-body" id="classReportBody"></div>
+    </div>
+
+    <!-- System Info -->
+    <div class="card animate-fadeInUp delay-400">
+      <div class="card-header">
+        <h2 class="card-title">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray-500)" stroke-width="2.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          System Architecture
+        </h2>
+      </div>
+      <div class="card-body">
+        <div class="val-grid" style="grid-template-columns:repeat(auto-fill, minmax(200px,1fr));">
+          <div class="val-item"><div class="val-label">Embedding Model</div><div class="val-value" style="font-size:0.85rem;font-family:var(--font);">all-MiniLM-L6-v2</div></div>
+          <div class="val-item"><div class="val-label">Embedding Dims</div><div class="val-value">384</div></div>
+          <div class="val-item"><div class="val-label">Classifier</div><div class="val-value" style="font-size:0.85rem;font-family:var(--font);">Decision Tree</div></div>
+          <div class="val-item"><div class="val-label">NER Engine</div><div class="val-value" style="font-size:0.85rem;font-family:var(--font);">spaCy en_web_sm</div></div>
+          <div class="val-item"><div class="val-label">Features</div><div class="val-value">17</div></div>
+          <div class="val-item"><div class="val-label">Backend</div><div class="val-value" style="font-size:0.85rem;font-family:var(--font);">FastAPI + Python</div></div>
+          <div class="val-item"><div class="val-label">Output Classes</div><div class="val-value">3</div></div>
+          <div class="val-item"><div class="val-label">Abbreviations</div><div class="val-value" style="font-size:0.85rem;font-family:var(--font);">Normalized</div></div>
+        </div>
+
+        <!-- Pipeline flow SVG -->
+        <div style="margin-top:1.5rem;overflow-x:auto;padding:0.5rem 0;">
+          <svg viewBox="0 0 760 80" style="min-width:620px;width:100%;height:auto;" xmlns="http://www.w3.org/2000/svg" font-family="Inter, system-ui, sans-serif">
+            <!-- Boxes -->
+            <g>
+              <!-- Resume -->
+              <rect x="10" y="20" width="100" height="40" rx="8" fill="#EFF6FF" stroke="#3B82F6" stroke-width="1.5"/>
+              <text x="60" y="36" text-anchor="middle" font-size="9" font-weight="600" fill="#2563EB">Resume</text>
+              <text x="60" y="50" text-anchor="middle" font-size="8" fill="#64748B">PDF/DOCX/TXT</text>
+              <!-- arrow -->
+              <line x1="110" y1="40" x2="130" y2="40" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+              <!-- Text Extract -->
+              <rect x="130" y="20" width="100" height="40" rx="8" fill="#F0FDF4" stroke="#10B981" stroke-width="1.5"/>
+              <text x="180" y="36" text-anchor="middle" font-size="9" font-weight="600" fill="#15803d">Text Extract</text>
+              <text x="180" y="50" text-anchor="middle" font-size="8" fill="#64748B">pdfplumber / docx2txt</text>
+              <line x1="230" y1="40" x2="250" y2="40" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+              <!-- SBERT -->
+              <rect x="250" y="20" width="100" height="40" rx="8" fill="#F5F3FF" stroke="#7C3AED" stroke-width="1.5"/>
+              <text x="300" y="36" text-anchor="middle" font-size="9" font-weight="600" fill="#6D28D9">SBERT Embed</text>
+              <text x="300" y="50" text-anchor="middle" font-size="8" fill="#64748B">384-dim vector</text>
+              <line x1="350" y1="40" x2="370" y2="40" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+              <!-- Feature Eng -->
+              <rect x="370" y="20" width="110" height="40" rx="8" fill="#FEF9C3" stroke="#F59E0B" stroke-width="1.5"/>
+              <text x="425" y="36" text-anchor="middle" font-size="9" font-weight="600" fill="#92400E">Feature Eng.</text>
+              <text x="425" y="50" text-anchor="middle" font-size="8" fill="#64748B">17 signals</text>
+              <line x1="480" y1="40" x2="500" y2="40" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+              <!-- DT Classifier -->
+              <rect x="500" y="20" width="110" height="40" rx="8" fill="#FFF1F2" stroke="#F43F5E" stroke-width="1.5"/>
+              <text x="555" y="36" text-anchor="middle" font-size="9" font-weight="600" fill="#BE123C">DT Classifier</text>
+              <text x="555" y="50" text-anchor="middle" font-size="8" fill="#64748B">3-class output</text>
+              <line x1="610" y1="40" x2="630" y2="40" stroke="#CBD5E1" stroke-width="1.5" marker-end="url(#arr)"/>
+
+              <!-- Result -->
+              <rect x="630" y="20" width="110" height="40" rx="8" fill="linear-gradient(135deg,#EFF6FF,#F0FDF4)" stroke="#2563EB" stroke-width="1.5"/>
+              <rect x="630" y="20" width="110" height="40" rx="8" fill="#EFF6FF" stroke="#2563EB" stroke-width="1.5"/>
+              <text x="685" y="36" text-anchor="middle" font-size="9" font-weight="600" fill="#1D4ED8">Result</text>
+              <text x="685" y="50" text-anchor="middle" font-size="8" fill="#64748B">+ Confidence %</text>
+
+              <defs>
+                <marker id="arr" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                  <path d="M0,0 L6,3 L0,6 Z" fill="#94A3B8"/>
+                </marker>
+              </defs>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /analyticsContent -->
+</main>
+
+<!-- ── Footer ─────────────────────────────────────────────── -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="logo-mark" style="width:1.75rem;height:1.75rem;border-radius:8px;box-shadow:none;">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+      </div>
+      <span class="footer-brand-name">ClearHire</span>
+      <span class="footer-meta" style="margin-left:0.5rem;">· Analytics Dashboard</span>
+    </div>
+    <div class="footer-tags">
+      <span class="footer-tag">SBERT</span>
+      <span class="footer-tag">Decision Tree</span>
+      <span class="footer-tag">FastAPI</span>
+    </div>
+    <div class="footer-meta">© 2026 Academic Project</div>
+  </div>
+</footer>
 
 <script>
-/* ── Matrix Rain (violet tint) ───────────────────────────── */
-(function(){const C=document.getElementById('bg-canvas'),ctx=C.getContext('2d');function resize(){C.width=innerWidth;C.height=innerHeight}resize();addEventListener('resize',resize);const chars='ANALYTICS0.83610FFT◈⬡FEATUREIMPORTANCE';const cols=Math.floor(C.width/18);const drops=Array.from({length:cols},()=>Math.random()*-60);function draw(){ctx.fillStyle='rgba(0,9,18,0.045)';ctx.fillRect(0,0,C.width,C.height);drops.forEach((y,i)=>{const ch=chars[Math.floor(Math.random()*chars.length)];ctx.fillStyle=`rgba(155,93,229,${Math.random()>0.85?0.8:0.2})`;ctx.font='13px "Share Tech Mono"';ctx.fillText(ch,i*18,y*18);if(y*18>C.height&&Math.random()>0.975)drops[i]=0;drops[i]+=0.45});} setInterval(draw,55)})();
+/* ── Mobile Menu ─────────────────────────────────────────── */
+const mobileBtn = document.getElementById('mobileBtn');
+const mobileOverlay = document.getElementById('mobileOverlay');
+const mobilePanel = document.getElementById('mobilePanel');
+const mobileClose = document.getElementById('mobileClose');
+function openMenu()  { mobileOverlay.classList.add('open'); mobilePanel.classList.add('open'); document.body.style.overflow='hidden'; }
+function closeMenu() { mobileOverlay.classList.remove('open'); mobilePanel.classList.remove('open'); document.body.style.overflow=''; }
+mobileBtn.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+mobileOverlay.addEventListener('click', closeMenu);
 
-/* ── Floating Particles ──────────────────────────────────── */
-(function(){const f=document.getElementById('particleField');const t=['small','medium','large','star'];for(let i=0;i<50;i++){const p=document.createElement('div');p.className='fp '+t[Math.floor(Math.random()*t.length)];p.style.left=Math.random()*100+'%';p.style.animationDuration=(12+Math.random()*25)+'s';p.style.animationDelay=(Math.random()*20)+'s';f.appendChild(p)}})();
+/* ── Responsive middle grid ─────────────────────────────── */
+function setMidGrid() {
+  const g = document.getElementById('midGrid');
+  if (g) g.style.gridTemplateColumns = window.innerWidth < 768 ? '1fr' : '1fr 1fr';
+}
+setMidGrid();
+window.addEventListener('resize', setMidGrid);
 
-/* ── Custom Cursor ───────────────────────────────────────── */
-const cursorGlow=document.getElementById('cursorGlow'),cursorRing=document.getElementById('cursorRing'),cursorDot=document.getElementById('cursorDot');
-document.addEventListener('mousemove',e=>{cursorGlow.style.left=e.clientX+'px';cursorGlow.style.top=e.clientY+'px';cursorRing.style.left=e.clientX+'px';cursorRing.style.top=e.clientY+'px';cursorDot.style.left=e.clientX+'px';cursorDot.style.top=e.clientY+'px'});
-document.addEventListener('mouseover',e=>{if(e.target.closest('a,button,.info-tile,.hs-item,.cfg-row,.feat'))cursorRing.classList.add('hovering')});
-document.addEventListener('mouseout',e=>{if(e.target.closest('a,button,.info-tile,.hs-item,.cfg-row,.feat'))cursorRing.classList.remove('hovering')});
+/* ── Load Analytics ─────────────────────────────────────── */
+async function loadAnalytics() {
+  const loading = document.getElementById('analyticsLoading');
+  const content = document.getElementById('analyticsContent');
 
-/* ── Typing Effect ───────────────────────────────────────── */
-(function(){const p=['83.6% TEST ACCURACY ACHIEVED','17 VALIDATION FEATURES CALIBRATED','5-FOLD CROSS-VALIDATION COMPLETE','DECISION TREE CLASSIFIER: OPERATIONAL','DISPLAYING REAL-TIME METRICS...'];const el=document.getElementById('typingText');let pi=0,ci=0,d=false;function t(){const s=p[pi];if(!d){el.textContent=s.substring(0,ci+1);ci++;if(ci>=s.length){d=true;setTimeout(t,1800);return}setTimeout(t,40+Math.random()*40)}else{el.textContent=s.substring(0,ci-1);ci--;if(ci<=0){d=false;pi=(pi+1)%p.length;setTimeout(t,400);return}setTimeout(t,22)}}setTimeout(t,1200)})();
+  try {
+    const resp = await fetch('/api/analytics');
+    const data = await resp.json();
 
-/* ── Animate Counter ─────────────────────────────────────── */
-function animateNum(el,target,suffix,decimals){const dur=1800,start=performance.now();function f(now){const p=Math.min((now-start)/dur,1),ea=1-Math.pow(1-p,3);el.textContent=(target*ea).toFixed(decimals||0)+(suffix||'');if(p<1)requestAnimationFrame(f)}requestAnimationFrame(f)}
+    loading.style.display = 'none';
+    content.classList.remove('hidden');
 
-/* ── Load Analytics ──────────────────────────────────────── */
-async function loadAnalytics(){
-try{
-const[m,d,s]=await Promise.all([fetch('/api/model/info').then(r=>r.json()),fetch('/api/class_distribution').then(r=>r.json()),fetch('/api/dataset/stats').then(r=>r.json())]);
-const totalEl=document.getElementById('totalSamples'),accEl=document.getElementById('testAccuracy'),f1El=document.getElementById('testF1');
-totalEl.textContent=(s.total_samples||0).toLocaleString();
-setTimeout(()=>animateNum(accEl,(m.test_accuracy||0)*100,'%',1),200);
-setTimeout(()=>animateNum(f1El,(m.test_f1||0)*100,'%',1),400);
-const accPct=Math.round((m.test_accuracy||0)*100);
-document.getElementById('accBarFill').style.width=accPct+'%';
-document.getElementById('accNote').textContent=`▶ ACHIEVED ${accPct}% ACCURACY on 800-sample hold-out test set (5-fold CV weighted F1: ${((m.test_f1||0)*100).toFixed(2)}%)`;
+    renderMetricCards(data);
+    renderConfusionMatrix(data.confusion_matrix, data.class_labels);
+    renderFeatureImportance(data.feature_importance);
+    renderClassReport(data.classification_report, data.class_labels);
 
-if(m.params){document.getElementById('modelConfig').innerHTML=Object.entries(m.params).map(([k,v],i)=>`<div class="cfg-row" style="animation:fadeUp 0.4s ease ${i*0.06}s both"><span class="ck">${k.replace(/_/g,' ')}</span><span class="cv">${v===null?'None':v}</span></div>`).join('')}
+  } catch(err) {
+    loading.innerHTML = `<div class="alert alert-error" style="max-width:500px;margin:0 auto;">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+      <div><strong>Failed to load analytics:</strong> ${err.message}</div>
+    </div>`;
+  }
+}
 
-if(m.feature_importance&&m.feature_importance.length){const fi=m.feature_importance,mx=Math.max(...fi.map(f=>f.importance));document.getElementById('featureImportance').innerHTML=fi.map((f,i)=>`<div class="feat" style="animation-delay:${i*0.07}s"><div class="ft-header"><span>${f.feature.replace(/_/g,' ')}</span><span style="color:var(--cyan)">${(f.importance*100).toFixed(1)}%</span></div><div class="ft-track"><div class="ft-fill" style="--fw:${(f.importance/mx*100).toFixed(1)}%"></div></div></div>`).join('');setTimeout(()=>document.querySelectorAll('.feat').forEach(el=>el.classList.add('visible')),350);setTimeout(()=>document.querySelectorAll('.ft-fill').forEach(el=>{el.style.width=el.style.getPropertyValue('--fw')||getComputedStyle(el).getPropertyValue('--fw')}),500)}
+/* ── Metric Cards ────────────────────────────────────────── */
+function renderMetricCards(data) {
+  const metrics = [
+    { label:'Overall Accuracy',  value: ((data.accuracy||0)*100).toFixed(1)+'%',  color:'var(--primary)',  icon:'<circle cx="12" cy="12" r="10"/><polyline points="16 12 12 8 8 12"/><line x1="12" y1="16" x2="12" y2="8"/>' },
+    { label:'Training Samples',  value: (data.train_samples||'N/A'),               color:'var(--success)',  icon:'<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>' },
+    { label:'Test Samples',      value: (data.test_samples||'N/A'),                color:'var(--accent-teal)', icon:'<rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/>' },
+    { label:'Max Tree Depth',    value: (data.max_depth||'N/A'),                   color:'var(--accent-purple)', icon:'<polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>' },
+  ];
 
-if(d.class_distribution){const dist=d.class_distribution,total=Object.values(dist).reduce((a,b)=>a+b,0),colors={Authentic:'#00ffaa',Suspicious:'#ffd60a','Potentially Fake':'#ff2d55'},entries=Object.entries(dist),circ=452;let off=0;const slices=entries.map(([k,v])=>{const len=(v/total)*circ,d=-off;off+=len;return`<circle cx="85" cy="85" r="72" fill="none" stroke="${colors[k]}" stroke-width="22" stroke-dasharray="${len} ${circ-len}" stroke-dashoffset="${d}" style="filter:drop-shadow(0 0 6px ${colors[k]});transition:stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1) ${Object.keys(dist).indexOf(k)*0.3}s"/>`}).join('');
-document.getElementById('classDist').innerHTML=`<div class="donut-wrap"><div class="donut-svg"><svg viewBox="0 0 170 170" width="170" height="170">${slices}</svg><div class="d-center"><span class="d-big">${total.toLocaleString()}</span><span>total</span></div></div><div class="donut-legend">${entries.map(([k,v])=>`<div class="dl-item" style="animation:fadeUp 0.5s ease ${Object.keys(dist).indexOf(k)*0.15+0.5}s both"><span class="dl-dot" style="background:${colors[k]};box-shadow:0 0 8px ${colors[k]}"></span><span style="font-family:var(--font-mono);font-size:0.8rem">${k} <strong style="color:var(--text)">${v.toLocaleString()}</strong> <span style="color:var(--text-muted);font-size:0.7rem">(${(v/total*100).toFixed(1)}%)</span></span></div>`).join('')}</div></div>`}
+  document.getElementById('modelMetrics').innerHTML =
+    `<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;margin-bottom:0;" class="animate-fadeInUp">
+      ${metrics.map(m=>`
+        <div class="score-card">
+          <div style="display:flex;align-items:center;justify-content:center;margin-bottom:0.625rem;">
+            <div style="width:2rem;height:2rem;border-radius:50%;background:${m.color}18;display:flex;align-items:center;justify-content:center;">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="${m.color}" stroke-width="2" stroke-linecap="round">${m.icon}</svg>
+            </div>
+          </div>
+          <div class="score-label">${m.label}</div>
+          <div class="score-value" style="color:${m.color}">${m.value}</div>
+        </div>`).join('')}
+    </div>`;
+}
 
-const conf=document.getElementById('confMatrix'),corr=document.getElementById('corrMatrix');
-conf.src='/static/confusion_matrix.png?'+Date.now();corr.src='/static/correlation_matrix.png?'+Date.now();
-conf.onload=()=>conf.style.opacity='1';corr.onload=()=>corr.style.opacity='1';
-}catch(err){console.error('Analytics error:',err);['modelConfig','featureImportance','classDist'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=`<div style="padding:20px;text-align:center;color:var(--rose);font-family:var(--font-mono);font-size:0.6rem;letter-spacing:0.2em">⚠ FAILED: ${err.message}</div>`})}}
+/* ── Confusion Matrix ────────────────────────────────────── */
+function renderConfusionMatrix(matrix, labels) {
+  if (!matrix || !labels) {
+    document.getElementById('confusionBody').innerHTML = '<p class="text-muted text-sm">No data available.</p>';
+    return;
+  }
+  const colors = ['#EFF6FF','#F0FDF4','#FFF1F2'];
+  const textColors = ['#2563EB','#15803d','#b91c1c'];
+
+  let html = `<div style="overflow-x:auto;">
+    <table style="border-collapse:collapse;width:100%;font-size:0.8rem;">
+      <thead>
+        <tr>
+          <th style="padding:0.5rem 0.625rem;text-align:left;font-size:0.72rem;font-weight:700;color:var(--gray-400);text-transform:uppercase;letter-spacing:0.07em;">Actual → Predicted</th>
+          ${labels.map((l,i)=>`<th style="padding:0.5rem 0.625rem;text-align:center;color:${textColors[i]};font-weight:700;">${l.replace('Potentially Fake','Fake')}</th>`).join('')}
+        </tr>
+      </thead>
+      <tbody>
+        ${matrix.map((row,ri)=>`
+          <tr>
+            <td style="padding:0.5rem 0.625rem;font-weight:600;color:${textColors[ri]};white-space:nowrap;">${labels[ri].replace('Potentially Fake','Fake')}</td>
+            ${row.map((val,ci)=>{
+              const isDiag = ri===ci;
+              return `<td style="padding:0.625rem;text-align:center;background:${isDiag?colors[ri]:'transparent'};border-radius:6px;font-family:var(--font-mono);font-weight:${isDiag?'800':'500'};color:${isDiag?textColors[ri]:'var(--gray-600)'};">${val}</td>`;
+            }).join('')}
+          </tr>`).join('')}
+      </tbody>
+    </table>
+  </div>`;
+  document.getElementById('confusionBody').innerHTML = html;
+}
+
+/* ── Feature Importance ──────────────────────────────────── */
+function renderFeatureImportance(features) {
+  if (!features || !features.length) {
+    document.getElementById('featureBody').innerHTML = '<p class="text-muted text-sm">No data available.</p>';
+    return;
+  }
+
+  const friendly = {
+    semantic_similarity:'Semantic Similarity', skill_overlap_score:'Skill Overlap',
+    experience_relevance_score:'Exp. Relevance', final_match_score:'Final Match Score',
+    overlapping_jobs:'Overlapping Jobs', promotion_speed:'Promotion Speed',
+    experience_graduation_gap:'Exp/Grad Gap', skill_density:'Skill Density',
+    achievement_count:'Achievement Count', generic_phrase_score:'Generic Phrases',
+    gap_years:'Gap Years', keyword_stuffing_score:'Keyword Stuffing',
+    years_experience:'Years Experience', num_certifications:'Certifications',
+    num_skills:'Skill Count', education_level_encoded:'Education Level',
+    has_previous_job:'Has Prev. Job', skill_experience_alignment:'Skill Alignment'
+  };
+
+  const maxVal = Math.max(...features.map(f=>f.importance));
+  const colors = ['#2563EB','#3B82F6','#0D9488','#7C3AED','#10B981','#F59E0B','#F43F5E','#06B6D4'];
+
+  const top10 = features.slice(0, 10);
+  document.getElementById('featureBody').innerHTML = `
+    <div style="display:flex;flex-direction:column;gap:0.625rem;">
+      ${top10.map((f,i)=>{
+        const name = friendly[f.feature] || f.feature.replace(/_/g,' ');
+        const pct  = ((f.importance/maxVal)*100).toFixed(1);
+        const color = colors[i % colors.length];
+        return `<div>
+          <div style="display:flex;justify-content:space-between;font-size:0.78rem;margin-bottom:0.25rem;">
+            <span style="font-weight:500;color:var(--gray-700);">${name}</span>
+            <span style="font-family:var(--font-mono);font-weight:700;color:${color};">${f.importance.toFixed(4)}</span>
+          </div>
+          <div style="height:7px;background:var(--gray-100);border-radius:99px;overflow:hidden;">
+            <div style="height:100%;width:${pct}%;background:${color};border-radius:99px;transition:width 1s ease;" class="animate-fadeInUp delay-${(i%7+1)*100}"></div>
+          </div>
+        </div>`;
+      }).join('')}
+    </div>`;
+}
+
+/* ── Classification Report ───────────────────────────────── */
+function renderClassReport(report, labels) {
+  if (!report) {
+    document.getElementById('classReportBody').innerHTML = '<p class="text-muted text-sm">No data available.</p>';
+    return;
+  }
+
+  const clsColors = { 'Authentic':'#15803d', 'Suspicious':'#a16207', 'Potentially Fake':'#b91c1c' };
+  const clsIcons  = { 'Authentic':'✓', 'Suspicious':'⚠', 'Potentially Fake':'✗' };
+
+  const classKeys = labels || Object.keys(report).filter(k=>!['accuracy','macro avg','weighted avg'].includes(k));
+
+  document.getElementById('classReportBody').innerHTML = `
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:1.25rem;">
+      ${classKeys.map(cls => {
+        const d = report[cls] || {};
+        const color = clsColors[cls] || 'var(--primary)';
+        const icon  = clsIcons[cls]  || '?';
+        return `<div style="background:var(--gray-50);border:1px solid var(--border);border-radius:var(--r-lg);padding:1.125rem;">
+          <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;color:${color};margin-bottom:0.625rem;">${icon} ${cls}</div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.5rem;">
+            ${[['Precision',(d.precision||0).toFixed(3)],['Recall',(d.recall||0).toFixed(3)],['F1-Score',(d['f1-score']||0).toFixed(3)],['Support',(d.support||0)]].map(([l,v])=>`
+              <div><div style="font-size:0.7rem;color:var(--gray-400);margin-bottom:0.125rem;">${l}</div>
+              <div style="font-size:1rem;font-weight:700;font-family:var(--font-mono);color:var(--gray-800);">${v}</div></div>`).join('')}
+          </div>
+        </div>`;
+      }).join('')}
+    </div>
+    ${report['weighted avg'] ? `
+    <div style="background:var(--gray-50);border:1px solid var(--border);border-radius:var(--r-lg);padding:1rem;display:flex;gap:2rem;flex-wrap:wrap;">
+      <div><span style="font-size:0.72rem;font-weight:700;text-transform:uppercase;color:var(--gray-400);letter-spacing:0.07em;">Weighted Avg</span></div>
+      ${[['Precision',(report['weighted avg'].precision||0).toFixed(3)],['Recall',(report['weighted avg'].recall||0).toFixed(3)],['F1-Score',(report['weighted avg']['f1-score']||0).toFixed(3)]].map(([l,v])=>`
+        <div><span style="font-size:0.78rem;color:var(--gray-500);">${l}: </span><span style="font-weight:700;font-family:var(--font-mono);color:var(--gray-800);">${v}</span></div>`).join('')}
+    </div>` : ''}`;
+}
+
+/* ── Init ─────────────────────────────────────────────────── */
 loadAnalytics();
 </script>
 </body>

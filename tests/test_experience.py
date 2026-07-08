@@ -1,4 +1,4 @@
-from datetime import datetime
+﻿from datetime import datetime
 from app.features.experience_extraction import extract_years_experience, extract_graduation_year
 
 def test_extract_years_explicit():
@@ -35,11 +35,15 @@ def test_graduation_year_fallback():
     assert extract_graduation_year(text) == expected
 
 def test_score_experience_relevance_zero_required_years():
-    resume = "I have 5 years of experience."
-    target_job_title = "Manager"  # no numbers -> required_years = 0
+    """BUG 4 FIX: When no years requirement in JD, score should be positive
+    if the candidate has experience AND domain relevance."""
+    resume = "I have 5 years of experience. Worked as a Project Manager leading cross-functional teams."
+    target_job_title = "Manager"
     from app.features.experience import score_experience_relevance
     score = score_experience_relevance(resume, target_job_title)
-    assert score == 0.0
+    # ratio > 0 (candidate has experience, no explicit requirement -> baseline ratio)
+    # factor > 0 (resume mentions Project Manager matching Management category)
+    assert score > 0.0
 
 def test_score_experience_relevance_sufficient_years_full_domain():
     resume = "I have 10 years of experience. Worked as a Software Engineer and Data Scientist and Data Analyst."
@@ -80,6 +84,8 @@ def test_score_experience_relevance_sufficient_years_partial_domain():
     score = score_experience_relevance(resume, target_job_title)
     # ratio = 1.0
     # relevant categories: Engineering, AI_ML, Data (3)
-    # mentioned: Software Engineer (Engineering), Data Analyst (Data) -> 2 out of 3 -> factor = 2/3 � 0.666...
+    # mentioned: Software Engineer (Engineering), Data Analyst (Data) -> 2 out of 3 -> factor = 2/3 ˜ 0.666...
     # score = 0.666...
     assert abs(score - 2/3) < 1e-4
+
+

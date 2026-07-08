@@ -1329,3 +1329,55 @@ python3 app/main.py
 *Status: ✅ Complete — Ready for Panel Presentation*
 *Server: http://localhost:8000*
 *Start command: `bash run.sh`*
+
+---
+
+## 21. Bug Fixes & Changelog
+
+### v2.0 — Production Bug Fix Release
+
+A comprehensive audit of the entire codebase was performed and **11 critical bugs** were identified and fixed.
+
+#### Frontend Fixes (Critical — Root cause of "only few things showing")
+
+| # | File | Bug | Fix |
+|---|------|-----|-----|
+| 1 | index.html | JS read skills.matched_skills but API returns skills.matched — skills section never rendered | Fixed key names: matched, missing, extra |
+| 2 | index.html | JS read data.validation_features but API returns data.validation — 17-feature grid never rendered | Fixed to data.validation |
+| 3 | index.html | JS read data.resume_text but API returns data.resume_preview — preview never appeared | Fixed to data.resume_preview |
+
+**Bonus:** Added per-class probability breakdown (AUTH / SUSP / FAKE %) to the results card.
+
+#### Backend Fixes (High — Incorrect scores)
+
+| # | File | Bug | Fix |
+|---|------|-----|-----|
+| 4 | experience.py | Experience relevance always returned 0% when JD had no explicit "X years" requirement | Added sensible baseline ratio scaled by candidate's actual years |
+| 5 | semantic.py | SBERT similarity near-zero for short JDs (<15 words) | Blend SBERT with token-level keyword overlap for short JDs |
+| 6 | 	axonomy.py | HTML, CSS, PHP, Ruby, Bootstrap, Figma etc. all missing from skill taxonomy | Expanded from ~60 to 200+ skills |
+| 7 | experience.py | _extract_required_years matched any number ("React 18" → 18 years) | Only match numbers near year/experience keywords |
+
+#### Backend Fixes (Medium — Classification accuracy)
+
+| # | File | Bug | Fix |
+|---|------|-----|-----|
+| 8 | alidation.py | Keyword stuffing score inflated by stopwords ("the", "and", etc.) | Added 100-word stopword filter before computing ratio |
+| 9 | alidation.py | has_previous_job almost never triggered on real resumes | 4-strategy detection: phrases, date ranges, title patterns, company indicators |
+| 10 | alidation.py | Overlapping jobs only triggered at >2 date ranges, 1 real overlap returned 0 | Now checks actual date range pair overlaps |
+| 11 | alidation.py | compute_skill_density used different scale for 0-experience resumes | Normalized word-count path to consistent equivalent-years scale |
+
+#### Test Results After Fix
+`
+======================= 104 passed, 1 warning in 20.39s =======================
+`
+
+---
+
+## 22. Credits
+
+> **Built by SARSHIJ KARN**
+>
+> A Minor NCE Project — BERT-Powered Resume Screener
+> Resume Screening & Authenticity Validation Using Decision Tree Classification
+>
+> Technology Stack: FastAPI · Sentence-BERT · scikit-learn · spaCy · PyMuPDF · Python 3.10

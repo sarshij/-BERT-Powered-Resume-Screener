@@ -14,16 +14,16 @@ from app.logger import setup_logger
 
 logger = setup_logger(__name__)
 
-# Load spaCy model (small English) - disable unnecessary components for speed
+# Load spaCy model (medium English for better accuracy - Fix 12)
 _nlp = None
 def get_nlp():
     global _nlp
     if _nlp is None:
         try:
-            _nlp = spacy.load('en_core_web_sm')
-            logger.info('Loaded spaCy model en_core_web_sm')
+            _nlp = spacy.load('en_core_web_md')
+            logger.info('Loaded spaCy model en_core_web_md')
         except OSError:
-            logger.warning('spaCy model en_core_web_sm not found. Install via: python -m spacy download en_core_web_sm')
+            logger.warning('spaCy model en_core_web_md not found. Install via: python -m spacy download en_core_web_md')
             _nlp = False
     return _nlp if _nlp is not False else None
 
