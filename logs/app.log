@@ -1057,3 +1057,47 @@ Check your internet connection or see how to run the library in offline mode at 
 [2026-07-08 11:14:34] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
 [2026-07-08 11:14:54] __main__ - INFO - GET / -> 200 (0.01s)
 [2026-07-08 11:14:54] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 11:16:39] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 11:16:39] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 11:16:39] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 11:16:41] __main__ - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 11:16:42] __main__ - INFO - GET /analytics -> 200 (0.02s)
+[2026-07-08 11:16:43] __main__ - INFO - GET /api/model/info -> 200 (0.12s)
+[2026-07-08 11:16:43] __main__ - INFO - GET /api/class_distribution -> 200 (0.21s)
+[2026-07-08 11:16:43] __main__ - INFO - GET /api/dataset/stats -> 200 (0.09s)
+[2026-07-08 11:16:43] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
+[2026-07-08 11:16:43] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
+[2026-07-08 11:16:46] __main__ - INFO - GET / -> 200 (0.02s)
+[2026-07-08 11:16:47] app.utils.parser - INFO - Logging initialized -> C:\Users\acer\PROJECTS\A Minor NCE\Resume\resume-screener\logs\app.log
+[2026-07-08 11:17:35] datasets - DEBUG - PyTorch version 2.2.2+cu121 available.
+[2026-07-08 11:17:35] datasets - DEBUG - Polars version 1.37.1 available.
+[2026-07-08 11:17:35] datasets - INFO - Disabling Tensorflow because USE_TORCH is set
+[2026-07-08 11:17:35] datasets - INFO - JAX version 0.6.2 available.
+[2026-07-08 11:17:45] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 11:17:45] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 11:17:45] h5py._conv - DEBUG - Creating converter from 7 to 5
+[2026-07-08 11:17:45] h5py._conv - DEBUG - Creating converter from 5 to 7
+[2026-07-08 11:17:52] app.main - INFO - Resume Screener API starting up...
+[2026-07-08 11:18:12] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 11:18:12] __main__ - INFO - GET /static/style.css -> 304 (0.03s)
+[2026-07-08 11:18:12] __main__ - INFO - GET /api/model/info -> 200 (0.00s)
+[2026-07-08 11:18:12] __main__ - INFO - GET /api/class_distribution -> 200 (0.10s)
+[2026-07-08 11:18:12] __main__ - INFO - GET /api/dataset/stats -> 200 (0.08s)
+[2026-07-08 11:18:12] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
+[2026-07-08 11:18:12] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
+[2026-07-08 11:18:28] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 11:30:52] __main__ - INFO - GET / -> 200 (0.00s)
+[2026-07-08 11:30:52] __main__ - INFO - GET /static/style.css -> 304 (0.02s)
+[2026-07-08 11:30:52] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 11:42:31] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 11:42:31] __main__ - INFO - GET /static/style.css -> 200 (0.02s)
+[2026-07-08 11:42:32] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 11:42:57] __main__ - INFO - GET /batch -> 200 (0.01s)
+[2026-07-08 11:42:57] __main__ - INFO - GET /static/style.css -> 304 (0.02s)
+[2026-07-08 11:43:01] __main__ - INFO - GET /analytics -> 200 (0.01s)
+[2026-07-08 11:43:01] __main__ - INFO - GET /api/model/info -> 200 (0.11s)
+[2026-07-08 11:43:01] __main__ - INFO - GET /api/class_distribution -> 200 (0.10s)
+[2026-07-08 11:43:02] __main__ - INFO - GET /api/dataset/stats -> 200 (0.08s)
+[2026-07-08 11:43:02] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
+[2026-07-08 11:43:02] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
+[2026-07-08 11:43:04] __main__ - INFO - GET / -> 200 (0.01s)

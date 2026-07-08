@@ -5,23 +5,82 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>NEXUS AI — Resume Intelligence System</title>
 <meta name="description" content="BERT-powered resume screening and authenticity validation using Decision Tree Classification. Futuristic AI-driven recruiter dashboard.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=5">
+<link rel="stylesheet" href="/static/style.css?v=6">
 </head>
 <body>
 
-<!-- ── Background System ───────────────────────────────── -->
+<!-- ── Background Layers ───────────────────────────────────── -->
 <canvas id="bg-canvas"></canvas>
+
+<!-- Animated SVG Circuit Board Background -->
+<div class="circuit-svg-bg">
+<svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="traceGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d4ff" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#00d4ff" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#9b5de5" stop-opacity="0"/>
+    </linearGradient>
+    <!-- Repeating circuit tile pattern -->
+    <pattern id="circuitPattern" x="0" y="0" width="200" height="200" patternUnits="userSpaceOnUse">
+      <!-- Horizontal traces -->
+      <line x1="0" y1="40"  x2="60" y2="40"  stroke="#00d4ff" stroke-width="0.4" opacity="0.15"/>
+      <line x1="80" y1="40" x2="200" y2="40" stroke="#00d4ff" stroke-width="0.4" opacity="0.1"/>
+      <line x1="0" y1="120" x2="120" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.12"/>
+      <line x1="140" y1="120" x2="200" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.08"/>
+      <!-- Vertical traces -->
+      <line x1="60" y1="0" x2="60" y2="40"   stroke="#00d4ff" stroke-width="0.4" opacity="0.12"/>
+      <line x1="140" y1="40" x2="140" y2="120" stroke="#9b5de5" stroke-width="0.4" opacity="0.1"/>
+      <line x1="60" y1="120" x2="60" y2="200" stroke="#00ffaa" stroke-width="0.4" opacity="0.08"/>
+      <!-- Nodes -->
+      <circle cx="60"  cy="40"  r="2" fill="#00d4ff" opacity="0.2"/>
+      <circle cx="140" cy="40"  r="1.5" fill="#00d4ff" opacity="0.15"/>
+      <circle cx="140" cy="120" r="2" fill="#9b5de5" opacity="0.18"/>
+      <circle cx="60"  cy="120" r="1.5" fill="#00ffaa" opacity="0.12"/>
+      <!-- IC chip -->
+      <rect x="85" y="75" width="30" height="20" rx="2" fill="none" stroke="#00d4ff" stroke-width="0.5" opacity="0.12"/>
+      <line x1="85" y1="80" x2="78" y2="80" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
+      <line x1="85" y1="90" x2="78" y2="90" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
+      <line x1="115" y1="80" x2="122" y2="80" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
+      <line x1="115" y1="90" x2="122" y2="90" stroke="#00d4ff" stroke-width="0.3" opacity="0.1"/>
+      <!-- Diagonal trace -->
+      <polyline points="0,180 20,180 35,165 60,165" fill="none" stroke="#00ffaa" stroke-width="0.3" opacity="0.08"/>
+    </pattern>
+  </defs>
+  <rect width="100%" height="100%" fill="url(#circuitPattern)"/>
+  <!-- Animated trace overlay -->
+  <line x1="0" y1="200" x2="100%" y2="200" stroke="url(#traceGrad)" stroke-width="1" stroke-dasharray="15,85" style="animation:sweepH 6s linear infinite;"/>
+  <line x1="0" y1="500" x2="100%" y2="500" stroke="url(#traceGrad)" stroke-width="0.5" stroke-dasharray="20,80" style="animation:sweepH 8s linear 2s infinite;"/>
+</svg>
+</div>
+
 <div class="grid-overlay"></div>
 <div class="scanline-overlay"></div>
 <div class="vignette-overlay"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
 
-<!-- ── Navigation ─────────────────────────────────────── -->
+<!-- Floating Particles -->
+<div class="particle-field" id="particleField"></div>
+
+<!-- Custom Cursor -->
+<div class="cursor-glow" id="cursorGlow"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ── Navigation ─────────────────────────────────────────── -->
 <nav>
   <a href="/" class="logo">
-    <div class="logo-hex">⬡</div>
+    <div class="logo-hex">
+      <!-- Animated hexagon SVG -->
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polygon points="15,2 27,8.5 27,21.5 15,28 3,21.5 3,8.5" fill="none" stroke="#00d4ff" stroke-width="1.2">
+          <animateTransform attributeName="transform" type="rotate" from="0 15 15" to="360 15 15" dur="20s" repeatCount="indefinite"/>
+        </polygon>
+        <circle cx="15" cy="15" r="4" fill="#00d4ff" opacity="0.5">
+          <animate attributeName="r" values="3;5;3" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="0.3;0.8;0.3" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
     <div>
       NEXUS<span style="color:var(--violet)">AI</span>
       <span class="logo-sub">RESUME INTELLIGENCE v2.0</span>
@@ -33,14 +92,12 @@
     <a href="/analytics">⬡ Insights</a>
   </div>
   <div class="nav-right">
-    <div class="status-pill">
-      <span class="dot-live"></span> SYSTEM ONLINE
-    </div>
+    <div class="status-pill"><span class="dot-live"></span> SYSTEM ONLINE</div>
     <span style="color:var(--text-dim)">SBERT · DT · NLP</span>
   </div>
 </nav>
 
-<!-- ── Page Content ────────────────────────────────────── -->
+<!-- ── Page Content ────────────────────────────────────────── -->
 <div class="page">
 <div class="container">
 
@@ -52,23 +109,50 @@
       <span class="glow-word" data-text="Authenticate.">Authenticate.</span>
     </h1>
     <p>Upload a resume, paste the job description. Our AI extracts semantics, skills, and authenticity signals — in seconds.</p>
+    <!-- Typing effect -->
+    <div class="typing-container"><span id="typingText"></span><span class="typing-cursor"></span></div>
   </section>
 
   <!-- Stats -->
   <div class="stats-row">
     <div class="stat-card">
-      <span class="stat-icon">🧠</span>
-      <div class="stat-num">384</div>
+      <span class="stat-icon">
+        <!-- Brain SVG -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round">
+          <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z" opacity="0.3"/>
+          <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83">
+            <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="8s" repeatCount="indefinite"/>
+          </path>
+        </svg>
+      </span>
+      <div class="stat-num" data-count="384">0</div>
       <div class="stat-label">SBERT Embedding Dims</div>
     </div>
     <div class="stat-card">
-      <span class="stat-icon">⚡</span>
-      <div class="stat-num">83.6%</div>
+      <span class="stat-icon">
+        <!-- Lightning SVG -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ffd60a" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="rgba(255,214,10,0.12)">
+            <animate attributeName="opacity" values="0.08;0.22;0.08" dur="1.5s" repeatCount="indefinite"/>
+          </polygon>
+        </svg>
+      </span>
+      <div class="stat-num" data-count="83.6" data-suffix="%" data-decimals="1">0</div>
       <div class="stat-label">Decision Tree Accuracy</div>
     </div>
     <div class="stat-card">
-      <span class="stat-icon">🔬</span>
-      <div class="stat-num">17</div>
+      <span class="stat-icon">
+        <!-- Microscope SVG -->
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00ffaa" stroke-width="1.5" stroke-linecap="round">
+          <circle cx="12" cy="12" r="3" fill="rgba(0,255,170,0.1)">
+            <animate attributeName="r" values="2.5;3.5;2.5" dur="2s" repeatCount="indefinite"/>
+          </circle>
+          <circle cx="12" cy="12" r="8" stroke-dasharray="4 4">
+            <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="10s" repeatCount="indefinite"/>
+          </circle>
+        </svg>
+      </span>
+      <div class="stat-num" data-count="17">0</div>
       <div class="stat-label">Validation Features</div>
     </div>
   </div>
@@ -79,6 +163,7 @@
     <!-- ── Upload Terminal ──────────────────────────────── -->
     <div class="card" id="uploadCard">
       <div class="card-inner"></div>
+      <div class="card-sweep"></div>
       <div class="card-title">⬡ DATA INTAKE TERMINAL</div>
 
       <form id="uploadForm" autocomplete="off">
@@ -86,7 +171,30 @@
         <div class="drop-zone" id="dropZone">
           <div class="drop-beam"></div>
           <input type="file" name="resume" accept=".pdf,.docx,.txt" required id="resumeInput">
-          <span class="drop-icon">📡</span>
+          <!-- Animated radar upload SVG -->
+          <svg class="drop-icon-svg" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="32" cy="32" r="28" stroke="#00d4ff" stroke-width="0.8" opacity="0.2" stroke-dasharray="4 6">
+              <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="12s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="32" cy="32" r="20" stroke="#00d4ff" stroke-width="0.6" opacity="0.15" stroke-dasharray="3 5">
+              <animateTransform attributeName="transform" type="rotate" from="360 32 32" to="0 32 32" dur="8s" repeatCount="indefinite"/>
+            </circle>
+            <circle cx="32" cy="32" r="12" stroke="#9b5de5" stroke-width="0.5" opacity="0.3"/>
+            <!-- Upload arrow -->
+            <path d="M32 42 V24 M24 30 L32 22 L40 30" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="2s" repeatCount="indefinite"/>
+              <animateTransform attributeName="transform" type="translate" values="0,0;0,-2;0,0" dur="2s" repeatCount="indefinite"/>
+            </path>
+            <!-- Radar sweep -->
+            <line x1="32" y1="32" x2="32" y2="5" stroke="#00d4ff" stroke-width="1" opacity="0.12">
+              <animateTransform attributeName="transform" type="rotate" from="0 32 32" to="360 32 32" dur="3s" repeatCount="indefinite"/>
+            </line>
+            <!-- Center dot -->
+            <circle cx="32" cy="32" r="2" fill="#00d4ff">
+              <animate attributeName="r" values="1.5;3;1.5" dur="1.5s" repeatCount="indefinite"/>
+              <animate attributeName="opacity" values="0.5;1;0.5" dur="1.5s" repeatCount="indefinite"/>
+            </circle>
+          </svg>
           <div class="drop-hint">
             DROP RESUME FILE HERE
             <span>PDF · DOCX · TXT — click to browse</span>
@@ -95,19 +203,53 @@
         </div>
 
         <div class="fgrp">
-          <label>⬡ JOB TITLE <span style="color:var(--text-dim);font-size:0.5rem">(OPTIONAL)</span></label>
+          <label>
+            <svg viewBox="0 0 16 16" fill="none" stroke="#00d4ff" stroke-width="1.2"><rect x="2" y="3" width="12" height="10" rx="1.5"/><path d="M2 6h12"/></svg>
+            JOB TITLE <span style="color:var(--text-dim);font-size:0.45rem">(OPTIONAL)</span>
+          </label>
           <input type="text" name="job_title" placeholder="e.g. Senior Data Scientist" id="jobTitleInput">
         </div>
         <div class="fgrp">
-          <label>⬡ JOB DESCRIPTION</label>
+          <label>
+            <svg viewBox="0 0 16 16" fill="none" stroke="#00d4ff" stroke-width="1.2"><rect x="2" y="2" width="12" height="12" rx="1.5"/><line x1="5" y1="5" x2="11" y2="5"/><line x1="5" y1="8" x2="11" y2="8"/><line x1="5" y1="11" x2="9" y2="11"/></svg>
+            JOB DESCRIPTION
+          </label>
           <textarea name="job_description" placeholder="Paste the full job description here..." required></textarea>
         </div>
 
-        <!-- Loading panel (hidden until submit) -->
+        <!-- Neural Network Loading Panel -->
         <div id="loading">
-          <div class="loading-ring">
-            <div class="loading-ring-center"></div>
-          </div>
+          <svg class="neural-loader" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Input layer -->
+            <circle cx="10" cy="20" r="3" fill="#9b5de5" opacity="0.7"><animate attributeName="r" values="2;4;2" dur="1.5s" repeatCount="indefinite"/></circle>
+            <circle cx="10" cy="40" r="3" fill="#9b5de5" opacity="0.7"><animate attributeName="r" values="2;4;2" dur="1.5s" begin="0.2s" repeatCount="indefinite"/></circle>
+            <circle cx="10" cy="60" r="3" fill="#9b5de5" opacity="0.7"><animate attributeName="r" values="2;4;2" dur="1.5s" begin="0.4s" repeatCount="indefinite"/></circle>
+            <!-- Hidden layer -->
+            <circle cx="40" cy="15" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" repeatCount="indefinite"/></circle>
+            <circle cx="40" cy="35" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" begin="0.3s" repeatCount="indefinite"/></circle>
+            <circle cx="40" cy="55" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" begin="0.6s" repeatCount="indefinite"/></circle>
+            <circle cx="40" cy="70" r="3" fill="#00d4ff" opacity="0.8"><animate attributeName="r" values="2;4;2" dur="1.2s" begin="0.9s" repeatCount="indefinite"/></circle>
+            <!-- Output layer -->
+            <circle cx="70" cy="30" r="4" fill="#00ffaa" opacity="0.8"><animate attributeName="r" values="3;5;3" dur="1.8s" repeatCount="indefinite"/></circle>
+            <circle cx="70" cy="50" r="4" fill="#00ffaa" opacity="0.8"><animate attributeName="r" values="3;5;3" dur="1.8s" begin="0.5s" repeatCount="indefinite"/></circle>
+            <!-- Connections (animated dash) -->
+            <g stroke="#00d4ff" stroke-width="0.5" opacity="0.35">
+              <line x1="13" y1="20" x2="37" y2="15" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" repeatCount="indefinite"/></line>
+              <line x1="13" y1="20" x2="37" y2="35" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.1s" repeatCount="indefinite"/></line>
+              <line x1="13" y1="40" x2="37" y2="35" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.2s" repeatCount="indefinite"/></line>
+              <line x1="13" y1="40" x2="37" y2="55" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.3s" repeatCount="indefinite"/></line>
+              <line x1="13" y1="60" x2="37" y2="55" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.4s" repeatCount="indefinite"/></line>
+              <line x1="13" y1="60" x2="37" y2="70" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.5s" repeatCount="indefinite"/></line>
+              <line x1="43" y1="15" x2="67" y2="30" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.6s" repeatCount="indefinite"/></line>
+              <line x1="43" y1="35" x2="67" y2="30" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.7s" repeatCount="indefinite"/></line>
+              <line x1="43" y1="55" x2="67" y2="50" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.8s" repeatCount="indefinite"/></line>
+              <line x1="43" y1="70" x2="67" y2="50" stroke-dasharray="3 3"><animate attributeName="stroke-dashoffset" from="6" to="0" dur="1s" begin="0.9s" repeatCount="indefinite"/></line>
+            </g>
+            <!-- Labels -->
+            <text x="5" y="78" fill="#9b5de5" font-family="Share Tech Mono" font-size="5" opacity="0.6">IN</text>
+            <text x="33" y="78" fill="#00d4ff" font-family="Share Tech Mono" font-size="5" opacity="0.6">HIDDEN</text>
+            <text x="64" y="78" fill="#00ffaa" font-family="Share Tech Mono" font-size="5" opacity="0.6">OUT</text>
+          </svg>
           <div class="loading-label" id="loadingLabel">INITIALIZING NEURAL SCAN...</div>
           <div class="loading-bar"></div>
           <div class="loading-steps" id="loadingSteps"></div>
@@ -125,6 +267,7 @@
       <!-- Classification Card -->
       <div class="card" id="resultsCard" style="display:none; margin-bottom:18px;">
         <div class="card-inner"></div>
+        <div class="card-sweep"></div>
         <div class="card-title">⬡ CLASSIFICATION OUTPUT</div>
 
         <div class="result-header">
@@ -148,13 +291,12 @@
       <!-- Resume Preview Card -->
       <div class="card" id="previewCard" style="display:none;">
         <div class="card-inner"></div>
+        <div class="card-sweep"></div>
         <div class="card-title">⬡ PARSED RESUME DATA</div>
         <div class="preview-box" id="resumePreviewWrap">
           <div class="terminal-header">
             <div class="terminal-dots">
-              <span class="td-red"></span>
-              <span class="td-amber"></span>
-              <span class="td-green"></span>
+              <span class="td-red"></span><span class="td-amber"></span><span class="td-green"></span>
             </div>
             <span style="flex:1;text-align:center">RESUME_PARSE_OUTPUT.TXT</span>
           </div>
@@ -166,44 +308,131 @@
   </div><!-- /main-grid -->
 
   <footer>
-    <p>NEXUS AI &middot; BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 Labeled Samples &middot; NCE 2026</p>
+    <p>NEXUS AI · BERT-Based Resume Screening · Decision Tree Classification · 4,000 Labeled Samples · NCE 2026</p>
   </footer>
 </div>
 </div>
 
 <script>
+/* ═══════════════════════════════════════════════════════════════
+   NEXUS AI — Full Motion System
+   ═══════════════════════════════════════════════════════════════ */
+
 /* ── Matrix Rain Background ──────────────────────────────── */
 (function() {
-  const canvas = document.getElementById('bg-canvas');
-  const ctx = canvas.getContext('2d');
-  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  const chars = 'NEXUSAI01アイウエオカキクケコSBERTDTNLP◈⬡▶';
-  const cols = Math.floor(canvas.width / 18);
+  const C = document.getElementById('bg-canvas');
+  const ctx = C.getContext('2d');
+  function resize() { C.width = innerWidth; C.height = innerHeight; }
+  resize(); addEventListener('resize', resize);
+  const chars = 'NEXUSAI01アイウエオカキSBERTDT10110100◈⬡▶∞';
+  const cols = Math.floor(C.width / 18);
   const drops = Array.from({length: cols}, () => Math.random() * -50);
   function draw() {
-    ctx.fillStyle = 'rgba(0,9,18,0.05)';
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(0,9,18,0.045)';
+    ctx.fillRect(0, 0, C.width, C.height);
     drops.forEach((y, i) => {
-      const char = chars[Math.floor(Math.random() * chars.length)];
-      const alpha = Math.random() > 0.85 ? 1 : 0.35;
-      ctx.fillStyle = `rgba(0,212,255,${alpha})`;
+      const ch = chars[Math.floor(Math.random() * chars.length)];
+      const bright = Math.random() > 0.88;
+      ctx.fillStyle = bright ? 'rgba(0,212,255,1)' : 'rgba(0,212,255,0.28)';
       ctx.font = '13px "Share Tech Mono"';
-      ctx.fillText(char, i * 18, y * 18);
-      if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      ctx.fillText(ch, i * 18, y * 18);
+      if (y * 18 > C.height && Math.random() > 0.975) drops[i] = 0;
       drops[i] += 0.5;
     });
   }
   setInterval(draw, 55);
 })();
 
-/* ── Mouse Glow ──────────────────────────────────────────── */
-const glow = document.getElementById('cursorGlow');
+/* ── Floating Particles ──────────────────────────────────── */
+(function() {
+  const field = document.getElementById('particleField');
+  const types = ['small','medium','large','star'];
+  for (let i = 0; i < 60; i++) {
+    const p = document.createElement('div');
+    const t = types[Math.floor(Math.random() * types.length)];
+    p.className = 'fp ' + t;
+    p.style.left = Math.random() * 100 + '%';
+    p.style.animationDuration = (12 + Math.random() * 25) + 's';
+    p.style.animationDelay = (Math.random() * 20) + 's';
+    field.appendChild(p);
+  }
+})();
+
+/* ── Custom Cursor ───────────────────────────────────────── */
+const cursorGlow = document.getElementById('cursorGlow');
+const cursorRing = document.getElementById('cursorRing');
+const cursorDot  = document.getElementById('cursorDot');
 document.addEventListener('mousemove', e => {
-  glow.style.left = e.clientX + 'px';
-  glow.style.top  = e.clientY + 'px';
+  cursorGlow.style.left = e.clientX + 'px'; cursorGlow.style.top = e.clientY + 'px';
+  cursorRing.style.left = e.clientX + 'px'; cursorRing.style.top = e.clientY + 'px';
+  cursorDot.style.left  = e.clientX + 'px'; cursorDot.style.top  = e.clientY + 'px';
 });
+/* Enlarge ring on hover over interactive elements */
+document.addEventListener('mouseover', e => {
+  if (e.target.closest('a,button,.btn,.drop-zone,.stat-card,.score-item,.chip,.vchip,.nav-center a')) {
+    cursorRing.classList.add('hovering');
+  }
+});
+document.addEventListener('mouseout', e => {
+  if (e.target.closest('a,button,.btn,.drop-zone,.stat-card,.score-item,.chip,.vchip,.nav-center a')) {
+    cursorRing.classList.remove('hovering');
+  }
+});
+
+/* ── Typing Effect ───────────────────────────────────────── */
+(function() {
+  const phrases = [
+    'LOADING SBERT EMBEDDING MODEL...',
+    'INITIALIZING 384-DIMENSIONAL VECTOR SPACE...',
+    'DECISION TREE CLASSIFIER: READY',
+    'NLP PIPELINE: spaCy en_core_web_sm LOADED',
+    '17 VALIDATION FEATURES CALIBRATED',
+    'COSINE SIMILARITY ENGINE: ACTIVE',
+    'AWAITING RESUME INPUT...'
+  ];
+  const el = document.getElementById('typingText');
+  let pi = 0, ci = 0, deleting = false;
+  function tick() {
+    const phrase = phrases[pi];
+    if (!deleting) {
+      el.textContent = phrase.substring(0, ci + 1);
+      ci++;
+      if (ci >= phrase.length) { deleting = true; setTimeout(tick, 1800); return; }
+      setTimeout(tick, 40 + Math.random() * 40);
+    } else {
+      el.textContent = phrase.substring(0, ci - 1);
+      ci--;
+      if (ci <= 0) { deleting = false; pi = (pi + 1) % phrases.length; setTimeout(tick, 400); return; }
+      setTimeout(tick, 22);
+    }
+  }
+  setTimeout(tick, 1200);
+})();
+
+/* ── Stat Counter Animation ──────────────────────────────── */
+(function() {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      if (el.dataset.counted) return;
+      el.dataset.counted = '1';
+      const target = parseFloat(el.dataset.count);
+      const suffix = el.dataset.suffix || '';
+      const dec = parseInt(el.dataset.decimals) || 0;
+      const dur = 1800;
+      const start = performance.now();
+      function frame(now) {
+        const pct = Math.min((now - start) / dur, 1);
+        const eased = 1 - Math.pow(1 - pct, 3);
+        el.textContent = (target * eased).toFixed(dec) + suffix;
+        if (pct < 1) requestAnimationFrame(frame);
+      }
+      requestAnimationFrame(frame);
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.stat-num[data-count]').forEach(el => observer.observe(el));
+})();
 
 /* ── File Drop Zone ──────────────────────────────────────── */
 const resumeInput = document.getElementById('resumeInput');
@@ -220,32 +449,29 @@ resumeInput.addEventListener('change', function() {
 
 /* ── Loading Steps Animation ─────────────────────────────── */
 const STEPS = [
-  'PARSING DOCUMENT STRUCTURE...',
-  'EXTRACTING NLP ENTITIES...',
-  'GENERATING SBERT EMBEDDINGS...',
-  'COMPUTING COSINE SIMILARITY...',
-  'ANALYZING 17 VALIDATION SIGNALS...',
-  'RUNNING DECISION TREE CLASSIFIER...',
-  'COMPILING ANALYSIS REPORT...',
+  { text: 'PARSING DOCUMENT STRUCTURE...', icon: '📄' },
+  { text: 'EXTRACTING NLP ENTITIES...',    icon: '🔤' },
+  { text: 'GENERATING SBERT EMBEDDINGS...', icon: '🧠' },
+  { text: 'COMPUTING COSINE SIMILARITY...', icon: '📐' },
+  { text: 'ANALYZING 17 VALIDATION SIGNALS...', icon: '🔬' },
+  { text: 'RUNNING DECISION TREE CLASSIFIER...', icon: '🌲' },
+  { text: 'COMPILING ANALYSIS REPORT...',  icon: '📊' },
 ];
 let stepTimer, stepIdx = 0;
-const stepsContainer = document.getElementById('loadingSteps');
+const stepsEl = document.getElementById('loadingSteps');
 const loadingLabel = document.getElementById('loadingLabel');
 
 function startSteps() {
-  stepsContainer.innerHTML = '';
-  stepIdx = 0;
+  stepsEl.innerHTML = ''; stepIdx = 0;
   stepTimer = setInterval(() => {
     if (stepIdx >= STEPS.length) { clearInterval(stepTimer); return; }
-    // Mark previous step done
-    const prev = stepsContainer.querySelector('.lstep.run');
-    if (prev) prev.className = 'lstep done';
-    // Add new step
+    const prev = stepsEl.querySelector('.lstep.run');
+    if (prev) { prev.className = 'lstep done'; prev.querySelector('.lstep-icon').textContent = '✓'; }
     const div = document.createElement('div');
     div.className = 'lstep run';
-    div.innerHTML = `<span class="lstep-dot"></span>${STEPS[stepIdx]}`;
-    stepsContainer.appendChild(div);
-    loadingLabel.textContent = STEPS[stepIdx];
+    div.innerHTML = `<span class="lstep-icon">${STEPS[stepIdx].icon}</span>${STEPS[stepIdx].text}`;
+    stepsEl.appendChild(div);
+    loadingLabel.textContent = STEPS[stepIdx].text;
     stepIdx++;
   }, 700);
 }
@@ -263,26 +489,15 @@ function showScanFlash(cls) {
 
 /* ── Confetti ────────────────────────────────────────────── */
 function fireConfetti() {
-  const container = document.createElement('div');
-  container.className = 'confetti-container';
-  document.body.appendChild(container);
+  const c = document.createElement('div'); c.className = 'confetti-container';
+  document.body.appendChild(c);
   const colors = ['#00ffaa','#00d4ff','#9b5de5','#ffd60a','#ff6b35'];
-  for (let i = 0; i < 70; i++) {
-    const el = document.createElement('div');
-    el.className = 'confetti-piece';
-    el.style.cssText = `
-      left:${Math.random()*100}%;
-      width:${Math.random()*8+4}px;
-      height:${Math.random()*8+4}px;
-      background:${colors[Math.floor(Math.random()*colors.length)]};
-      animation-duration:${Math.random()*2+1.5}s;
-      animation-delay:${Math.random()*0.5}s;
-      border-radius:${Math.random()>0.5?'50%':'2px'};
-      opacity:${Math.random()*0.7+0.3};
-    `;
-    container.appendChild(el);
+  for (let i = 0; i < 80; i++) {
+    const p = document.createElement('div'); p.className = 'confetti-piece';
+    p.style.cssText = `left:${Math.random()*100}%;width:${Math.random()*8+4}px;height:${Math.random()*8+4}px;background:${colors[Math.floor(Math.random()*colors.length)]};animation-duration:${Math.random()*2+1.5}s;animation-delay:${Math.random()*0.5}s;border-radius:${Math.random()>0.5?'50%':'2px'};opacity:${Math.random()*0.7+0.3};`;
+    c.appendChild(p);
   }
-  setTimeout(() => container.remove(), 3500);
+  setTimeout(() => c.remove(), 3500);
 }
 
 /* ── Form Submit ─────────────────────────────────────────── */
@@ -303,25 +518,19 @@ document.getElementById('uploadForm').onsubmit = async function(e) {
   startSteps();
 
   try {
-    const res = await fetch('/api/predict', { method: 'POST', body: formData });
+    const res = await fetch('/api/predict', { method:'POST', body: formData });
     const data = await res.json();
     if (data.status !== 'success') throw new Error(data.detail || 'Analysis failed');
-
-    await new Promise(r => setTimeout(r, 400)); // slight drama pause
+    await new Promise(r => setTimeout(r, 400));
     stopSteps();
     loading.classList.remove('active');
-
     showScanFlash(data.classification.classification);
     await new Promise(r => setTimeout(r, 1200));
-
     displayResults(data);
   } catch (err) {
-    stopSteps();
-    loading.classList.remove('active');
+    stopSteps(); loading.classList.remove('active');
     alert('⚠ NEXUS ERROR: ' + err.message);
-  } finally {
-    btn.disabled = false;
-  }
+  } finally { btn.disabled = false; }
 };
 
 /* ── Display Results ─────────────────────────────────────── */
@@ -332,98 +541,52 @@ function displayResults(data) {
   const valFeats = data.validation_features || {};
   const resumeText = data.resume_text || '';
 
-  /* --- Classification Badge --- */
-  const bc = cls.classification === 'Authentic' ? 'badge-authentic'
-           : cls.classification === 'Suspicious' ? 'badge-suspicious' : 'badge-fake';
-  const icons = { Authentic: '✦ AUTHENTIC', Suspicious: '⚠ SUSPICIOUS', 'Potentially Fake': '✕ POTENTIALLY FAKE' };
-  document.getElementById('classificationBadge').innerHTML =
-    `<span class="badge-cls ${bc}">${icons[cls.classification] || cls.classification}</span>`;
-  document.getElementById('confLine').textContent =
-    `CONFIDENCE: ${(cls.confidence * 100).toFixed(1)}%`;
+  /* Badge */
+  const bc = cls.classification === 'Authentic' ? 'badge-authentic' : cls.classification === 'Suspicious' ? 'badge-suspicious' : 'badge-fake';
+  const icons = { Authentic:'✦ AUTHENTIC', Suspicious:'⚠ SUSPICIOUS', 'Potentially Fake':'✕ POTENTIALLY FAKE' };
+  document.getElementById('classificationBadge').innerHTML = `<span class="badge-cls ${bc}">${icons[cls.classification] || cls.classification}</span>`;
+  document.getElementById('confLine').textContent = `CONFIDENCE: ${(cls.confidence * 100).toFixed(1)}%`;
 
-  /* --- Scores Grid --- */
-  const scoreMap = {
-    'Semantic Similarity': scores.semantic_similarity,
-    'Skill Overlap':       scores.skill_overlap_score,
-    'Experience Match':    scores.experience_relevance_score,
-    'Final Match Score':   scores.final_match_score,
-  };
+  /* Scores */
+  const scoreMap = { 'Semantic Similarity': scores.semantic_similarity, 'Skill Overlap': scores.skill_overlap_score, 'Experience Match': scores.experience_relevance_score, 'Final Match Score': scores.final_match_score };
   document.getElementById('scoresGrid').innerHTML = Object.entries(scoreMap).map(([k, v]) => {
     const pct = v != null ? Math.round(v * 100) : 0;
-    const grade = pct >= 65 ? 'high' : pct >= 40 ? 'med' : 'low';
-    return `<div class="score-item ${grade}" style="--pct:${pct}%">
-      <div class="si-label">${k}</div>
-      <div class="si-val ${grade}">${pct}%</div>
-    </div>`;
+    const g = pct >= 65 ? 'high' : pct >= 40 ? 'med' : 'low';
+    return `<div class="score-item ${g}" style="--pct:${pct}%"><div class="si-label">${k}</div><div class="si-val ${g}">${pct}%</div></div>`;
   }).join('');
 
-  /* --- Skills Section --- */
-  const matched = skills.matched_skills || [];
-  const missing = skills.missing_skills || [];
-  const extra   = skills.extra_skills   || [];
+  /* Skills */
+  const matched = skills.matched_skills || []; const missing = skills.missing_skills || []; const extra = skills.extra_skills || [];
   if (matched.length || missing.length || extra.length) {
     document.getElementById('gd1').style.display = 'block';
-    const chip = (arr, cls) => arr.map(s => `<span class="chip ${cls}">${s}</span>`).join('');
-    document.getElementById('skillsSection').innerHTML = `
-      <div class="skills-grid">
-        <div class="skill-block">
-          <div class="sb-title">✦ Matched (${matched.length})</div>
-          <div>${chip(matched,'chip-matched') || '<span style="color:var(--text-dim);font-size:0.65rem">none</span>'}</div>
-        </div>
-        <div class="skill-block">
-          <div class="sb-title">✕ Missing (${missing.length})</div>
-          <div>${chip(missing,'chip-missing') || '<span style="color:var(--text-dim);font-size:0.65rem">none</span>'}</div>
-        </div>
-        <div class="skill-block">
-          <div class="sb-title">⬡ Extra (${extra.length})</div>
-          <div>${chip(extra,'chip-extra') || '<span style="color:var(--text-dim);font-size:0.65rem">none</span>'}</div>
-        </div>
-      </div>`;
+    const chip = (a, c) => a.map(s => `<span class="chip ${c}">${s}</span>`).join('');
+    document.getElementById('skillsSection').innerHTML = `<div class="skills-grid"><div class="skill-block"><div class="sb-title">✦ Matched (${matched.length})</div><div>${chip(matched,'chip-matched')||'<span style="color:var(--text-dim);font-size:0.6rem">none</span>'}</div></div><div class="skill-block"><div class="sb-title">✕ Missing (${missing.length})</div><div>${chip(missing,'chip-missing')||'<span style="color:var(--text-dim);font-size:0.6rem">none</span>'}</div></div><div class="skill-block"><div class="sb-title">⬡ Extra (${extra.length})</div><div>${chip(extra,'chip-extra')||'<span style="color:var(--text-dim);font-size:0.6rem">none</span>'}</div></div></div>`;
   }
 
-  /* --- Validation Grid --- */
-  const valKeys = Object.keys(valFeats);
-  if (valKeys.length) {
+  /* Validation Grid */
+  const vk = Object.keys(valFeats);
+  if (vk.length) {
     document.getElementById('valLabel').style.display = 'flex';
-    document.getElementById('validationGrid').innerHTML = valKeys.map(k => {
+    document.getElementById('validationGrid').innerHTML = vk.map(k => {
       const v = valFeats[k];
-      const disp = typeof v === 'number' ? (v % 1 === 0 ? v : v.toFixed(3)) : v;
-      return `<div class="vchip">
-        <div class="vc-label">${k.replace(/_/g,' ')}</div>
-        <div class="vc-val">${disp}</div>
-      </div>`;
+      const d = typeof v === 'number' ? (v % 1 === 0 ? v : v.toFixed(3)) : v;
+      return `<div class="vchip"><div class="vc-label">${k.replace(/_/g,' ')}</div><div class="vc-val">${d}</div></div>`;
     }).join('');
   }
 
-  /* --- Resume Preview --- */
+  /* Preview */
   if (resumeText) {
     document.getElementById('resumePreview').textContent = resumeText.substring(0, 2500) + (resumeText.length > 2500 ? '\n...[truncated]' : '');
     document.getElementById('previewCard').style.display = 'block';
   }
 
   document.getElementById('resultsCard').style.display = 'block';
-
   requestAnimationFrame(() => {
     document.getElementById('results').classList.add('visible');
-    setTimeout(() => {
-      document.getElementById('results').scrollIntoView({ behavior:'smooth', block:'start' });
-    }, 100);
+    setTimeout(() => document.getElementById('results').scrollIntoView({ behavior:'smooth', block:'start' }), 100);
   });
-
   if (cls.classification === 'Authentic') fireConfetti();
 }
-
-/* ── Animate score-item bars on results update ───────────── */
-// Reset + replay fill animation when results re-render
-const observer = new MutationObserver(() => {
-  document.querySelectorAll('.score-item').forEach(el => {
-    el.style.animation = 'none';
-    el.querySelector && null; // flush
-    void el.offsetWidth;
-    el.style.animation = '';
-  });
-});
-observer.observe(document.getElementById('scoresGrid'), { childList: true });
 </script>
 </body>
 </html>
