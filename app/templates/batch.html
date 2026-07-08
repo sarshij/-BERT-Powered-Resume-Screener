@@ -3,78 +3,142 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Batch Screening — Resume Screener</title>
+<title>NEXUS AI — Batch Screening Command Center</title>
+<meta name="description" content="Batch resume screening — upload multiple resumes and get ranked results instantly using BERT and Decision Tree AI.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=5">
 </head>
 <body>
 
-<div class="particles">
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-</div>
+<!-- ── Background System ───────────────────────────────── -->
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="scanline-overlay"></div>
+<div class="vignette-overlay"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- ── Navigation ─────────────────────────────────────── -->
 <nav>
-  <div class="logo">
-    <span class="logo-icon">✦</span>
-    Resume Screener
+  <a href="/" class="logo">
+    <div class="logo-hex">⬡</div>
+    <div>
+      NEXUS<span style="color:var(--violet)">AI</span>
+      <span class="logo-sub">RESUME INTELLIGENCE v2.0</span>
+    </div>
+  </a>
+  <div class="nav-center">
+    <a href="/">⬡ Single</a>
+    <a href="/batch" class="active">⬡ Batch</a>
+    <a href="/analytics">⬡ Insights</a>
   </div>
-  <div class="links">
-    <a href="/">Single</a>
-    <a href="/batch" class="active">Batch</a>
-    <a href="/analytics">Insights</a>
+  <div class="nav-right">
+    <div class="status-pill"><span class="dot-live"></span> SYSTEM ONLINE</div>
+    <span style="color:var(--text-dim)">BULK PROCESSING ENGINE</span>
   </div>
 </nav>
 
+<div class="page">
 <div class="container">
-  <div class="hero">
-    <div class="hero-badge">⚡ Bulk Processing Engine</div>
-    <h1>Batch <span class="gradient-text">screening</span></h1>
-    <p>Upload multiple resumes at once. Get a ranked table sorted by authenticity and match score.</p>
-  </div>
 
-  <div class="card">
-    <h2>📂 Upload Resumes</h2>
-    <form id="batchForm">
-      <div class="grp">
-        <label>Resume files <span style="color:var(--text-tertiary)">(PDF or TXT, multiple allowed)</span></label>
-        <input type="file" name="resumes" multiple accept=".pdf,.txt" required>
-      </div>
-      <div class="grp">
-        <label>Job title <span style="color:var(--text-tertiary)">(optional)</span></label>
-        <input type="text" name="job_title" placeholder="e.g. Data Scientist">
-      </div>
-      <div class="grp">
-        <label>Job description</label>
-        <textarea name="job_description" placeholder="Paste the job description here..." required></textarea>
-      </div>
-      <button type="submit" class="btn btn-primary" id="batchBtn">
-        Screen all resumes →
-      </button>
-    </form>
-    <div class="loading" id="batchLoading">
-      <div class="spinner"></div>
-      <span>Processing resumes</span>
-      <span class="loading-dots"><span></span><span></span><span></span></span>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">◈ PARALLEL BATCH PROCESSING UNIT</div>
+    <h1>
+      Command<br>
+      <span class="glow-word" data-text="Center.">Center.</span>
+    </h1>
+    <p>Upload an entire candidate pool. Our engine processes every resume in parallel — ranked by authenticity and match score.</p>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-row">
+    <div class="stat-card">
+      <span class="stat-icon">📂</span>
+      <div class="stat-num">∞</div>
+      <div class="stat-label">Files per Batch</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">⚡</span>
+      <div class="stat-num">&lt;3s</div>
+      <div class="stat-label">Per Resume Avg</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🎯</span>
+      <div class="stat-num">3</div>
+      <div class="stat-label">Classification Tiers</div>
     </div>
   </div>
 
-  <div id="batchResults" style="display:none">
+  <!-- Upload Form -->
+  <div class="card" style="margin-bottom:20px;">
+    <div class="card-inner"></div>
+    <div class="card-title">⬡ BATCH UPLOAD TERMINAL</div>
+
+    <form id="batchForm" autocomplete="off">
+      <!-- Multi-file drop zone -->
+      <div class="drop-zone" id="batchDropZone" style="margin-bottom:18px;">
+        <div class="drop-beam"></div>
+        <input type="file" name="resumes" multiple accept=".pdf,.txt" required id="batchInput">
+        <span class="drop-icon">📡</span>
+        <div class="drop-hint">
+          DROP RESUME FILES HERE
+          <span>PDF · TXT · Multiple files supported</span>
+        </div>
+        <div class="drop-filename" id="batchFilename"></div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:14px;margin-bottom:16px;">
+        <div class="fgrp">
+          <label>⬡ JOB TITLE <span style="color:var(--text-dim);font-size:0.5rem">(OPT)</span></label>
+          <input type="text" name="job_title" placeholder="e.g. ML Engineer">
+        </div>
+        <div class="fgrp">
+          <label>⬡ JOB DESCRIPTION</label>
+          <input type="text" name="job_description" placeholder="Paste or summarize the job description..." required style="height:auto;">
+        </div>
+      </div>
+
+      <!-- Loading -->
+      <div id="batchLoading">
+        <div style="display:none;flex-direction:column;align-items:center;gap:14px;padding:30px 0;" id="batchLoadInner">
+          <div class="loading-ring"><div class="loading-ring-center"></div></div>
+          <div class="loading-label" id="batchLoadLabel">PROCESSING CANDIDATE POOL...</div>
+          <div class="loading-bar"></div>
+          <div id="batchLoadProgress" style="font-family:var(--font-mono);font-size:0.58rem;letter-spacing:0.2em;color:var(--text-muted);">
+            ANALYZING RESUMES...
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-launch" id="batchBtn">
+        ▶ INITIATE BATCH SCAN
+      </button>
+    </form>
+  </div>
+
+  <!-- Results -->
+  <div id="batchResults" style="display:none;">
     <div class="card">
+      <div class="card-inner"></div>
+      <div class="card-title">⬡ ANALYSIS OUTPUT — RANKED BY AUTHENTICITY</div>
+
+      <!-- Summary HUD -->
       <div class="summary" id="summary"></div>
+
+      <!-- Results Table -->
       <div class="table-wrap">
         <table>
           <thead>
-            <tr><th>#</th><th>Filename</th><th>Classification</th><th>Confidence</th><th>Match</th><th>Semantic</th><th>Skills</th></tr>
+            <tr>
+              <th>#</th>
+              <th>FILENAME</th>
+              <th>CLASSIFICATION</th>
+              <th>CONFIDENCE</th>
+              <th>MATCH SCORE</th>
+              <th>SEMANTIC SIM</th>
+              <th>SKILL OVERLAP</th>
+            </tr>
           </thead>
           <tbody id="resultsBody"></tbody>
         </table>
@@ -83,34 +147,97 @@
   </div>
 
   <footer>
-    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 labeled samples</p>
+    <p>NEXUS AI &middot; Batch Resume Screening &middot; Decision Tree Classification &middot; 4,000 Labeled Samples &middot; NCE 2026</p>
   </footer>
+
+</div>
 </div>
 
 <script>
+/* ── Matrix Rain ─────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const chars = 'NEXUSAI01アイウエオSBERTBATCH◈⬡▶RANK';
+  const cols = Math.floor(canvas.width / 18);
+  const drops = Array.from({length: cols}, () => Math.random() * -60);
+  function draw() {
+    ctx.fillStyle = 'rgba(0,9,18,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drops.forEach((y, i) => {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillStyle = `rgba(0,212,255,${Math.random() > 0.85 ? 1 : 0.3})`;
+      ctx.font = '13px "Share Tech Mono"';
+      ctx.fillText(char, i * 18, y * 18);
+      if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i] += 0.5;
+    });
+  }
+  setInterval(draw, 55);
+})();
+
+/* ── Mouse Glow ──────────────────────────────────────────── */
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+
+/* ── File Input Display ──────────────────────────────────── */
+document.getElementById('batchInput').addEventListener('change', function() {
+  const fn = document.getElementById('batchFilename');
+  if (this.files.length > 0) {
+    fn.textContent = `📎 ${this.files.length} file${this.files.length > 1 ? 's' : ''} selected: ${Array.from(this.files).map(f => f.name).join(', ')}`;
+    fn.classList.add('show');
+    document.getElementById('batchDropZone').classList.add('file-loaded');
+  }
+});
+
+/* ── Batch Form Submit ───────────────────────────────────── */
 document.getElementById('batchForm').onsubmit = async function(e) {
   e.preventDefault();
   const formData = new FormData(this);
-  document.getElementById('batchBtn').disabled = true;
-  document.getElementById('batchLoading').classList.add('active');
-  document.getElementById('batchResults').style.display = 'none';
+  const btn = document.getElementById('batchBtn');
+  const loadInner = document.getElementById('batchLoadInner');
+  const batchResults = document.getElementById('batchResults');
+  const loadLabel = document.getElementById('batchLoadLabel');
+
+  btn.disabled = true;
+  loadInner.style.display = 'flex';
+  batchResults.style.display = 'none';
+
+  // Animate the progress label
+  let dotCount = 0;
+  const labelTimer = setInterval(() => {
+    dotCount = (dotCount + 1) % 4;
+    loadLabel.textContent = 'PROCESSING CANDIDATE POOL' + '.'.repeat(dotCount);
+  }, 600);
+
   try {
-    const res = await fetch('/api/predict_batch', {method: 'POST', body: formData});
+    const res = await fetch('/api/predict_batch', { method: 'POST', body: formData });
     const data = await res.json();
-    if (data.status !== 'success') throw new Error(data.detail || 'Error');
+    if (data.status !== 'success') throw new Error(data.detail || 'Batch analysis failed');
+    clearInterval(labelTimer);
+    loadInner.style.display = 'none';
     displayBatch(data);
-  } catch (err) { alert('Error: ' + err.message); }
-  finally {
-    document.getElementById('batchBtn').disabled = false;
-    document.getElementById('batchLoading').classList.remove('active');
+  } catch (err) {
+    clearInterval(labelTimer);
+    loadInner.style.display = 'none';
+    alert('⚠ BATCH ERROR: ' + err.message);
+  } finally {
+    btn.disabled = false;
   }
 };
 
+/* ── Display Batch Results ───────────────────────────────── */
 function displayBatch(data) {
-  const r = data.results;
-  const counts = {Authentic: 0, Suspicious: 0, 'Potentially Fake': 0, Error: 0};
-  r.forEach(x => { if (x.error) counts.Error++; else counts[x.classification]++; });
+  const r = data.results || [];
+  const counts = { Authentic: 0, Suspicious: 0, 'Potentially Fake': 0, Error: 0 };
+  r.forEach(x => { if (x.error) counts.Error++; else if (counts[x.classification] !== undefined) counts[x.classification]++; });
 
+  /* Summary HUD */
   document.getElementById('summary').innerHTML = `
     <div class="summary-item total">
       <div class="s-item-num anim-count" data-target="${r.length}">0</div>
@@ -129,34 +256,43 @@ function displayBatch(data) {
       <div class="s-item-label">Fake</div>
     </div>`;
 
+  /* Table rows */
   document.getElementById('resultsBody').innerHTML = r.map((x, i) => {
-    if (x.error) return `<tr><td>${i + 1}</td><td>${x.filename}</td><td colspan="5" style="color:var(--danger)">⚠ ${x.error}</td></tr>`;
-    const bc = x.classification === 'Authentic' ? 'bt-authentic' : x.classification === 'Suspicious' ? 'bt-suspicious' : 'bt-fake';
-    return `<tr style="animation: fadeUp 0.4s ease ${i * 0.05}s both">
-      <td>${i + 1}</td>
-      <td>${x.filename}</td>
+    if (x.error) return `<tr style="animation:fadeUp 0.4s ease ${i*0.04}s both">
+      <td style="color:var(--text-muted)">${i+1}</td>
+      <td style="color:var(--text)">${x.filename}</td>
+      <td colspan="5" style="color:var(--rose);font-family:var(--font-mono);font-size:0.65rem">⚠ ${x.error}</td>
+    </tr>`;
+    const bc = x.classification === 'Authentic' ? 'bt-authentic'
+             : x.classification === 'Suspicious' ? 'bt-suspicious' : 'bt-fake';
+    const pct = v => v != null ? Math.round(v*100) + '%' : '—';
+    return `<tr style="animation:fadeUp 0.4s ease ${i*0.04}s both">
+      <td style="color:var(--text-muted);font-weight:700">${i+1}</td>
+      <td style="color:var(--cyan);max-width:180px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="${x.filename}">${x.filename}</td>
       <td><span class="bt-tbl ${bc}">${x.classification}</span></td>
-      <td>${(x.confidence * 100).toFixed(1)}%</td>
-      <td>${(x.final_match_score * 100).toFixed(0)}%</td>
-      <td>${(x.semantic_similarity * 100).toFixed(0)}%</td>
-      <td>${(x.skill_overlap_score * 100).toFixed(0)}%</td>
+      <td style="color:var(--text)">${(x.confidence*100).toFixed(1)}%</td>
+      <td style="color:var(--text)">${pct(x.final_match_score)}</td>
+      <td style="color:var(--text)">${pct(x.semantic_similarity)}</td>
+      <td style="color:var(--text)">${pct(x.skill_overlap_score)}</td>
     </tr>`;
   }).join('');
 
   document.getElementById('batchResults').style.display = 'block';
+  document.getElementById('batchResults').scrollIntoView({ behavior:'smooth', block:'start' });
 
+  /* Animate number counters */
   setTimeout(() => {
     document.querySelectorAll('.anim-count').forEach(el => {
       const target = parseInt(el.dataset.target);
-      const duration = 1200;
+      const duration = 1300;
       const start = performance.now();
-      function update(now) {
+      function tick(now) {
         const pct = Math.min((now - start) / duration, 1);
         const eased = 1 - Math.pow(1 - pct, 3);
         el.textContent = Math.round(target * eased);
-        if (pct < 1) requestAnimationFrame(update);
+        if (pct < 1) requestAnimationFrame(tick);
       }
-      requestAnimationFrame(update);
+      requestAnimationFrame(tick);
     });
   }, 300);
 }

@@ -1023,3 +1023,37 @@ Check your internet connection or see how to run the library in offline mode at 
 [2026-07-08 10:54:38] __main__ - INFO - Starting server on http://0.0.0.0:8000
 [2026-07-08 10:54:38] asyncio - DEBUG - Using selector: EpollSelector
 [2026-07-08 10:54:38] __main__ - INFO - Resume Screener API starting up...
+[2026-07-08 10:54:41] __main__ - INFO - GET / -> 200 (0.02s)
+[2026-07-08 10:55:00] app.utils.parser - DEBUG - Parsing: Sarshij-Karn-Real-Resume (1).pdf (format: pdf, size: 193829 bytes)
+[2026-07-08 10:55:00] app.utils.parser - DEBUG - PDF parsed: 5382 chars
+[2026-07-08 10:55:00] __main__ - INFO - Predicting: Sarshij-Karn-Real-Resume (1).pdf | JD: 2277 chars
+[2026-07-08 10:55:00] app.utils.nlp - INFO - Loaded spaCy model en_core_web_sm
+[2026-07-08 10:55:01] __main__ - DEBUG - Extracted: 4 years exp, graduation year 2024
+[2026-07-08 10:55:01] app.models.embedder - INFO - Loading SBERT model: all-MiniLM-L6-v2
+[2026-07-08 10:55:01] sentence_transformers.base.model - INFO - No device provided, using cuda:0
+[2026-07-08 10:55:01] sentence_transformers.base.model - INFO - Loading SentenceTransformer model from sentence-transformers/all-MiniLM-L6-v2.
+[2026-07-08 10:55:01] sentence_transformers.base.modules.transformer - DEBUG - Active modality config: {'text': {'method': 'forward', 'method_output_name': 'last_hidden_state'}}
+[2026-07-08 10:55:02] app.models.embedder - INFO - SBERT model loaded
+[2026-07-08 10:55:04] app.models.classifier - INFO - Loading trained Decision Tree model from: /mnt/c/Users/acer/PROJECTS/A Minor NCE/Resume/resume-screener/data/models/decision_tree_model.pkl
+[2026-07-08 10:55:04] app.models.classifier - INFO - Model loaded — accuracy: 0.8363, features: 17
+[2026-07-08 10:55:04] __main__ - INFO - Result: Sarshij-Karn-Real-Resume (1).pdf -> Potentially Fake (84.2%)
+[2026-07-08 10:55:04] __main__ - INFO - POST /api/predict -> 200 (4.65s)
+[2026-07-08 11:13:01] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 11:13:01] __main__ - INFO - GET /static/style.css -> 200 (0.03s)
+[2026-07-08 11:13:02] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 11:13:31] __main__ - INFO - GET / -> 200 (0.02s)
+[2026-07-08 11:13:31] __main__ - INFO - GET /static/style.css -> 200 (0.02s)
+[2026-07-08 11:13:31] __main__ - INFO - GET /favicon.ico -> 404 (0.00s)
+[2026-07-08 11:13:41] __main__ - INFO - GET /batch -> 200 (0.02s)
+[2026-07-08 11:13:41] __main__ - INFO - GET /static/style.css -> 304 (0.02s)
+[2026-07-08 11:14:23] __main__ - INFO - GET /batch -> 200 (0.02s)
+[2026-07-08 11:14:23] __main__ - INFO - GET /static/style.css -> 304 (0.05s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /analytics -> 200 (0.02s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /static/style.css -> 304 (0.02s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /api/model/info -> 200 (0.01s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /api/class_distribution -> 200 (0.12s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /api/dataset/stats -> 200 (0.09s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /static/confusion_matrix.png -> 200 (0.02s)
+[2026-07-08 11:14:34] __main__ - INFO - GET /static/correlation_matrix.png -> 200 (0.02s)
+[2026-07-08 11:14:54] __main__ - INFO - GET / -> 200 (0.01s)
+[2026-07-08 11:14:54] __main__ - INFO - GET /static/style.css -> 304 (0.03s)

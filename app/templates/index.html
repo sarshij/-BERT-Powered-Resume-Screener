@@ -3,204 +3,427 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Resume Screener — AI Authenticity Engine</title>
+<title>NEXUS AI — Resume Intelligence System</title>
+<meta name="description" content="BERT-powered resume screening and authenticity validation using Decision Tree Classification. Futuristic AI-driven recruiter dashboard.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=5">
 </head>
 <body>
 
-<div class="particles">
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-</div>
+<!-- ── Background System ───────────────────────────────── -->
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="scanline-overlay"></div>
+<div class="vignette-overlay"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- ── Navigation ─────────────────────────────────────── -->
 <nav>
-  <div class="logo">
-    <span class="logo-icon">✦</span>
-    Resume Screener
+  <a href="/" class="logo">
+    <div class="logo-hex">⬡</div>
+    <div>
+      NEXUS<span style="color:var(--violet)">AI</span>
+      <span class="logo-sub">RESUME INTELLIGENCE v2.0</span>
+    </div>
+  </a>
+  <div class="nav-center">
+    <a href="/" class="active">⬡ Single</a>
+    <a href="/batch">⬡ Batch</a>
+    <a href="/analytics">⬡ Insights</a>
   </div>
-  <div class="links">
-    <a href="/" class="active">Single</a>
-    <a href="/batch">Batch</a>
-    <a href="/analytics">Insights</a>
+  <div class="nav-right">
+    <div class="status-pill">
+      <span class="dot-live"></span> SYSTEM ONLINE
+    </div>
+    <span style="color:var(--text-dim)">SBERT · DT · NLP</span>
   </div>
 </nav>
 
+<!-- ── Page Content ────────────────────────────────────── -->
+<div class="page">
 <div class="container">
-  <div class="hero">
-    <div class="hero-badge">✦ BERT-Powered Analysis &middot; v2.0</div>
-    <h1>Screen resumes with <span class="gradient-text">83.6% accuracy</span></h1>
-    <p>Upload a resume and paste a job description. Our AI engine measures semantic fit, detects anomalies, and validates authenticity in seconds.</p>
-  </div>
 
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">◈ NEURAL RESUME ANALYSIS ENGINE</div>
+    <h1>
+      Scan. Match.<br>
+      <span class="glow-word" data-text="Authenticate.">Authenticate.</span>
+    </h1>
+    <p>Upload a resume, paste the job description. Our AI extracts semantics, skills, and authenticity signals — in seconds.</p>
+  </section>
+
+  <!-- Stats -->
   <div class="stats-row">
-    <div class="stat-card"><span class="stat-icon">🎯</span><div class="stat-num" data-count="83.6">0</div><div class="stat-label">Test Accuracy</div></div>
-    <div class="stat-card"><span class="stat-icon">⚡</span><div class="stat-num">2-5s</div><div class="stat-label">Analysis Time</div></div>
-    <div class="stat-card"><span class="stat-icon">🛡️</span><div class="stat-num">17</div><div class="stat-label">Validation Checks</div></div>
+    <div class="stat-card">
+      <span class="stat-icon">🧠</span>
+      <div class="stat-num">384</div>
+      <div class="stat-label">SBERT Embedding Dims</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">⚡</span>
+      <div class="stat-num">83.6%</div>
+      <div class="stat-label">Decision Tree Accuracy</div>
+    </div>
+    <div class="stat-card">
+      <span class="stat-icon">🔬</span>
+      <div class="stat-num">17</div>
+      <div class="stat-label">Validation Features</div>
+    </div>
   </div>
 
+  <!-- Main Grid -->
   <div class="main-grid">
-    <div class="card">
-      <h2>📄 Upload Resume</h2>
-      <form id="uploadForm">
-        <div class="grp">
-          <label>Resume file <span style="color:var(--text-tertiary)">(PDF or TXT)</span></label>
-          <input type="file" name="resume" accept=".pdf,.txt" required>
+
+    <!-- ── Upload Terminal ──────────────────────────────── -->
+    <div class="card" id="uploadCard">
+      <div class="card-inner"></div>
+      <div class="card-title">⬡ DATA INTAKE TERMINAL</div>
+
+      <form id="uploadForm" autocomplete="off">
+        <!-- Drop Zone -->
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-beam"></div>
+          <input type="file" name="resume" accept=".pdf,.docx,.txt" required id="resumeInput">
+          <span class="drop-icon">📡</span>
+          <div class="drop-hint">
+            DROP RESUME FILE HERE
+            <span>PDF · DOCX · TXT — click to browse</span>
+          </div>
+          <div class="drop-filename" id="dropFilename"></div>
         </div>
-        <div class="grp">
-          <label>Job title <span style="color:var(--text-tertiary)">(optional)</span></label>
-          <input type="text" name="job_title" placeholder="e.g. Machine Learning Engineer">
+
+        <div class="fgrp">
+          <label>⬡ JOB TITLE <span style="color:var(--text-dim);font-size:0.5rem">(OPTIONAL)</span></label>
+          <input type="text" name="job_title" placeholder="e.g. Senior Data Scientist" id="jobTitleInput">
         </div>
-        <div class="grp">
-          <label>Job description</label>
-          <textarea name="job_description" placeholder="Paste the job description here..." required></textarea>
+        <div class="fgrp">
+          <label>⬡ JOB DESCRIPTION</label>
+          <textarea name="job_description" placeholder="Paste the full job description here..." required></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" id="submitBtn">
-          Analyze Resume →
+
+        <!-- Loading panel (hidden until submit) -->
+        <div id="loading">
+          <div class="loading-ring">
+            <div class="loading-ring-center"></div>
+          </div>
+          <div class="loading-label" id="loadingLabel">INITIALIZING NEURAL SCAN...</div>
+          <div class="loading-bar"></div>
+          <div class="loading-steps" id="loadingSteps"></div>
+        </div>
+
+        <button type="submit" class="btn btn-launch" id="submitBtn">
+          ▶ LAUNCH ANALYSIS
         </button>
       </form>
-      <div class="loading" id="loading">
-        <div class="spinner"></div>
-        <span>Running BERT analysis</span>
-        <span class="loading-dots"><span></span><span></span><span></span></span>
-      </div>
     </div>
 
+    <!-- ── Results Column ───────────────────────────────── -->
     <div id="results">
-      <div class="card" id="resultsCard" style="display:none">
+
+      <!-- Classification Card -->
+      <div class="card" id="resultsCard" style="display:none; margin-bottom:18px;">
+        <div class="card-inner"></div>
+        <div class="card-title">⬡ CLASSIFICATION OUTPUT</div>
+
         <div class="result-header">
-          <h2>📊 Analysis Results</h2>
           <div id="classificationBadge"></div>
+          <div style="font-family:var(--font-mono);font-size:0.6rem;color:var(--text-muted);text-align:right;line-height:1.8">
+            <div>ENGINE: DECISION TREE v2</div>
+            <div id="confLine" style="color:var(--cyan)"></div>
+          </div>
         </div>
-        <div id="skillsSection"></div>
-        <div class="section-title">Match Scores</div>
+
+        <div class="section-title">SCORE METRICS</div>
         <div class="score-grid" id="scoresGrid"></div>
-        <div class="section-title">Validation Signals</div>
+
+        <div class="glow-divider" id="gd1" style="display:none"></div>
+        <div id="skillsSection"></div>
+
+        <div class="section-title" id="valLabel" style="display:none">VALIDATION SIGNALS · 17 FEATURES</div>
         <div class="validation-grid" id="validationGrid"></div>
       </div>
-      <div class="card" id="previewCard" style="display:none;margin-top:20px">
-        <div class="section-title">Resume Preview</div>
-        <div class="glow-divider"></div>
-        <div class="preview-box" id="resumePreview"></div>
+
+      <!-- Resume Preview Card -->
+      <div class="card" id="previewCard" style="display:none;">
+        <div class="card-inner"></div>
+        <div class="card-title">⬡ PARSED RESUME DATA</div>
+        <div class="preview-box" id="resumePreviewWrap">
+          <div class="terminal-header">
+            <div class="terminal-dots">
+              <span class="td-red"></span>
+              <span class="td-amber"></span>
+              <span class="td-green"></span>
+            </div>
+            <span style="flex:1;text-align:center">RESUME_PARSE_OUTPUT.TXT</span>
+          </div>
+          <div id="resumePreview" style="white-space:pre-wrap;word-break:break-word;"></div>
+        </div>
       </div>
     </div>
-  </div>
+
+  </div><!-- /main-grid -->
 
   <footer>
-    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 labeled samples</p>
+    <p>NEXUS AI &middot; BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 Labeled Samples &middot; NCE 2026</p>
   </footer>
+</div>
 </div>
 
 <script>
-function animateCounters() {
-  document.querySelectorAll('[data-count]').forEach(el => {
-    const target = parseFloat(el.dataset.count);
-    const duration = 2000;
-    const start = performance.now();
-    function update(now) {
-      const pct = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - pct, 3);
-      el.textContent = (target * eased).toFixed(1) + '%';
-      if (pct < 1) requestAnimationFrame(update);
-    }
-    requestAnimationFrame(update);
-  });
+/* ── Matrix Rain Background ──────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  const chars = 'NEXUSAI01アイウエオカキクケコSBERTDTNLP◈⬡▶';
+  const cols = Math.floor(canvas.width / 18);
+  const drops = Array.from({length: cols}, () => Math.random() * -50);
+  function draw() {
+    ctx.fillStyle = 'rgba(0,9,18,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drops.forEach((y, i) => {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      const alpha = Math.random() > 0.85 ? 1 : 0.35;
+      ctx.fillStyle = `rgba(0,212,255,${alpha})`;
+      ctx.font = '13px "Share Tech Mono"';
+      ctx.fillText(char, i * 18, y * 18);
+      if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i] += 0.5;
+    });
+  }
+  setInterval(draw, 55);
+})();
+
+/* ── Mouse Glow ──────────────────────────────────────────── */
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+
+/* ── File Drop Zone ──────────────────────────────────────── */
+const resumeInput = document.getElementById('resumeInput');
+const dropFilename = document.getElementById('dropFilename');
+const dropZone = document.getElementById('dropZone');
+
+resumeInput.addEventListener('change', function() {
+  if (this.files.length > 0) {
+    dropFilename.textContent = '📎 ' + this.files[0].name;
+    dropFilename.classList.add('show');
+    dropZone.classList.add('file-loaded');
+  }
+});
+
+/* ── Loading Steps Animation ─────────────────────────────── */
+const STEPS = [
+  'PARSING DOCUMENT STRUCTURE...',
+  'EXTRACTING NLP ENTITIES...',
+  'GENERATING SBERT EMBEDDINGS...',
+  'COMPUTING COSINE SIMILARITY...',
+  'ANALYZING 17 VALIDATION SIGNALS...',
+  'RUNNING DECISION TREE CLASSIFIER...',
+  'COMPILING ANALYSIS REPORT...',
+];
+let stepTimer, stepIdx = 0;
+const stepsContainer = document.getElementById('loadingSteps');
+const loadingLabel = document.getElementById('loadingLabel');
+
+function startSteps() {
+  stepsContainer.innerHTML = '';
+  stepIdx = 0;
+  stepTimer = setInterval(() => {
+    if (stepIdx >= STEPS.length) { clearInterval(stepTimer); return; }
+    // Mark previous step done
+    const prev = stepsContainer.querySelector('.lstep.run');
+    if (prev) prev.className = 'lstep done';
+    // Add new step
+    const div = document.createElement('div');
+    div.className = 'lstep run';
+    div.innerHTML = `<span class="lstep-dot"></span>${STEPS[stepIdx]}`;
+    stepsContainer.appendChild(div);
+    loadingLabel.textContent = STEPS[stepIdx];
+    stepIdx++;
+  }, 700);
+}
+function stopSteps() { clearInterval(stepTimer); }
+
+/* ── Scan Complete Overlay ───────────────────────────────── */
+function showScanFlash(cls) {
+  const color = cls === 'Authentic' ? 'var(--mint)' : cls === 'Suspicious' ? 'var(--amber)' : 'var(--rose)';
+  const el = document.createElement('div');
+  el.className = 'scan-flash';
+  el.innerHTML = `<div class="scan-flash-text" style="color:${color};text-shadow:0 0 40px ${color},0 0 120px ${color}">◈ SCAN COMPLETE ◈</div>`;
+  document.body.appendChild(el);
+  setTimeout(() => el.remove(), 1600);
 }
 
-function triggerConfetti() {
+/* ── Confetti ────────────────────────────────────────────── */
+function fireConfetti() {
   const container = document.createElement('div');
   container.className = 'confetti-container';
-  const colors = ['#34d399', '#818cf8', '#ec4899', '#fbbf24', '#60a5fa', '#f87171'];
-  for (let i = 0; i < 60; i++) {
-    const piece = document.createElement('div');
-    piece.className = 'confetti-piece';
-    piece.style.left = Math.random() * 100 + '%';
-    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
-    piece.style.animationDuration = (2 + Math.random() * 3) + 's';
-    piece.style.animationDelay = (Math.random() * 0.5) + 's';
-    piece.style.width = (4 + Math.random() * 8) + 'px';
-    piece.style.height = (4 + Math.random() * 8) + 'px';
-    piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '2px';
-    container.appendChild(piece);
-  }
   document.body.appendChild(container);
-  setTimeout(() => container.remove(), 5000);
+  const colors = ['#00ffaa','#00d4ff','#9b5de5','#ffd60a','#ff6b35'];
+  for (let i = 0; i < 70; i++) {
+    const el = document.createElement('div');
+    el.className = 'confetti-piece';
+    el.style.cssText = `
+      left:${Math.random()*100}%;
+      width:${Math.random()*8+4}px;
+      height:${Math.random()*8+4}px;
+      background:${colors[Math.floor(Math.random()*colors.length)]};
+      animation-duration:${Math.random()*2+1.5}s;
+      animation-delay:${Math.random()*0.5}s;
+      border-radius:${Math.random()>0.5?'50%':'2px'};
+      opacity:${Math.random()*0.7+0.3};
+    `;
+    container.appendChild(el);
+  }
+  setTimeout(() => container.remove(), 3500);
 }
 
+/* ── Form Submit ─────────────────────────────────────────── */
 document.getElementById('uploadForm').onsubmit = async function(e) {
   e.preventDefault();
   const formData = new FormData(this);
-  document.getElementById('submitBtn').disabled = true;
-  document.getElementById('loading').classList.add('active');
-  document.getElementById('resultsCard').style.display = 'none';
-  document.getElementById('previewCard').style.display = 'none';
-  document.getElementById('results').classList.remove('visible');
+  const btn = document.getElementById('submitBtn');
+  const loading = document.getElementById('loading');
+  const resultsCard = document.getElementById('resultsCard');
+  const previewCard = document.getElementById('previewCard');
+  const resultsEl = document.getElementById('results');
+
+  btn.disabled = true;
+  loading.classList.add('active');
+  resultsCard.style.display = 'none';
+  previewCard.style.display = 'none';
+  resultsEl.classList.remove('visible');
+  startSteps();
+
   try {
-    const res = await fetch('/api/predict', {method: 'POST', body: formData});
+    const res = await fetch('/api/predict', { method: 'POST', body: formData });
     const data = await res.json();
-    if (data.status !== 'success') throw new Error(data.detail || 'Error');
+    if (data.status !== 'success') throw new Error(data.detail || 'Analysis failed');
+
+    await new Promise(r => setTimeout(r, 400)); // slight drama pause
+    stopSteps();
+    loading.classList.remove('active');
+
+    showScanFlash(data.classification.classification);
+    await new Promise(r => setTimeout(r, 1200));
+
     displayResults(data);
-  } catch (err) { alert('Error: ' + err.message); }
-  finally {
-    document.getElementById('submitBtn').disabled = false;
-    document.getElementById('loading').classList.remove('active');
+  } catch (err) {
+    stopSteps();
+    loading.classList.remove('active');
+    alert('⚠ NEXUS ERROR: ' + err.message);
+  } finally {
+    btn.disabled = false;
   }
 };
 
+/* ── Display Results ─────────────────────────────────────── */
 function displayResults(data) {
-  const c = data.classification;
-  const cls = c.classification;
-  const bc = cls === 'Authentic' ? 'badge-authentic' : cls === 'Suspicious' ? 'badge-suspicious' : 'badge-fake';
-  const icon = cls === 'Authentic' ? '✓' : cls === 'Suspicious' ? '⚠' : '✗';
+  const cls = data.classification;
+  const scores = data.scores || {};
+  const skills = data.skills || {};
+  const valFeats = data.validation_features || {};
+  const resumeText = data.resume_text || '';
+
+  /* --- Classification Badge --- */
+  const bc = cls.classification === 'Authentic' ? 'badge-authentic'
+           : cls.classification === 'Suspicious' ? 'badge-suspicious' : 'badge-fake';
+  const icons = { Authentic: '✦ AUTHENTIC', Suspicious: '⚠ SUSPICIOUS', 'Potentially Fake': '✕ POTENTIALLY FAKE' };
   document.getElementById('classificationBadge').innerHTML =
-    `<span class="badge-cls ${bc}">${icon} ${cls} &middot; ${(c.confidence * 100).toFixed(1)}% confidence</span>`;
+    `<span class="badge-cls ${bc}">${icons[cls.classification] || cls.classification}</span>`;
+  document.getElementById('confLine').textContent =
+    `CONFIDENCE: ${(cls.confidence * 100).toFixed(1)}%`;
 
-  if (cls === 'Authentic') setTimeout(triggerConfetti, 300);
-
-  const s = data.scores;
-  document.getElementById('scoresGrid').innerHTML = Object.entries(s).map(([k, v]) => {
-    const pct = v * 100;
-    const grade = pct >= 70 ? 'high' : pct >= 35 ? 'med' : 'low';
+  /* --- Scores Grid --- */
+  const scoreMap = {
+    'Semantic Similarity': scores.semantic_similarity,
+    'Skill Overlap':       scores.skill_overlap_score,
+    'Experience Match':    scores.experience_relevance_score,
+    'Final Match Score':   scores.final_match_score,
+  };
+  document.getElementById('scoresGrid').innerHTML = Object.entries(scoreMap).map(([k, v]) => {
+    const pct = v != null ? Math.round(v * 100) : 0;
+    const grade = pct >= 65 ? 'high' : pct >= 40 ? 'med' : 'low';
     return `<div class="score-item ${grade}" style="--pct:${pct}%">
-      <div class="si-label">${k.replace(/_/g, ' ')}</div>
-      <div class="si-val ${grade}">${pct.toFixed(0)}%</div>
+      <div class="si-label">${k}</div>
+      <div class="si-val ${grade}">${pct}%</div>
     </div>`;
   }).join('');
 
-  const sk = data.skills;
-  document.getElementById('skillsSection').innerHTML = `
-    <div class="glow-divider"></div>
-    <div class="skills-grid">
-      <div class="skill-block"><div class="sb-title">✓ Matched (${sk.match_count})</div>
-        <div>${sk.matched.map(s => '<span class="chip chip-matched">' + s + '</span>').join('') || '<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
-      <div class="skill-block"><div class="sb-title">✗ Missing (${sk.missing_count})</div>
-        <div>${sk.missing.map(s => '<span class="chip chip-missing">' + s + '</span>').join('') || '<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
-      <div class="skill-block"><div class="sb-title">+ Extra (${sk.extra_count})</div>
-        <div>${sk.extra.map(s => '<span class="chip chip-extra">' + s + '</span>').join('') || '<span style="color:var(--text-tertiary);font-size:.78rem">none</span>'}</div></div>
-    </div>`;
+  /* --- Skills Section --- */
+  const matched = skills.matched_skills || [];
+  const missing = skills.missing_skills || [];
+  const extra   = skills.extra_skills   || [];
+  if (matched.length || missing.length || extra.length) {
+    document.getElementById('gd1').style.display = 'block';
+    const chip = (arr, cls) => arr.map(s => `<span class="chip ${cls}">${s}</span>`).join('');
+    document.getElementById('skillsSection').innerHTML = `
+      <div class="skills-grid">
+        <div class="skill-block">
+          <div class="sb-title">✦ Matched (${matched.length})</div>
+          <div>${chip(matched,'chip-matched') || '<span style="color:var(--text-dim);font-size:0.65rem">none</span>'}</div>
+        </div>
+        <div class="skill-block">
+          <div class="sb-title">✕ Missing (${missing.length})</div>
+          <div>${chip(missing,'chip-missing') || '<span style="color:var(--text-dim);font-size:0.65rem">none</span>'}</div>
+        </div>
+        <div class="skill-block">
+          <div class="sb-title">⬡ Extra (${extra.length})</div>
+          <div>${chip(extra,'chip-extra') || '<span style="color:var(--text-dim);font-size:0.65rem">none</span>'}</div>
+        </div>
+      </div>`;
+  }
 
-  const v = data.validation;
-  const vf = Object.keys(v);
-  document.getElementById('validationGrid').innerHTML = vf.map(k =>
-    `<div class="vchip"><div class="vc-label">${k.replace(/_/g, ' ')}</div>
-    <div class="vc-val">${typeof v[k] === 'number' ? v[k].toFixed(3) : v[k]}</div></div>`
-  ).join('');
+  /* --- Validation Grid --- */
+  const valKeys = Object.keys(valFeats);
+  if (valKeys.length) {
+    document.getElementById('valLabel').style.display = 'flex';
+    document.getElementById('validationGrid').innerHTML = valKeys.map(k => {
+      const v = valFeats[k];
+      const disp = typeof v === 'number' ? (v % 1 === 0 ? v : v.toFixed(3)) : v;
+      return `<div class="vchip">
+        <div class="vc-label">${k.replace(/_/g,' ')}</div>
+        <div class="vc-val">${disp}</div>
+      </div>`;
+    }).join('');
+  }
 
-  document.getElementById('resumePreview').textContent = data.resume_preview;
+  /* --- Resume Preview --- */
+  if (resumeText) {
+    document.getElementById('resumePreview').textContent = resumeText.substring(0, 2500) + (resumeText.length > 2500 ? '\n...[truncated]' : '');
+    document.getElementById('previewCard').style.display = 'block';
+  }
+
   document.getElementById('resultsCard').style.display = 'block';
-  document.getElementById('previewCard').style.display = 'block';
-  setTimeout(() => document.getElementById('results').classList.add('visible'), 50);
-  setTimeout(animateCounters, 600);
+
+  requestAnimationFrame(() => {
+    document.getElementById('results').classList.add('visible');
+    setTimeout(() => {
+      document.getElementById('results').scrollIntoView({ behavior:'smooth', block:'start' });
+    }, 100);
+  });
+
+  if (cls.classification === 'Authentic') fireConfetti();
 }
+
+/* ── Animate score-item bars on results update ───────────── */
+// Reset + replay fill animation when results re-render
+const observer = new MutationObserver(() => {
+  document.querySelectorAll('.score-item').forEach(el => {
+    el.style.animation = 'none';
+    el.querySelector && null; // flush
+    void el.offsetWidth;
+    el.style.animation = '';
+  });
+});
+observer.observe(document.getElementById('scoresGrid'), { childList: true });
 </script>
 </body>
 </html>

@@ -3,168 +3,359 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Insights — Resume Screener</title>
+<title>NEXUS AI — Deep Insights Dashboard</title>
+<meta name="description" content="Real-time analytics — Decision Tree accuracy, feature importance, class distribution and confusion matrix for the BERT Resume Screener.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/static/style.css?v=4">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/static/style.css?v=5">
+<style>
+  /* Extra analytics-specific styles */
+  .info-grid {
+    display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 10px; margin-top: 12px;
+  }
+  .info-tile {
+    background: rgba(0,8,20,0.8); border: 1px solid var(--border);
+    border-radius: var(--radius-sm); padding: 14px;
+    transition: all 0.25s ease;
+  }
+  .info-tile:hover { border-color: var(--border-mid); background: var(--cyan-dim); }
+  .info-tile-label { font-family: var(--font-mono); font-size: 0.5rem; letter-spacing: 0.22em; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px; }
+  .info-tile-val { font-family: var(--font-display); font-size: 0.9rem; font-weight: 600; color: var(--cyan); }
+
+  .matrix-img-wrap {
+    position: relative; overflow: hidden; border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+  }
+  .matrix-img-wrap img {
+    width: 100%; display: block;
+    filter: brightness(0.88) contrast(1.08) hue-rotate(10deg);
+    transition: filter 0.3s ease, transform 0.3s ease;
+  }
+  .matrix-img-wrap img:hover { filter: brightness(1) contrast(1.1); transform: scale(1.01); }
+  .matrix-img-wrap::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,9,18,0.08) 3px, rgba(0,9,18,0.08) 4px);
+  }
+
+  /* Radar-style hero divider */
+  .radar-line {
+    height: 2px; margin: 0 0 36px;
+    background: linear-gradient(90deg, transparent, var(--violet), var(--cyan), var(--mint), transparent);
+    animation: dividerPulse 3s ease-in-out infinite;
+  }
+
+  /* Accuracy tier indicator */
+  .acc-bar-wrap { margin-top: 10px; }
+  .acc-bar-track { height: 8px; background: rgba(0,212,255,0.07); border-radius: 4px; overflow: hidden; border: 1px solid var(--border); margin-bottom: 5px; }
+  .acc-bar-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--violet), var(--cyan), var(--mint)); box-shadow: 0 0 12px rgba(0,212,255,0.4); transition: width 1.5s var(--ease) 0.8s; }
+  .acc-bar-tiers { display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.48rem; letter-spacing: 0.15em; color: var(--text-dim); }
+
+  .hero-note { font-family: var(--font-mono); font-size: 0.6rem; letter-spacing: 0.15em; color: var(--text-muted); margin-top: 10px; }
+</style>
 </head>
 <body>
 
-<div class="particles">
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-  <span class="particle"></span>
-</div>
+<!-- ── Background System ───────────────────────────────── -->
+<canvas id="bg-canvas"></canvas>
+<div class="grid-overlay"></div>
+<div class="scanline-overlay"></div>
+<div class="vignette-overlay"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
+<!-- ── Navigation ─────────────────────────────────────── -->
 <nav>
-  <div class="logo">
-    <span class="logo-icon">✦</span>
-    Resume Screener
+  <a href="/" class="logo">
+    <div class="logo-hex">⬡</div>
+    <div>
+      NEXUS<span style="color:var(--violet)">AI</span>
+      <span class="logo-sub">RESUME INTELLIGENCE v2.0</span>
+    </div>
+  </a>
+  <div class="nav-center">
+    <a href="/">⬡ Single</a>
+    <a href="/batch">⬡ Batch</a>
+    <a href="/analytics" class="active">⬡ Insights</a>
   </div>
-  <div class="links">
-    <a href="/">Single</a>
-    <a href="/batch">Batch</a>
-    <a href="/analytics" class="active">Insights</a>
+  <div class="nav-right">
+    <div class="status-pill"><span class="dot-live"></span> SYSTEM ONLINE</div>
+    <span style="color:var(--text-dim)">ANALYTICS CORE</span>
   </div>
 </nav>
 
+<div class="page">
 <div class="container">
-  <div class="hero">
-    <div class="hero-badge">📊 Model & Dataset Analytics</div>
-    <h1>Deep <span class="gradient-text">insights</span></h1>
-    <p>Real-time metrics from 4,000 labeled resumes — Decision Tree with 83.6% accuracy.</p>
-  </div>
 
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-eyebrow">◈ MODEL ANALYTICS & PERFORMANCE METRICS</div>
+    <h1>
+      Deep<br>
+      <span class="glow-word" data-text="Insights.">Insights.</span>
+    </h1>
+    <p>Real-time metrics from 4,000 labeled resumes — Decision Tree classifier trained and validated with 5-fold cross-validation.</p>
+  </section>
+
+  <div class="radar-line"></div>
+
+  <!-- Hero Stats -->
   <div class="hero-stats" id="heroStats">
-    <div class="hs-item"><div class="hs-num" id="totalSamples">—</div><div class="hs-label">Total Samples</div></div>
-    <div class="hs-item"><div class="hs-num" id="testAccuracy">—</div><div class="hs-label">Test Accuracy</div></div>
-    <div class="hs-item"><div class="hs-num" id="testF1">—</div><div class="hs-label">Weighted F1</div></div>
+    <div class="hs-item">
+      <div class="hs-num" id="totalSamples">—</div>
+      <div class="hs-label">Training Samples</div>
+    </div>
+    <div class="hs-item">
+      <div class="hs-num" id="testAccuracy">—</div>
+      <div class="hs-label">Test Accuracy</div>
+    </div>
+    <div class="hs-item">
+      <div class="hs-num" id="testF1">—</div>
+      <div class="hs-label">Weighted F1 Score</div>
+    </div>
   </div>
 
+  <!-- Accuracy Bar (filled via JS) -->
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-inner"></div>
+    <div class="card-title">⬡ ACCURACY BENCHMARK</div>
+    <div class="acc-bar-wrap">
+      <div class="acc-bar-track">
+        <div class="acc-bar-fill" id="accBarFill" style="width:0%"></div>
+      </div>
+      <div class="acc-bar-tiers">
+        <span>0%</span><span>BASELINE 60%</span><span>TARGET 80%</span><span>EXCELLENT 90%</span><span>100%</span>
+      </div>
+    </div>
+    <div class="hero-note" id="accNote">Loading accuracy data...</div>
+  </div>
+
+  <!-- Model Config + Feature Importance -->
   <div class="two-col">
     <div class="card">
-      <h2>⚙️ Model Configuration</h2>
+      <div class="card-inner"></div>
+      <div class="card-title">⬡ MODEL CONFIGURATION</div>
       <div class="cfg-grid" id="modelConfig">
-        <div class="spinner-wrap"><div class="sp"></div><span>Loading model data...</span></div>
+        <div class="spinner-wrap"><div class="sp"></div>Loading model parameters...</div>
       </div>
+      <!-- Probability breakdown (class report) -->
+      <div id="classReport" style="margin-top:16px;"></div>
     </div>
+
     <div class="card">
-      <h2>📈 Feature Importance</h2>
+      <div class="card-inner"></div>
+      <div class="card-title">⬡ FEATURE IMPORTANCE RANKING</div>
       <div id="featureImportance">
-        <div class="spinner-wrap"><div class="sp"></div><span>Loading feature data...</span></div>
+        <div class="spinner-wrap"><div class="sp"></div>Loading feature data...</div>
       </div>
     </div>
   </div>
 
-  <div class="card">
-    <h2>📊 Class Distribution</h2>
+  <!-- Class Distribution -->
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-inner"></div>
+    <div class="card-title">⬡ CLASS DISTRIBUTION — TRAINING DATASET</div>
     <div id="classDist">
-      <div class="spinner-wrap"><div class="sp"></div><span>Loading distribution data...</span></div>
+      <div class="spinner-wrap"><div class="sp"></div>Loading distribution data...</div>
     </div>
   </div>
 
-  <div class="two-col">
+  <!-- Confusion Matrix + Correlation Matrix -->
+  <div class="two-col" style="margin-bottom:18px;">
     <div class="card">
-      <h2>📉 Confusion Matrix</h2>
-      <div class="chart-box"><img id="confMatrix" src="" alt="Confusion Matrix" style="width:100%;opacity:0;transition:opacity 0.8s ease"></div>
+      <div class="card-inner"></div>
+      <div class="card-title">⬡ CONFUSION MATRIX</div>
+      <div class="matrix-img-wrap">
+        <img id="confMatrix" src="" alt="Confusion Matrix" style="opacity:0;transition:opacity 0.8s ease">
+      </div>
+      <div style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.15em;color:var(--text-dim);margin-top:10px;text-align:center;">
+        TEST SET · 800 SAMPLES · 5-FOLD CV
+      </div>
     </div>
     <div class="card">
-      <h2>🔗 Correlation Matrix</h2>
-      <div class="chart-box"><img id="corrMatrix" src="" alt="Correlation Matrix" style="width:100%;opacity:0;transition:opacity 0.8s ease"></div>
+      <div class="card-inner"></div>
+      <div class="card-title">⬡ FEATURE CORRELATION HEATMAP</div>
+      <div class="matrix-img-wrap">
+        <img id="corrMatrix" src="" alt="Correlation Matrix" style="opacity:0;transition:opacity 0.8s ease">
+      </div>
+      <div style="font-family:var(--font-mono);font-size:0.55rem;letter-spacing:0.15em;color:var(--text-dim);margin-top:10px;text-align:center;">
+        17 FEATURES · PEARSON CORRELATION
+      </div>
+    </div>
+  </div>
+
+  <!-- Architecture Card -->
+  <div class="card" style="margin-bottom:18px;">
+    <div class="card-inner"></div>
+    <div class="card-title">⬡ SYSTEM ARCHITECTURE</div>
+    <div class="info-grid">
+      <div class="info-tile"><div class="info-tile-label">Embedding Model</div><div class="info-tile-val">all-MiniLM-L6-v2</div></div>
+      <div class="info-tile"><div class="info-tile-label">Embedding Dims</div><div class="info-tile-val">384-D</div></div>
+      <div class="info-tile"><div class="info-tile-label">Similarity Metric</div><div class="info-tile-val">Cosine</div></div>
+      <div class="info-tile"><div class="info-tile-label">Match Formula</div><div class="info-tile-val">60/25/15</div></div>
+      <div class="info-tile"><div class="info-tile-label">Classifier</div><div class="info-tile-val">Decision Tree</div></div>
+      <div class="info-tile"><div class="info-tile-label">Validation Features</div><div class="info-tile-val">17</div></div>
+      <div class="info-tile"><div class="info-tile-label">Training Samples</div><div class="info-tile-val">3,200</div></div>
+      <div class="info-tile"><div class="info-tile-label">Cross-Validation</div><div class="info-tile-val">5-Fold</div></div>
+      <div class="info-tile"><div class="info-tile-label">NLP Backend</div><div class="info-tile-val">spaCy + Regex</div></div>
+      <div class="info-tile"><div class="info-tile-label">API Framework</div><div class="info-tile-val">FastAPI</div></div>
+      <div class="info-tile"><div class="info-tile-label">Deployment</div><div class="info-tile-val">Docker · HF</div></div>
+      <div class="info-tile"><div class="info-tile-label">Dataset</div><div class="info-tile-val">4,000 Labeled</div></div>
     </div>
   </div>
 
   <footer>
-    <p>BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 labeled samples</p>
+    <p>NEXUS AI &middot; BERT-Based Resume Screening &middot; Decision Tree Classification &middot; 4,000 Labeled Samples &middot; NCE 2026</p>
   </footer>
+
+</div>
 </div>
 
 <script>
+/* ── Matrix Rain ─────────────────────────────────────────── */
+(function() {
+  const canvas = document.getElementById('bg-canvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  const chars = 'ANALYTICSAI0.83610FFT◈⬡CORR MATRIX FEATUREIMPORTANCE';
+  const cols = Math.floor(canvas.width / 18);
+  const drops = Array.from({length: cols}, () => Math.random() * -60);
+  function draw() {
+    ctx.fillStyle = 'rgba(0,9,18,0.05)';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    drops.forEach((y, i) => {
+      const char = chars[Math.floor(Math.random() * chars.length)];
+      ctx.fillStyle = `rgba(155,93,229,${Math.random() > 0.85 ? 0.8 : 0.25})`; // violet tint for analytics
+      ctx.font = '13px "Share Tech Mono"';
+      ctx.fillText(char, i * 18, y * 18);
+      if (y * 18 > canvas.height && Math.random() > 0.975) drops[i] = 0;
+      drops[i] += 0.45;
+    });
+  }
+  setInterval(draw, 55);
+})();
+
+/* ── Mouse Glow ──────────────────────────────────────────── */
+const glow = document.getElementById('cursorGlow');
+document.addEventListener('mousemove', e => {
+  glow.style.left = e.clientX + 'px';
+  glow.style.top  = e.clientY + 'px';
+});
+
+/* ── Animate Counter ─────────────────────────────────────── */
+function animateNum(el, target, suffix, decimals) {
+  const duration = 1800;
+  const start = performance.now();
+  function tick(now) {
+    const pct = Math.min((now - start) / duration, 1);
+    const eased = 1 - Math.pow(1 - pct, 3);
+    el.textContent = (target * eased).toFixed(decimals || 0) + (suffix || '');
+    if (pct < 1) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+/* ── Load Analytics ──────────────────────────────────────── */
 async function loadAnalytics() {
   try {
     const [m, d, s] = await Promise.all([
       fetch('/api/model/info').then(r => r.json()),
       fetch('/api/class_distribution').then(r => r.json()),
-      fetch('/api/dataset/stats').then(r => r.json())
+      fetch('/api/dataset/stats').then(r => r.json()),
     ]);
 
-    function animateNum(el, target, suffix, decimals) {
-      const duration = 1800;
-      const start = performance.now();
-      function update(now) {
-        const pct = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - pct, 3);
-        el.textContent = (target * eased).toFixed(decimals || 0) + (suffix || '');
-        if (pct < 1) requestAnimationFrame(update);
-      }
-      requestAnimationFrame(update);
-    }
-
+    /* --- Hero stats --- */
     const totalEl = document.getElementById('totalSamples');
-    const accEl = document.getElementById('testAccuracy');
-    const f1El = document.getElementById('testF1');
+    const accEl   = document.getElementById('testAccuracy');
+    const f1El    = document.getElementById('testF1');
 
     totalEl.textContent = (s.total_samples || 0).toLocaleString();
     setTimeout(() => animateNum(accEl, (m.test_accuracy || 0) * 100, '%', 1), 200);
-    setTimeout(() => animateNum(f1El, (m.test_f1 || 0) * 100, '%', 1), 400);
+    setTimeout(() => animateNum(f1El,  (m.test_f1 || 0) * 100, '%', 1), 400);
 
+    /* --- Accuracy bar --- */
+    const accPct = Math.round((m.test_accuracy || 0) * 100);
+    document.getElementById('accBarFill').style.width = accPct + '%';
+    document.getElementById('accNote').textContent =
+      `▶ ACHIEVED ${accPct}% ACCURACY on 800-sample hold-out test set (5-fold CV weighted F1: ${((m.test_f1||0)*100).toFixed(2)}%)`;
+
+    /* --- Model Config --- */
     if (m.params) {
-      document.getElementById('modelConfig').innerHTML = Object.entries(m.params).map(([k, v]) =>
-        `<div class="cfg-row" style="animation:fadeUp 0.4s ease both"><span class="ck">${k.replace(/_/g, ' ')}</span><span class="cv">${v === null ? 'None' : v}</span></div>`
-      ).join('');
+      document.getElementById('modelConfig').innerHTML =
+        Object.entries(m.params).map(([k, v], i) =>
+          `<div class="cfg-row" style="animation:fadeUp 0.4s ease ${i*0.06}s both">
+            <span class="ck">${k.replace(/_/g,' ')}</span>
+            <span class="cv">${v === null ? 'None' : v}</span>
+          </div>`
+        ).join('');
     }
 
+    /* --- Feature Importance --- */
     if (m.feature_importance && m.feature_importance.length) {
       const fi = m.feature_importance;
       const mx = Math.max(...fi.map(f => f.importance));
-      document.getElementById('featureImportance').innerHTML = fi.map((f, i) =>
-        `<div class="feat" style="animation-delay:${i * 0.08}s">
-          <div class="ft-header"><span>${f.feature.replace(/_/g, ' ')}</span><span>${(f.importance * 100).toFixed(1)}%</span></div>
-          <div class="ft-track"><div class="ft-fill" style="--fw:${(f.importance / mx * 100).toFixed(1)}%"></div></div>
-        </div>`
-      ).join('');
-      setTimeout(() => document.querySelectorAll('.feat').forEach(el => el.classList.add('visible')), 300);
+      document.getElementById('featureImportance').innerHTML =
+        fi.map((f, i) =>
+          `<div class="feat" style="animation-delay:${i*0.07}s">
+            <div class="ft-header">
+              <span>${f.feature.replace(/_/g,' ')}</span>
+              <span style="color:var(--cyan)">${(f.importance*100).toFixed(1)}%</span>
+            </div>
+            <div class="ft-track">
+              <div class="ft-fill" style="--fw:${(f.importance/mx*100).toFixed(1)}%"></div>
+            </div>
+          </div>`
+        ).join('');
+      // Trigger animation
+      setTimeout(() => document.querySelectorAll('.feat').forEach(el => el.classList.add('visible')), 350);
+      // Apply --fw to ft-fill
+      setTimeout(() => document.querySelectorAll('.ft-fill').forEach(el => {
+        el.style.width = el.style.getPropertyValue('--fw') || el.style['--fw'] || getComputedStyle(el).getPropertyValue('--fw');
+      }), 500);
     }
 
+    /* --- Class Distribution (Donut chart) --- */
     if (d.class_distribution) {
       const dist = d.class_distribution;
-      const total = Object.values(dist).reduce((a, b) => a + b, 0);
-      const colors = {Authentic: '#34d399', Suspicious: '#fbbf24', 'Potentially Fake': '#f87171'};
+      const total = Object.values(dist).reduce((a,b) => a+b, 0);
+      const colors = { Authentic:'#00ffaa', Suspicious:'#ffd60a', 'Potentially Fake':'#ff2d55' };
       const entries = Object.entries(dist);
       const circumference = 452;
       let offset = 0;
       const slices = entries.map(([k, v]) => {
-        const pct = v / total;
-        const len = pct * circumference;
+        const len = (v / total) * circumference;
         const dashoffset = -offset;
         offset += len;
-        const delay = entries.indexOf([k, v]) * 0.3 || Object.keys(dist).indexOf(k) * 0.3;
-        return `<circle cx="85" cy="85" r="72" fill="none" stroke="${colors[k]}" stroke-width="22"
+        return `<circle cx="85" cy="85" r="72" fill="none"
+          stroke="${colors[k]}" stroke-width="22"
           stroke-dasharray="${len} ${circumference - len}"
           stroke-dashoffset="${dashoffset}"
-          style="transition: stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1) ${Object.keys(dist).indexOf(k) * 0.3}s"/>`;
+          style="filter:drop-shadow(0 0 6px ${colors[k]});transition:stroke-dasharray 1.5s cubic-bezier(0.16,1,0.3,1) ${Object.keys(dist).indexOf(k)*0.3}s"/>`;
       }).join('');
 
       document.getElementById('classDist').innerHTML =
         `<div class="donut-wrap">
-          <div class="donut-svg"><svg viewBox="0 0 170 170" width="170" height="170">${slices}</svg>
-          <div class="d-center"><span class="d-big">${total}</span><span>total</span></div></div>
-          <div class="donut-legend">${entries.map(([k, v]) =>
-            `<div class="dl-item" style="animation:fadeUp 0.5s ease ${Object.keys(dist).indexOf(k) * 0.15 + 0.5}s both">
-              <span class="dl-dot" style="background:${colors[k]}"></span>
-              <span>${k} <strong>${v}</strong> (${(v / total * 100).toFixed(1)}%)</span>
-            </div>`
-          ).join('')}
+          <div class="donut-svg">
+            <svg viewBox="0 0 170 170" width="170" height="170">${slices}</svg>
+            <div class="d-center">
+              <span class="d-big">${total.toLocaleString()}</span>
+              <span>total</span>
+            </div>
+          </div>
+          <div class="donut-legend">
+            ${entries.map(([k,v]) =>
+              `<div class="dl-item" style="animation:fadeUp 0.5s ease ${Object.keys(dist).indexOf(k)*0.15+0.5}s both">
+                <span class="dl-dot" style="background:${colors[k]};box-shadow:0 0 8px ${colors[k]}"></span>
+                <span style="font-family:var(--font-mono);font-size:0.8rem">
+                  ${k} &nbsp;<strong style="color:var(--text)">${v.toLocaleString()}</strong>
+                  <span style="color:var(--text-muted);font-size:0.7rem">&nbsp;(${(v/total*100).toFixed(1)}%)</span>
+                </span>
+              </div>`
+            ).join('')}
+          </div>
         </div>`;
     }
 
+    /* --- Load matrix images --- */
     const conf = document.getElementById('confMatrix');
     const corr = document.getElementById('corrMatrix');
     conf.src = '/static/confusion_matrix.png?' + Date.now();
@@ -173,11 +364,17 @@ async function loadAnalytics() {
     corr.onload = () => corr.style.opacity = '1';
 
   } catch (err) {
-    document.querySelectorAll('#modelConfig,#featureImportance,#classDist').forEach(el =>
-      el.innerHTML = `<div style="padding:20px;text-align:center;color:var(--danger)">⚠ Failed to load: ${err.message}</div>`
-    );
+    console.error('Analytics load error:', err);
+    ['modelConfig','featureImportance','classDist'].forEach(id => {
+      const el = document.getElementById(id);
+      if (el) el.innerHTML =
+        `<div style="padding:20px;text-align:center;color:var(--rose);font-family:var(--font-mono);font-size:0.65rem;letter-spacing:0.2em">
+          ⚠ FAILED TO LOAD: ${err.message}
+        </div>`;
+    });
   }
 }
+
 loadAnalytics();
 </script>
 </body>
