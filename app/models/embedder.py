@@ -36,11 +36,11 @@ def get_model(model_name: str = 'all-MiniLM-L6-v2'):
     global _MODEL, _MODEL_NAME
     if _MODEL is not None and _MODEL_NAME == model_name:
         return _MODEL
-    logger.info(f"Loading SBERT model: {model_name}")
+    logger.info(f"🔵 \033[1;36mLoading SBERT model: {model_name}\033[0m")
     try:
         _MODEL = SentenceTransformer(model_name)
         _MODEL_NAME = model_name
-        logger.info("SBERT model loaded")
+        logger.info("✅ \033[1;36mSBERT model loaded\033[0m")
     except Exception as e:
         logger.warning(f"Failed to load SBERT model '{model_name}': {e}. Using dummy zero embeddings.")
         _MODEL = _DummySentenceTransformer()

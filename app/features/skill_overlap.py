@@ -46,6 +46,22 @@ def extract_skills(text: str) -> set[str]:
         pattern = r'\b' + re.escape(skill.lower()) + r'\b'
         if re.search(pattern, text_lower):
             found.add(skill)
+            
+    # Step 4: Dynamic Taxonomy extraction using spaCy noun chunks
+    from ..utils.nlp import get_nlp
+    from app.utils.taxonomy import is_dynamic_skill
+    
+    nlp = get_nlp()
+    if nlp is not None and not found:  # Only do expensive dynamic check if very few skills found
+        doc = nlp(text_lower)
+        for chunk in doc.noun_chunks:
+            chunk_txt = chunk.text.strip()
+            # If it looks like a tech skill but isn't in SKILL_KEYWORDS
+            if 3 <= len(chunk_txt) <= 25 and chunk_txt not in [s.lower() for s in SKILL_KEYWORDS]:
+                # Ask the dynamic embedding fallback
+                if is_dynamic_skill(chunk_txt):
+                    found.add(chunk_txt.title())
+                    
     return found
 
 

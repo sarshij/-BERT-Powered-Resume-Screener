@@ -1,7 +1,7 @@
 {
   "dataset_shape": [
     4000,
-    33
+    35
   ],
   "class_distribution": {
     "Authentic": 1930,
@@ -25,7 +25,9 @@
     "num_certifications",
     "num_skills",
     "education_level_encoded",
-    "has_previous_job"
+    "has_previous_job",
+    "skill_experience_alignment",
+    "ai_plausibility_score"
   ],
   "new_features_added": [
     "years_experience",
@@ -35,114 +37,121 @@
     "has_previous_job"
   ],
   "best_params": {
-    "class_weight": null,
-    "criterion": "gini",
-    "max_depth": 7,
-    "min_samples_leaf": 10,
-    "min_samples_split": 2
+    "learning_rate": 0.2,
+    "max_depth": 5,
+    "n_estimators": 50,
+    "subsample": 0.8
   },
-  "test_accuracy": 0.83625,
-  "test_f1_weighted": 0.8306513040434785,
+  "test_accuracy": 0.87375,
+  "test_f1_weighted": 0.8721886308804665,
   "feature_importance": [
     {
+      "feature": "skill_overlap_score",
+      "importance": 0.20231124758720398
+    },
+    {
       "feature": "final_match_score",
-      "importance": 0.4437502806279383
+      "importance": 0.1709515005350113
     },
     {
       "feature": "generic_phrase_score",
-      "importance": 0.23953829670957494
-    },
-    {
-      "feature": "skill_density",
-      "importance": 0.09756036301076465
-    },
-    {
-      "feature": "skill_overlap_score",
-      "importance": 0.0967073656447992
+      "importance": 0.15243767201900482
     },
     {
       "feature": "keyword_stuffing_score",
-      "importance": 0.0549840112280413
+      "importance": 0.07432091981172562
     },
     {
-      "feature": "promotion_speed",
-      "importance": 0.02393173349679183
+      "feature": "skill_density",
+      "importance": 0.07033894956111908
     },
     {
       "feature": "semantic_similarity",
-      "importance": 0.020722066293491204
+      "importance": 0.057022202759981155
+    },
+    {
+      "feature": "promotion_speed",
+      "importance": 0.05491243302822113
     },
     {
       "feature": "experience_relevance_score",
-      "importance": 0.00997484624824151
-    },
-    {
-      "feature": "achievement_count",
-      "importance": 0.004591529303062885
-    },
-    {
-      "feature": "gap_years",
-      "importance": 0.003942951143921817
-    },
-    {
-      "feature": "experience_graduation_gap",
-      "importance": 0.0024834841709227016
-    },
-    {
-      "feature": "num_skills",
-      "importance": 0.0008852140059403368
-    },
-    {
-      "feature": "education_level_encoded",
-      "importance": 0.0008843837886059803
-    },
-    {
-      "feature": "years_experience",
-      "importance": 4.347432790332783e-05
+      "importance": 0.03554640710353851
     },
     {
       "feature": "overlapping_jobs",
-      "importance": 0.0
+      "importance": 0.03524557873606682
+    },
+    {
+      "feature": "achievement_count",
+      "importance": 0.026128023862838745
+    },
+    {
+      "feature": "experience_graduation_gap",
+      "importance": 0.02383802831172943
+    },
+    {
+      "feature": "gap_years",
+      "importance": 0.02080131694674492
+    },
+    {
+      "feature": "education_level_encoded",
+      "importance": 0.017836682498455048
+    },
+    {
+      "feature": "num_skills",
+      "importance": 0.017330002039670944
     },
     {
       "feature": "num_certifications",
-      "importance": 0.0
+      "importance": 0.01527572050690651
+    },
+    {
+      "feature": "years_experience",
+      "importance": 0.014075366780161858
     },
     {
       "feature": "has_previous_job",
+      "importance": 0.011627841740846634
+    },
+    {
+      "feature": "skill_experience_alignment",
+      "importance": 0.0
+    },
+    {
+      "feature": "ai_plausibility_score",
       "importance": 0.0
     }
   ],
   "classification_report": {
     "Authentic": {
-      "precision": 0.8089887640449438,
-      "recall": 0.9326424870466321,
-      "f1-score": 0.8664259927797834,
+      "precision": 0.8544152744630071,
+      "recall": 0.927461139896373,
+      "f1-score": 0.8894409937888199,
       "support": 386.0
     },
     "Suspicious": {
-      "precision": 0.82,
-      "recall": 0.6332046332046332,
-      "f1-score": 0.7145969498910676,
+      "precision": 0.8434782608695652,
+      "recall": 0.749034749034749,
+      "f1-score": 0.7934560327198364,
       "support": 259.0
     },
     "Potentially Fake": {
-      "precision": 0.9354838709677419,
-      "recall": 0.9354838709677419,
-      "f1-score": 0.9354838709677419,
+      "precision": 0.9735099337748344,
+      "recall": 0.9483870967741935,
+      "f1-score": 0.9607843137254902,
       "support": 155.0
     },
-    "accuracy": 0.83625,
+    "accuracy": 0.87375,
     "macro avg": {
-      "precision": 0.8548242116708953,
-      "recall": 0.8337769970730023,
-      "f1-score": 0.8388356045461977,
+      "precision": 0.8904678230358023,
+      "recall": 0.8749609952351052,
+      "f1-score": 0.8812271134113822,
       "support": 800.0
     },
     "weighted avg": {
-      "precision": 0.8370620786516854,
-      "recall": 0.83625,
-      "f1-score": 0.8306513040434785,
+      "precision": 0.8739490065537968,
+      "recall": 0.87375,
+      "f1-score": 0.8721886308804665,
       "support": 800.0
     }
   }

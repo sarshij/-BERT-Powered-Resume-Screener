@@ -197,7 +197,7 @@ class TestHasPreviousJob:
 
 class TestComputeAllFeatures:
 
-    def test_returns_all_17_keys(self, sample_resume, sample_jd):
+    def test_returns_all_19_keys(self, sample_resume, sample_jd):
         features = compute_all_validation_features(
             sample_resume, sample_jd,
             semantic_similarity=0.5,
@@ -214,6 +214,7 @@ class TestComputeAllFeatures:
             'generic_phrase_score', 'gap_years', 'keyword_stuffing_score',
             'years_experience', 'num_certifications', 'num_skills',
             'education_level_encoded', 'has_previous_job',
+            'skill_experience_alignment', 'ai_plausibility_score'
         }
         assert set(features.keys()) == expected_keys
 

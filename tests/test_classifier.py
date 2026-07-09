@@ -8,7 +8,7 @@ class TestLoadModel:
     def test_model_loads_successfully(self):
         model, cols = load_model()
         assert model is not None
-        assert len(cols) == 17
+        assert len(cols) == 19
 
     def test_feature_names_are_correct(self):
         _, cols = load_model()
@@ -18,7 +18,8 @@ class TestLoadModel:
             'experience_graduation_gap', 'skill_density', 'achievement_count',
             'generic_phrase_score', 'gap_years', 'keyword_stuffing_score',
             'years_experience', 'num_certifications', 'num_skills',
-            'education_level_encoded', 'has_previous_job'
+            'education_level_encoded', 'has_previous_job',
+            'skill_experience_alignment', 'ai_plausibility_score'
         ]
         assert cols == expected
 
@@ -98,9 +99,9 @@ class TestModelInfo:
         info = get_model_info()
         assert info['test_f1'] >= 0.8
 
-    def test_feature_importance_has_17_entries(self):
+    def test_feature_importance_has_19_entries(self):
         info = get_model_info()
-        assert len(info['feature_importance']) == 17
+        assert len(info['feature_importance']) == 19
 
     def test_feature_importance_sums_to_one(self):
         info = get_model_info()

@@ -197,6 +197,139 @@
 
     </div>
   </div>
+
+<!-- Candidate Detail Modal -->
+<div id="candidateModal" class="hidden" style="position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:9999; overflow-y:auto; padding:2rem 1rem; backdrop-filter: blur(4px);">
+  <div class="container max-w-screen-lg" style="background:#fafafa; border-radius:12px; padding:2rem; position:relative; min-height: 80vh; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1); border: 1px solid #e5e7eb;">
+    <button type="button" onclick="closeModal()" class="btn btn-outline" style="margin-bottom:1.5rem; display:inline-flex; align-items:center; gap:0.5rem; background:white;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg> Back to Batch Results
+    </button>
+    
+    <div id="resultCard">
+<!-- Header: Classification + Confidence -->
+        <div class="card mb-4 animate-fadeInUp" id="clsCard">
+          <div class="card-body" style="padding:1.75rem;">
+            <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem;">
+              <div>
+                <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.5rem;">Classification</div>
+                <div id="clsBadge" class="cls-badge" style="font-size:0.9rem;padding:0.5rem 1.25rem;"></div>
+                <div style="margin-top:0.75rem;font-size:0.8125rem;color:var(--gray-500);" id="clsFilename"></div>
+                <div id="llmVerificationBadge" style="display:none; margin-top: 0.75rem; padding: 0.5rem; border-radius: 4px; font-size: 0.85rem; align-items: flex-start; gap: 0.5rem;"></div>
+              </div>
+              <!-- Confidence ring -->
+              <div style="text-align:center;">
+                <div style="font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.5rem;">Confidence</div>
+                <div class="confidence-wrap" style="flex-direction:column;gap:0.25rem;">
+                  <div class="confidence-ring">
+                    <svg viewBox="0 0 72 72" width="72" height="72">
+                      <circle class="ring-bg" cx="36" cy="36" r="30"/>
+                      <circle class="ring-fill" id="confRing" cx="36" cy="36" r="30"
+                        stroke-dasharray="188.5" stroke-dashoffset="188.5" stroke="var(--primary)"/>
+                    </svg>
+                    <div class="ring-label" id="confLabel">—</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Probability bars -->
+            <div style="margin-top:1.5rem;">
+              <div class="section-label">Classification Probabilities</div>
+              <div class="prob-bars" id="probBars">
+                <div class="prob-row">
+                  <span class="prob-label" style="color:#15803d;">✓ Authentic</span>
+                  <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-authentic" style="width:0%;background:#10B981;"></div></div>
+                  <span class="prob-value text-green-600" id="pv-authentic">0%</span>
+                </div>
+                <div class="prob-row">
+                  <span class="prob-label" style="color:#a16207;">⚠ Suspicious</span>
+                  <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-suspicious" style="width:0%;background:#F59E0B;"></div></div>
+                  <span class="prob-value text-yellow-600" id="pv-suspicious">0%</span>
+                </div>
+                <div class="prob-row">
+                  <span class="prob-label" style="color:#b91c1c;">✗ Potentially Fake</span>
+                  <div class="prob-bar-track"><div class="prob-bar-fill" id="pb-fake" style="width:0%;background:#EF4444;"></div></div>
+                  <span class="prob-value text-red-600" id="pv-fake">0%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Match Scores -->
+        <div class="card mb-4 animate-fadeInUp delay-100">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              Match Scores
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="score-grid" id="scoreGrid"></div>
+          </div>
+        </div>
+
+        <!-- Skills Analysis -->
+        <div class="card mb-4 animate-fadeInUp delay-200">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.2" stroke-linecap="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="10"/></svg>
+              Skills Analysis
+            </h2>
+          </div>
+          <div class="card-body" id="skillsContent"></div>
+        </div>
+
+        <!-- Validation Signals -->
+        <div class="card mb-4 animate-fadeInUp delay-300">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--accent-amber)" stroke-width="2.2" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              Validation Signals
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">17 features</span>
+            </h2>
+            <p class="card-description">Rule-based authenticity features extracted from the resume.</p>
+          </div>
+          <div class="card-body">
+            <div class="val-grid" id="valGrid"></div>
+          </div>
+        </div>
+
+
+        <!-- SHAP Explainability -->
+        <div class="card mb-4 animate-fadeInUp delay-350">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+              AI Explainability (SHAP)
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">Feature Impacts</span>
+            </h2>
+            <p class="card-description">How each feature contributed to the final classification (Model: XGBoost).</p>
+          </div>
+          <div class="card-body">
+            <div id="shapContent" style="display:flex;flex-direction:column;gap:0.75rem;"></div>
+          </div>
+        </div>
+
+
+        <!-- Resume Preview -->
+        <div class="card animate-fadeInUp delay-400">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray-500)" stroke-width="2.2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+              Extracted Resume Text
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">Summary Preview</span>
+            </h2>
+          </div>
+          <div class="card-body">
+            <div class="resume-preview" id="resumePreview"></div>
+          </div>
+        </div>
+
+      </div><!-- /resultCard -->
+  </div>
+</div>
+
 </main>
 
 <!-- ── Footer ─────────────────────────────────────────────── -->
@@ -284,36 +417,64 @@ document.getElementById('batchForm').addEventListener('submit', async function(e
   const label   = document.getElementById('batchLoadLabel');
 
   btn.disabled  = true;
-  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;"></div> Processing...';
+  btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;"></div> Uploading...';
   results.classList.remove('hidden');
   loading.classList.remove('hidden');
   content.classList.add('hidden');
 
-  const steps = ['Uploading resume files…', 'Running BERT analysis…', 'Computing skill overlaps…', 'Classifying candidates…', 'Ranking results…'];
-  let si = 0;
-  const stepTimer = setInterval(() => { label.textContent = steps[Math.min(si++, steps.length-1)]; }, 1100);
-
   try {
     const resp = await fetch('/api/predict_batch', { method:'POST', body: new FormData(this) });
     const data = await resp.json();
-    clearInterval(stepTimer);
 
-    if (data.status !== 'success') throw new Error(data.detail || 'Batch processing failed');
+    if (data.status !== 'processing' && data.status !== 'success') {
+       throw new Error(data.detail || data.error || 'Batch processing failed');
+    }
 
-    loading.classList.add('hidden');
-    content.classList.remove('hidden');
-    content.innerHTML = renderBatch(data);
-    content.scrollIntoView({ behavior:'smooth', block:'start' });
-
+    if (data.status === 'processing') {
+       // Start polling
+       const jobId = data.job_id;
+       label.innerHTML = `Job started. <span id="pollProgress" style="font-weight:700;color:var(--primary);">0%</span>`;
+       btn.innerHTML = '<div style="width:16px;height:16px;border:2px solid rgba(255,255,255,0.4);border-top-color:white;border-radius:50%;animation:spin 0.8s linear infinite;"></div> Processing...';
+       
+       let pollInterval = setInterval(async () => {
+           try {
+               const pollResp = await fetch(`/api/batch_status/${jobId}`);
+               const pollData = await pollResp.json();
+               
+               if (pollData.status === 'completed') {
+                   clearInterval(pollInterval);
+                   loading.classList.add('hidden');
+                   content.classList.remove('hidden');
+                   content.innerHTML = renderBatch({ results: pollData.results });
+                   content.scrollIntoView({ behavior:'smooth', block:'start' });
+                   btn.disabled = false;
+                   btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Start Batch Analysis';
+               } else {
+                   const progressElem = document.getElementById('pollProgress');
+                   if (progressElem) {
+                       progressElem.textContent = `${pollData.progress}% (${pollData.completed}/${pollData.total})`;
+                   }
+               }
+           } catch(pollErr) {
+               console.error("Polling error:", pollErr);
+           }
+       }, 2000);
+    } else {
+       // Synchronous return fallback (just in case)
+       loading.classList.add('hidden');
+       content.classList.remove('hidden');
+       content.innerHTML = renderBatch(data);
+       content.scrollIntoView({ behavior:'smooth', block:'start' });
+       btn.disabled = false;
+       btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Start Batch Analysis';
+    }
   } catch(err) {
-    clearInterval(stepTimer);
     loading.classList.add('hidden');
     content.classList.remove('hidden');
     content.innerHTML = `<div class="alert alert-error animate-fadeInUp">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
       <div><strong>Batch Error:</strong> ${err.message}</div>
     </div>`;
-  } finally {
     btn.disabled = false;
     btn.innerHTML = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><polygon points="5 3 19 12 5 21 5 3"/></svg> Start Batch Analysis';
   }
@@ -327,6 +488,7 @@ function renderBatch(data) {
   const suspicious= results.filter(r => r.classification === 'Suspicious').length;
   const fake      = results.filter(r => r.classification === 'Potentially Fake').length;
   const errors    = results.filter(r => r.error).length;
+  window.batchData = results;
 
   const clsIcon = {
     'Authentic':       { badge:'cls-authentic',  icon:'✓' },
@@ -408,7 +570,7 @@ function renderBatch(data) {
                 </tr>`;
               }
               const info = clsIcon[r.classification] || { badge:'', icon:'?' };
-              return `<tr>
+              return `<tr class="clickable-row" onclick="viewCandidate(${i})" style="cursor:pointer;" onmouseover="this.style.backgroundColor='#f9fafb'" onmouseout="this.style.backgroundColor='transparent'">
                 <td class="rank-cell">${i+1}</td>
                 <td style="font-weight:500;max-width:200px;" class="truncate" title="${r.filename}">${r.filename}</td>
                 <td><span class="cls-badge ${info.badge}">${info.icon} ${r.classification}</span></td>
@@ -424,6 +586,164 @@ function renderBatch(data) {
     </div>
   </div>`;
 }
+
+
+function closeModal() {
+  document.getElementById('candidateModal').classList.add('hidden');
+}
+
+function viewCandidate(index) {
+  const data = window.batchData[index];
+  document.getElementById('candidateModal').classList.remove('hidden');
+  renderModal(data);
+}
+
+function renderModal(data) {
+  const cls        = data.classification_details || {};
+  const scores     = data.scores || {};
+  const skills     = data.skills || {};
+  const validation = data.validation || {};
+
+  // Classification badge
+  const label  = cls.classification || 'Unknown';
+  const conf   = cls.confidence || 0;
+  const badge  = document.getElementById('clsBadge');
+  const clsMap = {
+    'Authentic':       { cls:'cls-authentic',  icon:'✓', color:'#15803d' },
+    'Suspicious':      { cls:'cls-suspicious', icon:'⚠', color:'#a16207' },
+    'Potentially Fake':{ cls:'cls-fake',       icon:'✗', color:'#b91c1c' }
+  };
+  const info = clsMap[label] || { cls:'', icon:'?', color:'var(--gray-600)' };
+  badge.className = `cls-badge ${info.cls}`;
+  badge.innerHTML = `${info.icon} ${label}`;
+  document.getElementById('clsFilename').textContent = `File: ${data.filename || ''}`;
+
+  // LLM Verification Badge
+  const llmBadge = document.getElementById('llmVerificationBadge');
+  if (cls.llm_verification) {
+    llmBadge.style.display = 'flex';
+    if (cls.llm_verification.consensus === 'Agree') {
+      llmBadge.style.backgroundColor = '#ecfdf5';
+      llmBadge.style.color = '#065f46';
+      llmBadge.style.border = '1px solid #a7f3d0';
+      llmBadge.innerHTML = `<span style="font-size:1.1rem;">🛡️</span> <div>${cls.llm_verification.reasoning}</div>`;
+    } else {
+      llmBadge.style.backgroundColor = '#fff7ed';
+      llmBadge.style.color = '#9a3412';
+      llmBadge.style.border = '1px solid #fed7aa';
+      llmBadge.innerHTML = `<span style="font-size:1.1rem;">⚠️</span> <div>${cls.llm_verification.reasoning}</div>`;
+    }
+  } else {
+    llmBadge.style.display = 'none';
+  }
+
+  // Confidence ring
+  const pct = Math.round(conf * 100);
+  const circumference = 2 * Math.PI * 30; // r=30
+  const offset = circumference * (1 - conf);
+  const ring = document.getElementById('confRing');
+  ring.style.strokeDashoffset = offset;
+  ring.style.stroke = info.color;
+  document.getElementById('confLabel').textContent = pct + '%';
+  document.getElementById('confLabel').style.color = info.color;
+
+  // Probability bars (with animation delay)
+  setTimeout(() => {
+    function setBar(id, valId, val, color) {
+      const pctVal = Math.round(val * 100);
+      document.getElementById(id).style.width = pctVal + '%';
+      document.getElementById(id).style.background = color;
+      document.getElementById(valId).textContent = pctVal + '%';
+    }
+    setBar('pb-authentic',  'pv-authentic',  cls.prob_Authentic         || 0, '#10B981');
+    setBar('pb-suspicious', 'pv-suspicious', cls.prob_Suspicious        || 0, '#F59E0B');
+    setBar('pb-fake',       'pv-fake',       cls['prob_Potentially Fake']||0, '#EF4444');
+  }, 200);
+
+  // Score grid
+  const scoreLabels = {
+    semantic_similarity:      { label:'Semantic Similarity',    color:'var(--primary)' },
+    skill_overlap_score:      { label:'Skill Overlap',          color:'var(--success)' },
+    experience_relevance_score:{ label:'Experience Relevance',  color:'var(--accent-teal)' },
+    final_match_score:        { label:'Final Match Score',      color:'var(--accent-purple)' }
+  };
+  const scoreGrid = document.getElementById('scoreGrid');
+  scoreGrid.innerHTML = Object.entries(scoreLabels).map(([key, meta]) => {
+    const val = scores[key] || 0;
+    const pct = Math.round(val * 100);
+    const color = pct >= 60 ? '#10B981' : pct >= 35 ? '#F59E0B' : '#EF4444';
+    return `<div class="score-card">
+      <div class="score-label">${meta.label}</div>
+      <div class="score-value" style="color:${color}">${val.toFixed(3)}</div>
+      <div style="margin-top:0.5rem;font-size:0.72rem;color:${color};font-weight:600;">${pct}%</div>
+    </div>`;
+  }).join('');
+
+  // Skills
+  const matched = skills.matched || [];
+  const missing = skills.missing || [];
+  const extra   = skills.extra   || [];
+  const skillsContent = document.getElementById('skillsContent');
+  skillsContent.innerHTML = [
+    matched.length ? `<div class="mb-4"><div class="section-label">✓ Matched (${matched.length})</div><div class="skill-chips">${matched.map(s=>`<span class="skill-chip chip-match">${s}</span>`).join('')}</div></div>` : '',
+    missing.length ? `<div class="mb-4"><div class="section-label">⚠ Missing from Resume (${missing.length})</div><div class="skill-chips">${missing.map(s=>`<span class="skill-chip chip-missing">${s}</span>`).join('')}</div></div>` : '',
+    extra.length   ? `<div><div class="section-label">+ Additional Skills (${extra.length})</div><div class="skill-chips">${extra.map(s=>`<span class="skill-chip chip-extra">${s}</span>`).join('')}</div></div>` : '',
+    (!matched.length && !missing.length && !extra.length) ? `<p class="text-muted text-sm">No skill data available.</p>` : ''
+  ].join('');
+
+  // Validation grid
+  const valGrid = document.getElementById('valGrid');
+  const valFriendly = {
+    semantic_similarity:'Semantic Sim', skill_overlap_score:'Skill Overlap',
+    experience_relevance_score:'Exp Relevance', final_match_score:'Match Score',
+    overlapping_jobs:'Overlapping Jobs', promotion_speed:'Promotion Speed',
+    experience_graduation_gap:'Exp/Grad Gap', skill_density:'Skill Density',
+    achievement_count:'Achievements', generic_phrase_score:'Generic Phrases',
+    gap_years:'Gap Years', keyword_stuffing_score:'Keyword Stuffing',
+    years_experience:'Years Exp', num_certifications:'Certifications',
+    num_skills:'Skill Count', education_level_encoded:'Education Level',
+    has_previous_job:'Has Prev Job', skill_experience_alignment:'Skill Alignment',
+    ai_plausibility_score:'AI Plausibility Score'
+  };
+  valGrid.innerHTML = Object.entries(validation).map(([key, val]) => {
+    const friendly = valFriendly[key] || key.replace(/_/g,' ');
+    const display  = typeof val === 'number'
+      ? (Number.isInteger(val) ? val : val.toFixed(3))
+      : String(val);
+    return `<div class="val-item">
+      <div class="val-label">${friendly}</div>
+      <div class="val-value">${display}</div>
+    </div>`;
+  }).join('');
+
+  // SHAP Explainability — backend returns `top_features` key
+  const shapContent = document.getElementById('shapContent');
+  const shapFeatures = cls.top_features || [];
+  if (shapFeatures.length > 0) {
+      shapContent.innerHTML = shapFeatures.map(feat => {
+          const friendlyName = valFriendly[feat.feature] || feat.feature.replace(/_/g,' ');
+          const isPositive = feat.value > 0;
+          const barColor = isPositive ? '#10B981' : '#EF4444';
+          const directionIcon = isPositive ? '↑' : '↓';
+          const widthPct = Math.min(Math.abs(feat.value) * 100, 100);
+          
+          return `<div style="display:grid;grid-template-columns:140px 1fr 60px;gap:1rem;align-items:center;">
+              <div style="font-size:0.85rem;font-weight:600;color:var(--gray-700);">${friendlyName}</div>
+              <div class="prob-bar-track" style="height:6px;background:#E5E7EB;position:relative;">
+                  <div class="prob-bar-fill" style="position:absolute;${isPositive ? 'left:50%;' : 'right:50%;'}width:${widthPct/2}%;background:${barColor};height:100%;border-radius:3px;"></div>
+              </div>
+              <div style="font-size:0.8rem;color:${barColor};font-weight:700;text-align:right;">${directionIcon} ${Math.abs(feat.value).toFixed(2)}</div>
+          </div>`;
+      }).join('');
+  } else {
+      shapContent.innerHTML = '<p class="text-muted text-sm">No explainability data available for this prediction.</p>';
+  }
+
+  // Resume preview
+  document.getElementById('resumePreview').textContent = data.resume_preview || '(No preview available)';
+}
+
+
 </script>
 </body>
 </html>

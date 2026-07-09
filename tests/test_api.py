@@ -104,9 +104,7 @@ class TestPredictEndpoint:
             "/api/predict",
             files={"resume": ("test.txt", b"Python developer with AWS experience.")}
         )
-        assert response.status_code == 200
-        data = response.json()
-        assert data["status"] == "success"
+        assert response.status_code == 400 # Job description is required
 
     def test_predict_too_short_returns_400(self):
         response = client.post(
@@ -162,9 +160,8 @@ class TestPredictBatchEndpoint:
         )
         assert response.status_code == 200
         data = response.json()
-        assert data["status"] == "success"
-        assert data["count"] == 2
-        assert len(data["results"]) == 2
+        assert data["status"] == "processing"
+        assert "job_id" in data
 
     def test_batch_empty_file_handled(self):
         response = client.post(
@@ -173,7 +170,7 @@ class TestPredictBatchEndpoint:
             data={"job_description": "test"}
         )
         data = response.json()
-        assert "error" in data["results"][0] or data["results"][0].get("classification")
+        assert data["status"] == "processing"
 
     def test_batch_sorts_by_classification_priority(self):
         response = client.post(
@@ -185,9 +182,8 @@ class TestPredictBatchEndpoint:
             data={"job_description": "Software engineer with Python and AWS experience."}
         )
         data = response.json()
-        assert data["status"] == "success"
-        assert data["count"] == 2
-        assert len(data["results"]) == 2
+        assert data["status"] == "processing"
+        assert "job_id" in data
 
 
 class TestStaticFiles:

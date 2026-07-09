@@ -290,6 +290,7 @@
                 <div style="font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;color:var(--gray-400);margin-bottom:0.5rem;">Classification</div>
                 <div id="clsBadge" class="cls-badge" style="font-size:0.9rem;padding:0.5rem 1.25rem;"></div>
                 <div style="margin-top:0.75rem;font-size:0.8125rem;color:var(--gray-500);" id="clsFilename"></div>
+                <div id="llmVerificationBadge" style="display:none; margin-top: 0.75rem; padding: 0.5rem; border-radius: 4px; font-size: 0.85rem; align-items: flex-start; gap: 0.5rem;"></div>
               </div>
               <!-- Confidence ring -->
               <div style="text-align:center;">
@@ -370,13 +371,30 @@
           </div>
         </div>
 
+
+        <!-- SHAP Explainability -->
+        <div class="card mb-4 animate-fadeInUp delay-350">
+          <div class="card-header">
+            <h2 class="card-title">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="2.2" stroke-linecap="round"><path d="M21.21 15.89A10 10 0 1 1 8 2.83"/><path d="M22 12A10 10 0 0 0 12 2v10z"/></svg>
+              AI Explainability (SHAP)
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">Feature Impacts</span>
+            </h2>
+            <p class="card-description">How each feature contributed to the final classification (Model: XGBoost).</p>
+          </div>
+          <div class="card-body">
+            <div id="shapContent" style="display:flex;flex-direction:column;gap:0.75rem;"></div>
+          </div>
+        </div>
+
+
         <!-- Resume Preview -->
         <div class="card animate-fadeInUp delay-400">
           <div class="card-header">
             <h2 class="card-title">
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gray-500)" stroke-width="2.2" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
               Extracted Resume Text
-              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">Preview (first 500 chars)</span>
+              <span style="margin-left:auto;font-size:0.7rem;font-weight:500;color:var(--gray-400);">Summary Preview</span>
             </h2>
           </div>
           <div class="card-body">
@@ -390,25 +408,7 @@
   </div><!-- /container -->
 </main>
 
-<!-- ── Footer ─────────────────────────────────────────────── -->
-<footer>
-  <div class="footer-inner">
-    <div class="footer-brand">
-      <div class="logo-mark" style="width:1.75rem;height:1.75rem;border-radius:8px;box-shadow:none;">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      </div>
-      <span class="footer-brand-name">ClearHire</span>
-      <span class="footer-meta" style="margin-left:0.5rem;">· 6th Semester Minor Project</span>
-    </div>
-    <div class="footer-tags">
-      <span class="footer-tag">SBERT</span>
-      <span class="footer-tag">Decision Tree</span>
-      <span class="footer-tag">spaCy NER</span>
-      <span class="footer-tag">FastAPI</span>
-    </div>
-    <div class="footer-meta">© 2026 Academic Project</div>
-  </div>
-</footer>
+
 
 <script>
 /* ── Mobile Menu ─────────────────────────────────────────── */
@@ -542,6 +542,25 @@ function renderResults(data) {
   badge.innerHTML = `${info.icon} ${label}`;
   document.getElementById('clsFilename').textContent = `File: ${data.filename || ''}`;
 
+  // LLM Verification Badge
+  const llmBadge = document.getElementById('llmVerificationBadge');
+  if (cls.llm_verification) {
+    llmBadge.style.display = 'flex';
+    if (cls.llm_verification.consensus === 'Agree') {
+      llmBadge.style.backgroundColor = '#ecfdf5';
+      llmBadge.style.color = '#065f46';
+      llmBadge.style.border = '1px solid #a7f3d0';
+      llmBadge.innerHTML = `<span style="font-size:1.1rem;">🛡️</span> <div>${cls.llm_verification.reasoning}</div>`;
+    } else {
+      llmBadge.style.backgroundColor = '#fff7ed';
+      llmBadge.style.color = '#9a3412';
+      llmBadge.style.border = '1px solid #fed7aa';
+      llmBadge.innerHTML = `<span style="font-size:1.1rem;">⚠️</span> <div>${cls.llm_verification.reasoning}</div>`;
+    }
+  } else {
+    llmBadge.style.display = 'none';
+  }
+
   // Confidence ring
   const pct = Math.round(conf * 100);
   const circumference = 2 * Math.PI * 30; // r=30
@@ -607,7 +626,8 @@ function renderResults(data) {
     gap_years:'Gap Years', keyword_stuffing_score:'Keyword Stuffing',
     years_experience:'Years Exp', num_certifications:'Certifications',
     num_skills:'Skill Count', education_level_encoded:'Education Level',
-    has_previous_job:'Has Prev Job', skill_experience_alignment:'Skill Alignment'
+    has_previous_job:'Has Prev Job', skill_experience_alignment:'Skill Alignment',
+    ai_plausibility_score:'AI Plausibility Score'
   };
   valGrid.innerHTML = Object.entries(validation).map(([key, val]) => {
     const friendly = valFriendly[key] || key.replace(/_/g,' ');
@@ -619,6 +639,29 @@ function renderResults(data) {
       <div class="val-value">${display}</div>
     </div>`;
   }).join('');
+
+  // SHAP Explainability — backend returns `top_features` key
+  const shapContent = document.getElementById('shapContent');
+  const shapFeatures = cls.top_features || [];
+  if (shapFeatures.length > 0) {
+      shapContent.innerHTML = shapFeatures.map(feat => {
+          const friendlyName = valFriendly[feat.feature] || feat.feature.replace(/_/g,' ');
+          const isPositive = feat.value > 0;
+          const barColor = isPositive ? '#10B981' : '#EF4444';
+          const directionIcon = isPositive ? '↑' : '↓';
+          const widthPct = Math.min(Math.abs(feat.value) * 100, 100);
+          
+          return `<div style="display:grid;grid-template-columns:140px 1fr 60px;gap:1rem;align-items:center;">
+              <div style="font-size:0.85rem;font-weight:600;color:var(--gray-700);">${friendlyName}</div>
+              <div class="prob-bar-track" style="height:6px;background:#E5E7EB;position:relative;">
+                  <div class="prob-bar-fill" style="position:absolute;${isPositive ? 'left:50%;' : 'right:50%;'}width:${widthPct/2}%;background:${barColor};height:100%;border-radius:3px;"></div>
+              </div>
+              <div style="font-size:0.8rem;color:${barColor};font-weight:700;text-align:right;">${directionIcon} ${Math.abs(feat.value).toFixed(2)}</div>
+          </div>`;
+      }).join('');
+  } else {
+      shapContent.innerHTML = '<p class="text-muted text-sm">No explainability data available for this prediction.</p>';
+  }
 
   // Resume preview
   document.getElementById('resumePreview').textContent = data.resume_preview || '(No preview available)';
